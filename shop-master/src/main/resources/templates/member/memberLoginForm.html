@@ -6,23 +6,81 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
   <style>
+  		.fl_L{float:left !important; }
+		.fl_R{float:right !important;}
+		
+		
+		.clearfix:after { clear:both; display:block; content:""; height:0; visibility:hidden;  }
+		* html .clearfix { height:1px; }
+		.clearfix { display:block; min-height:1px; }
+  
         .error {
             color: #bd2130;
         }
+        
+        .login-box { width: 100%; max-width: 600px; box-sizing: border-box; padding: 40px; border-radius: 10px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+        
+        .login-input-area dt { margin-bottom: 10px; }
+		.login-input-area input[type="text"], .login-input-area input[type="password"] { width: 100%; height: 60px; border: 1px solid #ddd; padding: 0 24px; }
+		
+		.login-box .error-text { color: #fc444c; }
+		
+		.login-link-area { margin: 10px 0; }
+		.login-link-area a { position: relative; transition: color 0.5s; }
+		.login-link-area a::after { content: ""; display: block; width: 100%; height: 1px; background: #666; position: absolute; top: 100%; left: 0; transition: background 0.5s; }
+		.login-link-area a:hover { color: #000; transition: color 0.5s; }
+		.login-link-area a:hover::after { background: #000; transition: background 0.5s; }
+		
+		.login-submit-area { width: 100%; margin: 24px 0 18px; }
+		.login-submit-area dt { margin-bottom: 10px; }
+		.login-submit-area a { display: flex; justify-content: center; align-items: center; width: 100%; height: 60px; background: #333; border: 2px solid #333; font-size: 16px; font-weight: 500; color: #fff; border-radius: 5px; box-sizing: border-box; transition: all 0.5s;}
+		.login-submit-area a:hover { background: #fff; border: 2px solid #333; color: #333; transition: all 0.5s;}
+		.btn-login-kakao a { background: #F9E000; color: #3B1E1E; transition: background 0.5s; border: none; }
+		.btn-login-kakao a:hover { background: #f5ca0f; border: none; transition: background 0.5s; }
+		.btn-login-kakao span { display: inline-block; vertical-align: bottom; }
+		.btn-login-kakao span::before { content: ""; display: inline-block; width: 20px; height: 20px; background: url("../images/common/ico-login-kakao.svg") no-repeat center bottom; background-size: 100%; vertical-align: bottom; margin-right: 12px; }
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
   <form role="form" method="post" action="/members/login">
-    <div class="form-group">
-      <label th:for="email">이메일주소</label>
-      <input type="email" name="email" class="form-control" placeholder="이메일을 입력해주세요">
-    </div>
-    <div class="form-group">
-      <label th:for="password">비밀번호</label>
-      <input type="password" name="password" id="password" class="form-control" placeholder="비밀번호 입력">
-    </div>
+  	<div class="login-box">
+  		<h1 lang="en">Login</h1>
+  		<dl class="login-input-area">
+  			<dt class="input-id">
+				<input type="text" name="user_id" class="form-control" placeholder="ID">
+  			</dt>
+  			<dt class="input-pwd">
+				<input type="password" name="password" id="password" class="form-control" placeholder="Password">	
+  			</dt>
+  		</dl>
+  		<p class="error-text" style="display:none;">잘못된 아이디/비밀번호입니다.</p>
+  		<div class="login-link-area clearfix">
+	  		<div class="fl_L">
+				<input type="checkbox" name="i_sFlagSaveId" id="i_sFlagSaveId">
+				<label for="i_sFlagSaveId">
+					<span>아이디 저장</span>
+				</label>
+	  		</div>
+	  		<div class="fl_R">
+				<a href="" ap-click-area="login" ap-click-name="login-click" ap-click-data="아이디찾기" title="아이디찾기">아이디 찾기</a>
+				 | 
+				<a href="" ap-click-area="login" ap-click-name="login-click" ap-click-data="비밀번호찾기" title="비밀번호찾기">
+					<span>비밀번호 찾기</span>
+				</a>
+	  		</div>
+	  	</div>
+	  	<dl class="login-submit-area">
+  			<dt class="btn-login" id="btn-login">
+				<a href="" title="로그인" ap-click-area="login" ap-click-name="login-click" ap-click-data="일반로그인">로그인</a>
+  			</dt>
+  			<dt class="btn-login-kakao" id="btn-login-kakao">
+				<a href="" title="카카오 계정으로 1초 로그인" ap-click-area="login" ap-click-name="login-click" ap-click-data="카카오싱크">카카오 계정으로 1초 로그인</a>	
+  			</dt>
+  		</dl>
+  	</div>
+  	
     <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
     <button class="btn btn-primary">로그인</button>
     <button type="button" class="btn btn-primary" onClick="location.href='/members/new'">회원가입</button>
