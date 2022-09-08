@@ -31,13 +31,13 @@
 	        <!-- Section-->
 	        <section class="py-5 mb-3" >
 	            <div class="container px-4 px-lg-5 mt-5">
-	                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-left">
+	                <div class="row gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
 	                <th:block th:each="item, status: ${items.getContent()}">
 	                    <div class="col mb-5">
-	                        <div class="card h-100">
+	                        <div class="card h-100 border border-0">
 	                       		<a th:href="'/item/' +${item.id}" class="text-dark">
 		                            <!-- Product image-->
-		                          	<img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="300" width="372">
+		                          	<img th:src="${item.imgUrl}" class="card-img-top bg-light" th:alt="${item.itemNm}" height="300" >
 		                            <!-- Product details-->
 		                            <div class="card-body p-4">
 		                                <div class="text-center">
