@@ -3834,7 +3834,7 @@ textarea.form-control-lg {
 .dropdown-menu-dark .dropdown-header {
   color: #adb5bd;
 }
-
+.btn-group:hover .dropdown-menu {display:block;}
 .btn-group,
 .btn-group-vertical {
   position: relative;
