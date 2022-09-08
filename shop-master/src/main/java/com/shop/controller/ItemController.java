@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import javax.persistence.EntityNotFoundException;
 
 import com.shop.dto.ItemSearchDto;
+import com.shop.dto.MainItemDto;
 import com.shop.entity.Item;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -30,7 +31,46 @@ import java.util.Optional;
 public class ItemController {
 
     private final ItemService itemService;
+    
+    @GetMapping(value = "/bread")
+    public String bread(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model){
 
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        model.addAttribute("maxPage", 5);
+
+        return "item_menu/bread";
+    }
+    
+    @GetMapping(value = "/cookies")
+    public String cookies(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        model.addAttribute("maxPage", 5);
+
+        return "item_menu/cookies";
+    }
+    
+    @GetMapping(value = "/cake")
+    public String cake(ItemSearchDto itemSearchDto, Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainItemDto> items = itemService.getMainItemPage(itemSearchDto, pageable);
+
+        model.addAttribute("items", items);
+        model.addAttribute("itemSearchDto", itemSearchDto);
+        model.addAttribute("maxPage", 5);
+
+        return "item_menu/cake";
+    }
+    
     @GetMapping(value = "/admin/item/new")
     public String itemForm(Model model){
         model.addAttribute("itemFormDto", new ItemFormDto());
