@@ -117,22 +117,36 @@ a:hover{
     font-size: 18px;
 }
 
-/*bread.html*/
+/* bread */
 
 #bread #banner{
 	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/bread_banner.jpg?raw=true');
 }
 
 
-/*cookies.html*/
+/* cookies */
 #cookies #banner{
 	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cookies_banner.jpg?raw=true');
 }
 
 
-/*cake.html*/
+/* cake */
 #cake #banner{
 	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cake_banner.jpg?raw=true');
 }
 
-/*itemDtl.html*/
+/* itemDtl */
+#itemDtl .mgb-15{
+    margin-bottom:15px;
+}
+#itemDtl .mgt-30{
+    margin-top:30px;
+}
+#itemDtl .mgt-50{
+    margin-top:50px;
+}
+
+#itemDtl .repImg{
+    width:100%;
+    height:400px;
+}
