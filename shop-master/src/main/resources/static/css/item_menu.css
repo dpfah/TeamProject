@@ -1,4 +1,12 @@
 /*item_menu 공통*/
+a{
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:none;
+}
+
 .sub-top-title-area .title {
     font-family: 'Lora', serif;
     font-size: 48px;
@@ -34,13 +42,19 @@
       font-weight: 500;
 }
 
-a{
-	text-decoration:none;
+
+
+.card-img-top{
+	height: 300px;
 }
 
-a:hover{
-	text-decoration:none;
+.card-img-top img{
+	width: 90%;
+    height: 90%;
+    display: block;
+ 	margin: 0px auto;
 }
+
 .product-list{
 	height: auto;
     margin-top: 10px;
@@ -71,20 +85,54 @@ a:hover{
     text-decoration: none;
 }
 
-/*bread*/
+.product-list .itemDetail{
+	display: inline-block;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    height: auto;
+    margin: 0px 0px 0px 0px;
+    color: #999999;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.previous, .next{
+	display: inline-block;
+    width: auto;
+    padding: 10px 17px;
+    background: #333;
+    border:none;
+    color: #fff;
+    font-size: 18px;
+}
+
+.pNum{
+	display: inline-block;
+    width: auto;
+    padding: 10px 15px;
+    background: #fff;
+    border: none;
+    color: #333;
+    font-size: 18px;
+}
+
+/*bread.html*/
 
 #bread #banner{
 	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/bread_banner.jpg?raw=true');
 }
 
 
-/*cookies*/
+/*cookies.html*/
 #cookies #banner{
 	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cookies_banner.jpg?raw=true');
 }
 
 
-/*cake*/
+/*cake.html*/
 #cake #banner{
 	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cake_banner.jpg?raw=true');
 }
+
+/*itemDtl.html*/
