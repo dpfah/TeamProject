@@ -1,3 +1,17 @@
-header{
-	background-image: url('');
+/*bread*/
+
+#bread #banner{
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/bread_banner.jpg?raw=true');
+}
+
+
+/*cookies*/
+#bread #banner{
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cookies_banner.jpg?raw=true');
+}
+
+
+/*cake*/
+#bread #banner{
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cookies_banner.jpg?raw=true');
 }
