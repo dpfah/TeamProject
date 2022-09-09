@@ -120,13 +120,13 @@ a:hover{
 /* bread */
 
 #bread #banner{
-	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/bread_banner.jpg?raw=true');
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/bread_banner.jpg?raw=true');
 }
 
 
 /* cookies */
 #cookies #banner{
-	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cookies_banner.jpg?raw=true');
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/cookies_banner.jpg?raw=true');
 }
 
 
@@ -155,5 +155,16 @@ a:hover{
 	margin-bottom: 10px;
     color: #333333;
     font-size: 32px;
+    font-weight: 600;
+}
+
+#itemDtl .btn-cart{
+	background: #EEEEEE;
+    color: #333333;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    font-size: 15px;
     font-weight: 500;
 }
