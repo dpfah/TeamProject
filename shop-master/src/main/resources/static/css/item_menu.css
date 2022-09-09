@@ -132,7 +132,7 @@ a:hover{
 
 /* cake */
 #cake #banner{
-	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/images/cake_banner.jpg?raw=true');
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/cake_banner.jpg?raw=true');
 }
 
 /* itemDtl */
@@ -149,4 +149,11 @@ a:hover{
 #itemDtl .repImg{
     width:100%;
     height:400px;
+}
+
+#itemDtl .itemNm{
+	margin-bottom: 10px;
+    color: #333333;
+    font-size: 32px;
+    font-weight: 500;
 }
