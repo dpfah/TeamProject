@@ -1,11 +1,74 @@
 /*item_menu 공통*/
 .sub-top-title-area .title {
-    font-family: 'New Baskerville ITC W05 Bold','NotoSansKR','roboto','돋움','AppleGothic', Dotum, sans-serif;
+    font-family: 'Lora', serif;
     font-size: 48px;
-    font-weight: 500;
-     margin: 0px 20px 40px 0px;
     color: #000000;
     text-align: left;
+}
+
+#banner .title {
+    font-family: 'Lora', serif;
+    font-size: 48px;
+    margin: 0px 20px 40px 0px;
+}
+
+.sub-top-nav-area{
+	clear: both;
+    width: auto;
+    height: auto;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.sub-top-nav-area .nav-link{
+    color: #666666;
+    display: block;
+    margin: 0 20px 0 0;
+    padding: 20px 15px 15px;
+    font-size: 18px;
+    font-weight: 400;   
+}
+
+.sub-top-nav-area .nav-link:hover {
+      color:#000000;
+      font-weight: 500;
+}
+
+a{
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:none;
+}
+.product-list{
+	height: auto;
+    margin-top: 10px;
+    text-decoration:none;
+}
+
+.product-list .origin-price{
+	color: #4e4242;
+    font-size: 18px;
+    text-decoration: line-through;
+}
+
+.product-list span{
+	margin-right: 6px;
+    color: #FC454C;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.product-list .product-name{
+	margin-bottom: 8px;
+    color: #333333;
+    font-size: 18px;
+    /* font-weight: 500; */
+    text-align: left;
+    transition: color 0.5s;
+    text-decoration: none;
 }
 
 /*bread*/

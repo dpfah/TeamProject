@@ -16,6 +16,9 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/item_menu_styles.css" rel="stylesheet" />
         <link href="css/item_menu.css" rel="stylesheet" />
+        <style>
+		@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+		</style>
     </head>
     <body>
         <!-- content 시작-->
@@ -24,17 +27,17 @@
 	        <div id="banner"class="py-5" >
 	            <div class="container px-4 px-lg-5 my-5">
 	                <div class="text-center text-white">
-	                    <h1 class="display-4 fw-bolder">Bread</h1>
+	                    <h1 class="display-4 fw-bolder title fst-italic">Bread</h1>
 	                </div>
 	            </div>
 	        </div>
 	        <!-- small nav -->
-	        <div class="container px-4 px-lg-5 my-5 sub-top-title-area">
+	        <div class="container pt-3 pb-3 px-4 my-5 sub-top-title-area">
                 <div class="text-left text-black">
                     <h1 class="title">Shop</h1>
                 </div>
 	        </div>
-	        <nav class="navbar navbar-expand-lg bg-light">
+	        <nav class="sub-top-nav-area navbar navbar-expand-lg">
 			  <div class="container-fluid">			    
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
@@ -65,17 +68,20 @@
 		                            <!-- Product image-->
 		                          	<img th:src="${item.imgUrl}" class="card-img-top bg-light" th:alt="${item.itemNm}" height="300" >
 		                            <!-- Product details-->
-		                            <div class="card-body p-4">
-		                                <div class="text-center">
-		                                    <!-- Product name-->
-		                                    <h5 class="fw-bolder">[[${item.itemNm}]]</h5>
-		                                    <!-- Product price-->
-		                                    [[${item.price}]]원
-		                                </div>
-		                            </div>
-		                            <!-- Product actions-->
-		                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-		                                <div class="text-center">[[${item.itemNm}]]</div>
+		                            <div class="product-list">
+			                            <div class="card-body">
+			                                <div class="text-left">
+			                                    <!-- Product name-->
+			                                    <h5 class="product-name fw-bolder">[[${item.itemNm}]]</h5>
+			                                    <!-- Product price-->
+			                                   	<div class="origin-price">14000원</div>
+			                                    <span>50%</span>[[${item.price}]]원
+			                                </div>
+			                            </div>
+			                            <!-- Product actions-->
+			                            <div class="card-footer pt-0 border-top-0 bg-transparent">
+			                                <div class="text-left">[[${item.itemNm}]]</div>
+			                            </div>
 		                            </div>
 	                            </a>
 	                        </div>
@@ -93,5 +99,4 @@
 	        <!-- Core theme JS-->
 	        <script src="js/scripts.js"></script>
 	 	</section>
-    </body>
-</html>
+
