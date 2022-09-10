@@ -1,3 +1,170 @@
-header{
-	background-image: url('');
+/*item_menu 공통*/
+a{
+	text-decoration:none;
+}
+
+a:hover{
+	text-decoration:none;
+}
+
+.sub-top-title-area .title {
+    font-family: 'Lora', serif;
+    font-size: 48px;
+    color: #000000;
+    text-align: left;
+}
+
+#banner .title {
+    font-family: 'Lora', serif;
+    font-size: 48px;
+    margin: 0px 20px 40px 0px;
+}
+
+.sub-top-nav-area{
+	clear: both;
+    width: auto;
+    height: auto;
+    margin: 10px 0px 20px 0px;
+    border-bottom: 1px solid #DDDDDD;
+}
+
+.sub-top-nav-area .nav-link{
+    color: #666666;
+    display: block;
+    margin: 0 20px 0 0;
+    padding: 20px 15px 15px;
+    font-size: 18px;
+    font-weight: 400;   
+}
+
+.sub-top-nav-area .nav-link:hover {
+      color:#000000;
+      font-weight: 500;
+}
+
+
+
+.card-img-top{
+	height: 300px;
+}
+
+.card-img-top img{
+	width: 90%;
+    height: 90%;
+    display: block;
+ 	margin: 0px auto;
+}
+
+.product-list{
+	height: auto;
+    margin-top: 10px;
+    text-decoration:none;
+}
+
+.product-list .origin-price{
+	color: #4e4242;
+    font-size: 18px;
+    text-decoration: line-through;
+}
+
+.product-list span{
+	margin-right: 6px;
+    color: #FC454C;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.product-list .product-name{
+	margin-bottom: 8px;
+    color: #333333;
+    font-size: 18px;
+    /* font-weight: 500; */
+    text-align: left;
+    transition: color 0.5s;
+    text-decoration: none;
+}
+
+.product-list .itemDetail{
+	display: inline-block;
+    width: 90%;
+    white-space: nowrap;
+    overflow: hidden;
+    height: auto;
+    margin: 0px 0px 0px 0px;
+    color: #999999;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.previous, .next{
+	display: inline-block;
+    width: auto;
+    padding: 10px 17px;
+    background: #333;
+    border:none;
+    color: #fff;
+    font-size: 18px;
+}
+
+.pNum{
+	display: inline-block;
+    width: auto;
+    padding: 10px 15px;
+    background: #fff;
+    border: none;
+    color: #333;
+    font-size: 18px;
+}
+
+/* bread */
+
+#bread #banner{
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/bread_banner.jpg?raw=true');
+}
+
+
+/* cookies */
+#cookies #banner{
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/cookies_banner.jpg?raw=true');
+}
+
+
+/* cake */
+#cake #banner{
+	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/cake_banner.jpg?raw=true');
+}
+
+/* itemDtl */
+#itemDtl .mgb-15{
+    margin-bottom:15px;
+}
+#itemDtl .mgt-30{
+    margin-top:30px;
+}
+#itemDtl .mgt-50{
+    margin-top:50px;
+}
+
+#itemDtl .repImg{
+    width:100%;
+    height:400px;
+}
+
+#itemDtl .itemNm{
+	margin-bottom: 10px;
+    color: #333333;
+    font-size: 32px;
+    font-weight: 600;
+}
+
+#itemDtl .btn-cart{
+	background: #EEEEEE;
+    color: #333333;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    display: block;
+    font-size: 15px;
+    font-weight: 500;
 }
