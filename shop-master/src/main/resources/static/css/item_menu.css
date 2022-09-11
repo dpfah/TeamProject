@@ -15,10 +15,17 @@ a:hover{
 }
 
 #banner .title {
+    position: absolute;
+    top: 231.205px;
+    left: 461.275px;
     font-family: 'Lora', serif;
     font-size: 48px;
-    margin: 0px 20px 40px 0px;
 }
+
+#banner img{
+	width:1056px;
+	height:320px;
+			}
 
 .sub-top-nav-area{
 	clear: both;
@@ -119,52 +126,20 @@ a:hover{
 
 /* bread */
 
-#bread #banner{
-	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/bread_banner.jpg?raw=true');
+#bread #banner img{
+	height:320px;
 }
 
 
 /* cookies */
 #cookies #banner{
-	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/cookies_banner.jpg?raw=true');
+	height:320px;
 }
 
 
 /* cake */
 #cake #banner{
-	background-image: url('https://github.com/dpfah/TeamProject/blob/main/shop-master/src/main/resources/static/img/cake_banner.jpg?raw=true');
+	height:320px;
 }
 
 /* itemDtl */
-#itemDtl .mgb-15{
-    margin-bottom:15px;
-}
-#itemDtl .mgt-30{
-    margin-top:30px;
-}
-#itemDtl .mgt-50{
-    margin-top:50px;
-}
-
-#itemDtl .repImg{
-    width:100%;
-    height:400px;
-}
-
-#itemDtl .itemNm{
-	margin-bottom: 10px;
-    color: #333333;
-    font-size: 32px;
-    font-weight: 600;
-}
-
-#itemDtl .btn-cart{
-	background: #EEEEEE;
-    color: #333333;
-    width: 100%;
-    height: 50px;
-    line-height: 50px;
-    display: block;
-    font-size: 15px;
-    font-weight: 500;
-}
