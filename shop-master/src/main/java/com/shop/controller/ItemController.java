@@ -112,7 +112,7 @@ public class ItemController {
             return "item/itemForm";
         }
 
-        return "c";
+        return "item/itemForm";
     }
 
     @PostMapping(value = "/admin/item/{itemId}")
