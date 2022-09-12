@@ -192,18 +192,22 @@
     </style>
 </th:block>
 
-<div layout:fragment="content" class="content-mg">
+<div layout:fragment="content" class="content-lg-12 mt-5">
 
-    <h2 class="mb-4">
-        장바구니 목록
-    </h2>
+    <h3 class="mb-1 fw-bold">
+        장바구니
+    </h3>
+    <p>장바구니 상품은 최대 7일간 보관됩니다.</p>
 
     <div>
 
-        <table class="table">
+	<div class="table-responsive">
+        <table class="table table-hover">
             <colgroup>
                 <col width="15%"/>
-                <col width="70%"/>
+                <col width="40%"/>
+                <col width="15%"/>
+                <col width="15%"/>
                 <col width="15%"/>
             </colgroup>
             <thead>
@@ -211,8 +215,10 @@
                 <td>
                     <input type="checkbox" id="checkall" onclick="checkAll()"> 전체선택
                 </td>
-                <td>상품정보</td>
-                <td>상품금액</td>
+                <td>상품명</td>
+                <td>가격</td>
+                <td>수량</td>
+                <td>합계</td>
             </tr>
             </thead>
             <tbody>
@@ -250,15 +256,18 @@
             </tr>
             </tbody>
         </table>
-
-        <h2 class="text-center">
-            총 주문 금액 : <span id="orderTotalPrice" class="text-danger">0원</span>
-        </h2>
+	</div>
+	<div class="TotalPrice">
+        <h5 class="text-center">
+            <span class="smallPrice">결제예정금액</span>
+            <span id="orderTotalPrice" class="text-Price">0원</span>
+        </h5>
 
         <div class="text-center mt-3">
-            <button type="button" class="btn btn-primary btn-lg" onclick="orders()">주문하기</button>
+            <button type="button" class="btn btn-secondary btn-lg" onclick="orders()">주문하기</button>
         </div>
 
+	</div>
     </div>
 
 </div>
