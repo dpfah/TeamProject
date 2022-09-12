@@ -34,9 +34,25 @@
 }
 
 .footer{
-	border-top: 1px solid #666;
+	border-top: 1px solid #ddd;
+	text-align: left;
+	color:#333
 }
-.footerMenu li{}
-
-
+.footer li{
+	text-decoration: none;
+	display:inline-block;
+	float:left;
+	padding-right:5px;
+}
+.footer li a{
+	color:#333;
+}
+.footer ul{
+	display: -webkit-box;
+	    padding: 0;
+}
+.footerMenu li{
+	padding-right:15px;
+	font-weight: bold;
+}
 
