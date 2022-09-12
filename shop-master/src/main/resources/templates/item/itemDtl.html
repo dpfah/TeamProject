@@ -14,8 +14,9 @@
 	    <!-- Bootstrap icons-->
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
 	    <!-- Core theme CSS (includes Bootstrap)-->
-	    <link href="/css/item_menu.css" rel="stylesheet" /> 
-	    <link href="/css/itemDtl_styles.css" rel="stylesheet" />
+	    <link th:href="@{/css/item_menu.css}" rel="stylesheet">
+	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
+	    
 	</head>
 
 	<!-- 사용자 스크립트 추가 -->
@@ -119,6 +120,239 @@
 	
 	    </script>
 	</th:block>
+	
+		<!-- 사용자 CSS 추가 -->
+	<th:block layout:fragment="css">
+	    <style>
+	    #itemDtl .mgb-15{
+		    margin-bottom:15px;
+		}
+		#itemDtl .mgt-30{
+		    margin-top:30px;
+		    
+		}
+		#itemDtl .mgt-50{
+		    margin-top:50px;
+		}
+		
+		#itemDtl .repImg{
+		    width:100%;
+		    height:400px;
+		    margin-right:30px;
+		}
+		
+		#itemDtl .itemNm{
+			margin-bottom: 10px;
+		    color: #333333;
+		    font-size: 32px;
+		    font-weight: 600;
+		}
+		
+		#itemDtl .btn-cart{
+			background: #EEEEEE;
+		    color: #333333;
+		    width: 49%;
+		    height:50px;
+		    display: block;
+		    font-size: 15px;
+		    font-weight: 500;
+		}
+		#itemDtl .btn-purchase{
+			top: -50px;
+		    position: relative;
+		    left: 240px;
+		    height: 50px;
+		    width: 49%;
+		    display: block;
+		    font-size: 15px;
+		    font-weight: 500;
+		    background: #333;
+		    color: #FFFFFF;
+		    border: none;
+		}
+		
+		#itemDtl .small-title{
+			margin: 5px 0 50px 0;
+		    font-size: 18px;
+		    color: #66666666;
+		}
+		
+		#itemDtl .ori-price{
+			color: #AAAAAA;
+			margin-left: 3px;
+    		font-weight: 500;
+    		font-size: 30px;
+		}
+		
+		#itemDtl .persent{
+		    margin-right: 10px;
+			color: #FC454C;
+			font-size: 28px;
+			text-decoration: none;
+			font-weight:600;
+		}
+		
+		#itemDtl .discount-amount{
+			margin-left: 3px;
+		    color: #000000;
+		    font-size: 28px;
+		    font-weight: 500;
+		    font-size:30px;
+		}
+		
+		#itemDtl .count{
+			border: 1px solid #333;
+		    border-radius: 4px;
+		    color: #333;
+		    font-weight: 600;
+		    padding-left: 3px;
+		    padding-right: 3px;
+		    width: 100%;
+		    height: 50px;
+		}
+		
+		#itemDtl .dropdown-toggle{
+			border: 1px solid #333;
+		    border-radius: 4px;
+		    font-size: 20px;
+		    font-weight: 500;
+		    padding:0 40px 0 20px;
+		    overflow: hidden;
+		    white-space: nowrap;
+		    text-overflow: ellipsis;
+		    background-color: #fff;
+			box-sizing: border-box;
+			color: #333333;
+			display: inline-block;
+			position: relative;
+			margin: 00;
+			width: 100%;
+			height: 50px;
+			z-index: 10;
+		}
+		
+		#itemDtl .dropdown-menu{
+			width: Calc(100% - 22px);
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			height: 50px;
+    line-height: 2.5;
+		}
+		
+		#itemDtl .small-price{
+			position: absolute;
+		    bottom: 5px;
+		    left: 321px;
+		    font-size: 18px;
+		    color: #66666666;
+		}
+		
+		#itemDtl .small-priceW{
+			position: absolute;
+		    bottom: 5px;
+		    left: 353px;
+		    font-size: 18px;
+		    color: #66666666;
+		}
+		
+		#itemDtl ul, ol, dl, dt, dd, li {
+		    list-style: none;
+		    padding: 0;
+		    margin: 0;
+		}
+		
+		#itemDtl .product-summary {
+		    padding: 20px 0 20px;
+		    border-top: 0px solid #DDDDDD;
+		    border-bottom: 0px solid #DDDDDD;
+		    margin-bottom: 10px;
+		}
+		
+		#itemDtl .product-summary .product-intake {
+		    margin-top: 0px;
+		    padding-bottom: 10px;
+		    border-bottom: 1px solid #CCCCCC;
+		    font-size: 15px;
+		    color: #666666;
+		}
+		
+		#itemDtl .product-summary .product-intake li {
+		    color: #666666;
+		    font-size: 15px;
+		    margin-top: 0px;
+		    line-height: 1.5;
+		}
+		
+		#itemDtl .product-summary .product-usage {
+		    position: relative;
+		    height: auto;
+		    margin: 20px 0 0px 0;
+		}
+		
+		#itemDtl .product-summary .product-usage p {
+		    position: absolute;
+		    left: 0px;
+		    top: 0px;
+		    color: #000000;
+		    font-size: 15px;
+		    font-weight: 500;
+		    line-height: 1.5;
+		    vertical-align: middle;
+		}
+		
+		#itemDtl .product-summary .product-info-etc {
+		    padding-left: 100px;
+		}
+		
+		#itemDtl .product-summary .product-info-etc li {
+		    color: #666666;
+		    font-size: 15px;
+		    margin-top: 0px;
+		    line-height: 1.5;
+		}
+				
+		#itemDtl .tab-product-area {
+		    border: 0px solid #F5F5F5;
+		    border-right: 0;
+		    border-bottom: 1px solid #CCCCCC;
+		    border-left: 0;
+		    background: #FFFFFF;
+		    height: 64px;
+		    position: relative;
+		    right: 64px;
+		}
+		
+		#itemDtl .tab-product-ul{
+			width: 1056px;
+		    height: 64px;
+		    line-height: 3;
+		}
+		
+		#itemDtl .tab-product-ul > li {
+		    float: left;
+		    width: 33.3333%;
+		    text-align: center;
+		}
+		
+		#itemDtl .tab-product-ul > li a{
+		    padding: 0 35px 12px 35px;
+		    height: 100%;
+		    display: inline-block;
+		    position: relative;
+		    font-size: 18px;
+		    color: #666666;
+   			text-decoration: none;
+		}
+		
+		#itemDtl .tab-product-ul > li a:hover{
+		    font-weight: 600;
+		    color: #000000;
+		    border-bottom:2px solid #000000;
+		}
+		
+	    </style>
+	</th:block>
 
 
 
@@ -138,38 +372,77 @@
 			            </span>
 					</div>
 	                <h3 class="itemNm fw-bolder" th:text="${item.itemNm}">e</h3>
-	                <div class="fs-5 mb-5">
-	                    <span class="text-decoration-line-through">$45.00</span>
+	                <div class="fs-5 mb-3">
+	                	<p class="lead small-title" th:text="${item.itemDetail}"></p>
+	                    <div class="ori-price text-decoration-line-through">$45.00</div>
+	                    <span class="persent">50%</span>
 	                    <input type="hidden" th:value="${item.price}" id="price" name="price">
-	                    <span th:text="${item.price}"></span>원
+	                    <span class="discount-amount" name="totalPrice" id="totalPrice"></span>
 	                </div>
-	                <p class="lead">Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium at dolorem quidem modi. Nam sequi consequatur obcaecati excepturi alias magni, accusamus eius blanditiis delectus ipsam minima ea iste laborum vero?</p>
-	                <div class="d-flex">
-	                    <input class="form-control text-center me-3" id="count" name="count" type="num" value="1" min="1" style="max-width: 3rem" />
+	               
+	                <div class="row mb-3">
+	                	<div class="dropdown col-10">
+						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" th:text="${item.itemNm}">
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						    <li><a class="dropdown-item" th:text="${item.itemNm}"></a><span class="lead small-price" th:text="${item.price}"></span><span class="lead small-priceW">원</span></li>
+						  </ul>
+						</div>
+	                    <input class="form-control count text-center me-3 col-2" id="count" name="count" type="number" value="1" min="1" style="max-width: 3rem" />
 	                </div>
-	                <div class="text-right mgt-50">
-		                <h5>결제 금액</h5>
-		                <h3 name="totalPrice" id="totalPrice" class="font-weight-bold"></h3>
-		            </div>
-		            <div th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right">
+	                <!--상품 정보: 맛있게 먹는 법-->
+	                <div class="product-summary">
+	                	<ul class="product-intake">
+	                		<li>
+	                		맛있게 먹는법: 전자렌지에 3분 돌린 뒤 우유와 함께 먹으면 맛있습니다.
+	                		</li>
+	                	</ul>
+	                	<div class="product-usage">
+	                		<p>상품정보</p>
+	                		<ul class="product-info-etc">
+	                			<li class="expectBpoint">빵주머니포인트 예상적립 330P (1%)</li>
+	                		</ul>
+	                	</div>			
+	                </div>
+		            <div th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right mt-3">
 		                <button type="button" class="btn btn-cart btn-lg" onclick="addCart()">장바구니 담기</button>
-		                <button type="button" class="btn btn-primary btn-lg" onclick="order()">주문하기</button>
+		                <button type="button" class="btn btn-purchase btn-primary btn-lg" onclick="order()">주문하기</button>
 		            </div>
 		            <div th:unless="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right">
 		                <button type="button" class="btn btn-danger btn-lg">품절</button>
 		            </div>
 		     	</div>
 		    </div>
-		    <div class="jumbotron jumbotron-fluid mgt-30">
+		    
+		    <!--상품 상세, 리뷰, 배송및 교환 nav-->
+		    <nav class="navbar navbar-expand-lg mt-5 mb-5">
+			  <div class="container-fluid mt-5">			    
+			    <div class="tab-product-area collapse navbar-collapse" id="navbarNav">
+			      <ul class="tab-product-ul navbar-nav">
+			        <li class="nav-item">
+			          <a class="nav-link active" aria-current="page" href="#">상세정보</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="#">후기(1204)</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="#">배송 및 교환</a>
+			        </li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+			<div th:each="itemImg : ${item.itemImgDtoList}" class="text-center pt-5">
+	    	<img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class="rounded mgb-15" width="800">
+			</div>
+		    <div class="jumbotron-fluid mgt-30">
 		        <div class="container">
-		            <h4 class="display-5">상품 상세 설명</h4>
+		            <h4 class="">상품 상세 설명</h4>
 		            <hr class="my-4">
 		            <p class="lead" th:text="${item.itemDetail}"></p>
 		        </div>
 		    </div>
 	    </div>
-	    <div th:each="itemImg : ${item.itemImgDtoList}" class="text-center">
-	    	<img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class="rounded mgb-15" width="800">
-		</div>
+	    
 	</section>
 </html>
