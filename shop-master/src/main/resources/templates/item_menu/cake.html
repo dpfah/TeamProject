@@ -8,54 +8,110 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>cake menu</title>
+        <title>bread menu</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/item_menu_styles.css" rel="stylesheet" />
+        <link href="/css/item_menu_styles.css" rel="stylesheet" />
+        <link href="/css/item_menu.css" rel="stylesheet" />
+        <style>
+		@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
+		</style>
     </head>
     <body>
         <!-- content 시작-->
-	 	<div layout:fragment="content">	
-	        <!-- Header-->
-	        <header class="bg-dark py-5" >
-	            <div class="container px-4 px-lg-5 my-5">
+	 	<section id="bread" layout:fragment="content">	
+	        <!-- banner-->
+	        <div id="banner"class="" >
+	            <div class="container">
 	                <div class="text-center text-white">
-	                    <h1 class="display-4 fw-bolder">Cookies</h1>
-	                    <p class="lead fw-normal text-white-50 mb-0">With this shop hompeage template</p>
+	                    <h1 class="display-4 fw-bolder title fst-italic">Cake</h1>
+	                    <img src="/img/cake_banner.jpg">
 	                </div>
 	            </div>
-	        </header>
-	        <!-- Section-->
+	        </div>
+	        <!-- small nav -->
+	        <div class="container pt-3 pb-3 px-4 my-5 sub-top-title-area">
+                <div class="text-left text-black">
+                    <h1 class="title">Shop</h1>
+                </div>
+	        </div>
+	        <nav class="sub-top-nav-area navbar navbar-expand-lg">
+			  <div class="container-fluid">			    
+			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			      <span class="navbar-toggler-icon"></span>
+			    </button>
+			    <div class="collapse navbar-collapse" id="navbarNav">
+			      <ul class="navbar-nav">
+			        <li class="nav-item">
+			          <a class="nav-link" href="/cake">Cake</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="/cookies">Cookies</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="/bread">Bread</a>
+			        </li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+	       	        <!-- Section-->
 	        <section class="py-5 mb-3" >
-	            <div class="container px-4 px-lg-5 mt-5">
-	                <div class="row gx-3 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
+	            <div class="container px-4 mt-5">
+	                <div class="row gx-3 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
 	                <th:block th:each="item, status: ${items.getContent()}">
 	                    <div class="col mb-5">
 	                        <div class="card h-100 border border-0">
 	                       		<a th:href="'/item/' +${item.id}" class="text-dark">
 		                            <!-- Product image-->
-		                          	<img th:src="${item.imgUrl}" class="card-img-top bg-light" th:alt="${item.itemNm}" height="300" >
-		                            <!-- Product details-->
-		                            <div class="card-body p-4">
-		                                <div class="text-center">
-		                                    <!-- Product name-->
-		                                    <h5 class="fw-bolder">[[${item.itemNm}]]</h5>
-		                                    <!-- Product price-->
-		                                    [[${item.price}]]원
-		                                </div>
+		                            <div class="card-img-top bg-light">
+		                          		<img th:src="${item.imgUrl}" th:alt="${item.itemNm}">
 		                            </div>
-		                            <!-- Product actions-->
-		                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-		                                <div class="text-center">[[${item.itemNm}]]</div>
+		                            <!-- Product details-->
+		                            <div class="product-list">
+			                            <div class="card-body">
+			                                <div class="text-left">
+			                                    <!-- Product name-->
+			                                    <h5 class="product-name fw-bolder">[[${item.itemNm}]]</h5>
+			                                    <!-- Product price-->
+			                                   	<div class="origin-price">14000원</div>
+			                                    <span>50%</span>[[${item.price}]]원
+			                                </div>
+			                            </div>
+			                            <!-- Product actions-->
+			                            <div class="itemDetail card-footer pt-0 border-top-0 bg-transparent">
+			                                <div class="text-left">[[${item.itemDetail}]]</div>
+			                            </div>
 		                            </div>
 	                            </a>
 	                        </div>
 	                    </div>
 	                </th:block>
 	                </div>
+	                 <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+				        <ul class="pagination justify-content-center">
+				
+				            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+				                <a th:href="@{'/cake' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link previous">
+				                    <span aria-hidden='true'>Previous</span>
+				                </a>
+				            </li>
+				
+				            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+				                <a th:href="@{'/cake' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+				            </li>
+				
+				            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+				                <a th:href="@{'/cake' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link next">
+				                    <span aria-hidden='true'>Next</span>
+				                </a>
+				            </li>
+				
+				        </ul>
+				    </div>
 	            </div>
 	        </section>
 	        <!-- Footer-->
@@ -66,6 +122,4 @@
 	        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 	        <!-- Core theme JS-->
 	        <script src="js/scripts.js"></script>
-	 	</div>
-    </body>
-</html>
+	 	</section>

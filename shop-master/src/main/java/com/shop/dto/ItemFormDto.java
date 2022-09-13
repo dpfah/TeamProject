@@ -1,15 +1,19 @@
 package com.shop.dto;
 
-import com.shop.constant.ItemSellStatus;
-import com.shop.entity.Item;
-import lombok.Getter;
-import lombok.Setter;
-import org.modelmapper.ModelMapper;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import java.util.ArrayList;
-import java.util.List;
+
+import org.modelmapper.ModelMapper;
+
+import com.shop.constant.ItemSellStatus;
+import com.shop.constant.ItemType;
+import com.shop.entity.Item;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Getter @Setter
 public class ItemFormDto {
@@ -29,6 +33,8 @@ public class ItemFormDto {
     private Integer stockNumber;
 
     private ItemSellStatus itemSellStatus;
+    
+    private ItemType itemType;
 
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
 

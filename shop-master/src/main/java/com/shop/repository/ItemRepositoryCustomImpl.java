@@ -1,24 +1,32 @@
 package com.shop.repository;
 
-import com.querydsl.core.QueryResults;
-import com.querydsl.core.types.dsl.BooleanExpression;
-import com.querydsl.core.types.dsl.Wildcard;
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.shop.constant.ItemSellStatus;
-import com.shop.dto.ItemSearchDto;
-import com.shop.dto.MainItemDto;
-import com.shop.dto.QMainItemDto;
-import com.shop.entity.Item;
-import com.shop.entity.QItem;
-import com.shop.entity.QItemImg;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.thymeleaf.util.StringUtils;
 
-import javax.persistence.EntityManager;
-import java.time.LocalDateTime;
-import java.util.List;
+import com.querydsl.core.types.dsl.BooleanExpression;
+import com.querydsl.core.types.dsl.Wildcard;
+import com.querydsl.jpa.impl.JPAQueryFactory;
+import com.shop.constant.ItemSellStatus;
+import com.shop.constant.ItemType;
+import com.shop.dto.BreadItemDto;
+import com.shop.dto.CakeItemDto;
+import com.shop.dto.CookiesItemDto;
+import com.shop.dto.ItemSearchDto;
+import com.shop.dto.MainItemDto;
+import com.shop.dto.QBreadItemDto;
+import com.shop.dto.QCakeItemDto;
+import com.shop.dto.QCookiesItemDto;
+import com.shop.dto.QMainItemDto;
+import com.shop.entity.Item;
+import com.shop.entity.QItem;
+import com.shop.entity.QItemImg;
 
 public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
@@ -118,6 +126,124 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                 .from(itemImg)
                 .join(itemImg.item, item)
                 .where(itemImg.repimgYn.eq("Y"))
+                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .fetchOne()
+                ;
+
+        return new PageImpl<>(content, pageable, total);
+    }
+    
+    
+    // Bread 페이징
+    @Override
+    public Page<BreadItemDto> getBreadItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        QItem item = QItem.item;
+        QItemImg itemImg = QItemImg.itemImg;
+
+        List<BreadItemDto> content = queryFactory
+                .select(
+                        new QBreadItemDto(
+                                item.id,
+                                item.itemNm,
+                                item.itemDetail,
+                                itemImg.imgUrl,
+                                item.price,
+                                item.itemType)
+                )
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repimgYn.eq("Y"))
+                .where(item.itemType.eq(ItemType.Bread)) // 화면에 타입이 빵인것만 나타나게 함.
+                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .orderBy(item.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = queryFactory
+                .select(Wildcard.count)
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repimgYn.eq("Y"))
+                .where(item.itemType.eq(ItemType.Bread)) // 타입이 빵인것만 전체 개수로 해서 페이징
+                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .fetchOne()
+                ;
+
+        return new PageImpl<>(content, pageable, total);
+    }
+    
+ // Cookies 페이징
+    @Override
+    public Page<CookiesItemDto> getCookiesItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        QItem item = QItem.item;
+        QItemImg itemImg = QItemImg.itemImg;
+
+        List<CookiesItemDto> content = queryFactory
+                .select(
+                        new QCookiesItemDto(
+                                item.id,
+                                item.itemNm,
+                                item.itemDetail,
+                                itemImg.imgUrl,
+                                item.price,
+                                item.itemType)
+                )
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repimgYn.eq("Y"))
+                .where(item.itemType.eq(ItemType.Cookies)) // 화면에 타입이 쿠키인 것만 나타나게 함
+                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .orderBy(item.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = queryFactory
+                .select(Wildcard.count)
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repimgYn.eq("Y"))
+                .where(item.itemType.eq(ItemType.Cookies)) // 타입이 쿠키인 것만 전체 개수로 해서 페이징
+                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .fetchOne()
+                ;
+
+        return new PageImpl<>(content, pageable, total);
+    }
+    
+ // Cake 페이징
+    @Override
+    public Page<CakeItemDto> getCakeItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
+        QItem item = QItem.item;
+        QItemImg itemImg = QItemImg.itemImg;
+
+        List<CakeItemDto> content = queryFactory
+                .select(
+                        new QCakeItemDto(
+                                item.id,
+                                item.itemNm,
+                                item.itemDetail,
+                                itemImg.imgUrl,
+                                item.price,
+                                item.itemType)
+                )
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repimgYn.eq("Y"))
+                .where(item.itemType.eq(ItemType.Cake)) // 화면에 타입이 케잌인 것만 나타나게 함
+                .where(itemNmLike(itemSearchDto.getSearchQuery()))
+                .orderBy(item.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = queryFactory
+                .select(Wildcard.count)
+                .from(itemImg)
+                .join(itemImg.item, item)
+                .where(itemImg.repimgYn.eq("Y"))
+                .where(item.itemType.eq(ItemType.Cake))// 타입이 케잌인 것만 전체 개수로 해서 페이징
                 .where(itemNmLike(itemSearchDto.getSearchQuery()))
                 .fetchOne()
                 ;
