@@ -12,10 +12,18 @@ public class ItemDto {
     private Long id;
 
     private String itemNm;
+    
+    private String itemSNm;
 
     private Integer price;
+    
+    private Integer percent;
 
     private String itemDetail;
+    
+    private String itemSummary;
+    
+    private String point;
 
     private String sellStatCd;
 

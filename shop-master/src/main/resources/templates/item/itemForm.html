@@ -10,7 +10,10 @@
 	    <meta name="author" content="" />
 	    <title>Shop Item - Start Bootstrap Template</title>
 	    <!-- Bootstrap icons-->
-	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />	
+	    
+	    <!-- 사용자 지정 css -->    
+	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
 	</head>
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
@@ -79,8 +82,14 @@
 				        </div>
 				        <p th:if="${#fields.hasErrors('itemNm')}" th:errors="*{itemNm}" class="fieldError">Incorrect data</p>
 		                <div class="fs-5 mb-3">
-		                	<p class="lead small-title"><input class="form-control" placeholder="부제목을 입력해주세요"></p>
-		                    <input class="form-control percent" placeholder="할인률">%</input>
+		                	<div class="lead small-title">
+		                		<input class="form-control" type="text" th:field="*{itemSNm}" placeholder="부제목을 입력해주세요">
+		                	</div>
+		                	<p th:if="${#fields.hasErrors('itemSNm')}" th:errors="*{itemSNm}" class="fieldError">Incorrect data</p>
+		                	<div>
+		                    	<input class="form-control percent" type="text" th:field="*{percent}" placeholder="할인률">%</input>
+		                	</div>
+		                	<p th:if="${#fields.hasErrors('percent')}" th:errors="*{percent}" class="fieldError">Incorrect data</p>
 		                    <div class="input-group">
 					            <input type="number" th:field="*{price}" class="form-control" placeholder="상품의 가격을 입력해주세요">
 					        </div>
@@ -97,13 +106,17 @@
 		                <div class="product-summary">
 		                	<ul class="product-intake">
 		                		<li>
-		                		<input class="form-control" placeholder="상품 요약">
+		                			<input class="form-control" type="text" th:field="*{itemSummary}" placeholder="상품 요약">
 		                		</li>
+		                		<p th:if="${#fields.hasErrors('itemSummary')}" th:errors="*{itemSummary}" class="fieldError">Incorrect data</p>
 		                	</ul>
 		                	<div class="product-usage">
 		                		<p>상품정보</p>
 		                		<ul class="product-info-etc">
-		                			<li class="expectBpoint"><input class="form-control" placeholder="상품 포인트"></li>
+		                			<li class="expectBpoint">
+		                				<input class="form-control" type="text" th:field="*{point}" placeholder="상품 포인트">
+		                			</li>
+		                			<p th:if="${#fields.hasErrors('point')}" th:errors="*{point}" class="fieldError">Incorrect data</p>
 		                		</ul>
 		                	</div>			
 		                </div>

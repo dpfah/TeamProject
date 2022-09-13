@@ -33,7 +33,13 @@ public class Item extends BaseEntity {
 
     @Column(nullable = false, length = 50)
     private String itemNm; //상품명
+    
+    @Column(nullable = false, length = 50)
+    private String itemSNm; //상품 부제목
 
+    @Column(name="percent")
+    private int percent; //할인율
+    
     @Column(name="price", nullable = false)
     private int price; //가격
 
@@ -44,6 +50,12 @@ public class Item extends BaseEntity {
     // 데이터를 다룰 때 사용 할 수 있음
     @Column(nullable = false) 
     private String itemDetail; //상품 상세 설명
+    
+    @Column(nullable = false) 
+    private String itemSummary; //상품 요약 설명
+    
+    @Column(nullable = false) 
+    private String point; //상품 포인트
 
     @Enumerated(EnumType.STRING) // enum 타입 매핑
     private ItemSellStatus itemSellStatus; //상품 판매 상태
@@ -58,6 +70,11 @@ public class Item extends BaseEntity {
         this.itemDetail = itemFormDto.getItemDetail();
         this.itemSellStatus = itemFormDto.getItemSellStatus();
         this.itemType = itemFormDto.getItemType();
+        this.itemSNm = itemFormDto.getItemSNm();
+        this.itemSummary = itemFormDto.getItemSummary();
+        this.percent = itemFormDto.getPercent();
+        this.point = itemFormDto.getPoint();
+        
     }
 
     public void removeStock(int stockNumber){
