@@ -1,9 +1,9 @@
 package com.shop.dto;
 
+import java.time.LocalDateTime;
+
 import lombok.Getter;
 import lombok.Setter;
-
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,5 +22,7 @@ public class ItemDto {
     private LocalDateTime regTime;
 
     private LocalDateTime updateTime;
+    
+    private String itemType;
 
 }

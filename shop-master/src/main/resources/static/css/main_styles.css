@@ -1,0 +1,58 @@
+#header{
+	height:125px;
+}
+.top_menu a{
+	font-size: 12px;
+	color:black;
+	margin:7px 0 23px;
+}
+.f-red{
+	color:red !important;
+}
+.Hmenu .nav-item a{
+	color: #333333;
+    font-size: 16px;
+}
+.logo{
+	font-size: 21px;
+	font-weight: bold;
+}
+
+.smallPrice{
+	color:#666;
+	font-size: 12px;
+	display:block;
+}
+.text-Price{
+	font-size: 36px;
+	font-weight: bold;
+}
+.TotalPrice{
+	margin:0 auto;
+	background-color: #f7f7f7;
+	padding: 50px;
+}
+
+.footer{
+	border-top: 1px solid #ddd;
+	text-align: left;
+	color:#333
+}
+.footer li{
+	text-decoration: none;
+	display:inline-block;
+	float:left;
+	padding-right:5px;
+}
+.footer li a{
+	color:#333;
+}
+.footer ul{
+	display: -webkit-box;
+	    padding: 0;
+}
+.footerMenu li{
+	padding-right:15px;
+	font-weight: bold;
+}
+

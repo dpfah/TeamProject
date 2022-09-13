@@ -1,13 +1,15 @@
 html {
+	width:1080px;
     position: relative;
+    width: 1080px;
     min-height: 100%;
-    margin: 0;
+    margin: 0 auto;
 }
 body {
     min-height: 100%;
 }
 .footer {
-    position: absolute;
+    position: relative;
     left: 0;
     right: 0;
     bottom: 0;
@@ -15,9 +17,7 @@ body {
     padding: 15px 0;
     text-align: center;
 }
+
 .content{
-    margin-bottom:100px;
-    margin-top: 50px;
-    margin-left: 200px;
-    margin-right: 200px;
+
 }
