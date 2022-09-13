@@ -37,7 +37,7 @@ public class Item extends BaseEntity {
     @Column(nullable = false, length = 50)
     private String itemSNm; //상품 부제목
 
-    @Column(name="percent")
+    @Column(name="percent", columnDefinition = "int default 1")
     private int percent; //할인율
     
     @Column(name="price", nullable = false)

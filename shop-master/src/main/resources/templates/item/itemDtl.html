@@ -28,12 +28,14 @@
 	            $("#count").change( function(){
 	                calculateToalPrice();
 	            });
+	            
 	        });
-	
+	  // 할인율 계산
 	        function calculateToalPrice(){
+				var percent = $("#percent").val();
 	            var count = $("#count").val();
 	            var price = $("#price").val();
-	            var totalPrice = price*count;
+	            var totalPrice = price*count*percent/100;
 	            $("#totalPrice").html(totalPrice + '원');
 	        }
 	
@@ -142,7 +144,8 @@
 	                <div class="fs-5 mb-3">
 	                	<p class="lead small-title" th:text="${item.itemSNm}"></p>
 	                    <div class="ori-price text-decoration-line-through" th:text="${item.price}"></div>
-	                    <span class="percent" th:text="${item.percent}"></span><span class="percent">%</span>
+	                    <input type="hidden" th:value="${item.percent}" id="percent" name="percent">
+	                    <span class="percent" th:text="${item.percent}+'%'">
 	                    <input type="hidden" th:value="${item.price}" id="price" name="price">
 	                    <span class="discount-amount" name="totalPrice" id="totalPrice"></span>
 	                </div>
@@ -167,7 +170,7 @@
 	                	<div class="product-usage">
 	                		<p>상품정보</p>
 	                		<ul class="product-info-etc">
-	                			<li class="expectBpoint" th:text="${item.point}"></li>
+	                			<li class="expectBpoint" th:text="${item.point}" type="number"></li>
 	                		</ul>
 	                	</div>			
 	                </div>

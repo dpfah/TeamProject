@@ -85,42 +85,71 @@
     </style>
 </th:block>
 
-<div layout:fragment="content" class="content-mg">
+<div layout:fragment="content" class="content-lg-12 mt-5">
 
-    <h2 class="mb-4">
-        구매 이력
-    </h2>
-
-    <div th:each="order : ${orders.getContent()}">
-
-        <div class="d-flex mb-3 align-self-center">
-            <h4 th:text="${order.orderDate} + ' 주문'"></h4>
-            <div class="ml-3">
-                <th:block th:if="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
-                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
-                </th:block>
-                <th:block th:unless="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
-                    <h4>(취소 완료)</h4>
-                </th:block>
-            </div>
-        </div>
-        <div class="card d-flex">
-            <div th:each="orderItem : ${order.orderItemDtoList}" class="d-flex mb-3">
-                <div class="repImgDiv">
-                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">
-                </div>
-                <div class="align-self-center w-75">
-                    <span th:text="${orderItem.itemNm}" class="fs24 font-weight-bold"></span>
-                    <div class="fs18 font-weight-light">
-                        <span th:text="${orderItem.orderPrice} +'원'"></span>
-                        <span th:text="${orderItem.count} +'개'"></span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-
+    <h3 class="mb-1 fw-bold">
+        구매이력
+    </h3>
+    <div>
+	<div class="table-responsive">
+	        <table class="table table-hover cart">
+	            <colgroup>
+	                <col width="15%"/>
+	                <col width="40%"/>
+	                <col width="15%"/>
+	                <col width="15%"/>
+	                <col width="15%"/>
+	            </colgroup>
+	            <tr class="text-center">
+	                <td>주문일자</td>
+	                <td>상품명</td>
+	                <td>수량</td>
+	                <td>가격</td>
+	                <td>처리현황</td>
+	            </tr>
+	        	<tr th:each="order : ${orders.getContent()}">
+	        		<td>
+		        		<div class="d-flex mb-3 align-self-center">
+				            <h4 th:text="${order.orderDate} + ' 주문'"></h4>
+				        </div>
+	        		</td>
+	        		<td colspan='3'>
+		        		<table style="border: none; width:100%;">
+		        			
+				            <tr th:each="orderItem : ${order.orderItemDtoList}" class="d-flex" style="width:100%;">
+				            	<td style="width:25%; border-top: none;">
+					                <div class="repImgDiv">
+					                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">
+					                </div>   
+					                
+				            	</td>
+				            	<td style="width:25%; border-top: none;">
+				            		<span th:text="${orderItem.itemNm}" class="fs24 font-weight-bold"></span>
+				            	</td>
+				            	<td style="width:25%; border-top: none;">
+				            		<span th:text="${orderItem.orderPrice} +'원'"></span>
+				            	</td>
+				            	<td style="width:25%; border-top: none;">
+				            		<span th:text="${orderItem.count} +'개'"></span>
+				            	</td>       
+				            </tr>
+				        </table>
+	        		</td>
+			        
+			        <td>
+				        <div class="d-flex mb-3 align-self-center">
+				            <div class="ml-3">
+				                <th:block th:if="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
+				                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
+				                </th:block>
+				                <th:block th:unless="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
+				                    <h4>(취소 완료)</h4>
+				                </th:block>
+				            </div>
+				        </div>
+			        </td>
+			    </tr>
+			</table>	
     <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
         <ul class="pagination justify-content-center">
 

@@ -291,6 +291,7 @@ a:hover{
     border-top: 0px solid #DDDDDD;
     border-bottom: 0px solid #DDDDDD;
     margin-bottom: 10px;
+    
 }
 
 .itemA .product-summary .product-intake {
@@ -411,4 +412,29 @@ a:hover{
 #itemForm .small-title{
     font-size: 18px;
     color: #66666666;
+}
+
+#itemForm .price_input{
+    width: 63%;
+    position: absolute;
+    left: 167px;
+    bottom: 225px;
+}
+
+#itemForm .percentS{
+	bottom: 230px;
+    position: absolute;
+    left: 136px;
+}
+
+#itemForm .stockNumber{
+	margin-top: 15px;
+}
+
+#itemForm .select_sell{
+	margin-bottom: 10px;
+}
+
+#itemForm .repImg{
+	margin-top: -20px;
 }
