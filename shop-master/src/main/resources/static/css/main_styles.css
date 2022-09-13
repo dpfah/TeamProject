@@ -13,9 +13,10 @@
 	color: #333333;
     font-size: 16px;
 }
-.logo{
+a.logo{
 	font-size: 21px;
 	font-weight: bold;
+	color:#cf6c1e;
 }
 
 .smallPrice{
@@ -71,8 +72,27 @@
     top: -5px;
     font-size: 30px;
 }
-	
-
-
-
+.mslide {
+	width:700px;
+	background:#f1f1f1;
+	display: inherit;
+}	
+.mbanner{
+	float:right;
+	display:inline-block;
+}
+.main{
+	display:inline-block;
+}
+.mban{
+	margin-left: 10px;
+    margin-bottom: 15px;
+}
+.mban img{
+	width:370px;
+	height:auto;
+}
+.mban:last-child{
+    margin-bottom: 0;
+}
 
