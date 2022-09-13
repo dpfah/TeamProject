@@ -321,7 +321,7 @@ a:hover{
     top: 0px;
     color: #000000;
     font-size: 15px;
-    font-weight: 500;
+    font-weight: 600;
     line-height: 1.5;
     vertical-align: middle;
 }
@@ -360,21 +360,7 @@ a:hover{
     text-align: center;
 }
 
-.itemA .tab-product-ul > li a{
-    padding: 0 35px 12px 35px;
-    height: 100%;
-    display: inline-block;
-    position: relative;
-    font-size: 18px;
-    color: #666666;
-	text-decoration: none;
-}
 
-.itemA .tab-product-ul > li a:hover{
-    font-weight: 600;
-    color: #000000;
-    border-bottom:2px solid #000000;
-}
 	
 	
 
@@ -385,6 +371,21 @@ a:hover{
     color: #66666666;
 }
 
+#itemDtl .tab-product-ul > li a:hover{
+    font-weight: 600;
+    color: #000000;
+    border-bottom:2px solid #000000;
+}
+
+#itemDtl .tab-product-ul > li a{
+    padding: 0 35px 12px 35px;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    color: #666666;
+	text-decoration: none;
+}
 
 /*itemForm*/
 #itemForm .input-group {
@@ -437,4 +438,25 @@ a:hover{
 
 #itemForm .repImg{
 	margin-top: -20px;
+}
+
+#itemForm .tab-product-ul > li {
+    width: 100%;
+}
+
+#itemForm .tab-product-ul > li span{
+    padding: 0 35px 12px 35px;
+    height: 100%;
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    color: #666666;
+	font-weight: 600;
+}
+
+#itemForm .save{
+	background-color: #666666;
+	color:#EEEEEE;
+	width:5rem;
+	margin-top: 50px;
 }
