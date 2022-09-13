@@ -3,90 +3,125 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	
+	<link th:href="@{/css/login.css}" rel="stylesheet">
+	<link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
-  <style>
-  		.fl_L{float:left !important; }
-		.fl_R{float:right !important;}
-		
-		
-		.clearfix:after { clear:both; display:block; content:""; height:0; visibility:hidden;  }
-		* html .clearfix { height:1px; }
-		.clearfix { display:block; min-height:1px; }
-  
+	<style>
         .error {
             color: #bd2130;
         }
-        
-        .login-box { width: 100%; max-width: 600px; box-sizing: border-box; padding: 40px; border-radius: 10px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
-        
-        .login-input-area dt { margin-bottom: 10px; }
-		.login-input-area input[type="text"], .login-input-area input[type="password"] { width: 100%; height: 60px; border: 1px solid #ddd; padding: 0 24px; }
-		
-		.login-box .error-text { color: #fc444c; }
-		
-		.login-link-area { margin: 10px 0; }
-		.login-link-area a { position: relative; transition: color 0.5s; }
-		.login-link-area a::after { content: ""; display: block; width: 100%; height: 1px; background: #666; position: absolute; top: 100%; left: 0; transition: background 0.5s; }
-		.login-link-area a:hover { color: #000; transition: color 0.5s; }
-		.login-link-area a:hover::after { background: #000; transition: background 0.5s; }
-		
-		.login-submit-area { width: 100%; margin: 24px 0 18px; }
-		.login-submit-area dt { margin-bottom: 10px; }
-		.login-submit-area a { display: flex; justify-content: center; align-items: center; width: 100%; height: 60px; background: #333; border: 2px solid #333; font-size: 16px; font-weight: 500; color: #fff; border-radius: 5px; box-sizing: border-box; transition: all 0.5s;}
-		.login-submit-area a:hover { background: #fff; border: 2px solid #333; color: #333; transition: all 0.5s;}
-		.btn-login-kakao a { background: #F9E000; color: #3B1E1E; transition: background 0.5s; border: none; }
-		.btn-login-kakao a:hover { background: #f5ca0f; border: none; transition: background 0.5s; }
-		.btn-login-kakao span { display: inline-block; vertical-align: bottom; }
-		.btn-login-kakao span::before { content: ""; display: inline-block; width: 20px; height: 20px; background: url("../images/common/ico-login-kakao.svg") no-repeat center bottom; background-size: 100%; vertical-align: bottom; margin-right: 12px; }
     </style>
 </th:block>
-
-<div layout:fragment="content">
-
-  <form role="form" method="post" action="/members/login">
-  	<div class="login-box">
-  		<h1 lang="en">Login</h1>
-  		<dl class="login-input-area">
-  			<dt class="input-id">
-				<input type="text" name="user_id" class="form-control" placeholder="ID">
-  			</dt>
-  			<dt class="input-pwd">
-				<input type="password" name="password" id="password" class="form-control" placeholder="Password">	
-  			</dt>
-  		</dl>
-  		<p class="error-text" style="display:none;">잘못된 아이디/비밀번호입니다.</p>
-  		<div class="login-link-area clearfix">
-	  		<div class="fl_L">
-				<input type="checkbox" name="i_sFlagSaveId" id="i_sFlagSaveId">
-				<label for="i_sFlagSaveId">
-					<span>아이디 저장</span>
-				</label>
-	  		</div>
-	  		<div class="fl_R">
-				<a href="" ap-click-area="login" ap-click-name="login-click" ap-click-data="아이디찾기" title="아이디찾기">아이디 찾기</a>
-				 | 
-				<a href="" ap-click-area="login" ap-click-name="login-click" ap-click-data="비밀번호찾기" title="비밀번호찾기">
-					<span>비밀번호 찾기</span>
-				</a>
-	  		</div>
-	  	</div>
-	  	<dl class="login-submit-area">
-  			<dt class="btn-login" id="btn-login">
-				<a href="" title="로그인" ap-click-area="login" ap-click-name="login-click" ap-click-data="일반로그인">로그인</a>
-  			</dt>
-  			<dt class="btn-login-kakao" id="btn-login-kakao">
-				<a href="" title="카카오 계정으로 1초 로그인" ap-click-area="login" ap-click-name="login-click" ap-click-data="카카오싱크">카카오 계정으로 1초 로그인</a>	
-  			</dt>
-  		</dl>
-  	</div>
-  	
-    <p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
-    <button class="btn btn-primary">로그인</button>
-    <button type="button" class="btn btn-primary" onClick="location.href='/members/new'">회원가입</button>
-    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-  </form>
-
-</div>
+<body>
+	<div layout:fragment="content">
+		<div id="login" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
+			<form role="form" method="post" action="/members/login">
+				<div class="login-box account-area mt-5" style="margin-bottom: 3rem;">
+			  		<h1 lang="en">Login</h1>
+			  		<dl class="login-input-area">
+			  			<dt class="input-email">
+							<input type="text" name="email" class="form-control" placeholder="E-mail">
+			  			</dt>
+			  			<dt class="input-pwd">
+							<input type="password" name="password" id="password" class="form-control" placeholder="Password">	
+			  			</dt>
+			  		</dl>
+			    	<p th:if="${loginErrorMsg}" class="error" th:text="${loginErrorMsg}"></p>
+			  		<div class="login-link-area clearfix">
+				  		<div class="fl_L">
+							<input type="checkbox" name="i_sFlagSaveId" id="i_sFlagSaveId">
+							<label for="i_sFlagSaveId">
+								<span>아이디 저장</span>
+							</label>
+				  		</div>
+				  		<div class="fl_R">
+							<a href="" ap-click-area="login" ap-click-name="login-click" ap-click-data="아이디찾기" title="아이디찾기">아이디 찾기</a>
+							 | 
+							<a href="" ap-click-area="login" ap-click-name="login-click" ap-click-data="비밀번호찾기" title="비밀번호찾기">비밀번호 찾기</a>
+				  		</div>
+				  	</div>
+				  	<dl class="login-submit-area">
+			  			<dt class="btn-login" id="btn-login">
+							<button class="btn_login">로그인</button>
+			    			<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			  			</dt>
+			  			<dt class="btn-login-kakao" id="btn-login-kakao">
+							<a href="https://accounts.kakao.com/login?continue=https%3A%2F%2Fkauth.kakao.com%2Foauth%2Fauthorize%3Fis_popup%3Dfalse%26ka%3Dsdk%252F1.39.7%2520os%252Fjavascript%2520sdk_type%252Fjavascript%2520lang%252Fko-KR%2520device%252FWin32%2520origin%252Fhttps%25253A%25252F%25252Fjoin-on.amorepacific.com%26auth_tran_id%3Duqntw2tmuae2f4d28fc753f5c9267ef98c3fa7d8179l7zlsh4u%26response_type%3Dcode%26state%3DhkfdswRpFgXDurXNQj1SJB85lCFHJ88gaPNctW41bUchNr593JRIsMvs0IvyMnotsEAIm%252FfYzBZ8lU5DNmi0A%253D%253D%26redirect_uri%3Dhttps%253A%252F%252Fjoin-on.amorepacific.com%252Fkakao%252Flogin.do%26through_account%3Dtrue%26extra.plus_friend_public_id%3D_RTgxgxb%26extra.service_terms%3Dservice_201911%252Cinfo_201911%252Cthird_201911%252Ctransfer_201911%252Cbptext_201911%252Conlinetext_201911%252Caritext_201911%26client_id%3D2f4d28fc753f5c9267ef98c3fa7d8179&talk_login=hidden" title="카카오 계정으로 1초 로그인" ap-click-area="login" ap-click-name="login-click" ap-click-data="카카오싱크">카카오 계정으로 1초 로그인</a>	
+			  			</dt>
+			  		</dl>
+			  		<div class="login-link-area clearfix">
+				  		<div class="fl_L">
+							<a href="/members/new" ap-click-area="login" ap-click-name="login-click" ap-click-data="회원가입" title="회원가입"><span>회원가입</span></a>
+							<p></p>
+				  		</div>
+				  		<div class="fl_R">
+							<a href="#" class="no-account-link" title="비회원 주문조회">비회원 주문조회</a>
+				  		</div>
+				  	</div>
+			  		
+			  	</div>
+			  	<div class="login-box no-account-area">
+			  		<h2>비회원 주문 조회</h2>
+					<dl class="login-input-area">
+						<dt class="inp-order-num"><input type="text" id="orderNum" name="i_sOrdercd"  placeholder="주문번호를 입력하세요"></dt>
+						<dt class="inp-phone-num">
+							<ul>
+								<li>
+									<select class="selectbox-ty" name="i_iPhone1" id="i_iPhone1" tabindex="1">
+										<option value="">선택</option>
+										
+										
+											<option value="010">010</option>
+										
+											<option value="011">011</option>
+										
+											<option value="016">016</option>
+										
+											<option value="019">019</option>
+										
+											<option value="017">017</option>
+										
+											<option value="018">018</option>
+										
+										
+									</select>
+									<!-- <select name="" id="">
+										<option value="">010</option>
+										<option value="">011</option>
+										<option value="">016</option>
+										<option value="">017</option>
+										<option value="">018</option>
+										<option value="">019</option>
+									</select> -->
+								</li>
+								<li><input type="text" class="onlyNumber" name="i_iPhone2" id="i_iPhone2" maxlength="4"></li>
+								<li><input type="text" class="onlyNumber"  name="i_iPhone3" id="i_iPhone3" maxlength="4"></li>
+							</ul>
+						</dt>
+					</dl>
+					<dl class="login-submit-area">
+						<dt class="btn-login" id="btn_order_login"><a href="#">조회</a></dt>
+					</dl>
+					<div class="login-link-area clearfix">
+						
+							
+							
+								<div class="fl_L"><a href="https://join-on.amorepacific.com/member/step1.do?siteCd=CUB&chCd=W&returnUrl=https://www.vitalbeautie.com/mbr/mbr_member_login.do&pageTitle=%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&menuId=&subMenuId=&breadCrumb=HOME+%3E+%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85"><span>회원가입</span></a></div>
+							
+						
+						<div class="fl_R"><a href="#" class="account-link">회원 로그인</a></div>
+					</div>
+			  	</div>
+			  	
+			</form>
+		</div>
+	</div>
+</body>
 
 </html>

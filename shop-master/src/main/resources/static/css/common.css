@@ -1,0 +1,8 @@
+.fl_L{float:left !important; }
+.fl_R{float:right !important;}
+
+
+/* float clear */
+.clearfix:after { clear:both; display:block; content:""; height:0; visibility:hidden;  }
+* html .clearfix { height:1px; }
+.clearfix { display:block; min-height:1px; }
