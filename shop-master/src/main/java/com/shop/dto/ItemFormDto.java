@@ -22,12 +22,23 @@ public class ItemFormDto {
 
     @NotBlank(message = "상품명은 필수 입력 값입니다.")
     private String itemNm;
+    
+    @NotBlank(message = "상품부제목은 필수 입력 값입니다.")
+    private String itemSNm;
 
     @NotNull(message = "가격은 필수 입력 값입니다.")
     private Integer price;
 
+    private Integer percent;
+
     @NotBlank(message = "상품 상세는 필수 입력 값입니다.")
     private String itemDetail;
+    
+    @NotBlank(message = "상품 요약은 필수 입력 값입니다.")
+    private String itemSummary;
+    
+    @NotBlank(message = "상품 포인트는 필수 입력 값입니다.")
+    private String point;
 
     @NotNull(message = "재고는 필수 입력 값입니다.")
     private Integer stockNumber;

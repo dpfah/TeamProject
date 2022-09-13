@@ -55,4 +55,24 @@
 	padding-right:15px;
 	font-weight: bold;
 }
+.cart td{
+	font-size : 16px;
+	
+}
+.totalPrice{
+	font-weight: bold;
+}
+.cart_td_text{
+	font-weight: 500;
+}
+.cart_close{
+	position:absolute;
+	right: 0px;
+    top: -5px;
+    font-size: 30px;
+}
+	
+
+
+
 
