@@ -34,7 +34,7 @@
 
 <div layout:fragment="content">
 
-		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 700px;">
 		  <div class="carousel-indicators">
 		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -61,6 +61,17 @@
 		  </button>
 		</div>
 
+	<div class="float-right">
+		<div class="ban01 Mbanner">
+			<img src="/img/banner01.png" alt="이벤트1">
+		</div>
+		<div class="ban02 Mbanner">
+			<img src="/img/banner02.png" alt="이벤트2">
+		</div>
+		<div class="ban03 Mbanner">
+			<img src="/img/banner03.png" alt="이벤트3">
+		</div>
+	</div>
 
 
     <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
