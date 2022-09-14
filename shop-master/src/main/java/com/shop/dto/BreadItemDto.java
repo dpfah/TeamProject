@@ -19,16 +19,22 @@ public class BreadItemDto {
 
     private Integer price;
     
+    private Integer ori_price;
+    
+    private Integer percent;
+    
     private ItemType itemType;
 
 
     @QueryProjection
-    public BreadItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer price,ItemType itemType){
+    public BreadItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer ori_price ,Integer price,Integer percent, ItemType itemType){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
         this.imgUrl = imgUrl;
+        this.ori_price = ori_price;
         this.price = price;
+        this.percent = percent;
         this.itemType = itemType;
 
     }

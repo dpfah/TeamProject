@@ -147,7 +147,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.itemNm,
                                 item.itemDetail,
                                 itemImg.imgUrl,
+                                item.ori_price,
                                 item.price,
+                                item.percent,
                                 item.itemType)
                 )
                 .from(itemImg)
@@ -186,7 +188,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.itemNm,
                                 item.itemDetail,
                                 itemImg.imgUrl,
+                                item.ori_price,
                                 item.price,
+                                item.percent,
                                 item.itemType)
                 )
                 .from(itemImg)
@@ -225,7 +229,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.itemNm,
                                 item.itemDetail,
                                 itemImg.imgUrl,
+                                item.ori_price,
                                 item.price,
+                                item.percent,
                                 item.itemType)
                 )
                 .from(itemImg)

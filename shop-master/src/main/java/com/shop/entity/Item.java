@@ -40,6 +40,9 @@ public class Item extends BaseEntity {
     @Column(name="percent", columnDefinition = "int default 1")
     private int percent; //할인율
     
+    @Column(name="ori_price", nullable = false)
+    private int ori_price; //가격
+    
     @Column(name="price", nullable = false)
     private int price; //가격
 
@@ -65,6 +68,7 @@ public class Item extends BaseEntity {
 
     public void updateItem(ItemFormDto itemFormDto){
         this.itemNm = itemFormDto.getItemNm();
+        this.ori_price = itemFormDto.getOri_price();
         this.price = itemFormDto.getPrice();
         this.stockNumber = itemFormDto.getStockNumber();
         this.itemDetail = itemFormDto.getItemDetail();

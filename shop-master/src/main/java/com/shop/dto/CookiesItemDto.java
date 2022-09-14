@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter @Setter
 public class CookiesItemDto {
 
-    private Long id;
+	private Long id;
 
     private String itemNm;
 
@@ -19,17 +19,24 @@ public class CookiesItemDto {
 
     private Integer price;
     
+    private Integer ori_price;
+    
+    private Integer percent;
+    
     private ItemType itemType;
 
 
     @QueryProjection
-    public CookiesItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer price,ItemType itemType){
+    public CookiesItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer ori_price ,Integer price,Integer percent, ItemType itemType){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
         this.imgUrl = imgUrl;
+        this.ori_price = ori_price;
         this.price = price;
+        this.percent = percent;
         this.itemType = itemType;
+
     }
 
 }

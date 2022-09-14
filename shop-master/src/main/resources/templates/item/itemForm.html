@@ -93,9 +93,9 @@
 	                	</div>
 	                	<p th:if="${#fields.hasErrors('percent')}" th:errors="*{percent}" class="fieldError">Incorrect data</p>
 	                    <div>
-				            <input type="number" th:field="*{price}" class="form-control price_input" placeholder="상품의 가격을 입력해주세요">
+				            <input type="number" th:field="*{ori_price}" class="form-control price_input" placeholder="상품의 가격을 입력해주세요">
 				        </div>
-				        <p th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="fieldError">Incorrect data</p>
+				        <p th:if="${#fields.hasErrors('ori_price')}" th:errors="*{ori_price}" class="fieldError">Incorrect data</p>
                
 	                	<div class="input-group stockNumber">
 				            <input type="number" th:field="*{stockNumber}" class="form-control" placeholder="상품의 재고를 입력해주세요">
