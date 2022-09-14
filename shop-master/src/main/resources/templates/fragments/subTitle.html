@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div class="content-lg-12 mt-5 mypage item_menu" th:fragment="subTitle">
+		<div class="sub-title-mypage  ">
+			<div class="sub-top clearfix">
+				<div class="sub-title-user">
+					<dl>
+						<dt>
+							<p th:text="${email} + '님'">
+							</p>
+						</dt>
+						<dd>
+							빵주머니 몰에 오신 걸 환영합니다.
+						</dd>
+					</dl>
+				</div>
+				<ul class="my-wallet clearfix">
+					<li>
+						<a href="#">
+							<dl>
+								<dt>빵포인트</dt>
+							</dl>
+						</a>
+					</li>
+				</ul>
+				<div class="user-qna clearfix">
+					<a href="">
+						<dl>
+							<dt>1:1문의</dt>
+							<dd class="btn-pink">
+								<!--1:1문의 개수 들어갈 곳-->
+								<span></span>
+							</dd>
+						<dl>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</html>
