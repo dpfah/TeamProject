@@ -1,26 +1,31 @@
 package com.shop.service;
 
-import com.shop.dto.OrderDto;
-import com.shop.entity.*;
-import com.shop.repository.ItemRepository;
-import com.shop.repository.MemberRepository;
-import com.shop.repository.OrderRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import javax.persistence.EntityNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.shop.dto.OrderHistDto;
-import com.shop.dto.OrderItemDto;
-import com.shop.repository.ItemImgRepository;
+import javax.persistence.EntityNotFoundException;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.thymeleaf.util.StringUtils;
+
+import com.shop.dto.OrderDto;
+import com.shop.dto.OrderHistDto;
+import com.shop.dto.OrderItemDto;
+import com.shop.entity.Item;
+import com.shop.entity.ItemImg;
+import com.shop.entity.Member;
+import com.shop.entity.Order;
+import com.shop.entity.OrderItem;
+import com.shop.repository.ItemImgRepository;
+import com.shop.repository.ItemRepository;
+import com.shop.repository.MemberRepository;
+import com.shop.repository.OrderRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
@@ -59,8 +64,8 @@ public class OrderService {
 
         List<OrderHistDto> orderHistDtos = new ArrayList<>();
 
-        for (Order order : orders) {
-            OrderHistDto orderHistDto = new OrderHistDto(order);
+        for (Order order : orders) {            
+			OrderHistDto orderHistDto = new OrderHistDto(order);
             List<OrderItem> orderItems = order.getOrderItems();
             for (OrderItem orderItem : orderItems) {
                 ItemImg itemImg = itemImgRepository.findByItemIdAndRepimgYn
