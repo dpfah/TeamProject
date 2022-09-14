@@ -17,6 +17,10 @@
             $("input[name=cartChkBox]").change( function(){
                 getOrderTotalPrice();
             });
+            
+            $("input[name=cartChkBox]").change( function(){
+                getOrderTotalPrice();
+            });
         });
 
         function getOrderTotalPrice(){
@@ -25,7 +29,8 @@
                 var cartItemId = $(this).val();
                 var price = $("#price_" + cartItemId).attr("data-price");
                 var count = $("#count_" + cartItemId).val();
-                orderTotalPrice += price*count;
+                var percent = $("#percent_" + cartItemId).val();
+                orderTotalPrice += price*count*percent/100;
             });
 
             $("#orderTotalPrice").html(orderTotalPrice+'원');
@@ -234,14 +239,13 @@
                     </div>
                     <div class="align-self-center">
                         <span th:text="${cartItem.itemNm}" class="fs24 cart_td_text"></span>
-                        
                     </div>
                 </td>
                 <!-- 가격 -->
                 <td class="text-center align-middle cart_td_text">
                     <span th:id="'price_' + ${cartItem.cartItemId}"
                           th:data-price="${cartItem.price}"
-                          th:text="${cartItem.price} + '원'" class="align-self-center mr-2 fs18">
+                          th:text="${cartItem.price*cartItem.percent/100} + '원'" class="align-self-center mr-2 fs18">
                     </span>
                 </td>
                 <!-- 수량 -->
@@ -250,15 +254,17 @@
 	                    <span class="input-group mt-2 ">
 	                        <input type="number" name="count" th:id="'count_' + ${cartItem.cartItemId}"
 	                               th:value="${cartItem.count}" min="1"
-	                               onchange="changeCount(this)" class="form-control mr-2 fs18 cart_td_text" >
+	                               onchange="changeCount(this)" class="form-control mr-2 fs18 cart_td_text" >      
 	                    </span>
 	                </div>
                 </td>
                 <!-- 총가격 -->
                 <td class="text-center align-middle">
                 	<span class="input-group mt-2 fs18 cart_td_text">
+                		<!--할인율 적용하기 위해 percent 값을 받아온다.-->
+                		<input type="hidden" th:value="${cartItem.percent}" th:id="'percent_' + ${cartItem.cartItemId}" name="percent">
                         <span th:id="'totalPrice_' + ${cartItem.cartItemId}"
-                     		 name="totalPrice" th:text="${cartItem.price * cartItem.count} + '원'">
+                     		 name="totalPrice" th:text="${cartItem.price * cartItem.count*cartItem.percent/100} + '원'">
                			 </span>
 	                	<button type="button" class="close cart_close" aria-label="Close">
 	                        <span aria-hidden="true" th:data-id="${cartItem.cartItemId}" onclick="deleteCartItem(this)">&times;</span>
