@@ -21,6 +21,12 @@ public class Member extends BaseEntity {
     private Long id;
 
     private String name;
+    
+    private String birth;
+    
+    private String gender;
+    
+    private String phone;
 
     @Column(unique = true)
     private String email;
@@ -35,6 +41,9 @@ public class Member extends BaseEntity {
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         Member member = new Member();
         member.setName(memberFormDto.getName());
+        member.setBirth(memberFormDto.getBirth());
+        member.setGender(memberFormDto.getGender());
+        member.setPhone(memberFormDto.getPhone());
         member.setEmail(memberFormDto.getEmail());
         member.setAddress(memberFormDto.getAddress());
         String password = passwordEncoder.encode(memberFormDto.getPassword());
