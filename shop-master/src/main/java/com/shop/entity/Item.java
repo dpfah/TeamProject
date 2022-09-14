@@ -38,13 +38,13 @@ public class Item extends BaseEntity {
     private String itemSNm; //상품 부제목
 
     @Column(name="percent", columnDefinition = "int default 1")
-    private int percent; //할인율
+    private double percent; //할인율
     
     @Column(name="ori_price", nullable = false)
-    private int ori_price; //가격
+    private double ori_price; //가격
     
     @Column(name="price", nullable = false)
-    private int price; //가격
+    private double price; //가격
 
     @Column(nullable = false)
     private int stockNumber; //재고수량

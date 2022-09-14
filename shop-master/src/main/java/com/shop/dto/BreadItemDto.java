@@ -17,17 +17,17 @@ public class BreadItemDto {
 
     private String imgUrl;
 
-    private Integer price;
+    private double price;
     
-    private Integer ori_price;
+    private double ori_price;
     
-    private Integer percent;
+    private double percent;
     
     private ItemType itemType;
 
 
     @QueryProjection
-    public BreadItemDto(Long id, String itemNm, String itemDetail, String imgUrl,Integer ori_price ,Integer price,Integer percent, ItemType itemType){
+    public BreadItemDto(Long id, String itemNm, String itemDetail, String imgUrl,double ori_price ,double price,double percent, ItemType itemType){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;

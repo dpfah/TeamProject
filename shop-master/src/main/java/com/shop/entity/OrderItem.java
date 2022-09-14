@@ -22,7 +22,7 @@ public class OrderItem extends BaseEntity {
     
 
     
-    private int orderPrice; //주문가격
+    private double orderPrice; //주문가격
 
     private int count; //수량
     
@@ -37,7 +37,7 @@ public class OrderItem extends BaseEntity {
         return orderItem;
     }
 
-    public int getTotalPrice(){
+    public double getTotalPrice(){
         return orderPrice*count;
     }
 
