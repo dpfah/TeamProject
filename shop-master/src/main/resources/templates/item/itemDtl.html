@@ -46,7 +46,8 @@
 	            var url = "/order";
 	            var paramData = {
 	                itemId : $("#itemId").val(),
-	                count : $("#count").val()
+	                count : $("#count").val(),
+	                percent : $("#percent").val()
 	            };
 	
 	            var param = JSON.stringify(paramData);
@@ -86,7 +87,8 @@
 	            var url = "/cart";
 	            var paramData = {
 	                itemId : $("#itemId").val(),
-	                count : $("#count").val()
+	                count : $("#count").val(),
+	                percent : $("#percent").val()
 	            };
 	
 	            var param = JSON.stringify(paramData);
@@ -126,7 +128,7 @@
 
 
 	<!-- Product section-->
-	<section id="itemDtl" class="py-5 itemA" layout:fragment="content">	
+	<section id="itemDtl" class="py-5 itemA " layout:fragment="content">	
 	 <input type="hidden" id="itemId" th:value="${item.id}">
 	    <div class="container px-4 px-lg-5 my-5">
 	        <div class="row gx-4 gx-lg-5 align-items-center">
