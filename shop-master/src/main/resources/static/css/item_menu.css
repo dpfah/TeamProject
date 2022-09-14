@@ -515,7 +515,10 @@ body {
 	border-top: none;
 }
 
-#orderHist .sub-title-mypage {
+
+/* mypage */
+
+.mypage .sub-title-mypage {
     width: 100%;
     padding: 40px 0;
     margin: 0px auto 0 auto;
@@ -523,12 +526,12 @@ body {
 }
 
 
-#orderHist .sub-top{  
+.mypage .sub-top{  
     width: auto;
     max-width: 990px;
     margin: 0 auto;
 }
-#orderHist .sub-title-user{
+.mypage .sub-title-user{
 	float: left;
     width: 32%;
     min-height: 160px;
@@ -538,7 +541,7 @@ body {
     text-align: left;
 }
 
-#orderHist .sub-title-user dl {
+.mypage .sub-title-user dl {
     display: block;
     padding: 0 24px;
     box-sizing: border-box;
@@ -546,7 +549,7 @@ body {
     width: 100%;
 }
 
-#orderHist .sub-title-user dl dt {
+.mypage .sub-title-user dl dt {
     display: flex;
     font-size: 13px;
     color: #666;
@@ -554,7 +557,7 @@ body {
     letter-spacing:-0.03em;
 }
 
-#orderHist .sub-title-user dl dt p {
+.mypage .sub-title-user dl dt p {
     font-size: 22px;
     margin-bottom: 0px;
     font-weight: 600;
@@ -562,12 +565,12 @@ body {
     letter-spacing: 0;
 }    
 
-#orderHist .my-wallet{
+.mypage.my-wallet{
 	width: 32%;
     float: left;
 }
 
-#orderHist .my-wallet ul{
+.mypage .my-wallet ul{
 	width: auto;
     margin: 0 auto 0 auto;
     float: none;
@@ -575,7 +578,7 @@ body {
     border-radius: 0;
 }
 
-#orderHist .my-wallet li {
+.mypage .my-wallet li {
     float: none;
     width: 100%;
     min-height: 160px;
@@ -587,7 +590,7 @@ body {
     margin-left: 1.25%;
 }
 
-#orderHist .my-wallet li a {
+.mypage .my-wallet li a {
     display: block;
     width: 100%;
     height: 100%;
@@ -595,7 +598,7 @@ body {
     color: #666666;
 }
 
-#orderHist .my-wallet li dl {
+.mypage .my-wallet li dl {
     position: relative;
     display: block;
     width: auto;
@@ -603,14 +606,14 @@ body {
     text-align: left;
 }
 
-#orderHist .my-wallet li dl dt {
+.mypage .my-wallet li dl dt {
     font-size: 16px;
     padding-right: 20px;
     font-weight: 500;
     color: #333;
 }
 
-#orderHist .my-wallet li dl dd {
+.mypage .my-wallet li dl dd {
     position: absolute;
     top: -2px;
     right: 0px;
@@ -621,7 +624,7 @@ body {
     margin-bottom: 0;
 }
 
-#orderHist .user-qna {
+.mypage .user-qna {
     float: right;
     width: 32%;
     min-height: 160px;
@@ -631,11 +634,11 @@ body {
     text-align: left;
 }
 
-#orderHist .user-qna dl{
+.mypage .user-qna dl{
 	display: inline-block;
 }
 
-#orderHist .user-qna dl dt {
+.mypage .user-qna dl dt {
     position: relative;
     padding-right: 35px;
     margin-bottom: 5px;
@@ -644,7 +647,7 @@ body {
     color: #000;
 }
 
-#orderHist .user-qna dl dd:first-of-type {
+.mypage .user-qna dl dd:first-of-type {
     float: none;
     font-size: 24px;
     font-weight: 500;
