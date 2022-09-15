@@ -48,15 +48,23 @@
                                 <li><a class="dropdown-item" href="/bread">빵</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-                    		<a class="nav-link" href="/admin/item/new">상품 등록</a>
-                		</li>
-                		<li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-		                    <a class="nav-link" href="/admin/items">상품 관리</a>
-		                </li>
                         <li class="nav-item"><a class="nav-link" href="#!">공지사항</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">고객센터</a></li>
                         <li class="nav-item"><a class="nav-link" href="#!">리뷰페이지</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">관리자</a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                    				<a class="dropdown-item" href="/admin/item/new">상품 등록</a>
+                				</li>
+                				<li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		                    		<a class="dropdown-item" href="/admin/items">상품 관리</a>
+		                		</li>
+		                		<li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		                    		<a class="dropdown-item" href="/admin/customerMng">고객센터 관리</a>
+		                		</li>                                
+                            </ul>
+                        </li>
                     </ul>
                     <form class="d-flex">
    

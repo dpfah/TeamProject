@@ -45,8 +45,7 @@
 	            var url = "/order";
 	            var paramData = {
 	                itemId : $("#itemId").val(),
-	                count : $("#count").val(),
-	                percent : $("#percent").val()
+	                count : $("#count").val()
 	            };
 	
 	            var param = JSON.stringify(paramData);
@@ -87,7 +86,6 @@
 	            var paramData = {
 	                itemId : $("#itemId").val(),
 	                count : $("#count").val(),
-	                percent : $("#percent").val()
 	            };
 	
 	            var param = JSON.stringify(paramData);
@@ -168,9 +166,9 @@
 	                		</li>
 	                	</ul>
 	                	<div class="product-usage">
-	                		<p>상품정보</p>
+	                		<p>포인트적립</p>
 	                		<ul class="product-info-etc">
-	                			<li class="expectBpoint" th:text="${item.point}" type="number"></li>
+	                			<li class="expectBpoint" th:text="${item.point}+'p'" type="number"></li>
 	                		</ul>
 	                	</div>			
 	                </div>
