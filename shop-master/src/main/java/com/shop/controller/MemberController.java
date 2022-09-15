@@ -1,19 +1,29 @@
 package com.shop.controller;
 
-import com.shop.dto.MemberFormDto;
-import com.shop.service.MemberService;
-import lombok.RequiredArgsConstructor;
+import java.security.Principal;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.shop.dto.MemberFormDto;
+import com.shop.dto.OrderHistDto;
 import com.shop.entity.Member;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.web.bind.annotation.PostMapping;
+import com.shop.service.MemberService;
+import com.shop.service.OrderService;
 
-import org.springframework.validation.BindingResult;
-import javax.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/members")
 @Controller
@@ -21,6 +31,7 @@ import javax.validation.Valid;
 public class MemberController {
 
     private final MemberService memberService;
+    private final OrderService orderService;
     private final PasswordEncoder passwordEncoder;
 
     @GetMapping(value = "/new")
@@ -57,5 +68,6 @@ public class MemberController {
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
         return "/member/memberLoginForm";
     }
+    
 
 }

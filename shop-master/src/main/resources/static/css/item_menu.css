@@ -497,11 +497,8 @@ body {
 	margin-top: 50px;
 }
 
-/*orderHist*/
-#orderHist{
-	width: 850px;
-    float: right;
-}
+
+/* mypage */
 
 .mypage .orderDate{
 	color:#666666;
@@ -522,9 +519,6 @@ body {
 	line-height: 5;
 }
 
-
-
-/* mypage */
 
 .mypage .sub-title-mypage {
     width: 100%;
@@ -663,4 +657,125 @@ body {
 	float: left;
     font-size: 20px;
     padding: 25px;
+}
+
+.mypage .lnb-mypage-category {
+    display: block;
+    position: absolute;
+    top: 453px;
+    left: 0px;
+    width: 220px;
+    height: auto;
+    margin: 65px 30px 0px 0px;
+}
+.mypage .lnb-mypage-category h1 {
+    padding: 10px 0px 20px 0px;
+    margin: 0;
+    color: #333333;
+    font-size: 26px;
+    font-weight: 500;
+}
+.mypage .lnb-mypage-category ul {
+	padding: 0;
+	margin: 0;
+    list-style: none;
+    width: 100%;
+    border: 1px solid #EBEBEB;
+}
+.mypage .lnb-mypage-category li {
+    border-bottom: 1px solid #EBEBEB;
+}
+.mypage .lnb-mypage-category li a {
+    display: block;
+    margin: 0 0 0 20px;
+    padding: 20px 0px;
+    color: #666666;
+    font-size: 14px;
+    font-weight: 500;
+}
+.mypage .lnb-mypage-category li a:after {
+    content: "";
+    display: inline-block;
+    background: url(../images/common/ico-btn-black-small.svg) no-repeat center center;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    position: absolute;
+    right: 15px;
+}
+
+
+/*orderHist*/
+#orderHist, #oqnaHist{
+	width: 820px;
+    float: right;
+    padding-top: 50px;
+}
+
+#orderHist h4, #oqnaHist h4{
+	font-size: 24px;
+    color: #000000;
+    position: relative;
+    padding-right: 10px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+#orderHist > p{
+	color: #666666;
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: -0.03em;
+}
+
+/* oqnaHist */
+
+.cs-counsel-top{
+	position: relative;
+    padding: 40px 40px 47px 40px;
+    border-top: 2px solid #999999;
+	background-color: #ffffff;
+    padding: 40px 40px 47px 40px;
+}
+
+.cs-counsel-top dt {
+    font-size: 13px;
+    color: #000000;
+    line-height: 1.5;
+    position: relative;
+}
+
+.w_view {
+    display: none;
+}
+
+.cs-counsel-top dd {
+    color: #000000;
+    margin-top: 15px;
+}
+
+.m_view {
+    display: block;
+}
+
+.cs-counsel-top dd.use_talk_add{
+    position: absolute;
+    right: 40px;
+    top: 66%;
+    margin-top: -22px;
+}
+
+.cs-counsel-top dd.use_talk_add a{
+    border: 0;
+    width: 160px;
+    height: 44px;
+    line-height: 44px;
+    text-align: center;
+    display: block;
+}
+
+.btn_black {
+    background: #333;
+    color: #FFFFFF;
+    border-radius: 5px;
 }

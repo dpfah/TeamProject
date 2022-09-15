@@ -12,7 +12,42 @@
 <th:block layout:fragment="script">
 
     <script th:inline="javascript">
-      
+        function cancelOrder(orderId) {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/order/" + orderId + "/cancel";
+            var paramData = {
+                orderId : orderId,
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("주문이 취소 되었습니다.");
+                    location.href='/orders/' + [[${page}]];
+                },
+                error : function(jqXHR, status, error){
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+                }
+            });
+        }
     </script>
 
 </th:block>
@@ -47,17 +82,32 @@
         .fs24{
             font-size:24px
         }
+		
     </style>
 </th:block>
 
 	<div layout:fragment="content" class="content-lg-12 ">
-		<div id="orderHist" class="item_menu mypage">
-		    <h3 class="mb-1 fw-bold mt-5">
+		<div id="oqnaHist" class="item_menu mypage">
+		    
+		    <dl class="cs-counsel-top">
+		    	<dt>
+		    	  Q 궁금하신 내용은 1:1 문의를 통해 문의를 남겨주시면 확인 후 친절히 답변하여 드립니다. 보다 빠른 답변을 원하시는 경우 고객센터로 문의해주세요.
+		    	<br class="w_view">
+		    	 보다 빠른 답변을 원하시는 경우 고객센터로 문의해주세요.
+		    	</dt>
+		    	<dd>
+		    		* 배송, 사이트 관련 문의 000-000- 0000 
+		    		<br class="m_view">
+		    		* 제품 트러블 문의 080-023-5454
+		    	</dd>
+		    	<dd class="cs_counsel_add use_talk_add">
+		    		<a href="/oqna/new" class="btn_black btn_counsel btn-outline-secondary">1:1문의 등록하기</a>
+		    	</dd>
+		    </dl>
+		    <h4 class="mb-1">
 		        1:1문의
-		    </h3>
-		    <p>최근 3개월 간의 주문 내역이 노출됩니다.</p>
-		    <button type="button" class="btn btn-purchase btn-primary btn-lg" href="/mypage/oqna/new">문의하기</button>
-			<div>
+		    </h4>
+			<div class="mt-3 mb-5">
 				<div class="table-responsive">
 			        <table class="table cart">
 			            <colgroup>
@@ -74,66 +124,14 @@
 			                <td>가격</td>
 			                <td>처리현황</td>
 			            </tr>
-			        	<tr th:each="order : ${orders.getContent()}">
+			        	<tr >
 			        		<td class="align-middle">
 				        		<div class="d-flex mb-3">
-						            <span th:text="${order.orderDate}" class="orderDate"></span>
+						            
 						        </div>
 			        		</td>
-			        		<td colspan='3'>
-				        		<table class="inner_tb text-center">
-						            <tr th:each="orderItem : ${order.orderItemDtoList}" class="d-flex">
-						            	<td class="align-middle">
-							                <div class="repImgDiv">
-							                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">
-							                </div>   
-						            	</td>
-						            	<td>
-						            		<span th:text="${orderItem.itemNm}" class="font-weight-bold"></span>
-						            	</td>
-						            	<td>
-						            		<span th:text="${orderItem.count} +'개'"></span>
-						            	</td> 
-						            	<td >
-						            		<span th:text="${orderItem.orderPrice} +'원'"></span>
-						            	</td>
-						            </tr>
-						        </table>
-			        		</td>
-					        
-					        <td class="align-middle">
-						     	<div class="d-flex mb-3">
-						            <div class="ml-3">
-						                <th:block th:if="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
-						                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
-						                </th:block>
-						                <th:block th:unless="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
-						                    <span>(취소 완료)</span>
-						                </th:block>
-						            </div>
-						        </div>
-					        </td>
-					    </tr>
-					</table>	
-				    <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
-				        <ul class="pagination justify-content-center">
-				            <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
-				                <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link previous">
-				                    <span aria-hidden='true'>Previous</span>
-				                </a>
-				            </li>
-				
-				            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
-				                <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
-				            </li>
-				
-				            <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
-				                <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link next">
-				                    <span aria-hidden='true'>Next</span>
-				                </a>
-				            </li>
-				        </ul>
-				    </div>   
+			        	</tr>
+			        </table>		
 				</div>
 			</div>
 			<!--/#orderHist-->
