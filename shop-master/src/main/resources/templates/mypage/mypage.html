@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link th:href="@{/css/layout1.css}" rel="stylesheet">
+    <link th:href="@{/css/main_styles.css}" rel="stylesheet">
+	<link th:href="@{/css/item_menu.css}" rel="stylesheet">
+	<link th:href="@{/css/mypage.css}" rel="stylesheet">
+	
+		
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    
+    
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+
+</head>
+<body>
+
+    <div th:replace="fragments/header::header"></div>
+    <div th:replace="fragments/subTitle::subTitle"></div>
+    <div layout:fragment="content" class="content">
+
+		<div id="mypage">
+		    <section class="overview sub-content mypage">
+			
+				<div class="lnb-mypage-category">
+					<h1>마이페이지</h1>
+					<ul>
+						<li><a href="" title="주문 및 배송">주문 및 배송</a></li>
+						<li><a href="" title="배송지 관리">배송지 관리</a></li>
+						<li><a href="" title="빵포인트">빵포인트</a></li>
+						<li><a href="" title="1:1 문의">1:1 문의</a></li>
+						<li><a href="" title="상품 후기">상품 후기</a></li>
+						<li><a href="" title="개인 정보 수정">개인 정보 수정</a></li>
+					</ul>
+				</div>
+				
+				<div class="my-overview-order">
+					<dl>
+						<dt>최근 주문</dt>
+						<dd>최근 3개월 간의 주문 내역이 노출됩니다.</dd>
+						<a href="">더보기</a>
+					</dl>
+					<ul class="mypage-order-list list-section">
+						<li class="table-category">
+							<dl class="order-th">
+								<dd class="col-date">주문일</dd>
+								<dd class="col-item">상품평</dd>
+								<dd class="col-order-number">주문번호</dd>
+								<dd class="col-pay-total">결제금액</dd>
+								<dd class="col-status">처리현황</dd>
+								<dd class="col-etc">기타</dd>
+							</dl>
+						</li>
+						<li class="no_list"> 주문 내역이 없습니다. </li>
+					</ul>
+				</div>
+				
+				<div class="my-overview-review">
+					<dl>
+						<dt>작성 가능 후기</dt>
+						<dd>상품 후기 작성 시 빵포인트 최대 1,000지급</dd>
+						<a href="">더보기</a>
+					</dl>
+					<ul class="mypage-review-list list-section">
+						<li class="no_list"> 작성 가능한 후기 내역이 없습니다. </li>
+					</ul>
+				</div>
+				
+				<div class="my-overview-qna">
+					<dl>
+						<dt>1:1 문의</dt>
+						<a href="">더보기</a>
+					</dl>
+					<ul class="mypage-qna-list list-section">
+						<li class="table-category">
+							<dl class="qna-th">
+								<dd class="qna-num">번호</dd>
+								<dd class="qna-type">문의유형</dd>
+								<dd class="qna-title">제목</dd>
+								<dd class="qna-date">날짜</dd>
+								<dd class="qna-state">상태</dd>
+							</dl>
+						</li>
+						<li class="no_list"> 1:1 문의 내역이 없습니다. </li>
+					</ul>
+				</div>
+				
+			</section>
+	    </div>
+
+    </div>
+
+    <div th:replace="fragments/footer::footer"></div>
+
+</body>
+</html>
