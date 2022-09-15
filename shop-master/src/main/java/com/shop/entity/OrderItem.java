@@ -19,10 +19,14 @@ public class OrderItem extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "order_id")
     private Order order;
+    
 
-    private int orderPrice; //주문가격
+    
+    private double orderPrice; //주문가격
 
     private int count; //수량
+    
+
 
     public static OrderItem createOrderItem(Item item, int count){
         OrderItem orderItem = new OrderItem();
@@ -33,7 +37,7 @@ public class OrderItem extends BaseEntity {
         return orderItem;
     }
 
-    public int getTotalPrice(){
+    public double getTotalPrice(){
         return orderPrice*count;
     }
 

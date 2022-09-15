@@ -58,7 +58,7 @@ class ItemServiceTest {
         itemFormDto.setItemNm("테스트상품");
         itemFormDto.setItemSellStatus(ItemSellStatus.SELL);
         itemFormDto.setItemDetail("테스트 상품 입니다.");
-        itemFormDto.setPrice(1000);
+        itemFormDto.setOri_price(1000);
         itemFormDto.setStockNumber(100);
 
         List<MultipartFile> multipartFileList = createMultipartFiles();

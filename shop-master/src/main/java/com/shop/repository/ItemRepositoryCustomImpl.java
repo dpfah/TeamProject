@@ -1,6 +1,7 @@
 package com.shop.repository;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -147,7 +148,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.itemNm,
                                 item.itemDetail,
                                 itemImg.imgUrl,
+                                item.ori_price,
                                 item.price,
+                                item.percent,
                                 item.itemType)
                 )
                 .from(itemImg)
@@ -186,7 +189,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.itemNm,
                                 item.itemDetail,
                                 itemImg.imgUrl,
+                                item.ori_price,
                                 item.price,
+                                item.percent,
                                 item.itemType)
                 )
                 .from(itemImg)
@@ -225,7 +230,9 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.itemNm,
                                 item.itemDetail,
                                 itemImg.imgUrl,
+                                item.ori_price,
                                 item.price,
+                                item.percent,
                                 item.itemType)
                 )
                 .from(itemImg)

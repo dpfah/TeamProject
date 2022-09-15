@@ -15,9 +15,11 @@ public class ItemDto {
     
     private String itemSNm;
 
-    private Integer price;
+    private double ori_price;
     
-    private Integer percent;
+    private double price;
+    
+    private double percent;
 
     private String itemDetail;
     

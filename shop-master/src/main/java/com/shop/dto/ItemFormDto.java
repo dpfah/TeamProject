@@ -27,9 +27,9 @@ public class ItemFormDto {
     private String itemSNm;
 
     @NotNull(message = "가격은 필수 입력 값입니다.")
-    private Integer price;
-
-    private Integer percent;
+    private double ori_price;
+    
+    private double percent;
 
     @NotBlank(message = "상품 상세는 필수 입력 값입니다.")
     private String itemDetail;
@@ -59,6 +59,10 @@ public class ItemFormDto {
 
     public static ItemFormDto of(Item item){
         return modelMapper.map(item,ItemFormDto.class);
+    }
+    
+    public double getPrice() {
+    	return ori_price - (ori_price *percent/100);
     }
 
 }

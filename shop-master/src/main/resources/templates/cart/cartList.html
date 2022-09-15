@@ -17,6 +17,10 @@
             $("input[name=cartChkBox]").change( function(){
                 getOrderTotalPrice();
             });
+            
+            $("input[name=cartChkBox]").change( function(){
+                getOrderTotalPrice();
+            });
         });
 
         function getOrderTotalPrice(){
@@ -24,7 +28,7 @@
             $("input[name=cartChkBox]:checked").each(function() {
                 var cartItemId = $(this).val();
                 var price = $("#price_" + cartItemId).attr("data-price");
-                var count = $("#count_" + cartItemId).val();
+                var count = $("#count_" + cartItemId).val();                
                 orderTotalPrice += price*count;
             });
 
@@ -234,7 +238,6 @@
                     </div>
                     <div class="align-self-center">
                         <span th:text="${cartItem.itemNm}" class="fs24 cart_td_text"></span>
-                        
                     </div>
                 </td>
                 <!-- 가격 -->
@@ -250,13 +253,15 @@
 	                    <span class="input-group mt-2 ">
 	                        <input type="number" name="count" th:id="'count_' + ${cartItem.cartItemId}"
 	                               th:value="${cartItem.count}" min="1"
-	                               onchange="changeCount(this)" class="form-control mr-2 fs18 cart_td_text" >
+	                               onchange="changeCount(this)" class="form-control mr-2 fs18 cart_td_text" >      
 	                    </span>
 	                </div>
                 </td>
                 <!-- 총가격 -->
                 <td class="text-center align-middle">
                 	<span class="input-group mt-2 fs18 cart_td_text">
+                		<!--할인율 적용하기 위해 percent 값을 받아온다.-->
+                		<input type="hidden" th:value="${cartItem.percent}" th:id="'percent_' + ${cartItem.cartItemId}" name="percent">
                         <span th:id="'totalPrice_' + ${cartItem.cartItemId}"
                      		 name="totalPrice" th:text="${cartItem.price * cartItem.count} + '원'">
                			 </span>
@@ -274,11 +279,9 @@
             <span class="smallPrice">결제예정금액</span>
             <span id="orderTotalPrice" class="text-Price">0원</span>
         </h5>
-
         <div class="text-center mt-3">
             <button type="button" class="btn btn-secondary btn-lg" onclick="orders()">주문하기</button>
         </div>
-
 	</div>
     </div>
 
