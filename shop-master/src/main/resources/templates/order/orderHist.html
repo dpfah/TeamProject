@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{layouts/mypage}">
+      layout:decorate="~{layouts/layout1}">
 
 <head>
     <meta name="_csrf" th:content="${_csrf.token}"/>
@@ -82,96 +82,111 @@
         .fs24{
             font-size:24px
         }
+        
+        /*mypage*/
+        #mypage .sub-content {
+		    width: 100%;
+		    max-width: 1280px;
+		    margin: 0px auto 0 auto;
+		}
+        #mypage .sub-content.mypage {
+		    position: relative;
+		    width: 100%;
+		    max-width: 1280px;
+		    padding: 74px 0 0 250px;
+		    min-height: 480px;
+		    height: auto;
+		    margin-bottom: 180px;
+		}
+		#mypage .lnb-mypage-category {
+		    display: block;
+		    position: absolute;
+		    top: 0px;
+		    left: 0px;
+		    width: 220px;
+		    height: auto;
+		    margin: 65px 30px 0px 0px;
+		}
     </style>
 </th:block>
 
-	<div layout:fragment="content" class="content-lg-12 mt-5 ">
-		<div id="orderHist" class="item_menu">
-		    <h3 class="mb-1 fw-bold mt-5">
-		        구매이력
-		    </h3>
-		    <p>최근 3개월 간의 주문 내역이 노출됩니다.</p>
-			<div>
-				<div class="table-responsive">
-			        <table class="table cart">
-			            <colgroup>
-			                <col width="15%"/>
-			                <col width="40%"/>
-			                <col width="15%"/>
-			                <col width="15%"/>
-			                <col width="15%"/>
-			            </colgroup>
-			            <tr class="text-center">
-			                <td>주문일자</td>
-			                <td>상품명</td>
-			                <td>수량</td>
-			                <td>가격</td>
-			                <td>처리현황</td>
-			            </tr>
-			        	<tr th:each="order : ${orders.getContent()}">
-			        		<td class="align-middle">
-				        		<div class="d-flex mb-3">
-						            <span th:text="${order.orderDate}" class="orderDate"></span>
-						        </div>
-			        		</td>
-			        		<td colspan='3'>
-				        		<table class="inner_tb">
-						            <tr th:each="orderItem : ${order.orderItemDtoList}" class="d-flex">
-						            	<td class="align-middle">
-							                <div class="repImgDiv">
-							                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">
-							                </div>   
-						            	</td>
-						            	<td>
-						            		<span th:text="${orderItem.itemNm}" class="fs24 font-weight-bold"></span>
-						            	</td>
-						            	<td >
-						            		<span th:text="${orderItem.orderPrice} +'원'"></span>
-						            	</td>
-						            	<td>
-						            		<span th:text="${orderItem.count} +'개'"></span>
-						            	</td>       
-						            </tr>
-						        </table>
-			        		</td>
-					        
-					        <td class="align-middle">
-						     	<div class="d-flex mb-3">
-						            <div class="ml-3">
-						                <th:block th:if="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
-						                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
-						                </th:block>
-						                <th:block th:unless="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
-						                    <h4>(취소 완료)</h4>
-						                </th:block>
-						            </div>
-						        </div>
-					        </td>
-					    </tr>
-					</table>	
-				    <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
-				        <ul class="pagination justify-content-center">
-				            <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
-				                <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link previous">
-				                    <span aria-hidden='true'>Previous</span>
-				                </a>
-				            </li>
-				
-				            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
-				                <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
-				            </li>
-				
-				            <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
-				                <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link next">
-				                    <span aria-hidden='true'>Next</span>
-				                </a>
-				            </li>
-				        </ul>
-				    </div>   
-				</div>
+<div layout:fragment="content" class="content-mg">
+
+    <h2 class="mb-4">
+        구매 이력
+    </h2>
+
+    <div th:each="order : ${orders.getContent()}">
+
+        <div class="d-flex mb-3 align-self-center">
+            <h4 th:text="${order.orderDate} + ' 주문'"></h4>
+            <div class="ml-3">
+                <th:block th:if="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
+                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
+                </th:block>
+                <th:block th:unless="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
+                    <h4>(취소 완료)</h4>
+                </th:block>
+            </div>
+        </div>
+        <div class="card d-flex">
+            <div th:each="orderItem : ${order.orderItemDtoList}" class="d-flex mb-3">
+                <div class="repImgDiv">
+                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">
+                </div>
+                <div class="align-self-center w-75">
+                    <span th:text="${orderItem.itemNm}" class="fs24 font-weight-bold"></span>
+                    <div class="fs18 font-weight-light">
+                        <span th:text="${orderItem.orderPrice} +'원'"></span>
+                        <span th:text="${orderItem.count} +'개'"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
+        <ul class="pagination justify-content-center">
+
+            <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
+                <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link">
+                    <span aria-hidden='true'>Previous</span>
+                </a>
+            </li>
+
+            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
+                <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+            </li>
+
+            <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
+                <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link">
+                    <span aria-hidden='true'>Next</span>
+                </a>
+            </li>
+
+        </ul>
+    </div>
+    
+    <div id="mypage">
+	    <section class="overview sub-content mypage">
+		
+			<div class="lnb-mypage-category">
+				<h1>마이페이지</h1>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
 			</div>
-			<!--/#orderHist-->
-		</div>
-		<!--layout content 끝-->
-	</div>
+		
+		</section>
+    </div>
+
+</div>
+
 </html>
