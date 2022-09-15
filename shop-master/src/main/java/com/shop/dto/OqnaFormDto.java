@@ -1,6 +1,7 @@
 package com.shop.dto;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.validation.constraints.NotBlank;
@@ -8,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 import org.modelmapper.ModelMapper;
 
 import com.shop.constant.QnAType;
-import com.shop.entity.Item;
 import com.shop.entity.Oqna;
 
 import lombok.Getter;

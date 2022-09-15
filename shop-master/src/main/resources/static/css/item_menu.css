@@ -498,22 +498,30 @@ body {
 }
 
 /*orderHist*/
-#orderHist .orderDate{
+#orderHist{
+	width: 850px;
+    float: right;
+}
+
+.mypage .orderDate{
 	color:#666666;
 }
 
-#orderHist .inner_tb{
-	border: none; width:100%;
+.mypage .inner_tb{
+	border: none; 
+	width:100%;
 }
 
-#orderHist .inner_tb tr{
+.mypage .inner_tb tr{
 	width:100%
 }
 
-#orderHist .inner_tb td{
+.mypage .inner_tb td{
 	width:25%; 
 	border-top: none;
+	line-height: 5;
 }
+
 
 
 /* mypage */
@@ -535,17 +543,17 @@ body {
 	float: left;
     width: 32%;
     min-height: 160px;
-    padding: 52px 40px 0 40px;
+    padding: 52px 20px 0 20px;
     background: #FFFFFF;
     border-radius: 10px 0 0 10px;
-    text-align: left;
+
 }
 
 .mypage .sub-title-user dl {
     display: block;
     padding: 0 24px;
     box-sizing: border-box;
-    text-align: left;
+    text-align: center;
     width: 100%;
 }
 
@@ -555,6 +563,7 @@ body {
     color: #666;
     overflow: hidden;
     letter-spacing:-0.03em;
+    margin-bottom: 10px;
 }
 
 .mypage .sub-title-user dl dt p {
@@ -563,20 +572,14 @@ body {
     font-weight: 600;
     color: #333;
     letter-spacing: 0;
+	margin: auto;
 }    
 
-.mypage.my-wallet{
+.mypage .my-wallet{
 	width: 32%;
     float: left;
 }
 
-.mypage .my-wallet ul{
-	width: auto;
-    margin: 0 auto 0 auto;
-    float: none;
-    background: #FFFFFF;
-    border-radius: 0;
-}
 
 .mypage .my-wallet li {
     float: none;
@@ -654,4 +657,10 @@ body {
     color: #fc454c;
     font-family: 'brandon-grotesque','NotoSansKR','roboto','돋움','AppleGothic', Dotum, sans-serif;
     margin-bottom: 4px;
+}
+
+.mypage .sub-nav{
+	float: left;
+    font-size: 20px;
+    padding: 25px;
 }

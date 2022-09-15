@@ -35,7 +35,7 @@ public class OqnaImg extends BaseEntity{
     @JoinColumn(name = "oqna_id")
     private Oqna oqna;
 
-    public void updateItemImg(String oriImgName, String imgName, String imgUrl){
+    public void updateOqnaImg(String oriImgName, String imgName, String imgUrl){
         this.oriImgName = oriImgName;
         this.imgName = imgName;
         this.imgUrl = imgUrl;

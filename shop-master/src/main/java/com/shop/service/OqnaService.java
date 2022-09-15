@@ -49,7 +49,7 @@ public class OqnaService {
             else
                 oqnaImg.setRepimgYn("N");
 
-            oqnaImgService.saveItemImg(oqnaImg, oqnaImgFileList.get(i));
+            oqnaImgService.saveOqnaImg(oqnaImg, oqnaImgFileList.get(i));
         }
 
         return oqna.getId();
@@ -72,7 +72,7 @@ public class OqnaService {
     }
 
     public Long updateOqna(OqnaFormDto oqnaFormDto, List<MultipartFile> oqnaImgFileList) throws Exception{
-        //상품 수정
+        //문의 수정
         Oqna oqna = oqnaRepository.findById(oqnaFormDto.getId())
                 .orElseThrow(EntityNotFoundException::new);
         oqna.updateOqna(oqnaFormDto);

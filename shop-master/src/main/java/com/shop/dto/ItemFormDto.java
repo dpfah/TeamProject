@@ -62,7 +62,7 @@ public class ItemFormDto {
     }
     
     public double getPrice() {
-    	return ori_price - (ori_price *percent/100);
+    	return Math.round((ori_price - (ori_price *percent/100))/10)*10;
     }
 
 }
