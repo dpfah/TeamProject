@@ -23,7 +23,7 @@ public class OqnaImgService {
 
 	    private final FileService fileService;
 
-	    public void saveItemImg(OqnaImg oqnaImg, MultipartFile oqnaImgFile) throws Exception{
+	    public void saveOqnaImg(OqnaImg oqnaImg, MultipartFile oqnaImgFile) throws Exception{
 	        String oriImgName = oqnaImgFile.getOriginalFilename();
 	        String imgName = "";
 	        String imgUrl = "";
@@ -32,11 +32,11 @@ public class OqnaImgService {
 	        if(!StringUtils.isEmpty(oriImgName)){
 	            imgName = fileService.uploadFile(oqnaImgLocation, oriImgName,
 	                    oqnaImgFile.getBytes());
-	            imgUrl = "/images/item/" + imgName;
+	            imgUrl = "/images/oqna/" + imgName; //c드라이브 안에 shop 폴더안에 oqna폴더를 만들어줘야함. 그리고 application.properties에 경로 설정을 해준다.
 	        }
 
 	        //상품 이미지 정보 저장
-	        oqnaImg.updateItemImg(oriImgName, imgName, imgUrl);
+	        oqnaImg.updateOqnaImg(oriImgName, imgName, imgUrl);
 	        oqnaImgRepository.save(oqnaImg);
 	    }
 
@@ -53,8 +53,8 @@ public class OqnaImgService {
 
 	            String oriImgName = oqnaImgFile.getOriginalFilename();
 	            String imgName = fileService.uploadFile(oqnaImgLocation, oriImgName, oqnaImgFile.getBytes());
-	            String imgUrl = "/images/item/" + imgName;
-	            savedOqnaImg.updateItemImg(oriImgName, imgName, imgUrl);
+	            String imgUrl = "/images/oqna/" + imgName;
+	            savedOqnaImg.updateOqnaImg(oriImgName, imgName, imgUrl);
 	        }
 	    }
 

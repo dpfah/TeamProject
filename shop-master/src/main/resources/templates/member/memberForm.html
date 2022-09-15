@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -140,4 +141,218 @@
 	</div>
 </body>
 
+=======
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+        
+        /* 회원가입 레이아웃 */
+		#join .join-box { 
+			margin:auto; 
+			width: 100%; 
+			max-width: 800px; 
+			box-sizing: border-box; 
+			padding: 40px; 
+			border-radius: 10px; 
+			background: #fff; 
+			box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+        
+		/*join*/
+		#join .btn_join{
+			display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    width: 100%;
+		    height: 60px;
+		    background: #333;
+		    border: 2px solid #333;
+		    font-size: 16px;
+		    font-weight: 500;
+		    color: #fff;
+		    border-radius: 5px;
+		    box-sizing: border-box;
+		    transition: all 0.5s;
+		}
+		#join .radio-area {
+			width: 37.535%;
+			height: 38px; 
+			margin-left: 3.724%; 
+			box-sizing: border-box; 
+			border: 1px solid #e0e0e0;
+			float: left;
+		}
+		#join .hide {
+		    overflow: hidden;
+		    display: block;
+		    width: 1px;
+		    height: 1px;
+		    margin: -1px 0 0 -1px;
+		    font-size: 0;
+		    line-height: 0;
+		    opacity: 0;
+		}
+		.multi-column .flt-l {
+			float:left; 
+			width:49%;
+		}
+		.multi-column .flt-r {
+			float:left; 
+			width:49%; 
+			margin-left:2%
+		}
+		.multi-column:after {
+		    content: '';
+		    display: block;
+		    clear: both;
+		}
+		#join .radio-wrap.multi-column .flt-l {
+			position: relative;
+			width:58.739%;
+		}
+		#join .radio-wrap .multi-column .flt-r {
+			width:37.535%;
+			margin-left:3.724%;
+			box-sizing:border-box;
+		}
+		#join ul {
+			list-style: none;
+		}
+		#join ul li {
+			float: left;
+		}
+		#join .radio-area li {
+			box-sizing: border-box;
+			width: 50%;
+			height: 36px;
+		    position: relative;
+		    text-align: center;
+		    color: #929292;
+		}
+		#join .radio-area li + li {
+		    border-left: 1px solid #e0e0e0;
+		}
+		#join .radio-area label {
+		    height: 38px;
+		    line-height: 38px;
+		}
+		#join .radio-area li label:before {
+			content:"";
+			position:absolute; 
+			top:50%; 
+			left:0; 
+			display:block; 
+			width:25px; 
+			height:25px; 
+			margin-top:-12px; 
+			font-family:fontello; 
+			color:#3b3b3b; 
+			text-align:center; 
+			line-height:22px; 
+			font-weight:bold; 
+			font-size:10px;
+			border-radius:50%; 
+			box-sizing:border-box
+		}
+		#join .radio-area li label:after {
+		    content: '';
+		    position: absolute;
+		    top: -1px;
+		    left: -1px;
+		    display: block;
+		    width: 100%;
+		    height: 38px;
+		    z-index: 1;
+		    border: 1px solid transparent;
+		}
+		.radio-area :checked + label {
+			color:#88a2c5; 
+			border-width:2px; 
+			border-color:#88a2c5
+		}
+		.radio-area :checked + label:before {content:"\e801";}
+		
+    </style>
+</th:block>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
+        });
+    </script>
+
+</th:block>
+
+<body>
+	<div layout:fragment="content">
+		<div id="join" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
+		    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
+				<div class="join-box mt-5" style="margin-bottom: 3rem;">
+			        <h1 style="margin-bottom: 20px;">회원가입</h1>
+			        <div class="form-group">
+			            <input type="text" th:field="*{name}" class="form-control" placeholder="이름(실명으로 입력해주세요)">
+			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
+			        </div>
+			        <div class="form-group">
+				        <div class="radio-wrap multi-column">
+				        	<div class="flt-l" style="margin: 0%;">
+				        		<input type="text" th:field="*{birth}" class="form-control" placeholder="생년월일8자리(ex.20010101)">
+			            		<p th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}" class="fieldError">Incorrect data</p>
+				        	</div>
+				        	<div class="radio-area flt-r">
+				        		<ul style="padding: 0%; margin: 0%;">
+				        			<li>
+				        				<label for="male"><input type="radio" name="gender" value="0" id="male" class="hide" title="남자">남자</label>
+				        			</li>
+				        			<li>
+				        				<label for="female"><input type="radio" name="gender" value="1" id="female" class="hide" title="여자">여자</label>
+				        			</li>
+				        		</ul>
+				        	</div>
+				        </div>
+			        </div>
+			        <div class="form-group">
+			        	<input type="tel" th:field="*{phone}" class="form-control" placeholder="전화번호 입력 ( -, 띄어쓰기 없이 번호만 입력 )">
+			            		<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>
+			        </div>
+			        <div class="form-group">
+			            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일">
+			            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
+			        </div>
+			        <div class="form-group">
+			            <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호">
+			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
+			        </div>
+			        <div class="form-group">
+			            <input type="password" class="form-control" placeholder="비밀번호 확인">
+			        </div>
+			        <div class="form-group">
+			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
+			            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
+			        </div>
+			        <dt class="btn-join" id="btn-join">
+			            <button class="btn_join">회원가입</button>
+			        </dt>
+			        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			        
+			    </div>
+		    </form>
+		</div>
+	</div>
+</body>
+
+>>>>>>> branch 'main' of https://github.com/dpfah/TeamProject.git
 </html>
