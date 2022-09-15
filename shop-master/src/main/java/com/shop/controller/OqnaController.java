@@ -45,13 +45,15 @@ public class OqnaController {
         return "mypage/oqna";
     }
     
-    @GetMapping(value = "/mypage/oqna/new")
+    // 1:1문의 작성
+    @GetMapping(value = "/oqna/new")
     public String oqnaForm(Model model){
         model.addAttribute("oqnaFormDto", new OqnaFormDto());
         return "oqna/oqnaForm";
     }
-
-    @PostMapping(value = "/mypage/oqna/new")
+    
+    // 1:1문의 작성
+    @PostMapping(value = "/oqna/new")
     public String oqnaNew(@Valid OqnaFormDto oqnaFormDto, BindingResult bindingResult,
                           Model model, @RequestParam("oqnaImgFile") List<MultipartFile> oqnaImgFileList){
 
@@ -124,11 +126,18 @@ public class OqnaController {
         return "oqna/oqnaMng";
     }
 
+    // 1:1문의 상세보기
     @GetMapping(value = "/oqna/{oqnaId}")
     public String oqnaDtl(Model model, @PathVariable("oqnaId") Long oqnaId){
         OqnaFormDto oqnaFormDto = oqnaService.getOqnaDtl(oqnaId);
         model.addAttribute("oqna", oqnaFormDto);
         return "oqna/oqnaDtl";
+    }
+    
+    // 1:1문의 마이페이지에서 리스트
+    @GetMapping(value = "/oqnaHist")
+    public String oqnaHist(){
+        return "oqna/oqnaHist";
     }
 
 }
