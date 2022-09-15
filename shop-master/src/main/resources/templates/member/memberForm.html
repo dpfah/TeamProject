@@ -7,8 +7,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
 	
-	<link th:href="@{/css/join.css}" rel="stylesheet"><script th:src="@{/js/jquery-3.6.0.min.js}"></script>
-
+	<link th:href="@{/css/login.css}" rel="stylesheet">
 </head>
 
 <!-- 사용자 CSS 추가 -->
@@ -18,22 +17,73 @@
             color: #bd2130;
         }
         
-		        
+        /* 회원가입 레이아웃 */
+		#join .join-box { 
+			margin:auto; 
+			width: 100%; 
+			max-width: 800px; 
+			box-sizing: border-box; 
+			padding: 40px; 
+			border-radius: 10px; 
+			background: #fff; 
+			box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+        
+		/*join*/
+		#join .btn_join{
+			display: flex;
+		    justify-content: center;
+		    align-items: center;
+		    width: 100%;
+		    height: 60px;
+		    background: #333;
+		    border: 2px solid #333;
+		    font-size: 16px;
+		    font-weight: 500;
+		    color: #fff;
+		    border-radius: 5px;
+		    box-sizing: border-box;
+		    transition: all 0.5s;
+		}
+		#join .radio-area {
+			width: 37.535%;
+			height: 38px; 
+			margin-left: 3.724%; 
+			box-sizing: border-box; 
+			border: 1px solid #e0e0e0;
+			float: left;
+		}
+		#join .hide {
+		    overflow: hidden;
+		    display: block;
+		    width: 1px;
+		    height: 1px;
+		    margin: -1px 0 0 -1px;
+		    font-size: 0;
+		    line-height: 0;
+		    opacity: 0;
+		}
 		.multi-column .flt-l {
 			float:left; 
-			position: relative;
-			width:58.739%;
+			width:49%;
 		}
 		.multi-column .flt-r {
 			float:left; 
-			width:37.535%;
-			margin-left:3.724%;
-			box-sizing:border-box;
+			width:49%; 
+			margin-left:2%
 		}
 		.multi-column:after {
 		    content: '';
 		    display: block;
 		    clear: both;
+		}
+		#join .radio-wrap.multi-column .flt-l {
+			position: relative;
+			width:58.739%;
+		}
+		#join .radio-wrap .multi-column .flt-r {
+			width:37.535%;
+			margin-left:3.724%;
+			box-sizing:border-box;
 		}
 		#join ul {
 			list-style: none;
@@ -41,6 +91,57 @@
 		#join ul li {
 			float: left;
 		}
+		#join .radio-area li {
+			box-sizing: border-box;
+			width: 50%;
+			height: 36px;
+		    position: relative;
+		    text-align: center;
+		    color: #929292;
+		}
+		#join .radio-area li + li {
+		    border-left: 1px solid #e0e0e0;
+		}
+		#join .radio-area label {
+		    height: 38px;
+		    line-height: 38px;
+		}
+		#join .radio-area li label:before {
+			content:"";
+			position:absolute; 
+			top:50%; 
+			left:0; 
+			display:block; 
+			width:25px; 
+			height:25px; 
+			margin-top:-12px; 
+			font-family:fontello; 
+			color:#3b3b3b; 
+			text-align:center; 
+			line-height:22px; 
+			font-weight:bold; 
+			font-size:10px;
+			border-radius:50%; 
+			box-sizing:border-box
+		}
+		#join .radio-area li label:after {
+		    content: '';
+		    position: absolute;
+		    top: -1px;
+		    left: -1px;
+		    display: block;
+		    width: 100%;
+		    height: 38px;
+		    z-index: 1;
+		    border: 1px solid transparent;
+		}
+		.radio-area :checked + label {
+			color:#88a2c5; 
+			border-width:2px; 
+			border-color:#88a2c5
+		}
+		.radio-area :checked + label:before {content:"\e801";}
+		
     </style>
 </th:block>
 
@@ -55,7 +156,7 @@
             }
         });
     </script>
-	
+
 </th:block>
 
 <body>
@@ -77,10 +178,10 @@
 				        	<div class="radio-area flt-r">
 				        		<ul style="padding: 0%; margin: 0%;">
 				        			<li>
-				        				<label for="male"><input type="radio" name="gender" value="M" id="male" class="hide" title="남자">남자</label>
+				        				<label for="male"><input type="radio" name="gender" value="0" id="male" class="hide" title="남자">남자</label>
 				        			</li>
 				        			<li>
-				        				<label for="female"><input type="radio" name="gender" value="F" id="female" class="hide" title="여자">여자</label>
+				        				<label for="female"><input type="radio" name="gender" value="1" id="female" class="hide" title="여자">여자</label>
 				        			</li>
 				        		</ul>
 				        	</div>
@@ -95,12 +196,11 @@
 			            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
 			        </div>
 			        <div class="form-group">
-			            <input type="password" class="form-control pw" name="pw" id="password_1" th:field="*{password}" placeholder="비밀번호">
+			            <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호">
 			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
 			        </div>
 			        <div class="form-group">
-			            <input type="password" class="form-control pw" name="pw2" id="password_2" placeholder="비밀번호 확인">
-			            <font id="checkPw" size="2"></font>
+			            <input type="password" class="form-control" placeholder="비밀번호 확인">
 			        </div>
 			        <div class="form-group">
 			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
