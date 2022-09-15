@@ -12,6 +12,7 @@
     <link th:href="@{/css/layout1.css}" rel="stylesheet">
     <link th:href="@{/css/main_styles.css}" rel="stylesheet">
 	<link th:href="@{/css/item_menu.css}" rel="stylesheet">
+	<link th:href="@{/css/login.css}" rel="stylesheet">
 	
 		
 
@@ -32,6 +33,76 @@
     <div th:replace="fragments/header::header"></div>
     <div th:replace="fragments/subTitle::subTitle"></div>
     <div layout:fragment="content" class="content">
+
+		<div id="mypage">
+		    <section class="overview sub-content mypage">
+			
+				<div class="lnb-mypage-category">
+					<h1>마이페이지</h1>
+					<ul>
+						<li><a href="" title="주문 및 배송">주문 및 배송</a></li>
+						<li><a href="" title="배송지 관리">배송지 관리</a></li>
+						<li><a href="" title="빵포인트">빵포인트</a></li>
+						<li><a href="" title="쿠폰">쿠폰</a></li>
+						<li><a href="" title="1:1 문의">1:1 문의</a></li>
+						<li><a href="" title="상품 후기">상품 후기</a></li>
+						<li><a href="" title="개인 정보 수정">개인 정보 수정</a></li>
+					</ul>
+				</div>
+				
+				<div class="my-overview-order">
+					<dl>
+						<dt>최근 주문</dt>
+						<dd>최근 3개월 간의 주문 내역이 노출됩니다.</dd>
+						<a href="">더보기</a>
+					</dl>
+					<ul class="mypage-order-list list-section">
+						<li class="table-category">
+							<dl class="order-th">
+								<dd class="col-date">주문일</dd>
+								<dd class="col-item">상품평</dd>
+								<dd class="col-order-number">주문번호</dd>
+								<dd class="col-pay-total">결제금액</dd>
+								<dd class="col-status">처리현황</dd>
+								<dd class="col-etc">기타</dd>
+							</dl>
+						</li>
+						<li class="no_list"> 주문 내역이 없습니다. </li>
+					</ul>
+				</div>
+				
+				<div class="my-overview-review">
+					<dl>
+						<dt>작성 가능 후기</dt>
+						<dd>상품 후기 작성 시 빵포인트 최대 1,000지급</dd>
+						<a href="">더보기</a>
+					</dl>
+					<ul class="mypage-review-list list-section">
+						<li class="no_list"> 작성 가능한 후기 내역이 없습니다. </li>
+					</ul>
+				</div>
+				
+				<div class="my-overview-qna">
+					<dl>
+						<dt>1:1 문의</dt>
+						<a href="">더보기</a>
+					</dl>
+					<ul class="mypage-qna-list list-section">
+						<li class="table-category">
+							<dl class="qna-th">
+								<dd class="qna-num">번호</dd>
+								<dd class="qna-type">문의유형</dd>
+								<dd class="qna-title">제목</dd>
+								<dd class="qna-date">날짜</dd>
+								<dd class="qna-state">상태</dd>
+							</dl>
+						</li>
+						<li class="no_list"> 1:1 문의 내역이 없습니다. </li>
+					</ul>
+				</div>
+				
+			</section>
+	    </div>
 
     </div>
 
