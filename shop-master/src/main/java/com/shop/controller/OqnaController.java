@@ -89,7 +89,7 @@ public class OqnaController {
         return "oqna/oqnaForm";
     }
 
-    @PostMapping(value = "/admin/oqna/{oqnaId}")
+    @PostMapping(value = "/mypage/oqna/{oqnaId}")
     public String oqnaUpdate(@Valid OqnaFormDto oqnaFormDto, BindingResult bindingResult,
                              @RequestParam("oqnaImgFile") List<MultipartFile> oqnaImgFileList, Model model){
         if(bindingResult.hasErrors()){

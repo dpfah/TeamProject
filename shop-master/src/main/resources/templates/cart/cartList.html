@@ -204,85 +204,83 @@
     <p>장바구니 상품은 최대 7일간 보관됩니다.</p>
 
     <div>
-
-	<div class="table-responsive">
-        <table class="table table-hover cart">
-            <colgroup>
-                <col width="15%"/>
-                <col width="40%"/>
-                <col width="15%"/>
-                <col width="15%"/>
-                <col width="15%"/>
-            </colgroup>
-            <thead>
-            <tr class="text-center">
-                <td>
-                    <input type="checkbox" id="checkall" onclick="checkAll()"> 전체선택
-                </td>
-                <td>상품명</td>
-                <td>가격</td>
-                <td>수량</td>
-                <td>합계</td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="cartItem : ${cartItems}">
-            	<!--전체선택-->
-                <td class="text-center align-middle">
-                    <input type="checkbox" name="cartChkBox" th:value="${cartItem.cartItemId}">
-                </td>
-                <!-- 상품명 -->
-                <td class="d-flex">
-                    <div class="repImgDiv align-self-center">
-                        <img th:src="${cartItem.imgUrl}" class = "rounded repImg" th:alt="${cartItem.itemNm}">
-                    </div>
-                    <div class="align-self-center">
-                        <span th:text="${cartItem.itemNm}" class="fs24 cart_td_text"></span>
-                    </div>
-                </td>
-                <!-- 가격 -->
-                <td class="text-center align-middle cart_td_text">
-                    <span th:id="'price_' + ${cartItem.cartItemId}"
-                          th:data-price="${cartItem.price}"
-                          th:text="${cartItem.price} + '원'" class="align-self-center mr-2 fs18">
-                    </span>
-                </td>
-                <!-- 수량 -->
-                <td class="text-center align-middle">
-	                <div class="fs18 font-weight-light ">
-	                    <span class="input-group mt-2 ">
-	                        <input type="number" name="count" th:id="'count_' + ${cartItem.cartItemId}"
-	                               th:value="${cartItem.count}" min="1"
-	                               onchange="changeCount(this)" class="form-control mr-2 fs18 cart_td_text" >      
+		<div class="table-responsive">
+	        <table class="table table-hover cart">
+	            <colgroup>
+	                <col width="15%"/>
+	                <col width="40%"/>
+	                <col width="15%"/>
+	                <col width="15%"/>
+	                <col width="15%"/>
+	            </colgroup>
+	            <thead>
+	            <tr class="text-center">
+	                <td>
+	                    <input type="checkbox" id="checkall" onclick="checkAll()"> 전체선택
+	                </td>
+	                <td>상품명</td>
+	                <td>가격</td>
+	                <td>수량</td>
+	                <td>합계</td>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            <tr th:each="cartItem : ${cartItems}">
+	            	<!--전체선택-->
+	                <td class="text-center align-middle">
+	                    <input type="checkbox" name="cartChkBox" th:value="${cartItem.cartItemId}">
+	                </td>
+	                <!-- 상품명 -->
+	                <td class="d-flex">
+	                    <div class="repImgDiv align-self-center">
+	                        <img th:src="${cartItem.imgUrl}" class = "rounded repImg" th:alt="${cartItem.itemNm}">
+	                    </div>
+	                    <div class="align-self-center">
+	                        <span th:text="${cartItem.itemNm}" class="fs24 cart_td_text"></span>
+	                    </div>
+	                </td>
+	                <!-- 가격 -->
+	                <td class="text-center align-middle cart_td_text">
+	                    <span th:id="'price_' + ${cartItem.cartItemId}"
+	                          th:data-price="${cartItem.price}"
+	                          th:text="${cartItem.price} + '원'" class="align-self-center mr-2 fs18">
 	                    </span>
-	                </div>
-                </td>
-                <!-- 총가격 -->
-                <td class="text-center align-middle">
-                	<span class="input-group mt-2 fs18 cart_td_text">
-                		<!--할인율 적용하기 위해 percent 값을 받아온다.-->
-                		<input type="hidden" th:value="${cartItem.percent}" th:id="'percent_' + ${cartItem.cartItemId}" name="percent">
-                        <span th:id="'totalPrice_' + ${cartItem.cartItemId}"
-                     		 name="totalPrice" th:text="${cartItem.price * cartItem.count} + '원'">
-               			 </span>
-	                	<button type="button" class="close cart_close" aria-label="Close">
-	                        <span aria-hidden="true" th:data-id="${cartItem.cartItemId}" onclick="deleteCartItem(this)">&times;</span>
-	                    </button>
-	                </span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
-	</div>
-	<div class="TotalPrice">
-        <h5 class="text-center">
-            <span class="smallPrice">결제예정금액</span>
-            <span id="orderTotalPrice" class="text-Price">0원</span>
-        </h5>
-        <div class="text-center mt-3">
-            <button type="button" class="btn btn-secondary btn-lg" onclick="orders()">주문하기</button>
-        </div>
-	</div>
+	                </td>
+	                <!-- 수량 -->
+	                <td class="text-center align-middle">
+		                <div class="fs18 font-weight-light ">
+		                    <span class="input-group mt-2 ">
+		                        <input type="number" name="count" th:id="'count_' + ${cartItem.cartItemId}"
+		                               th:value="${cartItem.count}" min="1"
+		                               onchange="changeCount(this)" class="form-control mr-2 fs18 cart_td_text" >      
+		                    </span>
+		                </div>
+	                </td>
+	                <!-- 총가격 -->
+	                <td class="text-center align-middle">
+	                	<span class="input-group mt-2 fs18 cart_td_text">
+	                		<!--할인율 적용하기 위해 percent 값을 받아온다.-->
+	                        <span th:id="'totalPrice_' + ${cartItem.cartItemId}"
+	                     		 name="totalPrice" th:text="${cartItem.price * cartItem.count} + '원'">
+	               			 </span>
+		                	<button type="button" class="close cart_close" aria-label="Close">
+		                        <span aria-hidden="true" th:data-id="${cartItem.cartItemId}" onclick="deleteCartItem(this)">&times;</span>
+		                    </button>
+		                </span>
+	                </td>
+	            </tr>
+	            </tbody>
+	        </table>
+		</div>
+		<div class="TotalPrice">
+	        <h5 class="text-center">
+	            <span class="smallPrice">결제예정금액</span>
+	            <span id="orderTotalPrice" class="text-Price">0원</span>
+	        </h5>
+	        <div class="text-center mt-3">
+	            <button type="button" class="btn btn-secondary btn-lg" onclick="orders()">주문하기</button>
+	        </div>
+		</div>
     </div>
 
 </div>
