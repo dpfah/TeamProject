@@ -109,10 +109,10 @@
 		        </div>
 		
 		        <div th:if="${#strings.isEmpty(oqnaFormDto.id)}" style="text-align: center">
-		            <button th:formaction="@{/mypage/oqna/new}" type="submit" class="btn save">저장</button>
+		            <button th:formaction="@{/oqna/new}" type="submit" class="btn save">저장</button>
 		        </div>
 		        <div th:unless="${#strings.isEmpty(oqnaFormDto.id)}" style="text-align: center">
-		            <button th:formaction="@{'/mypage/oqna/' + ${oqnaFormDto.id} }" type="submit" class="btn save">수정</button>
+		            <button th:formaction="@{'/oqna/' + ${oqnaFormDto.id} }" type="submit" class="btn save">수정</button>
 		        </div>
 		        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> 
 		    </div>           
