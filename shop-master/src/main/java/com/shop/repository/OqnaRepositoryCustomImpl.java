@@ -1,6 +1,7 @@
 package com.shop.repository;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -16,7 +17,6 @@ import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.shop.constant.QnAType;
 import com.shop.dto.MyOqnaHistDto;
 import com.shop.dto.OqnaSearchDto;
-import com.shop.dto.QMyOqnaHistDto;
 import com.shop.entity.Oqna;
 import com.shop.entity.QOqna;
 import com.shop.entity.QOqnaImg;

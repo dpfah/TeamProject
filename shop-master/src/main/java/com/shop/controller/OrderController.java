@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.dto.OrderDto;
 import com.shop.dto.OrderHistDto;
-import com.shop.entity.Member;
-import com.shop.repository.MemberRepository;
 import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;

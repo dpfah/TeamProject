@@ -10,6 +10,8 @@ import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.MyOqnaHistDto;
@@ -46,6 +49,36 @@ public class OqnaController {
 //        return "mypage/oqna";
 //    }
     
+    //마이페이지에서 1:1문의 리스트
+    @GetMapping(value = {"/oqnas", "/oqnas/{page}"})
+    public String oqnaHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
+    	
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
+        Page<MyOqnaHistDto> myOqnasHistDtoList = oqnaService.getOqnaList(principal.getName(), pageable);
+       
+        // 세션에서 받아온 이메일
+        model.addAttribute("email", principal.getName());
+        model.addAttribute("oqnas",	myOqnasHistDtoList);
+        model.addAttribute("page", pageable.getPageNumber());
+        model.addAttribute("maxPage", 5);
+
+        return "oqna/MyOqnaHist";
+    }
+    
+    
+    // 마이페이지에서 1:1 문의 취소하기
+    @PostMapping("/oqna/{oqnaId}/cancel")
+    public @ResponseBody ResponseEntity cancelOqna(@PathVariable("oqnaId") Long oqnaId , Principal principal){
+
+        if(!oqnaService.validateOqna(oqnaId, principal.getName())){
+            return new ResponseEntity<String>("주문 취소 권한이 없습니다.", HttpStatus.FORBIDDEN);
+        }
+
+        oqnaService.cancelOqna(oqnaId);
+        return new ResponseEntity<Long>(oqnaId, HttpStatus.OK);
+    }
+    
+    
     // 1:1문의 작성
     @GetMapping(value = "/oqna/new")
     public String oqnaForm(Model model, Principal principal){
@@ -57,7 +90,7 @@ public class OqnaController {
     // 1:1문의 작성
     @PostMapping(value = "/oqna/new")
     public String oqnaNew(@Valid OqnaFormDto oqnaFormDto, BindingResult bindingResult,
-                          Model model, @RequestParam("oqnaImgFile") List<MultipartFile> oqnaImgFileList){
+                          Model model, @RequestParam("oqnaImgFile") List<MultipartFile> oqnaImgFileList, Principal principal){
 
         if(bindingResult.hasErrors()){
             return "oqna/oqnaForm";
@@ -67,9 +100,14 @@ public class OqnaController {
             model.addAttribute("errorMessage", "첫번째 질문 이미지는 필수 입력 값 입니다.");
             return "oqna/oqnaForm";
         }
-
+        
+        // email을 세션에서 받아온다.
+        String email = principal.getName();
+        //Long oqnaWriter;
+        
         try {
-            oqnaService.saveOqna(oqnaFormDto, oqnaImgFileList);
+			
+			oqnaService.saveOqna(email, oqnaFormDto, oqnaImgFileList);
         } catch (Exception e){
             model.addAttribute("errorMessage", "질문 등록 중 에러가 발생하였습니다.");
             return "oqna/oqnaForm";
@@ -134,12 +172,6 @@ public class OqnaController {
         OqnaFormDto oqnaFormDto = oqnaService.getOqnaDtl(oqnaId);
         model.addAttribute("oqna", oqnaFormDto);
         return "oqna/oqnaDtl";
-    }
-    
-    // 1:1문의 마이페이지에서 리스트
-    @GetMapping(value = "/oqnaHist")
-    public String oqnaHist(){
-        return "oqna/oqnaHist";
     }
 
 }

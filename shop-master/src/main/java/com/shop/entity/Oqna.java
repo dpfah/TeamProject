@@ -6,10 +6,13 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.shop.constant.OqnaStatus;
@@ -34,6 +37,10 @@ public class Oqna extends BaseEntity{
 
     @Column(nullable = false, length = 50)
     private String oqnaTitle; //
+    
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     @Lob // BLOB, CLOB 타입 매칭 - CLOB: 사이즈가 큰 데이터를 외부 파일로 저장하기 위한 데이터 타입. 문자형 대용량 파일을 저장하는데 사용하는 데이터 타입, BLOB: 바이너리 데이터를 DB 외부에 저장하기 위한 타입. 이미지, 사운드, 비디오 같은 멀티미디어
     // 데이터를 다룰 때 사용 할 수 있음
@@ -56,8 +63,9 @@ public class Oqna extends BaseEntity{
 
 
     
-    public static Oqna createOqna(OqnaFormDto oqnaFormDto) {
+    public static Oqna createOqna(Member member, OqnaFormDto oqnaFormDto) {
         Oqna oqna = new Oqna();
+        oqna.setMember(member);
         
 		oqna.setOqnaTitle(oqnaFormDto.getOqnaTitle());
 		oqna.setOqnaDetail(oqnaFormDto.getOqnaDetail());
@@ -71,6 +79,9 @@ public class Oqna extends BaseEntity{
     public void cancelOqna() {
         this.oqnaStatus = OqnaStatus.CANCEL;
     }
+
+
+
 
 
 }
