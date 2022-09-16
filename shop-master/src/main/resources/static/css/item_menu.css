@@ -710,6 +710,7 @@ body {
 	width: 820px;
     float: right;
     padding-top: 50px;
+    height: 600px;
 }
 
 #orderHist h4, #oqnaHist h4{
