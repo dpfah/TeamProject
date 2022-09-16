@@ -21,13 +21,12 @@ public class OrderHistDto {
     }
 
     private Long orderId; //주문아이디
-    private String email; // 주문자 이메일
     private String orderDate; //주문날짜
     private OrderStatus orderStatus; //주문 상태
 
     private List<OrderItemDto> orderItemDtoList = new ArrayList<>();
 
-    //주문 상품리스트
+  
     public void addOrderItemDto(OrderItemDto orderItemDto){
         orderItemDtoList.add(orderItemDto);
     }

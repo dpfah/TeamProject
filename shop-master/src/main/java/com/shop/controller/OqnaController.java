@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shop.dto.MainOqnaDto;
+import com.shop.dto.MyOqnaHistDto;
 import com.shop.dto.OqnaFormDto;
 import com.shop.dto.OqnaSearchDto;
 import com.shop.entity.Oqna;
@@ -32,22 +33,23 @@ public class OqnaController {
 
     private final OqnaService oqnaService;
     
-    @GetMapping(value = "/oqna")
-    public String oqna(OqnaSearchDto oqnaSearchDto, Optional<Integer> page, Model model){
-
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-        Page<MainOqnaDto> oqnas = oqnaService.getMainOqnaPage(oqnaSearchDto, pageable);
-
-        model.addAttribute("oqnas", oqnas);
-        model.addAttribute("oqnaSearchDto", oqnaSearchDto);
-        model.addAttribute("maxPage", 5);
-
-        return "mypage/oqna";
-    }
+//    @GetMapping(value = "/oqna")
+//    public String oqna(OqnaSearchDto oqnaSearchDto, Optional<Integer> page, Model model){
+//
+//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+//        Page<MyOqnaHistDto> oqnas = oqnaService.getMainOqnaPage(oqnaSearchDto, pageable);
+//
+//        model.addAttribute("oqnas", oqnas);
+//        model.addAttribute("oqnaSearchDto", oqnaSearchDto);
+//        model.addAttribute("maxPage", 5);
+//
+//        return "mypage/oqna";
+//    }
     
     // 1:1문의 작성
     @GetMapping(value = "/oqna/new")
-    public String oqnaForm(Model model){
+    public String oqnaForm(Model model, Principal principal){
+    	model.addAttribute("email", principal.getName());
         model.addAttribute("oqnaFormDto", new OqnaFormDto());
         return "oqna/oqnaForm";
     }
@@ -62,14 +64,14 @@ public class OqnaController {
         }
 
         if(oqnaImgFileList.get(0).isEmpty() && oqnaFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
+            model.addAttribute("errorMessage", "첫번째 질문 이미지는 필수 입력 값 입니다.");
             return "oqna/oqnaForm";
         }
 
         try {
             oqnaService.saveOqna(oqnaFormDto, oqnaImgFileList);
         } catch (Exception e){
-            model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
+            model.addAttribute("errorMessage", "질문 등록 중 에러가 발생하였습니다.");
             return "oqna/oqnaForm";
         }
 
@@ -91,7 +93,7 @@ public class OqnaController {
         return "oqna/oqnaForm";
     }
 
-    @PostMapping(value = "/mypage/oqna/{oqnaId}")
+    @PostMapping(value = "/oqna/{oqnaId}")
     public String oqnaUpdate(@Valid OqnaFormDto oqnaFormDto, BindingResult bindingResult,
                              @RequestParam("oqnaImgFile") List<MultipartFile> oqnaImgFileList, Model model){
         if(bindingResult.hasErrors()){

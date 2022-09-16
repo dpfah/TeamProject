@@ -14,9 +14,9 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.shop.constant.QnAType;
-import com.shop.dto.MainOqnaDto;
+import com.shop.dto.MyOqnaHistDto;
 import com.shop.dto.OqnaSearchDto;
-import com.shop.dto.QMainOqnaDto;
+import com.shop.dto.QMyOqnaHistDto;
 import com.shop.entity.Oqna;
 import com.shop.entity.QOqna;
 import com.shop.entity.QOqnaImg;
@@ -94,40 +94,42 @@ public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
         return StringUtils.isEmpty(searchQuery) ? null : QOqna.oqna.oqnaTitle.like("%" + searchQuery + "%");
     }
 
-    @Override
-    public Page<MainOqnaDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable) {
-        QOqna oqna = QOqna.oqna;
-        QOqnaImg oqnaImg = QOqnaImg.oqnaImg;
-
-        List<MainOqnaDto> content = queryFactory
-                .select(
-                        new QMainOqnaDto(
-                                oqna.id,
-                                oqna.oqnaTitle,
-                                oqna.oqnaDetail,
-                                oqnaImg.imgUrl
-                                )
-                )
-                .from(oqnaImg)
-                .join(oqnaImg.oqna, oqna)
-                .where(oqnaImg.repimgYn.eq("Y"))
-                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
-                .orderBy(oqna.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        long total = queryFactory
-                .select(Wildcard.count)
-                .from(oqnaImg)
-                .join(oqnaImg.oqna, oqna)
-                .where(oqnaImg.repimgYn.eq("Y"))
-                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
-                .fetchOne()
-                ;
-
-        return new PageImpl<>(content, pageable, total);
-    }
+//    @Override
+//    public Page<MyOqnaHistDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable) {
+//        QOqna oqna = QOqna.oqna;
+//        QOqnaImg oqnaImg = QOqnaImg.oqnaImg;
+//
+//        List<MyOqnaHistDto> content = queryFactory
+//                .select(
+//                        new QMyOqnaHistDto(
+//                                oqna.id,
+//                                oqna.oqnaTitle,
+//                                oqna.oqnaDetail,
+//                                oqnaImg.imgUrl,
+//                                oqna.oqnaDate,
+//                                oqna.oqnaStatus
+//                                )
+//                )
+//                .from(oqnaImg)
+//                .join(oqnaImg.oqna, oqna)
+//                .where(oqnaImg.repimgYn.eq("Y"))
+//                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
+//                .orderBy(oqna.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//
+//        long total = queryFactory
+//                .select(Wildcard.count)
+//                .from(oqnaImg)
+//                .join(oqnaImg.oqna, oqna)
+//                .where(oqnaImg.repimgYn.eq("Y"))
+//                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
+//                .fetchOne()
+//                ;
+//
+//        return new PageImpl<>(content, pageable, total);
+//    }
     
 
 }

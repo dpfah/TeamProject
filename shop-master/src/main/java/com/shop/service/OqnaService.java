@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shop.dto.MainOqnaDto;
+import com.shop.dto.MyOqnaHistDto;
 import com.shop.dto.OqnaFormDto;
 import com.shop.dto.OqnaImgDto;
 import com.shop.dto.OqnaSearchDto;
@@ -36,7 +36,7 @@ public class OqnaService {
     public Long saveOqna(OqnaFormDto oqnaFormDto, List<MultipartFile> oqnaImgFileList) throws Exception{
 
         //일대일 문의 등록
-        Oqna oqna = oqnaFormDto.createOqna();
+        Oqna oqna = Oqna.createOqna(oqnaFormDto);
         oqnaRepository.save(oqna);
 
         //이미지 등록
@@ -92,9 +92,9 @@ public class OqnaService {
         return oqnaRepository.getAdminOqnaPage(oqnaSearchDto, pageable);
     }
 
-    @Transactional(readOnly = true)
-    public Page<MainOqnaDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable){
-        return oqnaRepository.getMainOqnaPage(oqnaSearchDto, pageable);
-    }
+//    @Transactional(readOnly = true)
+//    public Page<MyOqnaHistDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable){
+//        return oqnaRepository.getMyOqnaHistPage(oqnaSearchDto, pageable);
+//    }
     
 }

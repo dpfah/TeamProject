@@ -1,7 +1,8 @@
 package com.shop.entity;
 
-import javax.persistence.Column;
+import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Lob;
 import javax.persistence.Table;
 
+import com.shop.constant.OqnaStatus;
 import com.shop.constant.QnAType;
 import com.shop.dto.OqnaFormDto;
 
@@ -41,11 +43,34 @@ public class Oqna extends BaseEntity{
     @Enumerated(EnumType.STRING) // enum 타입 매핑
     private QnAType qnaType; //oQnA 타입
     
+    private LocalDateTime oqnaDate; //문의일
+
+    @Enumerated(EnumType.STRING)
+    private OqnaStatus oqnaStatus; //문의상태
 
     public void updateOqna(OqnaFormDto oqnaFormDto){
         this.oqnaTitle = oqnaFormDto.getOqnaTitle();
         this.oqnaDetail = oqnaFormDto.getOqnaDetail();
-        this.qnaType = oqnaFormDto.getQnaType();        
+        this.qnaType = oqnaFormDto.getQnaType();
     }
+
+
+    
+    public static Oqna createOqna(OqnaFormDto oqnaFormDto) {
+        Oqna oqna = new Oqna();
+        
+		oqna.setOqnaTitle(oqnaFormDto.getOqnaTitle());
+		oqna.setOqnaDetail(oqnaFormDto.getOqnaDetail());
+		oqna.setQnaType(oqnaFormDto.getQnaType());
+        oqna.setOqnaStatus(OqnaStatus.QnA);
+        oqna.setOqnaDate(LocalDateTime.now());
+        return oqna;
+    }
+
+
+    public void cancelOqna() {
+        this.oqnaStatus = OqnaStatus.CANCEL;
+    }
+
 
 }
