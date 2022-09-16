@@ -26,7 +26,7 @@
     transition: all 0.5s;
 }
 #join .radio-area {
-	width: 37.535%;
+	width: 22.535%;
 	height: 38px; 
 	margin-left: 3.724%; 
 	box-sizing: border-box; 
@@ -53,10 +53,6 @@
 }
 #join .radio-area li + li {
     border-left: 1px solid #e0e0e0;
-}
-#join .radio-area label {
-    height: 38px;
-    line-height: 38px;
 }
 #join .radio-area li label:before {
 	content:"";
