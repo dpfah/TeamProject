@@ -18,35 +18,43 @@
             color: #bd2130;
         }
         
-		        
+		#join ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		#join ul li {
+			float: left;
+		}        
 		.multi-column .flt-l {
-			float:left; 
-			width:49%;
+			float:left;
+			position: relative;
+			width:58.739%;
+			margin: 0;
 		}
 		.multi-column .flt-r {
-			float:left; 
-			width:49%; 
-			margin-left:2%
+			float:left;
+			width:11.276%;
+			margin-left: 3.724%; 
+			box-sizing:border-box;
 		}
 		.multi-column:after {
 		    content: '';
 		    display: block;
 		    clear: both;
 		}
-		#join .radio-wrap.multi-column .flt-l {
-			position: relative;
-			width:58.739%;
-		}
-		#join .radio-wrap .multi-column .flt-r {
-			width:37.535%;
-			margin-left:3.724%;
-			box-sizing:border-box;
-		}
-		#join ul {
-			list-style: none;
-		}
-		#join ul li {
-			float: left;
+		#join .radio-area li label {
+		    height: 36px;
+		    line-height: 36px;
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		    display: block;
+		    width: 100%;
+		    color: #929292;
+		    box-sizing: border-box;
+		    background: #fff;
+		    margin: 0;
 		}
     </style>
 </th:block>
@@ -77,19 +85,22 @@
 			        </div>
 			        <div class="form-group">
 				        <div class="radio-wrap multi-column">
-				        	<div class="flt-l" style="margin: 0%;">
+				        	<div class="flt-l">
 				        		<input type="text" th:field="*{birth}" class="form-control" placeholder="생년월일8자리(ex.20010101)">
 			            		<p th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}" class="fieldError">Incorrect data</p>
 				        	</div>
-				        	<div class="radio-area flt-r">
-				        		<ul style="padding: 0%; margin: 0%;">
+				        	<div class="radio-area">
+				        		<ul>
 				        			<li>
-				        				<label for="male"><input type="radio" name="gender" value="M" id="male" class="hide" title="남자">남자</label>
+				        				<input type="radio" name="gender" value="M" id="male" class="hide" title="남자" onclick="document.getElementById('gender').value=this.value"><label for="male">남자</label>
 				        			</li>
 				        			<li>
-				        				<label for="female"><input type="radio" name="gender" value="F" id="female" class="hide" title="여자">여자</label>
+				        				<input type="radio" name="gender" value="F" id="female" class="hide" title="여자" onclick="document.getElementById('gender').value=this.value"><label for="female">여자</label>
 				        			</li>
 				        		</ul>
+				        	</div>
+				        	<div class="flt-r">
+				        		<input type="text" class="form-control" id="gender" value="" placeholder="성별" style="text-align: center;">
 				        	</div>
 				        </div>
 			        </div>
@@ -102,12 +113,8 @@
 			            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
 			        </div>
 			        <div class="form-group">
-			            <input type="password" class="form-control pw" name="pw" id="password_1" th:field="*{password}" placeholder="비밀번호">
+			            <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호">
 			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
-			        </div>
-			        <div class="form-group">
-			            <input type="password" class="form-control pw" name="pw2" id="password_2" placeholder="비밀번호 확인">
-			            <font id="checkPw" size="2"></font>
 			        </div>
 			        <div class="form-group">
 			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
