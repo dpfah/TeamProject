@@ -116,7 +116,8 @@ public class OqnaController {
         return "redirect:/";
     }
 
-    @GetMapping(value = "/admin/oqna/{oqnaId}")
+    //1:1 문의 수정하기 페이지 가져오기
+    @GetMapping(value = "/oqna/update/{oqnaId}")
     public String oqnaDtl(@PathVariable("oqnaId") Long oqnaId, Model model){
 
         try {
@@ -131,7 +132,8 @@ public class OqnaController {
         return "oqna/oqnaForm";
     }
 
-    @PostMapping(value = "/oqna/{oqnaId}")
+  //1:1 문의 수정한 내용 
+    @PostMapping(value = "/oqna/update/{oqnaId}")
     public String oqnaUpdate(@Valid OqnaFormDto oqnaFormDto, BindingResult bindingResult,
                              @RequestParam("oqnaImgFile") List<MultipartFile> oqnaImgFileList, Model model){
         if(bindingResult.hasErrors()){
@@ -150,9 +152,10 @@ public class OqnaController {
             return "oqna/oqnaForm";
         }
 
-        return "redirect:/";
+        return "redirect:oqna/oqnaDtl";
     }
 
+    //관리자 페이지에서 전체 1:1 문의 목록보기
     @GetMapping(value = {"/admin/oqnas", "/admin/oqnas/{page}"})
     public String oqnaManage(OqnaSearchDto oqnaSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 
@@ -167,7 +170,7 @@ public class OqnaController {
     }
 
     // 1:1문의 상세보기
-    @GetMapping(value = "/oqna/{oqnaId}")
+    @GetMapping(value = "/oqna/dtl/{oqnaId}")
     public String oqnaDtl(Model model, @PathVariable("oqnaId") Long oqnaId){
         OqnaFormDto oqnaFormDto = oqnaService.getOqnaDtl(oqnaId);
         model.addAttribute("oqna", oqnaFormDto);

@@ -423,6 +423,13 @@ body {
 	text-decoration: none;
 }
 
+#itemDtl .save{
+	background-color: #666666;
+	color:#EEEEEE;
+	width:5rem;
+	margin-top: 50px;
+}
+
 /*itemForm*/
 #itemForm .input-group {
     margin-bottom : 15px;
