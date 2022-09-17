@@ -47,9 +47,15 @@ public class ItemFormDto {
     
     private ItemType itemType;
 
+    //상품 대표사진 이미지, 이미지 슬라이드
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
+    
+    // 상품 상세내용 이미지
+    private List<ItemContentImgDto> itemContentImgDtoList = new ArrayList<>();
 
     private List<Long> itemImgIds = new ArrayList<>();
+    
+    private List<Long> itemContentImgIds = new ArrayList<>();
 
     private static ModelMapper modelMapper = new ModelMapper();
 

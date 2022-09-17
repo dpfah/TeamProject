@@ -62,7 +62,7 @@ class ItemServiceTest {
         itemFormDto.setStockNumber(100);
 
         List<MultipartFile> multipartFileList = createMultipartFiles();
-        Long itemId = itemService.saveItem(itemFormDto, multipartFileList);
+        Long itemId = itemService.saveItem(itemFormDto, multipartFileList, multipartFileList);
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
 
         Item item = itemRepository.findById(itemId)
