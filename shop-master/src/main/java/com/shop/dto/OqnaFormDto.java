@@ -24,6 +24,8 @@ public class OqnaFormDto {
 
     @NotBlank(message = "상품 상세는 필수 입력 값입니다.")
     private String oqnaDetail;
+    
+    private String oqnaReply;
 
     private QnAType qnaType;
     

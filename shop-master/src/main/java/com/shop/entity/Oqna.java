@@ -54,11 +54,14 @@ public class Oqna extends BaseEntity{
 
     @Enumerated(EnumType.STRING)
     private OqnaStatus oqnaStatus; //문의상태
+    
+    private String oqnaReply; //oQnA 답변
 
     public void updateOqna(OqnaFormDto oqnaFormDto){
         this.oqnaTitle = oqnaFormDto.getOqnaTitle();
         this.oqnaDetail = oqnaFormDto.getOqnaDetail();
         this.qnaType = oqnaFormDto.getQnaType();
+        this.oqnaReply = oqnaFormDto.getOqnaReply();
     }
 
 
@@ -66,10 +69,10 @@ public class Oqna extends BaseEntity{
     public static Oqna createOqna(Member member, OqnaFormDto oqnaFormDto) {
         Oqna oqna = new Oqna();
         oqna.setMember(member);
-        
 		oqna.setOqnaTitle(oqnaFormDto.getOqnaTitle());
 		oqna.setOqnaDetail(oqnaFormDto.getOqnaDetail());
 		oqna.setQnaType(oqnaFormDto.getQnaType());
+		oqna.setOqnaReply(oqnaFormDto.getOqnaReply());
         oqna.setOqnaStatus(OqnaStatus.QnA);
         oqna.setOqnaDate(LocalDateTime.now());
         return oqna;
