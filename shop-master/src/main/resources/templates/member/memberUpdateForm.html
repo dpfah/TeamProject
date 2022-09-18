@@ -91,7 +91,7 @@
 <body>
 	<div layout:fragment="content">
 		<div id="join" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
-		    <form th:action="@{'/members/update/' + *{id}}" role="form" method="post"  th:object="${memberFormDto}" enctype="multipart/form-data">
+		    <form th:action="@{'/members/update/' + *{email}}" role="form" method="post"  th:object="${memberFormDto}" enctype="multipart/form-data">
 				<div class="join-box mt-5" style="margin-bottom: 3rem;">
 				<input type="hidden" th:field="*{id}">
 			        <h1 style="margin-bottom: 20px;">개인정보 수정</h1>
@@ -135,7 +135,7 @@
 			        </div>
 			        <p class="small-title mt-5">프로필 이미지를 업로드해주세요.</p>
 			        <div th:if="${#lists.isEmpty(memberFormDto.memberImgDtoList)}">
-			            <div class="form-group" th:each="num: ${#numbers.sequence(1,1)}">
+			            <div class="form-group" th:each="num: ${#numbers.sequence(1,2)}">
 			                <div class="custom-file img-div">
 			                    <input type="file" class="custom-file-input" name="memberImgFile">
 			                    <label class="custom-file-label" th:text="프로필이미지 + ${num}"></label>

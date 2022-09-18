@@ -64,7 +64,8 @@ public class MemberService implements UserDetailsService {
     
     
     @Transactional(readOnly = true)
-    public MemberFormDto getMemberDtl(Long memberId){
+    public MemberFormDto getMemberDtl(Long memberId, String email){
+    	
         List<MemberImg> memberImgList = memberImgRepository.findByMemberIdOrderByIdAsc(memberId);
         List<MemberImgDto> memberImgDtoList = new ArrayList<>();
         for (MemberImg memberImg : memberImgList) {
@@ -72,8 +73,8 @@ public class MemberService implements UserDetailsService {
             memberImgDtoList.add(memberImgDto);
         }
 
-        Member member = memberRepository.findById(memberId)
-                .orElseThrow(EntityNotFoundException::new); // 상품 아이디를 통해 상품 엔티티를  조회. 존재하지 않을 때는 EntityNotFoundException발생
+        Member member = memberRepository.findByEmail(email);
+            //    .orElseThrow(EntityNotFoundException::new);
         MemberFormDto memberFormDto = MemberFormDto.of(member);
         memberFormDto.setMemberImgDtoList(memberImgDtoList);
         return memberFormDto;

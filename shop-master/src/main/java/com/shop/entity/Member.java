@@ -44,7 +44,6 @@ public class Member extends BaseEntity {
         this.birth = memberFormDto.getBirth();
         this.gender = memberFormDto.getGender();
         this.phone = memberFormDto.getPhone();
-        this.email = memberFormDto.getEmail();
         this.password = memberFormDto.getPassword();
         this.address = memberFormDto.getAddress();
     }
@@ -62,5 +61,6 @@ public class Member extends BaseEntity {
         member.setRole(Role.ADMIN);
         return member;
     }
+
 
 }

@@ -68,11 +68,11 @@ public class MemberController {
     }
     
     //멤버 업데이트 페이지 가져오기
-    @GetMapping(value = "/update/{memberId}")
-    public String memberDtl(@PathVariable("memberId") Long memberId, Model model){
+    @GetMapping(value = "/update/{email}")// email로 정한 이유는 세션에서 받아온 값으로 접속하기 위해서.
+    public String memberDtl( Long memberId, Model model, @PathVariable("email") String email){
 
         try {
-			MemberFormDto memberFormDto = memberService.getMemberDtl(memberId);
+			MemberFormDto memberFormDto = memberService.getMemberDtl(memberId, email);
             model.addAttribute("memberFormDto", memberFormDto);
         } catch(EntityNotFoundException e){
             model.addAttribute("errorMessage", "존재하지 않는 아이디 입니다.");
@@ -84,7 +84,7 @@ public class MemberController {
     }
 
   //멤버 수정한 내용 
-    @PostMapping(value = "/update/{memberId}")
+    @PostMapping(value = "/update/{email}")
     public String memberUpdate(@Valid MemberFormDto memberFormDto, BindingResult bindingResult,
                              @RequestParam("memberImgFile") List<MultipartFile> memberImgFileList, Model model){
         if(bindingResult.hasErrors()){
@@ -95,7 +95,7 @@ public class MemberController {
         try {
             memberService.updateMember(memberFormDto, memberImgFileList);
         } catch (Exception e){
-            model.addAttribute("errorMessage", "문의 수정 중 에러가 발생하였습니다.");
+            model.addAttribute("errorMessage", "개인정보 수정 중 에러가 발생하였습니다.");
             return "member/memberUpdateForm";
         }
 
@@ -103,9 +103,9 @@ public class MemberController {
     }
     
     // 멤버 상세보기
-    @GetMapping(value = "/dtl/{memberId}")
-    public String memberDtl(Model model, @PathVariable("memberId") Long memberId){
-        MemberFormDto memberFormDto = memberService.getMemberDtl(memberId);
+    @GetMapping(value = "/dtl/{email}") //세션
+    public String memberDtl(Model model, Long memberId, @PathVariable("email") String email){
+        MemberFormDto memberFormDto = memberService.getMemberDtl(memberId, email);
         model.addAttribute("member", memberFormDto);
         return "member/memberDtl";
     }
