@@ -29,28 +29,25 @@
 	        </p>
 	      
 		    <div class="container px-4 px-lg-5 my-5">
-
-
             	<p class="small-title mt-3">문의 타입</p>
 				<p class="input-title" th:text="${oqna.qnaType}"></p>
             	<p class="small-title">제목</p>
 				<p class="input-title" th:text="${oqna.oqnaTitle}">e</p>
-
-
 			    <p class="small-title mt-3">문의 사항</p>
 				<textarea class="form-control" th:text="${oqna.oqnaDetail}"></textarea>
 				<p class="small-title mt-5">첨부 사진</p>
 		        <div th:each="oqnaImg : ${oqna.oqnaImgDtoList}" class="text-center pt-5">
-			    		<img th:if="${not #strings.isEmpty(oqnaImg.imgUrl)}" th:src="${oqnaImg.imgUrl}" class="rounded mgb-15" width="300" height="300">
+			    	<img th:if="${not #strings.isEmpty(oqnaImg.imgUrl)}" th:src="${oqnaImg.imgUrl}" class="rounded mgb-15" width="300" height="300">
 				</div>
-
 		        <div>
 			        <p class="small-title mt-3">문의 답변</p>
 					<div class="input-group">
 			            <textarea class="form-control" th:text="${oqna.oqnaReply}"></textarea>
 		        	</div>
 		        </div>
-		        <a th:href="'/oqna/update/' + ${oqna.id}" class="btn update">수정하기</a>
+		        <div style="text-align: center;">
+		        	<a th:href="'/oqna/update/' + ${oqna.id}" class="btn update">수정하기</a>
+		        </div>
 		    </div>           
 	    </form>
 	</section>

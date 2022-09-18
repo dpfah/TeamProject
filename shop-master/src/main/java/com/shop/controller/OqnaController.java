@@ -116,7 +116,7 @@ public class OqnaController {
         return "redirect:/";
     }
 
-    //1:1 문의 수정하기 페이지 가져오기
+    //1:1 문의 업데이트 페이지 가져오기
     @GetMapping(value = "/oqna/update/{oqnaId}")
     public String oqnaDtl(@PathVariable("oqnaId") Long oqnaId, Model model){
 
