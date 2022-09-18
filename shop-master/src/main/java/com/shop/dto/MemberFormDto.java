@@ -47,7 +47,7 @@ public class MemberFormDto {
     private static ModelMapper modelMapper = new ModelMapper();
 
     public static MemberFormDto of(Member member){
-        return modelMapper.map(member,MemberFormDto.class);
+        return modelMapper.map(member, MemberFormDto.class);
     }
     
 

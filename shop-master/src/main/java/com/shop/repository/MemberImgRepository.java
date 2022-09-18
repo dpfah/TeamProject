@@ -12,6 +12,5 @@ public interface MemberImgRepository extends JpaRepository<MemberImg, Long> {
     List<MemberImg> findByMemberIdOrderByIdAsc(Long memberId);
    
 
-    MemberImg findByMemberIdAndRepimgYn(Long memberId, String repimgYn);
 
 }

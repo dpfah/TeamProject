@@ -56,6 +56,8 @@ public class Oqna extends BaseEntity{
     private OqnaStatus oqnaStatus; //문의상태
     
     private String oqnaReply; //oQnA 답변
+    
+    private int count; //수량
 
     public void updateOqna(OqnaFormDto oqnaFormDto){
         this.oqnaTitle = oqnaFormDto.getOqnaTitle();

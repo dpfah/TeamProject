@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -80,11 +81,11 @@ public class MemberService implements UserDetailsService {
         return memberFormDto;
     }
 
-    public Long updateMember(MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList) throws Exception{
+    public Long updateMember(MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList, PasswordEncoder passwordEncoder) throws Exception{
     	//문의 수정
         Member member = memberRepository.findById(memberFormDto.getId())
                 .orElseThrow(EntityNotFoundException::new);
-        member.updateMember(memberFormDto);
+        member.updateMember(memberFormDto, passwordEncoder);
         List<Long> memberImgIds = memberFormDto.getMemberImgIds();
 
         //이미지 등록

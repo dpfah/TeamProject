@@ -39,12 +39,12 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
     
-    public void updateMember(MemberFormDto memberFormDto){
+    public void updateMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         this.name = memberFormDto.getName();
         this.birth = memberFormDto.getBirth();
         this.gender = memberFormDto.getGender();
         this.phone = memberFormDto.getPhone();
-        this.password = memberFormDto.getPassword();
+        this.password = passwordEncoder.encode(memberFormDto.getPassword());
         this.address = memberFormDto.getAddress();
     }
 

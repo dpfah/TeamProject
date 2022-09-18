@@ -89,7 +89,6 @@
 	        	<p th:if="${#fields.hasErrors('oqnaDetail')}" th:errors="*{oqnaDetail}" class="fieldError">Incorrect data</p>
 	        	<p class="warning">※ 문의글에 개인정보를 기재하시는 경우, 상담완료 이후 임의로 삭제될 수 있사오니 개인정보 기재는 삼가해 주세요.</p><br>
 	        	
-				//이미지 등록
 				<p class="small-title mt-5">이미지를 업로드해주세요.(최대 5개까지 업로드 가능)</p>
 		        <div th:if="${#lists.isEmpty(oqnaFormDto.oqnaImgDtoList)}">
 		            <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">

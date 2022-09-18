@@ -93,7 +93,7 @@ public class MemberController {
 
 
         try {
-            memberService.updateMember(memberFormDto, memberImgFileList);
+            memberService.updateMember(memberFormDto, memberImgFileList, passwordEncoder);
         } catch (Exception e){
             model.addAttribute("errorMessage", "개인정보 수정 중 에러가 발생하였습니다.");
             return "member/memberUpdateForm";
