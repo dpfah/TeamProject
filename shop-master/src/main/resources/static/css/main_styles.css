@@ -97,4 +97,39 @@
 .mban:last-child{
     margin-bottom: 0;
 }
+.Mitems{
+	font-size: 20px;
+}
+.Mitems .imgCut{
+	width:340px;
+	height:340px;
+	overflow: hidden;
+}
+.Mitems .imgCut img{
+	width:auto;
+	height:340px;
+	margin:0 auto;
+}
+.Mitems p{
+	margin-bottom: 3px;	
+}
+.Mitems .card-title{
+	font-weight: 600;
+}
+.Mitems .priceCss span{
+	color:#ccc;
+	font-size: 16px;
+	text-decoration: line-through;
+}
+.Mitems .pointCss{
+	color:#FC454C;
+	font-size: 16px;
+	
+}
+.Mitems .summaryCss{
+	color:#999;
+	font-size: 18px;
+}
+
+
 

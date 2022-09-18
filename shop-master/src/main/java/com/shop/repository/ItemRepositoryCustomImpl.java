@@ -1,7 +1,6 @@
 package com.shop.repository;
 
 import java.time.LocalDateTime;
-
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -99,6 +98,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
         return StringUtils.isEmpty(searchQuery) ? null : QItem.item.itemNm.like("%" + searchQuery + "%");
     }
 
+    // 메인 제품
     @Override
     public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         QItem item = QItem.item;
@@ -110,6 +110,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.id,
                                 item.itemNm,
                                 item.itemDetail,
+                                item.itemSummary,
                                 itemImg.imgUrl,
                                 item.percent,
                                 item.ori_price,

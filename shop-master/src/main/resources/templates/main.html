@@ -85,15 +85,16 @@
             <div class="col-md-4 mb-4">
                 <div class="Mitems card  border border-0">
                     <a th:href="'/item/' +${item.id}" class="text-dark">
-                        <img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
+                    	<div class="imgCut">
+                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
+                    	</div>
                         <div class="card-body">
-                            <h4 class="card-title  fw-bolder">[[${item.itemNm}]]</h4>
-                            <h3 class="card-title">
-	                             <span>[[${item.percent}]]%</span> [[${item.ori_price}]]원
-                            </h3>
-                             [[${item.price}]]원
+                            <p class="card-title  ">[[${item.itemNm}]]</p>
+                            <p class="priceCss">
+	                             <span>[[${item.percent}]]</span> [[${item.ori_price}]]원
+                            </p>
 
-                            <p class="card-text">[[${item.itemDetail}]]</p>
+                            <p class="card-text summaryCss">[[${item.itemSummary}]]</p>
                         </div>
                     </a>
                 </div>
