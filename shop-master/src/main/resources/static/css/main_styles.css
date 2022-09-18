@@ -100,6 +100,7 @@
 .Mitems{
 	font-size: 20px;
 }
+
 .Mitems .imgCut{
 	width:340px;
 	height:340px;
@@ -109,6 +110,14 @@
 	width:auto;
 	height:340px;
 	margin:0 auto;
+	-webkit-transform: scale(1);
+	  transform: scale(1);
+	  -webkit-transition: .3s ease-in-out;
+	  transition: .3s ease-in-out;
+}
+.Mitems a:hover img{
+	-webkit-transform: scale(1.1);
+    transform: scale(1.1);
 }
 .Mitems p{
 	margin-bottom: 3px;	
@@ -116,10 +125,11 @@
 .Mitems .card-title{
 	font-weight: 600;
 }
+
 .Mitems .priceCss span{
 	color:#ccc;
-	font-size: 16px;
 	text-decoration: line-through;
+	font-weight: 400;
 }
 .Mitems .pointCss{
 	color:#FC454C;
