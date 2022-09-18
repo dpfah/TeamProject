@@ -83,13 +83,17 @@
     <div class="row mt-5">
         <th:block th:each="item, status: ${items.getContent()}">
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="Mitems card  border border-0">
                     <a th:href="'/item/' +${item.id}" class="text-dark">
-                        <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
+                        <img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
                         <div class="card-body">
-                            <h4 class="card-title">[[${item.itemNm}]]</h4>
+                            <h4 class="card-title  fw-bolder">[[${item.itemNm}]]</h4>
+                            <h3 class="card-title">
+	                             <span>[[${item.percent}]]%</span> [[${item.ori_price}]]원
+                            </h3>
+                             [[${item.price}]]원
+
                             <p class="card-text">[[${item.itemDetail}]]</p>
-                            <h3 class="card-title text-danger">[[${item.price}]]원</h3>
                         </div>
                     </a>
                 </div>
