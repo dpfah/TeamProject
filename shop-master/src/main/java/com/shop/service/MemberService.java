@@ -73,14 +73,14 @@ public class MemberService implements UserDetailsService {
         }
 
         Member member = memberRepository.findById(memberId)
-                .orElseThrow(EntityNotFoundException::new); // 상품 아이디를 통해 상품 엔티티를 조회. 존재하지 않을 때는 EntityNotFoundException발생
+                .orElseThrow(EntityNotFoundException::new); // 상품 아이디를 통해 상품 엔티티를  조회. 존재하지 않을 때는 EntityNotFoundException발생
         MemberFormDto memberFormDto = MemberFormDto.of(member);
         memberFormDto.setMemberImgDtoList(memberImgDtoList);
         return memberFormDto;
     }
 
     public Long updateMember(MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList) throws Exception{
-        //문의 수정
+    	//문의 수정
         Member member = memberRepository.findById(memberFormDto.getId())
                 .orElseThrow(EntityNotFoundException::new);
         member.updateMember(memberFormDto);

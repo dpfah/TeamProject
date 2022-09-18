@@ -109,7 +109,7 @@ public class OqnaService {
     public Page<MyOqnaHistDto> getOqnaList(String email, Pageable pageable) {
 
         List<Oqna> oqnas = oqnaRepository.findOqnas(email, pageable);
-        Long totalCount = oqnaRepository.countOqna(email);
+        Long totalCount = oqnaRepository.countOqna(email); //빼야함
 
         List<MyOqnaHistDto> myOqnaHistDtos = new ArrayList<>();
         

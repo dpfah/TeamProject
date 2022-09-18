@@ -67,7 +67,7 @@
 				            <div class="form-group" th:each="num: ${#numbers.sequence(1,3)}">
 				                <div class="custom-file img-div">
 				                    <input type="file" class="custom-file-input" name="itemImgFile">
-				                    <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
+				                    <label class="custom-file-label" th:text="프로필이미지 + ${num}"></label>
 				                </div>
 				            </div>
 			        	</div>
@@ -77,7 +77,7 @@
 				                <div class="custom-file img-div">
 				                    <input type="file" class="custom-file-input" name="itemImgFile">
 				                    <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
-				                    <label class="custom-file-label" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
+				                    <label class="custom-file-label" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품 프로필 이미지' + ${status.index+1}"></label>
 				                </div>
 				            </div>
 				        </div>

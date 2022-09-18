@@ -79,6 +79,9 @@
 			<div class="join-box mt-5" style="margin-bottom: 3rem;">
 			<input type="hidden" id="memberId" th:value="${member.id}">
 		        <h1 style="margin-bottom: 20px;">개인정보 수정</h1>
+		        <div th:each="memberImg : ${member.memberImgDtoList}" class="text-center pt-5">
+			    	<img th:if="${not #strings.isEmpty(memberImg.imgUrl)}" th:src="${memberImg.imgUrl}" class="rounded mgb-15" width="300" height="300">
+				</div>
 		        <div class="form-group">
 		            <p class="form-control" th:text="${member.name}"></p>
 		        </div>
@@ -103,6 +106,9 @@
 		        </div>
 		        <div class="form-group">
 		        	<p class="form-control" th:text="${member.address}"></p>
+		        </div>
+		        <div style="text-align: center;">
+		        	<a th:href="'/members/update/' + ${member.id}" class="btn update">수정하기</a>
 		        </div>
 		    </div>
 		</div>
