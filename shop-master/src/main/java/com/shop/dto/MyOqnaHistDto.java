@@ -2,8 +2,8 @@ package com.shop.dto;
 
 import java.time.format.DateTimeFormatter;
 
-import com.querydsl.core.annotations.QueryProjection;
 import com.shop.constant.OqnaStatus;
+import com.shop.constant.QnAType;
 import com.shop.entity.Oqna;
 
 import lombok.Getter;
@@ -11,28 +11,27 @@ import lombok.Setter;
 
 @Getter @Setter
 public class MyOqnaHistDto {
+	
+    private Long oqnaId;
+    
+    private QnAType qnaType; //oQnA 타입
 
-    private Long id;
-
-    private String oqnaTitle;
-
-    private String oqnaDetail;
+    private String oqnaTitle; //제목
     
     private String oqnaDate; //문의날짜
     
-    private OqnaStatus oqnaStatus; //문의 상태
+    private OqnaStatus oqnaStatus; //문의 유형
+    
+    private String oqnaReply;
 
-    private String imgUrl;
 
-
-    @QueryProjection
-    public MyOqnaHistDto(Oqna oqna, Long id, String oqnaTitle, String oqnaDetail, String imgUrl){
-        this.id = id;
-        this.oqnaTitle = oqnaTitle;
-        this.oqnaDetail = oqnaDetail;
-        this.imgUrl = imgUrl;
+    public MyOqnaHistDto(Oqna oqna){
+        this.oqnaId = oqna.getId();
+        this.qnaType = oqna.getQnaType();
+        this.oqnaTitle = oqna.getOqnaTitle();
 		this.oqnaDate = oqna.getOqnaDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.oqnaStatus = oqna.getOqnaStatus();
+        this.oqnaReply = oqna.getOqnaReply();
 
     }
 

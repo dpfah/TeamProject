@@ -62,7 +62,26 @@
 	        <input type="hidden" th:field="*{id}">
 		    <div class="container px-4 px-lg-5 my-5">
 		        <div class="row gx-4 gx-lg-5 align-items-center">
-		            <div class="col-md-6"><img class ="rounded repImg bg-light"></div>
+		            <div class="col-md-6">
+			            <div th:if="${#lists.isEmpty(itemFormDto.itemImgDtoList)}">
+				            <div class="form-group" th:each="num: ${#numbers.sequence(1,3)}">
+				                <div class="custom-file img-div">
+				                    <input type="file" class="custom-file-input" name="itemImgFile">
+				                    <label class="custom-file-label" th:text="프로필이미지 + ${num}"></label>
+				                </div>
+				            </div>
+			        	</div>
+				
+				        <div th:if = "${not #lists.isEmpty(itemFormDto.itemImgDtoList)}">
+				            <div class="form-group" th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
+				                <div class="custom-file img-div">
+				                    <input type="file" class="custom-file-input" name="itemImgFile">
+				                    <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
+				                    <label class="custom-file-label" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품 프로필 이미지' + ${status.index+1}"></label>
+				                </div>
+				            </div>
+				        </div>
+		            </div>
 		            <div class="col-md-6">
 		            	<div class="row select_sell">
 			                <div class="form-group col-md-6">
@@ -143,21 +162,21 @@
 	        	</div>
 	        	<p th:if="${#fields.hasErrors('itemDetail')}" th:errors="*{itemDetail}" class="fieldError">Incorrect data</p>
 	
-		        <div th:if="${#lists.isEmpty(itemFormDto.itemImgDtoList)}">
+		        <div th:if="${#lists.isEmpty(itemFormDto.itemContentImgDtoList)}">
 		            <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">
 		                <div class="custom-file img-div">
-		                    <input type="file" class="custom-file-input" name="itemImgFile">
+		                    <input type="file" class="custom-file-input" name="itemContentImgFile">
 		                    <label class="custom-file-label" th:text="상품이미지 + ${num}"></label>
 		                </div>
 		            </div>
 		        </div>
 		
-		        <div th:if = "${not #lists.isEmpty(itemFormDto.itemImgDtoList)}">
-		            <div class="form-group" th:each="itemImgDto, status: ${itemFormDto.itemImgDtoList}">
+		        <div th:if = "${not #lists.isEmpty(itemFormDto.itemContentImgDtoList)}">
+		            <div class="form-group" th:each="itemContentImgDto, status: ${itemFormDto.itemContentImgDtoList}">
 		                <div class="custom-file img-div">
-		                    <input type="file" class="custom-file-input" name="itemImgFile">
-		                    <input type="hidden" name="itemImgIds" th:value="${itemImgDto.id}">
-		                    <label class="custom-file-label" th:text="${not #strings.isEmpty(itemImgDto.oriImgName)} ? ${itemImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
+		                    <input type="file" class="custom-file-input" name="itemContentImgFile">
+		                    <input type="hidden" name="itemContentImgIds" th:value="${itemContentImgDto.id}">
+		                    <label class="custom-file-label" th:text="${not #strings.isEmpty(itemContentImgDto.oriImgName)} ? ${itemContentImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
 		                </div>
 		            </div>
 		        </div>

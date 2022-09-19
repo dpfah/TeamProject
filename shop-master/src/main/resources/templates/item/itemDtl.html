@@ -747,6 +747,10 @@
 	            $("#count").change( function(){
 	                calculateToalPrice();
 	            });
+	            
+	            //상품 프로필 슬라이드
+	            let slideIndex = 0;
+				showSlides(slideIndex);
 
 	        });
 	  // 할인율 계산
@@ -837,6 +841,31 @@
 	            });
 	        }
 	
+	
+			//상품 프로필 슬라이드
+			function plusSlides(n) {
+			  showSlides(slideIndex += n);
+			}
+			
+			function currentSlide(n) {
+			  showSlides(slideIndex = n);
+			}
+			
+			function showSlides(n) {
+			  let i;
+			  let slides = document.getElementsByClassName("mySlides");
+			  let dots = document.getElementsByClassName("dot");
+			  if (n > slides.length) {slideIndex = 1}    
+			  if (n < 1) {slideIndex = slides.length}
+			  for (i = 0; i < slides.length; i++) {
+			    slides[i].style.display = "none";
+			  }
+			  for (i = 0; i < dots.length; i++) {
+			    dots[i].className = dots[i].className.replace(" active", "");
+			  }
+			  slides[slideIndex-1].style.display = "block";  
+			  dots[slideIndex-1].className += " active";
+			}
 	    </script>
 	</th:block>
 	
@@ -847,8 +876,20 @@
 	<section id="itemDtl" class="py-5 itemA " layout:fragment="content">	
 	 <input type="hidden" id="itemId" th:value="${item.id}">
 	    <div class="container px-4 px-lg-5 my-5">
-	        <div class="row gx-4 gx-lg-5 align-items-center">
-	            <div class="col-md-6"><img th:src="${item.itemImgDtoList[0].imgUrl}" class = "rounded repImg" th:alt="${item.itemNm}"></div>
+		    <div class="row gx-4 gx-lg-5 align-items-center">
+		        <div class="col-md-6">	
+			        <div class="slideshow-container">
+						<div class="mySlides " th:each="itemImg : ${item.itemImgDtoList}">
+						  <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class = "rounded repImg" th:alt="${item.itemNm}">
+						</div>
+					</div>
+					<br>
+					<div style="text-align:center" class="slide-dot">
+					  <span class="dot" onclick="currentSlide(1)"></span> 
+					  <span class="dot" onclick="currentSlide(2)"></span> 
+					  <span class="dot" onclick="currentSlide(3)"></span>
+					</div>
+	            </div>
 	            <div class="col-md-6">
 	                <div class="small mb-1">
 						<span th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge badge-primary mgb-15">
