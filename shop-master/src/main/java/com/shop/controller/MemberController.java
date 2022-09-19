@@ -19,6 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shop.dto.MemberFormDto;
 import com.shop.dto.OqnaFormDto;
 import com.shop.entity.Member;
+import com.shop.entity.MemberImg;
 import com.shop.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -92,9 +93,13 @@ public class MemberController {
             return "member/memberUpdateForm";
         }
 
+        if(memberImgFileList.get(0).isEmpty()){
+            model.addAttribute("errorMessage", "프로필이미지는 필수 입력 값 입니다.");
+            return "member/memberUpdateForm";
+        }
 
         try {
-            memberService.updateMember(memberFormDto, memberImgFileList, passwordEncoder);
+			memberService.updateMember(memberFormDto, memberImgFileList, passwordEncoder);
         } catch (Exception e){
             model.addAttribute("errorMessage", "개인정보 수정 중 에러가 발생하였습니다.");
             return "member/memberUpdateForm";

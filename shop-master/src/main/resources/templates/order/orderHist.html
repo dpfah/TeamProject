@@ -36,7 +36,7 @@
                 cache   : false,
                 success  : function(result, status){
                     alert("주문이 취소 되었습니다.");
-                    location.href='/orders/' + [[${page}]];
+                    location.href='mypage/orders/' + [[${page}]];
                 },
                 error : function(jqXHR, status, error){
                     if(jqXHR.status == '401'){
@@ -153,17 +153,17 @@
 				    <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
 				        <ul class="pagination justify-content-center">
 				            <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
-				                <a th:href="@{'/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link previous">
+				                <a th:href="@{'/mypage/orders/' + ${orders.number-1}}" aria-label='Previous' class="page-link previous">
 				                    <span aria-hidden='true'>Previous</span>
 				                </a>
 				            </li>
 				
 				            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${orders.number eq page-1}?'active':''">
-				                <a th:href="@{'/orders/' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+				                <a th:href="@{'/mypage/orders/' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
 				            </li>
 				
 				            <li class="page-item" th:classappend="${orders.number+1 ge orders.totalPages}?'disabled':''">
-				                <a th:href="@{'/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link next">
+				                <a th:href="@{'/mypage/orders/' + ${orders.number+1}}" aria-label='Next' class="page-link next">
 				                    <span aria-hidden='true'>Next</span>
 				                </a>
 				            </li>

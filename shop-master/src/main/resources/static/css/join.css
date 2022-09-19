@@ -1,5 +1,5 @@
 /* 회원가입 레이아웃 */
-#join .join-box { 
+.memberForm .join-box { 
 	margin:auto; 
 	width: 100%; 
 	max-width: 800px; 
@@ -10,7 +10,7 @@
 	box-shadow: 0 0 10px rgba(0,0,0,0.05); 
 }
 /*join*/
-#join .btn_join{
+.memberForm .btn_join{
 	display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,7 @@
     box-sizing: border-box;
     transition: all 0.5s;
 }
-#join .radio-area {
+.memberForm .radio-area {
 	width: 22.535%;
 	height: 38px; 
 	margin-left: 3.724%; 
@@ -33,7 +33,7 @@
 	border: 1px solid #e0e0e0;
 	float: left;
 }
-#join .hide {
+.memberForm .hide {
     overflow: hidden;
     display: block;
     width: 1px;
@@ -43,7 +43,7 @@
     line-height: 0;
     opacity: 0;
 }
-#join .radio-area li {
+.memberForm .radio-area li {
 	box-sizing: border-box;
 	width: 50%;
 	height: 36px;
@@ -51,10 +51,10 @@
     text-align: center;
     color: #929292;
 }
-#join .radio-area li + li {
+.memberForm .radio-area li + li {
     border-left: 1px solid #e0e0e0;
 }
-#join .radio-area li label:before {
+.memberForm .radio-area li label:before {
 	content:"";
 	position:absolute; 
 	top:50%; 
@@ -72,7 +72,7 @@
 	border-radius:50%; 
 	box-sizing:border-box
 }
-#join .radio-area li label:after {
+.memberForm .radio-area li label:after {
     content: '';
     position: absolute;
     top: -1px;

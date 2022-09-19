@@ -61,7 +61,7 @@ public class OrderController {
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
 
-    @GetMapping(value = {"/orders", "/orders/{page}"})
+    @GetMapping(value = {"mypage/orders", "mypage/orders/{page}"})
     public String orderHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);

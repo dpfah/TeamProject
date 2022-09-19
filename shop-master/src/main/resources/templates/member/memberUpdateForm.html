@@ -92,7 +92,7 @@
 
 <body>
 	<div layout:fragment="content">
-		<div id="join" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
+		<div id="memberUpdate" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
 		    <form th:action="@{'/members/update/' + *{email}}" role="form" method="post"  th:object="${memberFormDto}" enctype="multipart/form-data">
 				<div class="join-box mt-5" style="margin-bottom: 3rem;">
 				<input type="hidden" th:field="*{id}">

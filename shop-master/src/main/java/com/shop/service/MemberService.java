@@ -89,13 +89,22 @@ public class MemberService implements UserDetailsService {
         member.updateMember(memberFormDto, passwordEncoder);
         
         List<Long> memberImgIds = memberFormDto.getMemberImgIds();
-        //이미지 등록
-        for(int i=0;i<memberImgFileList.size();i++){
+        
+       if(memberImgIds.isEmpty()){ 
+    	   
+    	   for(int i =0; i<memberImgFileList.size();i++) {
         	MemberImg memberImg = new MemberImg();
         	memberImg.setMember(member);
-        	
-            memberImgService.updateMemberImg(memberImg, (memberImgIds.size() <= 0 ? 0 : memberImgIds.get(i)),
-                    memberImgFileList.get(i));
+        	memberImgService.saveMemberImg(memberImg, memberImgFileList.get(i));
+        	}
+        
+       }else {
+        
+        //이미지 등록
+        for(int i=0;i<memberImgFileList.size();i++){
+       	
+            memberImgService.updateMemberImg(memberImgIds.get(i), memberImgFileList.get(i));
+       		}        
         }
 
         return member.getId();
