@@ -29,7 +29,7 @@ public class Member extends BaseEntity {
     
     private String phone;
 
-    @Column(unique = true)
+    @Column(unique = true, name="member_email")
     private String email;
 
     private String password;
@@ -44,6 +44,7 @@ public class Member extends BaseEntity {
         this.birth = memberFormDto.getBirth();
         this.gender = memberFormDto.getGender();
         this.phone = memberFormDto.getPhone();
+        this.email = memberFormDto.getEmail();
         this.password = passwordEncoder.encode(memberFormDto.getPassword());
         this.address = memberFormDto.getAddress();
     }

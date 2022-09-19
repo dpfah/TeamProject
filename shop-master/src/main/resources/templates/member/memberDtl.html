@@ -75,7 +75,7 @@
 
 <body>
 	<div layout:fragment="content">
-		<div id="join" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
+		<div id="memberDtl" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
 			<div class="join-box mt-5" style="margin-bottom: 3rem;">
 			<input type="hidden" id="memberId" th:value="${member.id}">
 		        <h1 style="margin-bottom: 20px;">개인정보 수정</h1>
@@ -108,7 +108,7 @@
 		        	<p class="form-control" th:text="${member.address}"></p>
 		        </div>
 		        <div style="text-align: center;">
-		        	<a th:href="'/members/update/' + ${member.email}" class="btn update">수정하기</a>
+		        	<a th:href="'/members/update/' + ${member.email}" class="btn btn-update">수정하기</a>
 		        </div>
 		    </div>
 		</div>

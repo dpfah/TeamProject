@@ -20,9 +20,8 @@ public class MemberImg extends BaseEntity{
 
     private String imgUrl; //이미지 조회 경로
 
-
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_email")
     private Member member;
 
     public void updateMemberImg(String oriImgName, String imgName, String imgUrl){

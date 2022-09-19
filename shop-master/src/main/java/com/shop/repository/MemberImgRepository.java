@@ -9,7 +9,7 @@ import com.shop.entity.OqnaImg;
 
 public interface MemberImgRepository extends JpaRepository<MemberImg, Long> {
 
-    List<MemberImg> findByMemberIdOrderByIdAsc(Long memberId);
+    List<MemberImg> findByMemberEmailOrderByIdAsc(String memberEmail);
    
 
 

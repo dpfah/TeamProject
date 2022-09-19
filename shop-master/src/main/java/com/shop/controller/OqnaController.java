@@ -96,10 +96,10 @@ public class OqnaController {
             return "oqna/oqnaForm";
         }
 
-        if(oqnaImgFileList.get(0).isEmpty() && oqnaFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 질문 이미지는 필수 입력 값 입니다.");
-            return "oqna/oqnaForm";
-        }
+//        if(oqnaImgFileList.get(0).isEmpty() && oqnaFormDto.getId() == null){
+//            model.addAttribute("errorMessage", "첫번째 질문 이미지는 필수 입력 값 입니다.");
+//            return "oqna/oqnaForm";
+//        }
         
         // email을 세션에서 받아온다.
         String email = principal.getName();
@@ -140,10 +140,10 @@ public class OqnaController {
             return "oqna/oqnaForm";
         }
 
-        if(oqnaImgFileList.get(0).isEmpty() && oqnaFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 문의 이미지는 필수 입력 값 입니다.");
-            return "oqna/oqnaForm";
-        }
+//        if(oqnaImgFileList.get(0).isEmpty() && oqnaFormDto.getId() == null){
+//            model.addAttribute("errorMessage", "첫번째 문의 이미지는 필수 입력 값 입니다.");
+//            return "oqna/oqnaForm";
+//        }
 
         try {
             oqnaService.updateOqna(oqnaFormDto, oqnaImgFileList);

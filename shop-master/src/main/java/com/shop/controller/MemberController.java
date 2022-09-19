@@ -31,7 +31,8 @@ public class MemberController {
     private final MemberService memberService;
 
     private final PasswordEncoder passwordEncoder;
-
+    
+    // 회원가입
     @GetMapping(value = "/new")
     public String memberForm(Model model){
         model.addAttribute("memberFormDto", new MemberFormDto());
@@ -69,10 +70,10 @@ public class MemberController {
     
     //멤버 업데이트 페이지 가져오기
     @GetMapping(value = "/update/{email}")// email로 정한 이유는 세션에서 받아온 값으로 접속하기 위해서.
-    public String memberDtl( Long memberId, Model model, @PathVariable("email") String email){
+    public String memberDtl(Model model, @PathVariable("email") String email){
 
         try {
-			MemberFormDto memberFormDto = memberService.getMemberDtl(memberId, email);
+			MemberFormDto memberFormDto = memberService.getMemberDtl(email);
             model.addAttribute("memberFormDto", memberFormDto);
         } catch(EntityNotFoundException e){
             model.addAttribute("errorMessage", "존재하지 않는 아이디 입니다.");
@@ -83,7 +84,7 @@ public class MemberController {
         return "member/memberUpdateForm";
     }
 
-  //멤버 수정한 내용 
+  //멤버 업데이트 페이지에서 수정 내용 
     @PostMapping(value = "/update/{email}")
     public String memberUpdate(@Valid MemberFormDto memberFormDto, BindingResult bindingResult,
                              @RequestParam("memberImgFile") List<MultipartFile> memberImgFileList, Model model){
@@ -104,8 +105,8 @@ public class MemberController {
     
     // 멤버 상세보기
     @GetMapping(value = "/dtl/{email}") //세션
-    public String memberDtl(Model model, Long memberId, @PathVariable("email") String email){
-        MemberFormDto memberFormDto = memberService.getMemberDtl(memberId, email);
+    public String memberDtl1(Model model, @PathVariable("email") String email){
+        MemberFormDto memberFormDto = memberService.getMemberDtl(email);
         model.addAttribute("member", memberFormDto);
         return "member/memberDtl";
     }

@@ -38,6 +38,7 @@ public class MemberService implements UserDetailsService {
     public Member saveMember(Member member){
         validateDuplicateMember(member);
         return memberRepository.save(member);
+        
     }
 
     private void validateDuplicateMember(Member member){
@@ -65,9 +66,9 @@ public class MemberService implements UserDetailsService {
     
     
     @Transactional(readOnly = true)
-    public MemberFormDto getMemberDtl(Long memberId, String email){
+    public MemberFormDto getMemberDtl(String email){
     	
-        List<MemberImg> memberImgList = memberImgRepository.findByMemberIdOrderByIdAsc(memberId);
+        List<MemberImg> memberImgList = memberImgRepository.findByMemberEmailOrderByIdAsc(email);
         List<MemberImgDto> memberImgDtoList = new ArrayList<>();
         for (MemberImg memberImg : memberImgList) {
             MemberImgDto memberImgDto = MemberImgDto.of(memberImg);
@@ -84,13 +85,16 @@ public class MemberService implements UserDetailsService {
     public Long updateMember(MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList, PasswordEncoder passwordEncoder) throws Exception{
     	//문의 수정
         Member member = memberRepository.findById(memberFormDto.getId())
-                .orElseThrow(EntityNotFoundException::new);
+                 .orElseThrow(EntityNotFoundException::new);
         member.updateMember(memberFormDto, passwordEncoder);
+        
         List<Long> memberImgIds = memberFormDto.getMemberImgIds();
-
         //이미지 등록
         for(int i=0;i<memberImgFileList.size();i++){
-            memberImgService.updateMemberImg(memberImgIds.get(i),
+        	MemberImg memberImg = new MemberImg();
+        	memberImg.setMember(member);
+        	
+            memberImgService.updateMemberImg(memberImg, (memberImgIds.size() <= 0 ? 0 : memberImgIds.get(i)),
                     memberImgFileList.get(i));
         }
 

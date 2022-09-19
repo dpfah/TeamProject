@@ -68,10 +68,12 @@
             if(errorMessage != null){
                 alert(errorMessage);
             }
+            
+          		bindDomEvent();
         });
         
         function bindDomEvent(){
-            $(".custom-file-input").on("change", function() {
+              $(".custom-file-input").on("change", function() {
                 var fileName = $(this).val().split("\\").pop();  //이미지 파일명
                 var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
                 fileExt = fileExt.toLowerCase(); //소문자 변환
@@ -80,7 +82,7 @@
                     alert("이미지 파일만 등록이 가능합니다.");
                     return;
                 }
-
+				console.log(fileName);
                 $(this).siblings(".custom-file-label").html(fileName);
             });
         }
@@ -136,10 +138,10 @@
 			        <p class="small-title mt-5">프로필 이미지를 업로드해주세요.</p>
 			        <div th:if="${#lists.isEmpty(memberFormDto.memberImgDtoList)}">
 			            <div class="form-group" th:each="num: ${#numbers.sequence(1,2)}">
-			                <div class="custom-file img-div">
+		                	<div class="custom-file img-div">
 			                    <input type="file" class="custom-file-input" name="memberImgFile">
 			                    <label class="custom-file-label" th:text="프로필이미지 + ${num}"></label>
-			                </div>
+		                	</div>
 			            </div>
 			        </div>
 		     
