@@ -1,6 +1,7 @@
 package com.shop.dto;
 
-import com.shop.constant.QnAType;
+import com.shop.constant.OqnaStatus;
+
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,7 +11,7 @@ public class OqnaSearchDto {
 
     private String searchDateType;
 
-    private QnAType qnaType;
+    private OqnaStatus searchOqnaStatus;
 
     private String searchBy;
 

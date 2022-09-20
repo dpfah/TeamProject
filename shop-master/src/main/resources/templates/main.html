@@ -79,17 +79,23 @@
     <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
         <p class="h3 font-weight-bold" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
     </div>
-
+    
+	<div class="Mbox01 mb-5">
     <div class="row mt-5">
         <th:block th:each="item, status: ${items.getContent()}">
             <div class="col-md-4 mb-4">
-                <div class="card">
+                <div class="Mitems card  border border-0">
                     <a th:href="'/item/' +${item.id}" class="text-dark">
-                        <img th:src="${item.imgUrl}" class="card-img-top" th:alt="${item.itemNm}" height="400">
+                    	<div class="imgCut">
+                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
+                    	</div>
                         <div class="card-body">
-                            <h4 class="card-title">[[${item.itemNm}]]</h4>
-                            <p class="card-text">[[${item.itemDetail}]]</p>
-                            <h3 class="card-title text-danger">[[${item.price}]]원</h3>
+                            <p class="card-title  ">[[${item.itemNm}]]</p>
+                            <p class="priceCss">
+	                             <span>[[${item.percent}]]</span> [[${item.ori_price}]]원
+                            </p>
+
+                            <p class="card-text summaryCss">[[${item.itemSummary}]]</p>
                         </div>
                     </a>
                 </div>
@@ -119,5 +125,40 @@
 
         </ul>
     </div>
+	</div>
+	
+	<div class="Mbox02 mb-5">
+		<h3 class="fw-bold">잠시만요!</h3>
+		<p class="mb-4 text-center">빵주머니에서만 제공되는 혜택 가져가세요!</p>
+		
+		<div class="Bbox02">
+			<p class="BboxCircle">
+				<img src="/img/icon_wallet.png">
+			</p>
+			<p>회원가입시 <b>3,000P</b> 적립 및 상품<b>100원 쿠폰</b> 증정</p>
+		</div>
+		<div class="Bbox02">
+			<p class="BboxCircle">
+				<img src="/img/icon_hands.png">
+			</p>
+			<p>친구 추천시 나와 친구 <b>5,000P</b> 지급</p>
+		</div>
+		<div class="Bbox02">
+			<p class="BboxCircle">
+				<img src="/img/icon_coin.png">
+			</p>
+			<p>포토리뷰 작성시 <b>2,000P</b> 적립</b> 증정</p>
+		</div>
+	</div>
+	
+	<div class="MBox03">
+		<img src="/img/Mbanner02.png">
+		<div class="box03">
+			<h3 class="mb-4">매주 수요일 오후 4시<br> 쿠킹클래스 수강생 모집중</h3>
+			<p class="boxText">* 총 수강생은 10명 / 선착순 모집</p>
+			<p>자세한 사항은 클릭 시 확인 가능합니다.</p>
+			<p>많은 관심 부탁드려요!</p>
+		</div>
+	</div>
 
 </div>

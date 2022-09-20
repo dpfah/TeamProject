@@ -40,12 +40,12 @@
 		<div class="lnb-mypage-category">
 			<h1>마이페이지</h1>
 			<ul>
-				<li><a href="" title="주문 및 배송">주문 및 배송</a></li>
+				<li><a href="/mypage/orders" title="주문 및 배송">주문 및 배송</a></li>
 				<li><a href="" title="배송지 관리">배송지 관리</a></li>
 				<li><a href="" title="빵포인트">빵포인트</a></li>
-				<li><a href="/oqnaHist" title="1:1 문의">1:1 문의</a></li>
+				<li><a href="/oqnas" title="1:1 문의">1:1 문의</a></li>
 				<li><a href="" title="상품 후기">상품 후기</a></li>
-				<li><a href="" title="개인 정보 수정">개인 정보 수정</a></li>
+				<li><a th:href="'/members/dtl/' + ${email}" title="개인 정보 관리">개인 정보 관리</a></li>
 			</ul>
 		</div>
 	</div>

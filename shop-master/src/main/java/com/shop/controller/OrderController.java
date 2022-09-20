@@ -23,8 +23,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.dto.OrderDto;
 import com.shop.dto.OrderHistDto;
-import com.shop.entity.Member;
-import com.shop.repository.MemberRepository;
 import com.shop.service.OrderService;
 
 import lombok.RequiredArgsConstructor;
@@ -63,7 +61,7 @@ public class OrderController {
         return new ResponseEntity<Long>(orderId, HttpStatus.OK);
     }
 
-    @GetMapping(value = {"/orders", "/orders/{page}"})
+    @GetMapping(value = {"mypage/orders", "mypage/orders/{page}"})
     public String orderHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);

@@ -15,15 +15,24 @@ public class MainItemDto {
 
     private String imgUrl;
 
-    private double price;
+    private double price;	// 적립금
+    
+    private double percent;	// 정가
+    
+    private double ori_price;	// 할인가
+    
+    private String itemSummary;		// 요약정보
 
     @QueryProjection
-    public MainItemDto(Long id, String itemNm, String itemDetail, String imgUrl,double price){
+    public MainItemDto(Long id, String itemNm, String itemDetail, String itemSummary, String imgUrl,double price, double percent, double ori_price){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
         this.imgUrl = imgUrl;
         this.price = price;
+        this.ori_price = ori_price;
+        this.percent = percent;
+        this.itemSummary = itemSummary;
     }
 
 }

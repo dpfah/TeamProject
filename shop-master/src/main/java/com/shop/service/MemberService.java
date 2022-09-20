@@ -1,15 +1,27 @@
 package com.shop.service;
 
-import com.shop.entity.Member;
-import com.shop.repository.MemberRepository;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityNotFoundException;
 
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.shop.dto.MemberFormDto;
+import com.shop.dto.MemberImgDto;
+import com.shop.entity.Member;
+import com.shop.entity.MemberImg;
+import com.shop.repository.MemberImgRepository;
+import com.shop.repository.MemberRepository;
+
+import lombok.RequiredArgsConstructor;
 
 @Service
 @Transactional
@@ -17,10 +29,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class MemberService implements UserDetailsService {
 
     private final MemberRepository memberRepository;
+    
+    private final MemberImgService memberImgService;
+
+    private final MemberImgRepository memberImgRepository;
+
 
     public Member saveMember(Member member){
         validateDuplicateMember(member);
         return memberRepository.save(member);
+        
     }
 
     private void validateDuplicateMember(Member member){
@@ -45,5 +63,52 @@ public class MemberService implements UserDetailsService {
                 .roles(member.getRole().toString())
                 .build();
     }
+    
+    
+    @Transactional(readOnly = true)
+    public MemberFormDto getMemberDtl(String email){
+    	
+        List<MemberImg> memberImgList = memberImgRepository.findByMemberEmailOrderByIdAsc(email);
+        List<MemberImgDto> memberImgDtoList = new ArrayList<>();
+        for (MemberImg memberImg : memberImgList) {
+            MemberImgDto memberImgDto = MemberImgDto.of(memberImg);
+            memberImgDtoList.add(memberImgDto);
+        }
+
+        Member member = memberRepository.findByEmail(email);
+            //    .orElseThrow(EntityNotFoundException::new);
+        MemberFormDto memberFormDto = MemberFormDto.of(member);
+        memberFormDto.setMemberImgDtoList(memberImgDtoList);
+        return memberFormDto;
+    }
+
+    public Long updateMember(MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList, PasswordEncoder passwordEncoder) throws Exception{
+    	//문의 수정
+        Member member = memberRepository.findById(memberFormDto.getId())
+                 .orElseThrow(EntityNotFoundException::new);
+        member.updateMember(memberFormDto, passwordEncoder);
+        
+        List<Long> memberImgIds = memberFormDto.getMemberImgIds();
+        
+       if(memberImgIds.isEmpty()){ 
+    	   
+    	   for(int i =0; i<memberImgFileList.size();i++) {
+        	MemberImg memberImg = new MemberImg();
+        	memberImg.setMember(member);
+        	memberImgService.saveMemberImg(memberImg, memberImgFileList.get(i));
+        	}
+        
+       }else {
+        
+        //이미지 등록
+        for(int i=0;i<memberImgFileList.size();i++){
+       	
+            memberImgService.updateMemberImg(memberImgIds.get(i), memberImgFileList.get(i));
+       		}        
+        }
+
+        return member.getId();
+    }
+
 
 }

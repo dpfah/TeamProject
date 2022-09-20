@@ -12,13 +12,13 @@
 <th:block layout:fragment="script">
 
     <script th:inline="javascript">
-        function cancelOrder(orderId) {
+        function cancelOqna(oqnaId) {
             var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
 
-            var url = "/order/" + orderId + "/cancel";
+            var url = "/oqna/" + oqnaId + "/cancel";
             var paramData = {
-                orderId : orderId,
+                oqnaId : oqnaId,
             };
 
             var param = JSON.stringify(paramData);
@@ -35,8 +35,8 @@
                 dataType : "json",
                 cache   : false,
                 success  : function(result, status){
-                    alert("주문이 취소 되었습니다.");
-                    location.href='/orders/' + [[${page}]];
+                    alert("문의가 취소 되었습니다.");
+                    location.href='/oqnas/' + [[${page}]];
                 },
                 error : function(jqXHR, status, error){
                     if(jqXHR.status == '401'){
@@ -111,30 +111,71 @@
 				<div class="table-responsive">
 			        <table class="table cart">
 			            <colgroup>
-			                <col width="16%"/>
-			                <col width="36%"/>
-			                <col width="16%"/>
-			                <col width="16%"/>
-			                <col width="16%"/>
+			                <col width="25%"/>
+			                <col width="25%"/>
+			                <col width="25%"/>
+			                <col width="25%"/>
 			            </colgroup>
 			            <tr class="text-center">
-			                <td>주문일자</td>
-			                <td>상품명</td>
-			                <td>수량</td>
-			                <td>가격</td>
-			                <td>처리현황</td>
+			                <td>문의유형</td>
+			                <td>제목</td>
+			                <td>날짜</td>
+			                <td>상태</td>
 			            </tr>
-			        	<tr >
+			        	<tr th:each="oqna : ${oqnas.getContent()}" >
 			        		<td class="align-middle">
 				        		<div class="d-flex mb-3">
-						            
+						            <span th:text="${oqna.qnaType}" class="qnaType"></span>
 						        </div>
 			        		</td>
-			        	</tr>
-			        </table>		
+			        		<td class="align-middle">
+			        			<a th:href="'/oqna/dtl/' + ${oqna.oqnaId}" class="text-dark">
+				        		<div class="d-flex mb-3">
+						            <span th:text="${oqna.oqnaTitle}" class="orderTitle"></span>
+						        </div>
+			        			</a>
+			        		</td>
+			        		<td class="align-middle">
+				        		<div class="d-flex mb-3">
+						            <span th:text="${oqna.oqnaDate}" class="oqnaDate"></span>
+						        </div>
+			        		</td>
+					        <td class="align-middle">
+						     	<div class="d-flex mb-3">
+						            <div class="ml-3">
+						                <th:block th:if="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).QnA}">
+						                    <button type="button" class="btn btn-outline-secondary" th:value="${oqna.oqnaId}" onclick="cancelOqna(this.value)">문의취소</button>
+						                </th:block>
+						                <th:block th:unless="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).QnA}">
+						                    <span>(취소 완료)</span>
+						                </th:block>
+						            </div>
+						        </div>
+					        </td>
+					    </tr>
+					</table>	
+				    <div th:with="start=${(oqnas.number/maxPage)*maxPage + 1}, end=(${(oqnas.totalPages == 0) ? 1 : (start + (maxPage - 1) < oqnas.totalPages ? start + (maxPage - 1) : oqnas.totalPages)})" >
+				        <ul class="pagination justify-content-center">
+				            <li class="page-item" th:classappend="${oqnas.number eq 0}?'disabled':''">
+				                <a th:href="@{'/oqnas/' + ${oqnas.number-1}}" aria-label='Previous' class="page-link previous">
+				                    <span aria-hidden='true'>Previous</span>
+				                </a>
+				            </li>
+				
+				            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${oqnas.number eq page-1}?'active':''">
+				                <a th:href="@{'/oqnas/' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+				            </li>
+				
+				            <li class="page-item" th:classappend="${oqnas.number+1 ge oqnas.totalPages}?'disabled':''">
+				                <a th:href="@{'/oqnas/' + ${oqnas.number+1}}" aria-label='Next' class="page-link next">
+				                    <span aria-hidden='true'>Next</span>
+				                </a>
+				            </li>
+				        </ul>
+				    </div>   
 				</div>
 			</div>
-			<!--/#orderHist-->
+			<!--/#oqnaHist-->
 		</div>
 		<!--layout content 끝-->
 	</div>

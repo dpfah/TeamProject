@@ -6,17 +6,21 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
-import com.shop.dto.MainOqnaDto;
+import com.shop.dto.MyOqnaHistDto;
 import com.shop.dto.OqnaFormDto;
 import com.shop.dto.OqnaImgDto;
 import com.shop.dto.OqnaSearchDto;
+import com.shop.entity.Member;
 import com.shop.entity.Oqna;
 import com.shop.entity.OqnaImg;
+import com.shop.repository.MemberRepository;
 import com.shop.repository.OqnaImgRepository;
 import com.shop.repository.OqnaRepository;
 
@@ -28,15 +32,19 @@ import lombok.RequiredArgsConstructor;
 public class OqnaService {
 
     private final OqnaRepository oqnaRepository;
+    
+    private final MemberRepository memberRepository;
 
     private final OqnaImgService oqnaImgService;
 
     private final OqnaImgRepository oqnaImgRepository;
 
-    public Long saveOqna(OqnaFormDto oqnaFormDto, List<MultipartFile> oqnaImgFileList) throws Exception{
+    public Long saveOqna(String email, OqnaFormDto oqnaFormDto, List<MultipartFile> oqnaImgFileList) throws Exception{
 
+    	// 세션에서 받아온 email을 Member 데이터와 비교하여 email에 해당하는 member_id를 데이터에 넣는다.
+    	Member member = memberRepository.findByEmail(email);
         //일대일 문의 등록
-        Oqna oqna = oqnaFormDto.createOqna();
+        Oqna oqna = Oqna.createOqna(member, oqnaFormDto);
         oqnaRepository.save(oqna);
 
         //이미지 등록
@@ -92,9 +100,46 @@ public class OqnaService {
         return oqnaRepository.getAdminOqnaPage(oqnaSearchDto, pageable);
     }
 
-    @Transactional(readOnly = true)
-    public Page<MainOqnaDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable){
-        return oqnaRepository.getMainOqnaPage(oqnaSearchDto, pageable);
-    }
+//    @Transactional(readOnly = true)
+//    public Page<MyOqnaHistDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable){
+//        return oqnaRepository.getMyOqnaHistPage(oqnaSearchDto, pageable);
+//    }
     
+    @Transactional(readOnly = true)
+    public Page<MyOqnaHistDto> getOqnaList(String email, Pageable pageable) {
+
+        List<Oqna> oqnas = oqnaRepository.findOqnas(email, pageable);
+        Long totalCount = oqnaRepository.countOqna(email); //빼야함
+
+        List<MyOqnaHistDto> myOqnaHistDtos = new ArrayList<>();
+        
+        for (Oqna oqna : oqnas) {            
+			MyOqnaHistDto myOqnaHistDto = new MyOqnaHistDto(oqna);
+
+			myOqnaHistDtos.add(myOqnaHistDto);
+        }
+
+        return new PageImpl<MyOqnaHistDto>(myOqnaHistDtos, pageable, totalCount);
+    }
+
+    @Transactional(readOnly = true)
+    public boolean validateOqna(Long oqnaId, String email){
+        Member curMember = memberRepository.findByEmail(email);
+        Oqna oqna = oqnaRepository.findById(oqnaId)
+                .orElseThrow(EntityNotFoundException::new);
+        Member savedMember = oqna.getMember();
+
+        if(!StringUtils.equals(curMember.getEmail(), savedMember.getEmail())){
+            return false;
+        }
+
+        return true;
+    }
+
+    public void cancelOqna(Long oqnaId){
+        Oqna oqna = oqnaRepository.findById(oqnaId)
+                .orElseThrow(EntityNotFoundException::new);
+        oqna.cancelOqna();
+    }
+
 }

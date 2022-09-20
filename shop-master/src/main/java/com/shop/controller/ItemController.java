@@ -81,19 +81,24 @@ public class ItemController {
 
     @PostMapping(value = "/admin/item/new")
     public String itemNew(@Valid ItemFormDto itemFormDto, BindingResult bindingResult,
-                          Model model, @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList){
+                          Model model, @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList,  @RequestParam("itemContentImgFile") List<MultipartFile> itemContentImgFileList){
 
         if(bindingResult.hasErrors()){
             return "item/itemForm";
         }
 
-        if(itemImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
+        if(itemImgFileList.get(0).isEmpty() && itemImgFileList.get(1).isEmpty() && itemImgFileList.get(2).isEmpty() && itemFormDto.getId() == null){
+            model.addAttribute("errorMessage", "상품 대표이미지 3개는 필수 입력 값 입니다.");
+            return "item/itemForm";
+        }
+        
+        if(itemContentImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){
+            model.addAttribute("errorMessage", "첫번째 상품 상세이미지는 필수 입력 값 입니다.");
             return "item/itemForm";
         }
 
         try {
-            itemService.saveItem(itemFormDto, itemImgFileList);
+            itemService.saveItem(itemFormDto, itemImgFileList, itemContentImgFileList);
         } catch (Exception e){
             model.addAttribute("errorMessage", "상품 등록 중 에러가 발생하였습니다.");
             return "item/itemForm";
@@ -119,18 +124,23 @@ public class ItemController {
 
     @PostMapping(value = "/admin/item/{itemId}")
     public String itemUpdate(@Valid ItemFormDto itemFormDto, BindingResult bindingResult,
-                             @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList, Model model){
+                             @RequestParam("itemImgFile") List<MultipartFile> itemImgFileList, @RequestParam("itemContentImgFile") List<MultipartFile> itemContentImgFileList, Model model){
         if(bindingResult.hasErrors()){
             return "item/itemForm";
         }
 
-        if(itemImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 상품 이미지는 필수 입력 값 입니다.");
+        if(itemImgFileList.get(0).isEmpty() &&itemImgFileList.get(1).isEmpty() && itemImgFileList.get(2).isEmpty() && itemFormDto.getId() == null){
+            model.addAttribute("errorMessage", "상품 대표 이미지 3개는 필수 입력 값 입니다.");
+            return "item/itemForm";
+        }
+        
+        if(itemContentImgFileList.get(0).isEmpty() && itemFormDto.getId() == null){
+            model.addAttribute("errorMessage", "첫번째 상품 상세 이미지는 필수 입력 값 입니다.");
             return "item/itemForm";
         }
 
         try {
-            itemService.updateItem(itemFormDto, itemImgFileList);
+            itemService.updateItem(itemFormDto, itemImgFileList, itemContentImgFileList);
         } catch (Exception e){
             model.addAttribute("errorMessage", "상품 수정 중 에러가 발생하였습니다.");
             return "item/itemForm";

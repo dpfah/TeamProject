@@ -13,13 +13,10 @@ import org.thymeleaf.util.StringUtils;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.shop.constant.QnAType;
-import com.shop.dto.MainOqnaDto;
+import com.shop.constant.OqnaStatus;
 import com.shop.dto.OqnaSearchDto;
-import com.shop.dto.QMainOqnaDto;
 import com.shop.entity.Oqna;
 import com.shop.entity.QOqna;
-import com.shop.entity.QOqnaImg;
 
 
 public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
@@ -31,9 +28,9 @@ public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
     }
 
 	
-	  private BooleanExpression searchQnATypeEq(QnAType searchQnAType){ return
-	  searchQnAType == null ? null :
-	  QOqna.oqna.qnaType.eq(searchQnAType); }
+	  private BooleanExpression searchOqnaStatusEq(OqnaStatus oqnaStatus){ return
+	  oqnaStatus == null ? null :
+	  QOqna.oqna.oqnaStatus.eq(oqnaStatus); }
 	 
 
     private BooleanExpression regDtsAfter(String searchDateType){
@@ -55,9 +52,10 @@ public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
         return QOqna.oqna.regTime.after(dateTime);
     }
 
+    
     private BooleanExpression searchByLike(String searchBy, String searchQuery){
 
-        if(StringUtils.equals("oqnaNm", searchBy)){
+        if(StringUtils.equals("oqnaTitle", searchBy)){
             return QOqna.oqna.oqnaTitle.like("%" + searchQuery + "%");
         } else if(StringUtils.equals("createdBy", searchBy)){
             return QOqna.oqna.createdBy.like("%" + searchQuery + "%");
@@ -72,7 +70,7 @@ public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
         List<Oqna> content = queryFactory
                 .selectFrom(QOqna.oqna)
                 .where(regDtsAfter(oqnaSearchDto.getSearchDateType()),
-                        searchQnATypeEq(oqnaSearchDto.getQnaType()),
+                        searchOqnaStatusEq(oqnaSearchDto.getSearchOqnaStatus()),
                         searchByLike(oqnaSearchDto.getSearchBy(),
                                 oqnaSearchDto.getSearchQuery()))
                 .orderBy(QOqna.oqna.id.desc())
@@ -82,7 +80,7 @@ public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
 
         long total = queryFactory.select(Wildcard.count).from(QOqna.oqna)
                 .where(regDtsAfter(oqnaSearchDto.getSearchDateType()),
-                        searchQnATypeEq(oqnaSearchDto.getQnaType()),
+                        searchOqnaStatusEq(oqnaSearchDto.getSearchOqnaStatus()),
                         searchByLike(oqnaSearchDto.getSearchBy(), oqnaSearchDto.getSearchQuery()))
                 .fetchOne()
                 ;
@@ -90,44 +88,43 @@ public class OqnaRepositoryCustomImpl implements OqnaRepositoryCustom{
         return new PageImpl<>(content, pageable, total);
     }
 
-    private BooleanExpression oqnaTitleLike(String searchQuery){
-        return StringUtils.isEmpty(searchQuery) ? null : QOqna.oqna.oqnaTitle.like("%" + searchQuery + "%");
-    }
 
-    @Override
-    public Page<MainOqnaDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable) {
-        QOqna oqna = QOqna.oqna;
-        QOqnaImg oqnaImg = QOqnaImg.oqnaImg;
-
-        List<MainOqnaDto> content = queryFactory
-                .select(
-                        new QMainOqnaDto(
-                                oqna.id,
-                                oqna.oqnaTitle,
-                                oqna.oqnaDetail,
-                                oqnaImg.imgUrl
-                                )
-                )
-                .from(oqnaImg)
-                .join(oqnaImg.oqna, oqna)
-                .where(oqnaImg.repimgYn.eq("Y"))
-                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
-                .orderBy(oqna.id.desc())
-                .offset(pageable.getOffset())
-                .limit(pageable.getPageSize())
-                .fetch();
-
-        long total = queryFactory
-                .select(Wildcard.count)
-                .from(oqnaImg)
-                .join(oqnaImg.oqna, oqna)
-                .where(oqnaImg.repimgYn.eq("Y"))
-                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
-                .fetchOne()
-                ;
-
-        return new PageImpl<>(content, pageable, total);
-    }
+//    @Override
+//    public Page<MyOqnaHistDto> getMainOqnaPage(OqnaSearchDto oqnaSearchDto, Pageable pageable) {
+//        QOqna oqna = QOqna.oqna;
+//        QOqnaImg oqnaImg = QOqnaImg.oqnaImg;
+//
+//        List<MyOqnaHistDto> content = queryFactory
+//                .select(
+//                        new QMyOqnaHistDto(
+//                                oqna.id,
+//                                oqna.oqnaTitle,
+//                                oqna.oqnaDetail,
+//                                oqnaImg.imgUrl,
+//                                oqna.oqnaDate,
+//                                oqna.oqnaStatus
+//                                )
+//                )
+//                .from(oqnaImg)
+//                .join(oqnaImg.oqna, oqna)
+//                .where(oqnaImg.repimgYn.eq("Y"))
+//                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
+//                .orderBy(oqna.id.desc())
+//                .offset(pageable.getOffset())
+//                .limit(pageable.getPageSize())
+//                .fetch();
+//
+//        long total = queryFactory
+//                .select(Wildcard.count)
+//                .from(oqnaImg)
+//                .join(oqnaImg.oqna, oqna)
+//                .where(oqnaImg.repimgYn.eq("Y"))
+//                .where(oqnaTitleLike(oqnaSearchDto.getSearchQuery()))
+//                .fetchOne()
+//                ;
+//
+//        return new PageImpl<>(content, pageable, total);
+//    }
     
 
 }
