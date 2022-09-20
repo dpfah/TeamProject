@@ -67,6 +67,7 @@
             var errorMessage = [[${errorMessage}]];
             if(errorMessage != null){
                 alert(errorMessage);
+                return false;
             }
             
           		bindDomEvent();
@@ -86,6 +87,25 @@
                 $(this).siblings(".custom-file-label").html(fileName);
             });
         }
+        
+        
+	$(function(){
+	    $('#userPw').keyup(function(){
+	      $('#chkNotice').html('');
+	    });
+	
+	    $('#userPwChk').keyup(function(){
+	
+	        if($('#userPw').val() != $('#userPwChk').val()){
+	          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
+	          $('#chkNotice').attr('color', '#f82a2aa3');
+	        } else{
+	          $('#chkNotice').html('비밀번호 일치함<br><br>');
+	          $('#chkNotice').attr('color', '#199894b3');
+	        }
+	
+	    });
+	});
     </script>
 
 </th:block>
@@ -128,8 +148,12 @@
 			        </div>
 			        
 			        <div class="form-group">
-			            <input type="password" th:field="*{password}" class="form-control" placeholder="비밀번호">
+			            <input type="password" id="userPw" th:field="*{password}" class="form-control" placeholder="비밀번호">
 			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
+			        </div>
+			        <div class="form-group">
+			            <input type="password" id="userPwChk" class="form-control" placeholder="비밀번호확인">
+			          	<font id="chkNotice" size="2"></font>
 			        </div>
 			        <div class="form-group">
 			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
@@ -137,7 +161,7 @@
 			        </div>
 			        <p class="small-title mt-5">프로필 이미지를 업로드해주세요.</p>
 			        <div th:if="${#lists.isEmpty(memberFormDto.memberImgDtoList)}">
-			            <div class="form-group" th:each="num: ${#numbers.sequence(1,2)}">
+			            <div class="form-group" th:each="num: ${#numbers.sequence(1,1)}">
 		                	<div class="custom-file img-div">
 			                    <input type="file" class="custom-file-input" name="memberImgFile">
 			                    <label class="custom-file-label" th:text="프로필이미지 + ${num}"></label>
