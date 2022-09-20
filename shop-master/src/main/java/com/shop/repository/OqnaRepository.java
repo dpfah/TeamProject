@@ -37,5 +37,7 @@ public interface OqnaRepository extends JpaRepository<Oqna, Long>,
             "where o.member.email = :email"
     )
     Long countOqna(@Param("email") String email);
+    
+    
 
 }

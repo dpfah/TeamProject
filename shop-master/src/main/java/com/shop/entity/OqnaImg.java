@@ -1,5 +1,6 @@
 package com.shop.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -31,7 +32,7 @@ public class OqnaImg extends BaseEntity{
 
     private String repimgYn; //대표 이미지 여부
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "oqna_id")
     private Oqna oqna;
 
