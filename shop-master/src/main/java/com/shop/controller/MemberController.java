@@ -33,7 +33,6 @@ public class MemberController {
 
     private final PasswordEncoder passwordEncoder;
     
-    // 회원가입
     @GetMapping(value = "/new")
     public String memberForm(Model model){
         model.addAttribute("memberFormDto", new MemberFormDto());
