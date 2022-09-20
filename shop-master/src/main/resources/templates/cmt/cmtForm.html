@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+	<head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	    <meta name="description" content="" />
+	    <meta name="author" content="" />
+	    <title>Shop Item - Start Bootstrap Template</title>
+	    <!-- Bootstrap icons-->
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />	
+	    
+	    <!-- 사용자 지정 css -->    
+	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
+	</head>
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
+
+            bindDomEvent();
+
+        });
+
+        function bindDomEvent(){
+            $(".custom-file-input").on("change", function() {
+                var fileName = $(this).val().split("\\").pop();  //이미지 파일명
+                var fileExt = fileName.substring(fileName.lastIndexOf(".")+1); // 확장자 추출
+                fileExt = fileExt.toLowerCase(); //소문자 변환
+
+                if(fileExt != "jpg" && fileExt != "jpeg" && fileExt != "gif" && fileExt != "png" && fileExt != "bmp"){
+                    alert("이미지 파일만 등록이 가능합니다.");
+                    return;
+                }
+
+                $(this).siblings(".custom-file-label").html(fileName);
+            });
+        }
+
+    </script>
+
+</th:block>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+	
+    </style>
+</th:block>
+
+	<section id="cmtForm" class="py-5 cmtDF" layout:fragment="content">	
+	    <form role="form" method="post" enctype="multipart/form-data" th:object="${cmtFormDto}">
+	        <p class="h2 title">
+	            1:1 문의하기
+	        </p>
+	        <input type="hidden" th:field="*{id}">
+		    <div class="container px-4 px-lg-5 my-5">
+		        <div class="row gx-4 gx-lg-5 align-items-center">
+		            <div class="col-md-6">
+<!-- 		            	<div class="row select_sell"> -->
+<!-- 		            		<p class="small-title">문의유형을 선택해주세요</p> -->
+<!-- 					        <div class="form-group col-md-6"> -->
+<!-- 					            <select th:field="*{qnaType}" class="custom-select"> -->
+<!-- 					                <option value="상품">상품</option> -->
+<!-- 					                <option value="결제_배송">결제/배송</option> -->
+<!-- 					                <option value="반품_교환">반품/교환</option> -->
+<!-- 					                <option value="포인트_이벤트_쿠폰">포인트/이벤트/쿠폰</option> -->
+<!-- 					                <option value="사이트이용">사이트이용</option> -->
+<!-- 					            </select> -->
+<!-- 					        </div> -->
+<!-- 		            	</div> -->
+		            	<p class="small-title">제목을 작성해주세요</p>
+						<div class="input-group">
+				            <input type="text" th:field="*{cmtTitle}" class="form-control input-title" placeholder="제목을 입력해주세요">
+				        </div>
+				        <p th:if="${#fields.hasErrors('cmtTitle')}" th:errors="*{cmtTitle}" class="fieldError">Incorrect data</p>
+			     	</div>
+			    </div>
+			    <p class="small-title mt-3">문의 사항을 작성해주세요</p>
+				<div class="input-group">
+		            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="문의 내용을 입력해주세요"></textarea>
+	        	</div>
+	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p>
+	        	<p class="warning">※ 문의글에 개인정보를 기재하시는 경우, 상담완료 이후 임의로 삭제될 수 있사오니 개인정보 기재는 삼가해 주세요.</p><br>
+	        	
+				<p class="small-title mt-5">이미지를 업로드해주세요.(최대 5개까지 업로드 가능)</p>
+		        <div th:if="${#lists.isEmpty(cmtFormDto.cmtImgDtoList)}">
+		            <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">
+		                <div class="custom-file img-div">
+		                    <input type="file" class="custom-file-input" name="cmtImgFile">
+		                    <label class="custom-file-label" th:text="첨부이미지 + ${num}"></label>
+		                </div>
+		            </div>
+		        </div>
+		        <div th:if = "${not #lists.isEmpty(cmtFormDto.cmtImgDtoList)}">
+		            <div class="form-group" th:each="cmtImgDto, status: ${cmtFormDto.cmtImgDtoList}">
+		                <div class="custom-file img-div">
+		                    <input type="file" class="custom-file-input" name="cmtImgFile">
+		                    <input type="hidden" name="cmtImgIds" th:value="${cmtImgDto.id}">
+		                    <label class="custom-file-label" th:text="${not #strings.isEmpty(cmtImgDto.oriImgName)} ? ${cmtImgDto.oriImgName} : '상품이미지' + ${status.index+1}"></label>
+		                </div>
+		            </div>
+		        </div>
+		        
+		        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+			        <p class="small-title mt-4">문의 답변을 작성해주세요</p>
+					<div class="input-group">
+			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtReply}" placeholder="문의 답변을 입력해주세요"></textarea>
+		        	</div>
+		        	<p th:if="${#fields.hasErrors('cmtReply')}" th:errors="*{cmtReply}" class="fieldError">Incorrect data</p>
+		        </div>
+		        <div th:if="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
+		            <button th:formaction="@{/cmt/new}" type="submit" class="btn save">등록</button>
+		        </div>
+		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
+		            <button th:formaction="@{'/cmt/update/' + ${cmtFormDto.id} }" type="submit" class="btn save">수정</button>
+		        </div>
+		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
+		            <button th:formaction="@{'/cmt/delete/' + ${cmtFormDto.id} }" type="submit" class="btn save">삭제</button>
+		        </div>
+		        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> 
+		    </div>           
+	    </form>
+	</section>
+</html>
