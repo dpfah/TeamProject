@@ -84,7 +84,7 @@
 			    </div>
 			    <p class="small-title mt-3">문의 사항을 작성해주세요</p>
 				<div class="input-group">
-		            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="문의 내용을 입력해주세요"></textarea>
+		            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요"></textarea>
 	        	</div>
 	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p>
 	        	<p class="warning">※ 문의글에 개인정보를 기재하시는 경우, 상담완료 이후 임의로 삭제될 수 있사오니 개인정보 기재는 삼가해 주세요.</p><br>
@@ -109,9 +109,9 @@
 		        </div>
 		        
 		        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-			        <p class="small-title mt-4">문의 답변을 작성해주세요</p>
+			        <p class="small-title mt-4">댓글을 작성해주세요</p>
 					<div class="input-group">
-			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtReply}" placeholder="문의 답변을 입력해주세요"></textarea>
+			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtReply}" placeholder="댓글을 입력해주세요"></textarea>
 		        	</div>
 		        	<p th:if="${#fields.hasErrors('cmtReply')}" th:errors="*{cmtReply}" class="fieldError">Incorrect data</p>
 		        </div>

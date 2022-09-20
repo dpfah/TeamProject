@@ -13,7 +13,6 @@ import org.thymeleaf.util.StringUtils;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
-import com.shop.constant.CmtStatus;
 import com.shop.dto.CmtSearchDto;
 import com.shop.entity.Cmt;
 import com.shop.entity.QCmt;

@@ -1,7 +1,6 @@
 package com.shop.entity;
 
 import com.shop.constant.Role;
-import com.shop.dto.ItemFormDto;
 import com.shop.dto.MemberFormDto;
 import lombok.Getter;
 import lombok.Setter;

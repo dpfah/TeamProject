@@ -94,6 +94,12 @@ public class CmtService {
 
         return cmt.getId();
     }
+    
+    //삭제버튼
+    @Transactional
+    public void deleteCmt(Long cmtid) {
+        cmtRepository.deleteById(cmtid);
+    }
 
     @Transactional(readOnly = true)
     public Page<Cmt> getAdminCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable){
@@ -141,5 +147,7 @@ public class CmtService {
                 .orElseThrow(EntityNotFoundException::new);
         cmt.cancelCmt();
     }
+    
+   
 
 }

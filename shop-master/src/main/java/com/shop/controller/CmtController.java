@@ -15,6 +15,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,9 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.shop.dto.MyCmtHistDto;
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtSearchDto;
+import com.shop.dto.MyCmtHistDto;
 import com.shop.entity.Cmt;
 import com.shop.service.CmtService;
 
@@ -78,6 +79,8 @@ public class CmtController {
         return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
     }
     
+
+
     
     // 1:1문의 작성
     @GetMapping(value = "/cmt/new")
@@ -176,5 +179,14 @@ public class CmtController {
         model.addAttribute("cmt", cmtFormDto);
         return "cmt/cmtDtl";
     }
+    
+    // 삭제버튼
+    @DeleteMapping("/cmt/delete/{cmtid}")
+    public String delete(@PathVariable("cmtid") Long cmtid) {
+    	 
+        cmtService.deleteCmt(cmtid);
+        return "cmt/cmtForm";
+    }
+    
 
 }
