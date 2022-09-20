@@ -25,12 +25,10 @@
 	<section id="cmtDtl" class="py-5 cmtDF " layout:fragment="content">	
 	    	<input type="hidden" id="cmtId" th:value="${cmt.id}">
 	        <p class="h2 title">
-	            1:1 문의하기
+	            커뮤니티 등록하기
 	        </p>
 	      
 		    <div class="container px-4 px-lg-5 my-5">
-            	<p class="small-title mt-3">문의 타입</p>
-				<p class="input-title" th:text="${cmt.qnaType}"></p>
             	<p class="small-title">제목</p>
 				<p class="input-title" th:text="${cmt.cmtTitle}">e</p>
 			    <p class="small-title mt-3">문의 사항</p>
@@ -45,9 +43,12 @@
 			            <div class="form-control reply" th:text="${cmt.cmtReply}"></div>
 		        	</div>
 		        </div>
-		        <div style="text-align: center;">
+		        <div>
 		        	<a th:href="'/cmt/update/' + ${cmt.id}" class="btn update">수정하기</a>
 		        </div>
+<!-- 		        <div> -->
+<!-- 		        	<a th:href="'/cmt/delete/' + ${cmt.id}" class="btn delete">삭제하기</a> -->
+<!-- 		        </div> -->
 		    </div>           
 	    </form>
 	</section>
