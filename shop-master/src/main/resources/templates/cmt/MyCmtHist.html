@@ -86,7 +86,7 @@
     </style>
 </th:block>
 
-	<div layout:fragment="content" class="content-lg-12 ">
+	<div layout:fragment="content" class="col-lg-9 mt-5 float-right content-log-12">
 		<div id="cmtHist" class="item_menu mypage">
 		    
 		    <dl class="cs-counsel-top">
@@ -111,23 +111,17 @@
 				<div class="table-responsive">
 			        <table class="table cart">
 			            <colgroup>
-			                <col width="25%"/>
-			                <col width="25%"/>
-			                <col width="25%"/>
-			                <col width="25%"/>
+			                <col width="34%"/>
+			                <col width="33%"/>
+			                <col width="33%"/>
 			            </colgroup>
 			            <tr class="text-center">
-			                <td>문의유형</td>
 			                <td>제목</td>
 			                <td>날짜</td>
 			                <td>상태</td>
 			            </tr>
 			        	<tr th:each="cmt : ${cmts.getContent()}" >
-			        		<td class="align-middle">
-				        		<div class="d-flex mb-3">
-						            <span th:text="${cmt.qnaType}" class="qnaType"></span>
-						        </div>
-			        		</td>
+			        		
 			        		<td class="align-middle">
 			        			<a th:href="'/cmt/dtl/' + ${cmt.cmtId}" class="text-dark">
 				        		<div class="d-flex mb-3">
