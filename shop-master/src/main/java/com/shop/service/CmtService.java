@@ -13,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
-import com.shop.dto.MyCmtHistDto;
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtImgDto;
 import com.shop.dto.CmtSearchDto;
-import com.shop.entity.Member;
+import com.shop.dto.MyCmtHistDto;
 import com.shop.entity.Cmt;
 import com.shop.entity.CmtImg;
-import com.shop.repository.MemberRepository;
+import com.shop.entity.Member;
 import com.shop.repository.CmtImgRepository;
 import com.shop.repository.CmtRepository;
+import com.shop.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -63,21 +63,6 @@ public class CmtService {
         return cmt.getId();
     }
 
-    @Transactional(readOnly = true)
-    public CmtFormDto getCmtDtl(Long cmtId){
-        List<CmtImg> cmtImgList = cmtImgRepository.findByCmtIdOrderByIdAsc(cmtId);
-        List<CmtImgDto> cmtImgDtoList = new ArrayList<>();
-        for (CmtImg cmtImg : cmtImgList) {
-            CmtImgDto cmtImgDto = CmtImgDto.of(cmtImg);
-            cmtImgDtoList.add(cmtImgDto);
-        }
-
-        Cmt cmt = cmtRepository.findById(cmtId)
-                .orElseThrow(EntityNotFoundException::new);
-        CmtFormDto cmtFormDto = CmtFormDto.of(cmt);
-        cmtFormDto.setCmtImgDtoList(cmtImgDtoList);
-        return cmtFormDto;
-    }
 
     public Long updateCmt(CmtFormDto cmtFormDto, List<MultipartFile> cmtImgFileList) throws Exception{
         //문의 수정
@@ -95,12 +80,24 @@ public class CmtService {
         return cmt.getId();
     }
     
-    //삭제버튼
-    @Transactional
-    public void deleteCmt(Long cmtid) {
-        cmtRepository.deleteById(cmtid);
+    // 이미지
+    @Transactional(readOnly = true)
+    public CmtFormDto getCmtDtl(Long cmtId){
+        List<CmtImg> cmtImgList = cmtImgRepository.findByCmtIdOrderByIdAsc(cmtId);
+        List<CmtImgDto> cmtImgDtoList = new ArrayList<>();
+        for (CmtImg cmtImg : cmtImgList) {
+            CmtImgDto cmtImgDto = CmtImgDto.of(cmtImg);
+            cmtImgDtoList.add(cmtImgDto);
+        }
+        
+        Cmt cmt = cmtRepository.findById(cmtId)
+                .orElseThrow(EntityNotFoundException::new);
+        CmtFormDto cmtFormDto = CmtFormDto.of(cmt);
+        cmtFormDto.setCmtImgDtoList(cmtImgDtoList);
+        return cmtFormDto;
     }
-
+    
+    
     @Transactional(readOnly = true)
     public Page<Cmt> getAdminCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable){
         return cmtRepository.getAdminCmtPage(cmtSearchDto, pageable);
@@ -142,12 +139,34 @@ public class CmtService {
         return true;
     }
 
+    // 취소하기
     public void cancelCmt(Long cmtId){
         Cmt cmt = cmtRepository.findById(cmtId)
                 .orElseThrow(EntityNotFoundException::new);
         cmt.cancelCmt();
     }
-    
+
+    // 삭제하기
+    public void deleteCmt(Long cmtId) throws Exception{
+        Cmt cmt = cmtRepository.findById(cmtId)
+                .orElseThrow(EntityNotFoundException::new);
+        
+
+//        List<CmtImg> cmtImgList = cmtImgRepository.findByCmtId(cmtId);
+//        
+//        if(cmtImgList != null && cmtImgList.size() != 0) {
+//        	 
+//        	cmtImgRepository.deleteByCmtId(cmtId);
+//        	
+//        	
+//        }
+        
+        cmtImgService.deleteCmtImg(cmtId);
+
+        cmtRepository.deleteById(cmtId);
+        
+    }
+	
    
 
 }

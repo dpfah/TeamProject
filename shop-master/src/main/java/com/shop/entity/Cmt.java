@@ -1,6 +1,8 @@
 package com.shop.entity;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +16,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.transaction.Transactional;
 
 import com.shop.constant.CmtStatus;
 import com.shop.dto.CmtFormDto;
@@ -35,7 +38,7 @@ public class Cmt extends BaseEntity{
     private Long id;       //고유 번호
 
     @Column(nullable = false, length = 50)
-    private String cmtTitle; //
+    private String cmtTitle; //제목
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -79,8 +82,8 @@ public class Cmt extends BaseEntity{
         this.cmtStatus = CmtStatus.CANCEL;
     }
 
-
-
+    
+    
 
 
 }

@@ -46,11 +46,9 @@
 		        <div>
 		        	<a th:href="'/cmt/update/' + ${cmt.id}" class="btn update">수정하기</a>
 		        </div>
-		        <input type="hidden" name="_method" value="delete" />
-            	<button id="delete-btn" type="submit" class="btn btn-danger"  >삭제</button>
-<!-- 		        <div> -->
-<!-- 		        	<a th:href="'/cmt/delete/' + ${cmt.id}" class="btn delete">삭제하기</a> -->
-<!-- 		        </div> -->
+		        <div>
+		        	<a th:href="'/cmt/delete/' + ${cmt.id}" class="btn delete">삭제하기</a>
+		        </div>
 		    </div>           
 	    </form>
 	</section>

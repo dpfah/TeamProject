@@ -37,17 +37,17 @@ public class CmtController {
 
     private final CmtService cmtService;
     
-//    @GetMapping(value = "/cmt")
-//    public String cmt(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
+//    @GetMapping(value = "/")
+//    public String main(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
 //
 //        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-//        Page<MyCmtHistDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
+//        Page<MainCmtDto> cmts = itemService.getMainCmtPage(itemSearchDto, pageable);
 //
 //        model.addAttribute("cmts", cmts);
 //        model.addAttribute("cmtSearchDto", cmtSearchDto);
-//        model.addAttribute("maxPage", 5);
+//        model.addAttribute("maxPage", 2);
 //
-//        return "mypage/cmt";
+//        return "cmt/MainCmt";
 //    }
     
     //마이페이지에서 1:1문의 리스트
@@ -99,10 +99,10 @@ public class CmtController {
             return "cmt/cmtForm";
         }
 
-        if(cmtImgFileList.get(0).isEmpty() && cmtFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-            return "cmt/cmtForm";
-        }
+//        if(cmtImgFileList.get(0).isEmpty() && cmtFormDto.getId() == null){
+//            model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
+//            return "cmt/cmtForm";
+//        }
         
         // email을 세션에서 받아온다.
         String email = principal.getName();
@@ -180,13 +180,21 @@ public class CmtController {
         return "cmt/cmtDtl";
     }
     
-    // 삭제버튼
-    @DeleteMapping("/cmt/delete/{cmtid}")
-    public String delete(@PathVariable("cmtid") Long cmtid) {
-    	 
-        cmtService.deleteCmt(cmtid);
-        return "cmt/cmtForm";
+    // 삭제하기
+    @DeleteMapping(value = "/cmt/delete/{cmtId}")
+    public @ResponseBody ResponseEntity deleteCmt(@PathVariable("cmtId")
+    	Long cmtId, Principal principal, @Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
+            Model model) throws Exception
+    {
+    
+    	if(!cmtService.validateCmt(cmtId, principal.getName())) {
+    		return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+    	}
+    	
+    	cmtService.deleteCmt(cmtId);
+    	return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
     }
     
+
 
 }
