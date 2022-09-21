@@ -55,7 +55,6 @@
                 <td>
                     <a th:href="'/cmt/dtl/'+${cmt.id}" th:text="${cmt.cmtTitle}"></a>
                 </td>
-                <td th:text="${cmt.cmtStatus == T(com.shop.constant.CmtStatus).QnA} ? '문의중' : '문의취소'"></td>
                 <td th:text="${cmt.createdBy}"></td>
                 <td th:text="${cmt.regTime}"></td>
             </tr>
@@ -91,18 +90,6 @@
                 <option value="1w">1주</option>
                 <option value="1m">1개월</option>
                 <option value="6m">6개월</option>
-            </select>
-             <!--<select th:field="*{qnaType}" class="form-control" style="width:auto;">
-                <option value="all">전체타입</option>
-                <option value="상품">상품</option>
-                <option value="결제_배송">결제/배송</option>
-                <option value="반품_교환">반품/교환</option>
-                <option value="포인트_이벤트_쿠폰">포인트/이벤트/쿠푼</option>
-                <option value="사이트이용">사이트이용</option>
-            </select> -->
-            <select th:field="*{searchCmtStatus}" class="form-control" style="width:auto;">
-                <option value="QnA">문의중</option>
-                <option value="Cancel">문의 취소</option>
             </select>
             <select th:field="*{searchBy}" class="form-control" style="width:auto;">
                 <option value="cmtTitle">1:1문의명</option>

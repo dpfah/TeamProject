@@ -144,7 +144,7 @@ public class CmtController {
         return "redirect:/";
     }
 
-    //관리자 페이지에서 전체 1:1 문의 목록보기
+    //관리자 페이지에서  목록보기
     @GetMapping(value = {"/admin/cmts", "/admin/cmts/{page}"})
     public String cmtManage(CmtSearchDto cmtSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 

@@ -8,7 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>bread menu</title>
+        <title>cmt menu</title>
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
@@ -24,13 +24,13 @@
     </th:block>
     <body>
         <!-- content 시작-->
-	 	<section id="bread" class="cmt_menu" layout:fragment="content">	
+	 	<section id="cmt" class="cmt_menu" layout:fragment="content">	
 	        <!-- banner-->
 	        <div id="banner" >
 	            <div class="container">
 	                <div class="text-center text-white">
-	                    <h1 class="display-4 fw-bolder title fst-italic">Bread</h1>
-	                    <img src="/img/bread_banner.jpg">
+	                    <h1 class="display-4 fw-bolder title fst-italic">커뮤니티</h1>
+	                    <img src="/img/cmt_banner.jpg">
 	                </div>
 	            </div>
 	        </div>
@@ -40,26 +40,8 @@
                     <h1 class="title">Shop</h1>
                 </div>
 	        </div>
-	        <nav class="sub-top-nav-area navbar navbar-expand-lg">
-			  <div class="container-fluid">			    
-			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-			      <span class="navbar-toggler-icon"></span>
-			    </button>
-			    <div class="collapse navbar-collapse" id="navbarNav">
-			      <ul class="navbar-nav">
-			        <li class="nav-cmt">
-			          <a class="nav-link" href="/cake">Cake</a>
-			        </li>
-			        <li class="nav-cmt">
-			          <a class="nav-link" href="/cookies">Cookies</a>
-			        </li>
-			        <li class="nav-cmt">
-			          <a class="nav-link" href="/bread">Bread</a>
-			        </li>
-			      </ul>
-			    </div>
-			  </div>
-			</nav>
+	        
+	        
 	        <!-- Section-->
 	        <section class="py-5 mb-3" >
 	            <div class="container px-4 mt-5">
@@ -98,17 +80,17 @@
 				        <ul class="pagination justify-content-center">
 				
 				            <li class="page-cmt" th:classappend="${cmts.number eq 0}?'disabled':''">
-				                <a th:href="@{'/bread' + '?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number-1}}" aria-label='Previous' class="page-link previous">
+				                <a th:href="@{'/cmt' + '?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number-1}}" aria-label='Previous' class="page-link previous">
 				                    <span aria-hidden='true'>Previous</span>
 				                </a>
 				            </li>
 				
 				            <li class="page-cmt" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
-				                <a th:href="@{'/bread' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+				                <a th:href="@{'/cmt' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
 				            </li>
 				
 				            <li class="page-cmt" th:classappend="${cmts.number+1 ge cmts.totalPages}?'disabled':''">
-				                <a th:href="@{'/bread' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number+1}}" aria-label='Next' class="page-link next">
+				                <a th:href="@{'/cmt' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number+1}}" aria-label='Next' class="page-link next">
 				                    <span aria-hidden='true'>Next</span>
 				                </a>
 				            </li>
