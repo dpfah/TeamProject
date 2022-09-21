@@ -63,21 +63,18 @@ public class OqnaImgService {
 	    }
 
 		public void deleteOqnaImg(Long oqnaId) throws Exception {
-		    List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
+		    List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId); //oqnaImgRepository에서 oqnaId를 찾아서 oqnaImg 리스트를 만들어준다.
 	        
-	        if(oqnaImgList != null && oqnaImgList.size() != 0) {
+	        if(oqnaImgList != null && oqnaImgList.size() != 0) { // 리스트가 null이거나 리스트 사이즈가 0이 아닐때 리스트에 있는 이미지를 삭제해준다.
 	        	
 	        	for(OqnaImg oqnaImg : oqnaImgList) {
-//	        		fileService.deleteFile(oqnaImgLocation+"/"+
-//	                        oqnaImg.getImgName());
-	        		 if(!StringUtils.isEmpty(oqnaImg.getImgName())) {
+	        		 if(!StringUtils.isEmpty(oqnaImg.getImgName())) { //oqnaImg의 이름부분이 채워져 있으면 폴더에 저장된 파일을 삭제할 것이다.
 	 	                fileService.deleteFile(oqnaImgLocation+"/"+
 	 	                        oqnaImg.getImgName());
 	 	            }
-	        		oqnaImgRepository.deleteByOqnaId(oqnaId);
+	        		oqnaImgRepository.deleteByOqnaId(oqnaId);// 그리고DB에 저장 된 것을 삭제해준다.
 	        		
 	        	}
-	        	
 	        }
 			
 	}

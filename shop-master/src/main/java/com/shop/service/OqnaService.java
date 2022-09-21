@@ -164,9 +164,9 @@ public class OqnaService {
 //        	
 //        }
         
-        oqnaImgService.deleteOqnaImg(oqnaId);
+        oqnaImgService.deleteOqnaImg(oqnaId); //oqnaImgService에서 첨부된 Img를 삭제해준다
 
-        oqnaRepository.deleteById(oqnaId);
+        oqnaRepository.deleteById(oqnaId); //oqna게시글을 삭제한다.
         
     }
     
