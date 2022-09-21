@@ -1,6 +1,8 @@
 package com.shop.dto;
 
 import com.querydsl.core.annotations.QueryProjection;
+import com.shop.constant.QnAType;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -13,10 +15,10 @@ public class MainFaqDto {
 
     private String faqReply;
 
-    private String qnaType;
+    private QnAType qnaType;
 
     @QueryProjection
-    public MainFaqDto(Long id, String faqTitle, String faqReply, String qnaType){
+    public MainFaqDto(Long id, String faqTitle, String faqReply, QnAType qnaType){
         this.id = id;
         this.faqTitle = faqTitle;
         this.faqReply = faqReply;

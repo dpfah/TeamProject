@@ -11,6 +11,6 @@ public interface FaqRepositoryCustom {
 
     Page<Faq> getAdminFaqPage(FaqSearchDto faqSearchDto, Pageable pageable);
 
-//    Page<MainFaqDto> getMainFaqPage(FaqSearchDto faqSearchDto, Pageable pageable);
+    Page<MainFaqDto> getMainFaqPage(FaqSearchDto faqSearchDto, Pageable pageable);
 
 }

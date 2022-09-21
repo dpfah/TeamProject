@@ -1,8 +1,5 @@
 package com.shop.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.data.domain.Page;
@@ -12,13 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.shop.dto.FaqFormDto;
 import com.shop.dto.FaqSearchDto;
-import com.shop.dto.ItemContentImgDto;
-import com.shop.dto.ItemFormDto;
-import com.shop.dto.ItemImgDto;
+import com.shop.dto.MainFaqDto;
 import com.shop.entity.Faq;
-import com.shop.entity.Item;
-import com.shop.entity.ItemContentImg;
-import com.shop.entity.ItemImg;
 import com.shop.repository.FaqRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -57,10 +49,10 @@ public class FaqService {
         return faqRepository.getAdminFaqPage(faqSearchDto, pageable);
     }
 
-//    @Transactional(readOnly = true)
-//    public Page<MainFaqDto> getMainFaqPage(FaqSearchDto faqSearchDto, Pageable pageable){
-//        return faqRepository.getMainFaqPage(faqSearchDto, pageable);
-//    }
+    @Transactional(readOnly = true)
+    public Page<MainFaqDto> getMainFaqPage(FaqSearchDto faqSearchDto, Pageable pageable){
+        return faqRepository.getMainFaqPage(faqSearchDto, pageable);
+    }
     
     @Transactional(readOnly = true)
     public FaqFormDto getFaqDtl(Long faqId){

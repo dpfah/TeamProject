@@ -14,8 +14,14 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.shop.dto.FaqSearchDto;
+import com.shop.dto.MainFaqDto;
+import com.shop.dto.MainItemDto;
+import com.shop.dto.QMainFaqDto;
+import com.shop.dto.QMainItemDto;
 import com.shop.entity.Faq;
 import com.shop.entity.QFaq;
+import com.shop.entity.QItem;
+import com.shop.entity.QItemImg;
 
 public class FaqRepositoryCustomImpl implements FaqRepositoryCustom{
 
@@ -80,5 +86,36 @@ public class FaqRepositoryCustomImpl implements FaqRepositoryCustom{
 
     private BooleanExpression faqTitleLike(String searchQuery){
         return StringUtils.isEmpty(searchQuery) ? null : QFaq.faq.faqTitle.like("%" + searchQuery + "%");
+    }
+    
+    
+    @Override
+    public Page<MainFaqDto> getMainFaqPage(FaqSearchDto faqSearchDto, Pageable pageable) {
+        QFaq faq = QFaq.faq;
+
+        List<MainFaqDto> content = queryFactory
+                .select(
+                        new QMainFaqDto(
+                                faq.id,
+                                faq.faqTitle,
+                                faq.faqReply,
+                                faq.qnaType
+                                )
+                )
+                .from(faq)
+                .where(faqTitleLike(faqSearchDto.getSearchQuery()))
+                .orderBy(faq.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = queryFactory
+                .select(Wildcard.count)
+                .from(faq)
+                .where(faqTitleLike(faqSearchDto.getSearchQuery()))
+                .fetchOne()
+                ;
+
+        return new PageImpl<>(content, pageable, total);
     }
 }

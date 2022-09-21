@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.shop.dto.FaqFormDto;
 import com.shop.dto.FaqSearchDto;
+import com.shop.dto.MainFaqDto;
 import com.shop.entity.Faq;
 import com.shop.service.FaqService;
 
@@ -28,6 +29,19 @@ public class FaqController {
 
     private final FaqService faqService;
     
+    
+    @GetMapping(value = "/mainFaq")
+    public String faq(FaqSearchDto faqSearchDto, Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainFaqDto> faqs = faqService.getMainFaqPage(faqSearchDto, pageable);
+
+        model.addAttribute("faqs", faqs);
+        model.addAttribute("faqSearchDto", faqSearchDto);
+        model.addAttribute("maxPage", 5);
+
+        return "faq/mainFaq";
+    }
     
     @GetMapping(value = "/admin/faq/new")
     public String faqForm(Model model){
