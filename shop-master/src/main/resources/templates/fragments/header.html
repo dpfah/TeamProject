@@ -61,6 +61,12 @@
 		                    		<a class="dropdown-item" href="/admin/items">상품 관리</a>
 		                		</li>
 		                		<li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+                    				<a class="dropdown-item" href="/admin/notice/new">공지사항 등록</a>
+                				</li>
+                				<li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		                    		<a class="dropdown-item" href="/admin/notices">공지사항 관리</a>
+		                		</li>
+		                		<li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 		                    		<a class="dropdown-item" href="/admin/oqnas">1:1 문의 관리</a>
 		                		</li> 
 		                		<li sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
