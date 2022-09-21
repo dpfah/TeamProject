@@ -13,7 +13,8 @@
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />	
 	    
 	    <!-- 사용자 지정 css -->    
-	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
+	    <link th:href="@{/css/cmt_styles.css}" rel="stylesheet">
+	    
 	    
 	    <meta name="_csrf" th:content="${_csrf.token}"/>
     	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
@@ -91,14 +92,14 @@
 </th:block>
 
 	<section id="cmtForm" class="py-5 cmtDF" layout:fragment="content">	
-	    <form role="form" method="post" enctype="multipart/form-data" th:object="${cmtFormDto}">
-	        <p class="h2 title">
-	            1:1 문의하기
+	    <form role="form" method="post" enctype="multipart/form-data" th:object="${cmtFormDto}" class="cmtF cmtBox">
+	        <p class="h1 title">
+	            커뮤니티 작성하기
 	        </p>
 	        <input type="hidden" th:field="*{id}">
 		    <div class="container px-4 px-lg-5 my-5">
-		        <div class="row gx-4 gx-lg-5 align-items-center">
-		            <div class="col-md-6">
+		        <div class="row align-items-center">
+		            <div class="col-md-12">
 <!-- 		            	<div class="row select_sell"> -->
 <!-- 		            		<p class="small-title">문의유형을 선택해주세요</p> -->
 <!-- 					        <div class="form-group col-md-6"> -->
@@ -111,19 +112,18 @@
 <!-- 					            </select> -->
 <!-- 					        </div> -->
 <!-- 		            	</div> -->
-		            	<p class="small-title">제목을 작성해주세요</p>
-						<div class="input-group">
-				            <input type="text" th:field="*{cmtTitle}" class="form-control input-title" placeholder="제목을 입력해주세요">
+						<div class="input-group ">
+				            <input type="text" th:field="*{cmtTitle}" class=" input-title" placeholder="제목을 입력해주세요">
 				        </div>
 				        <p th:if="${#fields.hasErrors('cmtTitle')}" th:errors="*{cmtTitle}" class="fieldError">Incorrect data</p>
 			     	</div>
 			    </div>
-			    <p class="small-title mt-3">문의 사항을 작성해주세요</p>
+			    <p class="warning">※ 타 사이트 광고를 기재하시는 경우, 임의로 삭제될 수 있사오니 타광고 기재는 삼가해 주세요.</p>
 				<div class="input-group">
-		            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요"></textarea>
+		            <textarea class="" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요"></textarea>
 	        	</div>
 	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p>
-	        	<p class="warning">※ 문의글에 개인정보를 기재하시는 경우, 상담완료 이후 임의로 삭제될 수 있사오니 개인정보 기재는 삼가해 주세요.</p><br>
+	        	
 	        	
 				<p class="small-title mt-5">이미지를 업로드해주세요.(최대 5개까지 업로드 가능)</p>
 		        <div th:if="${#lists.isEmpty(cmtFormDto.cmtImgDtoList)}">
@@ -144,20 +144,20 @@
 		            </div>
 		        </div>
 		        
-		        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-			        <p class="small-title mt-4">댓글을 작성해주세요</p>
-					<div class="input-group">
-			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtReply}" placeholder="댓글을 입력해주세요"></textarea>
-		        	</div>
-		        	<p th:if="${#fields.hasErrors('cmtReply')}" th:errors="*{cmtReply}" class="fieldError">Incorrect data</p>
-		        </div>
+<!--		        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">-->
+<!--			        <p class="small-title mt-4">댓글을 작성해주세요</p>-->
+<!--					<div class="input-group">-->
+<!--			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtReply}" placeholder="댓글을 입력해주세요"></textarea>-->
+<!--		        	</div>-->
+<!--		        	<p th:if="${#fields.hasErrors('cmtReply')}" th:errors="*{cmtReply}" class="fieldError">Incorrect data</p>-->
+<!--		        </div>-->
 		        <div th:if="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
-		            <button th:formaction="@{/cmt/new}" type="submit" class="btn save">등록</button>
+		            <button th:formaction="@{/cmt/new}" type="submit" class="btn btn-secondary save">등록</button>
 		        </div>
 		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}">
 		            <button th:formaction="@{'/cmt/update/' + ${cmtFormDto.id} }" type="submit" class="btn save">수정</button>
-		            <button  type="button" class="btn close save" aria-label="Close">
-		          	<span aria-hidden="true" th:data-id="${cmtFormDto.id}" onclick ="deleteCmt(this)">삭제하기</span>
+		            <button  type="button" class="btn btn-secondary  close save" aria-label="Close">
+		          	<span aria-hidden="true" th:data-id="${cmtFormDto.id}" onclick ="deleteCmt(this)" class="btn btn-danger ">삭제하기</span>
 		       		</button>
 		        </div>
 		        

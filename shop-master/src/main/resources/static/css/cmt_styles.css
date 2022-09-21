@@ -22,3 +22,44 @@
 .cmtBox .form-control{
 	border:0;
 }
+
+.cmtF{
+	
+}
+.cmtF input, .cmtF .input-group , .cmtF textarea{
+	border:0;
+	font-size: 34px;
+	width:100%;
+	margin-bottom:5px;
+}
+.cmtF input::placeholder, .cmtF .input-group::placeholder , .cmtF textarea::placeholder{
+	color:#ddd;
+	font-weight: bold;
+}
+.cmtF input::after, .cmtF .input-group::after , .cmtF textarea::after{
+	border:0;
+}
+.cmtF .input-title{
+	color:#666;
+	font-weight: bold;
+}
+.cmtF textarea{
+	font-size: 16px;
+	color:#666;
+	font-weight: normal;
+	height:600px;
+}
+.cmtF .fieldError{
+	color:red;
+}
+
+
+
+
+
+
+
+
+
+
+
