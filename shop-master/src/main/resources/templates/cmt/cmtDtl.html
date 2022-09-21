@@ -28,22 +28,26 @@
 	            커뮤니티 상세보기
 	        </p>
 		    <div class="cmtBox">
-				<h1 class="input-title" th:text="${cmt.cmtTitle}">e</h1>
-<!-- 				<p class="small-title" th:text="${cmt.member}"></p> -->
+        		<button type="button" class="btn btn-secondary"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+        			<a th:href="'/cmt/update/' + ${cmt.id}" class="btn update">수정하기</a>
+        		</button>		    
+				<h1 class="input-title mb-5" th:text="${cmt.cmtTitle}">e</h1>
+				<p class="small-title" th:text="${cmt.name}"></p>
 		   		<div th:each="cmtImg : ${cmt.cmtImgDtoList}" class="text-center cmtImg">
 			    	<img th:if="${not #strings.isEmpty(cmtImg.imgUrl)}" th:src="${cmtImg.imgUrl}" class="rounded mgb-15">
 				</div>
-				<p class="form-control" th:text="${cmt.cmtDetail}"></p>
-		        
+				<p class="cmtP" th:text="${cmt.cmtDetail}"></p>
+
+
+        		
+        		
 <!-- 		        <div> -->
 <!-- 			        <p class="small-title mt-3">댓글</p> -->
 <!-- 					<div class="input-group"> -->
 <!-- 			            <div class="form-control reply" th:text="${cmt.cmtReply}"></div> -->
 <!-- 		        	</div> -->
 <!-- 		        </div> -->
-		        		<button type="button" class="btn btn-secondary"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-		        			<a th:href="'/cmt/update/' + ${cmt.id}" class="btn update">수정하기</a>
-		        		</button>
 		    </div>           
+		    
 	</section>
 </html>

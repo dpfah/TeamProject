@@ -140,12 +140,7 @@ public class CmtService {
         return true;
     }
 
-    // 취소하기
-    public void cancelCmt(Long cmtId){
-        Cmt cmt = cmtRepository.findById(cmtId)
-                .orElseThrow(EntityNotFoundException::new);
-        cmt.cancelCmt();
-    }
+
 
     // 삭제하기
     public void deleteCmt(Long cmtId) throws Exception{

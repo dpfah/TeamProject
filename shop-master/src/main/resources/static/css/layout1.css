@@ -1,4 +1,7 @@
+
+
 html {
+	
 	width:1080px;
     position: relative;
     width: 1080px;
@@ -7,6 +10,7 @@ html {
 }
 body {
     min-height: 100%;
+    
 }
 .footer {
     position: relative;

@@ -67,21 +67,6 @@ public class CmtController {
     }
     
     
-    // 마이페이지에서 1:1 문의 취소하기
-    @PostMapping("/cmt/{cmtId}/cancel")
-    public @ResponseBody ResponseEntity cancelCmt(@PathVariable("cmtId") Long cmtId , Principal principal){
-
-        if(!cmtService.validateCmt(cmtId, principal.getName())){
-            return new ResponseEntity<String>("주문 취소 권한이 없습니다.", HttpStatus.FORBIDDEN);
-        }
-
-        cmtService.cancelCmt(cmtId);
-        return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
-    }
-    
-
-
-    
     // 1:1문의 작성
     @GetMapping(value = "/cmt/new")
     public String cmtForm(Model model, Principal principal){

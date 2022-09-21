@@ -13,6 +13,8 @@ public class CmtDto {
 
     private String cmtTitle;
    
+    private String name;
+    
     private String cmtDetail;
 
     private LocalDateTime regTime;

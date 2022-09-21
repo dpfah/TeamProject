@@ -3,22 +3,38 @@
 }
 .cmtBox{
 	width:100%;
+	position:relative;
 }
 .cmtBox h1{
 	font-weight:bold;
-	font-size:28px;
+	font-size:34px;
 }
 .cmtBox .cmtImg{
-	width:1080px;
-	height:600px;
 	overflow:hidden;
-	margin:10px auto;
 }
 .cmtImg img{
 	width:100%;
 	height:auto;
-	
 }
 .cmtBox .form-control{
 	border:0;
+}
+.cmtBox .cmtP{
+	font-size:16px;
+	text-align:center;
+	margin:30px auto;
+}
+.cmtBox button{
+	position:absolute;
+	right:0;
+	top:0;
+}
+.cmtBox button > a{
+	color:#fff;
+	font-size:16px;
+	text-align:center;
+}
+.cmtBox button > a:hover{
+	color:#fff;
+
 }

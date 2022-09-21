@@ -7,7 +7,6 @@ import javax.validation.constraints.NotBlank;
 
 import org.modelmapper.ModelMapper;
 
-import com.shop.constant.CmtStatus;
 import com.shop.entity.Cmt;
 
 import lombok.Getter;
@@ -24,6 +23,8 @@ public class CmtFormDto {
     @NotBlank(message = "상세 설명은 필수 입력 값입니다.")
     private String cmtDetail;
     
+    private String name;
+    
     private String cmtReply;
 
     private List<CmtImgDto> cmtImgDtoList = new ArrayList<>();
@@ -32,7 +33,6 @@ public class CmtFormDto {
     
     private String cmtDate; //질문날짜
     
-    private CmtStatus cmtStatus; //질문 상태
 
     private static ModelMapper modelMapper = new ModelMapper();
 
