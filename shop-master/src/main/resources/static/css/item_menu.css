@@ -976,11 +976,10 @@ img {
     transition: all 0.5s;
 }
 #memberDtl .radio-area {
-	width: 22.535%;
+	width: 37.12%;
 	height: 38px; 
-	margin-left: 3.724%; 
+	margin-left: 4.1%;
 	box-sizing: border-box; 
-	border: 1px solid #e0e0e0;
 	float: left;
 }
 #memberDtl .hide {
@@ -1034,6 +1033,9 @@ img {
     border: 1px solid transparent;
 }
 
+.oqnaF input, .oqnaF .input-group{
+	width:100%;
+}
 
 
 
