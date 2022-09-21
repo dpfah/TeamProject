@@ -66,22 +66,20 @@
 	                <div class="row gx-3 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
 	                <th:block th:each="item, status: ${items.getContent()}">	                	
 		                    <div class="col mb-5">
-		                        <div class="card h-100 border border-0">
+		                        <div class="Mitems card h-100 border border-0">
 		                       		<a th:href="'/item/' +${item.id}" class="text-dark">
+		                       			<div class="imgCut">
 			                            <!-- Product image-->
-			                            <div class="card-img-top bg-light">
-			                          		<img th:src="${item.imgUrl}" th:alt="${item.itemNm}">
-			                            </div>
+			                          		<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top bg-light">
 			                            <!-- Product details-->
+		                       			</div>
 			                            <div class="product-list">
-				                            <div class="card-body">
-				                                <div class="text-left">
-				                                    <!-- Product name-->
-				                                    <h5 class="product-name fw-bolder">[[${item.itemNm}]]</h5>
-				                                    <!-- Product price-->
-				                                   	<div class="origin-price">[[${item.ori_price}]]원</div>
-				                                    <span>[[${item.percent}]]%</span>[[${item.price}]]원
-				                                </div>
+				                            <div class="card-body text-left">
+			                                    <!-- Product name-->
+			                                    <h5 class="product-name fw-bolder">[[${item.itemNm}]]</h5>
+			                                    <!-- Product price-->
+			                                   	<div class="origin-price">[[${item.ori_price}]]원</div>
+			                                    <span>[[${item.percent}]]%</span>[[${item.price}]]원
 				                            </div>
 				                            <!-- Product actions-->
 				                            <div class="itemDetail card-footer pt-0 border-top-0 bg-transparent">
