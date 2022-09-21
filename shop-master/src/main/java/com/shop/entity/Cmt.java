@@ -4,8 +4,6 @@ import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +13,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.shop.constant.CmtStatus;
 import com.shop.dto.CmtFormDto;
 
 import lombok.Getter;
@@ -37,6 +34,8 @@ public class Cmt extends BaseEntity{
     @Column(nullable = false, length = 50)
     private String cmtTitle; //제목
     
+	
+    
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
@@ -48,17 +47,18 @@ public class Cmt extends BaseEntity{
 
     private LocalDateTime cmtDate; //문의일
 
-    @Enumerated(EnumType.STRING)
-    private CmtStatus cmtStatus; //문의상태
-    
     private String cmtReply; //cmt 답변
     
     private int count; //수량
+    
+    @Column(name="name")
+    private String name;
 
     public void updateCmt(CmtFormDto cmtFormDto){
         this.cmtTitle = cmtFormDto.getCmtTitle();
         this.cmtDetail = cmtFormDto.getCmtDetail();
         this.cmtReply = cmtFormDto.getCmtReply();
+        this.name = cmtFormDto.getName();
     }
 
 
@@ -69,18 +69,9 @@ public class Cmt extends BaseEntity{
 		cmt.setCmtTitle(cmtFormDto.getCmtTitle());
 		cmt.setCmtDetail(cmtFormDto.getCmtDetail());
 		cmt.setCmtReply(cmtFormDto.getCmtReply());
-        cmt.setCmtStatus(CmtStatus.QnA);
         cmt.setCmtDate(LocalDateTime.now());
+        cmt.setName(cmtFormDto.getName());
         return cmt;
     }
-
-
-    public void cancelCmt() {
-        this.cmtStatus = CmtStatus.CANCEL;
-    }
-
-    
-    
-
 
 }

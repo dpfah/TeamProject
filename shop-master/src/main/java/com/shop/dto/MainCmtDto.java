@@ -16,13 +16,15 @@ public class MainCmtDto {
 
     private String imgUrl;
 
+    private String name;
 
     @QueryProjection
-    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl){
+    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String name){
         this.id = id;
         this.cmtTitle = cmtTitle;
         this.cmtDetail = cmtDetail;
         this.imgUrl = imgUrl;
+        this.name = name;
     }
 
 }
