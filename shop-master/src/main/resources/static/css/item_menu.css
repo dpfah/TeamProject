@@ -699,7 +699,7 @@ img {
 .mypage .lnb-mypage-category {
     display: block;
     position: absolute;
-    top: 453px;
+    top: 464px;
     left: 0px;
     width: 220px;
     height: auto;
@@ -778,7 +778,6 @@ img {
     padding: 40px 40px 47px 40px;
     border-top: 2px solid #999999;
 	background-color: #ffffff;
-    padding: 40px 40px 47px 40px;
 }
 
 .cs-counsel-top dt {
@@ -803,9 +802,8 @@ img {
 
 .cs-counsel-top dd.use_talk_add{
     position: absolute;
-    right: 40px;
-    top: 66%;
-    margin-top: -22px;
+    right: 0;
+    margin-top:0;
 }
 
 .cs-counsel-top dd.use_talk_add a{
