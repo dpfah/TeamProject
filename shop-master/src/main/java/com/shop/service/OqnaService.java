@@ -141,5 +141,21 @@ public class OqnaService {
                 .orElseThrow(EntityNotFoundException::new);
         oqna.cancelOqna();
     }
+    
+    
+   
+    
+    public void deleteOqna(Long oqnaId){
+        Oqna oqna = oqnaRepository.findById(oqnaId)
+                .orElseThrow(EntityNotFoundException::new);
+        
+        List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
+        
+        if(oqnaImgList != null && oqnaImgList.size() != 0) {
+        	oqnaImgRepository.deleteByOqnaId(oqnaId);
+        }
+        
+        oqnaRepository.deleteById(oqnaId);
+    }
 
 }

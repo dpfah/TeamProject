@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+	<head>
+	    <meta name="_csrf" th:content="${_csrf.token}"/>
+	    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	    <meta name="description" content="" />
+	    <meta name="author" content="" />
+	    <title>Shop Item - Start Bootstrap Template</title>
+	    <!-- Bootstrap icons-->
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />  
+	    
+	    <!-- 사용자 지정 css -->  
+	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
+	</head>
+
+	<!-- 사용자 스크립트 추가 -->
+	<th:block layout:fragment="script">
+
+	</th:block>
+	<section id="cmtDtl" class="py-5 cmtDF " layout:fragment="content">	
+	    	<input type="hidden" id="cmtId" th:value="${cmt.id}">
+	        <p class="h2 title">
+	            커뮤니티 등록하기
+	        </p>
+	      
+		    <div class="container px-4 px-lg-5 my-5">
+            	<p class="small-title">제목</p>
+				<p class="input-title" th:text="${cmt.cmtTitle}"  placeholder="제목을 입력해주세요">e</p>
+			    <p class="small-title mt-3">상세 성명</p>
+				<textarea class="form-control" th:text="${cmt.cmtDetail}"  placeholder="내용을 입력해주세요"></textarea>
+				<p class="small-title mt-5">첨부 사진</p>
+		        <div th:each="cmtImg : ${cmt.cmtImgDtoList}" class="text-center pt-5">
+			    	<img th:if="${not #strings.isEmpty(cmtImg.imgUrl)}" th:src="${cmtImg.imgUrl}" class="rounded mgb-15" width="300" height="300">
+				</div>
+		        <div>
+			        <p class="small-title mt-3">댓글</p>
+					<div class="input-group">
+			            <div class="form-control reply" th:text="${cmt.cmtReply}"></div>
+		        	</div>
+		        </div>
+		        <div>
+		        	<a th:href="'/cmt/update/' + ${cmt.id}" class="btn update">수정하기</a>
+		        </div>
+		        <input type="hidden" name="_method" value="delete" />
+            	<button id="delete-btn" type="submit" class="btn btn-danger"  >삭제</button>
+<!-- 		        <div> -->
+<!-- 		        	<a th:href="'/cmt/delete/' + ${cmt.id}" class="btn delete">삭제하기</a> -->
+<!-- 		        </div> -->
+		    </div>           
+	    </form>
+	</section>
+</html>

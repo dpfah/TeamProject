@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/mypage}">
+
+<head>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+</head>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+        function cancelCmt(cmtId) {
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/cmt/" + cmtId + "/cancel";
+            var paramData = {
+                cmtId : cmtId,
+            };
+
+            var param = JSON.stringify(paramData);
+
+            $.ajax({
+                url      : url,
+                type     : "POST",
+                contentType : "application/json",
+                data     : param,
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    alert("문의가 취소 되었습니다.");
+                    location.href='/cmts/' + [[${page}]];
+                },
+                error : function(jqXHR, status, error){
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseText);
+                    }
+                }
+            });
+        }
+    </script>
+
+</th:block>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .content-mg{
+            margin-left:30%;
+            margin-right:30%;
+            margin-top:2%;
+            margin-bottom:100px;
+        }
+        .repImgDiv{
+            margin-right:15px;
+            margin-left:15px;
+            height:auto;
+        }
+        .repImg{
+            height:100px;
+            width:100px;
+        }
+        .card{
+            width:750px;
+            height:100%;
+            padding:30px;
+            margin-bottom:20px;
+        }
+        .fs18{
+            font-size:18px
+        }
+        .fs24{
+            font-size:24px
+        }
+		
+    </style>
+</th:block>
+
+	<div layout:fragment="content" class="col-lg-9 mt-5 float-right content-log-12">
+		<div id="cmtHist" class="item_menu mypage">
+		    
+		    <dl class="cs-counsel-top">
+		    	<dt>
+		    	  Q 궁금하신 내용은 1:1 문의를 통해 문의를 남겨주시면 확인 후 친절히 답변하여 드립니다. 보다 빠른 답변을 원하시는 경우 고객센터로 문의해주세요.
+		    	<br class="w_view">
+		    	 보다 빠른 답변을 원하시는 경우 고객센터로 문의해주세요.
+		    	</dt>
+		    	<dd>
+		    		* 배송, 사이트 관련 문의 000-000- 0000 
+		    		<br class="m_view">
+		    		* 제품 트러블 문의 080-023-5454
+		    	</dd>
+		    	<dd class="cs_counsel_add use_talk_add">
+		    		<a href="/cmt/new" class="btn_black btn_counsel btn-outline-secondary">1:1문의 등록하기</a>
+		    	</dd>
+		    </dl>
+		    <h4 class="mb-1">
+		        1:1문의
+		    </h4>
+			<div class="mt-3 mb-5">
+				<div class="table-responsive">
+			        <table class="table cart">
+			            <colgroup>
+			                <col width="34%"/>
+			                <col width="33%"/>
+			                <col width="33%"/>
+			            </colgroup>
+			            <tr class="text-center">
+			                <td>제목</td>
+			                <td>날짜</td>
+			                <td>상태</td>
+			            </tr>
+			        	<tr th:each="cmt : ${cmts.getContent()}" >
+			        		
+			        		<td class="align-middle">
+			        			<a th:href="'/cmt/dtl/' + ${cmt.cmtId}" class="text-dark">
+				        		<div class="d-flex mb-3">
+						            <span th:text="${cmt.cmtTitle}" class="orderTitle"></span>
+						        </div>
+			        			</a>
+			        		</td>
+			        		<td class="align-middle">
+				        		<div class="d-flex mb-3">
+						            <span th:text="${cmt.cmtDate}" class="cmtDate"></span>
+						        </div>
+			        		</td>
+					        <td class="align-middle">
+						     	<div class="d-flex mb-3">
+						            <div class="ml-3">
+						                <th:block th:if="${cmt.cmtStatus == T(com.shop.constant.CmtStatus).QnA}">
+						                    <button type="button" class="btn btn-outline-secondary" th:value="${cmt.cmtId}" onclick="cancelCmt(this.value)">문의취소</button>
+						                </th:block>
+						                <th:block th:unless="${cmt.cmtStatus == T(com.shop.constant.CmtStatus).QnA}">
+						                    <span>(취소 완료)</span>
+						                </th:block>
+						            </div>
+						        </div>
+					        </td>
+					    </tr>
+					</table>	
+				    <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
+				        <ul class="pagination justify-content-center">
+				            <li class="page-item" th:classappend="${cmts.number eq 0}?'disabled':''">
+				                <a th:href="@{'/cmts/' + ${cmts.number-1}}" aria-label='Previous' class="page-link previous">
+				                    <span aria-hidden='true'>Previous</span>
+				                </a>
+				            </li>
+				
+				            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
+				                <a th:href="@{'/cmts/' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+				            </li>
+				
+				            <li class="page-item" th:classappend="${cmts.number+1 ge cmts.totalPages}?'disabled':''">
+				                <a th:href="@{'/cmts/' + ${cmts.number+1}}" aria-label='Next' class="page-link next">
+				                    <span aria-hidden='true'>Next</span>
+				                </a>
+				            </li>
+				        </ul>
+				    </div>   
+				</div>
+			</div>
+			<!--/#cmtHist-->
+		</div>
+		<!--layout content 끝-->
+	</div>
+</html>
