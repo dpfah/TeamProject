@@ -164,10 +164,10 @@ public class CmtService {
     }
 
 
-//    @Transactional(readOnly = true)
-//    public Page<MainCmtDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable){
-//        return cmtRepository.getMainCmtPage(cmtSearchDto, pageable);
-//    }
-//   
+    @Transactional(readOnly = true)
+    public Page<MainCmtDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable){
+        return cmtRepository.getMainCmtPage(cmtSearchDto, pageable);
+    }
+   
 
 }

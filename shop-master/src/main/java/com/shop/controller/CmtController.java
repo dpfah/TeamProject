@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtSearchDto;
+import com.shop.dto.MainCmtDto;
 import com.shop.dto.MyCmtHistDto;
 import com.shop.entity.Cmt;
 import com.shop.service.CmtService;
@@ -37,18 +38,18 @@ public class CmtController {
 
     private final CmtService cmtService;
     
-//    @GetMapping(value = "/")
-//    public String main(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
-//
-//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-//        Page<MainCmtDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
-//
-//        model.addAttribute("cmts", cmts);
-//        model.addAttribute("cmtSearchDto", cmtSearchDto);
-//        model.addAttribute("maxPage", 2);
-//
-//        return "cmt/MainCmt";
-//    }
+    @GetMapping(value = "/mainCmt")
+    public String main(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainCmtDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
+
+        model.addAttribute("cmts", cmts);
+        model.addAttribute("cmtSearchDto", cmtSearchDto);
+        model.addAttribute("maxPage", 2);
+
+        return "cmt/MainCmt";
+    }
     
     //마이페이지에서 1:1문의 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
