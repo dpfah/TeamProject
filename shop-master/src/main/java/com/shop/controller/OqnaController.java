@@ -182,7 +182,7 @@ public class OqnaController {
     
     @DeleteMapping(value = "/oqna/delete/{oqnaId}")
     public @ResponseBody ResponseEntity deleteOqna(@PathVariable("oqnaId") Long oqnaId, Principal principal, @Valid OqnaFormDto oqnaFormDto, BindingResult bindingResult,
-            Model model)
+            Model model) throws Exception
     {
     
     	if(!oqnaService.validateOqna(oqnaId, principal.getName())) {

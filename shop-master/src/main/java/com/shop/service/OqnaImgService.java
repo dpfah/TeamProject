@@ -62,15 +62,21 @@ public class OqnaImgService {
 	        }
 	    }
 
-		public void deleteOqnaImg(Long oqnaId) {
+		public void deleteOqnaImg(Long oqnaId) throws Exception {
 		    List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
 	        
 	        if(oqnaImgList != null && oqnaImgList.size() != 0) {
 	        	
 	        	for(OqnaImg oqnaImg : oqnaImgList) {
+//	        		fileService.deleteFile(oqnaImgLocation+"/"+
+//	                        oqnaImg.getImgName());
+	        		 if(!StringUtils.isEmpty(oqnaImg.getImgName())) {
+	 	                fileService.deleteFile(oqnaImgLocation+"/"+
+	 	                        oqnaImg.getImgName());
+	 	            }
 	        		oqnaImgRepository.deleteByOqnaId(oqnaId);
+	        		
 	        	}
-	        	
 	        	
 	        }
 			

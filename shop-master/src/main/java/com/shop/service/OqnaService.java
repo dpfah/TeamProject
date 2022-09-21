@@ -150,7 +150,7 @@ public class OqnaService {
     
    
     
-    public void deleteOqna(Long oqnaId){
+    public void deleteOqna(Long oqnaId) throws Exception{
         Oqna oqna = oqnaRepository.findById(oqnaId)
                 .orElseThrow(EntityNotFoundException::new);
         
