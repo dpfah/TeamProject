@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>빵주머니 - 공지사항</title>
+	
+	<link th:href="@{/css/notice.css}" rel="stylesheet">
+	<link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+	<style>
+        .error {
+            color: #bd2130;
+        }
+        
+        #top-btn {
+		    overflow: hidden;
+		    position: fixed;
+		    z-index: 41;
+		    right: 31px;
+		    bottom: 0;
+		    width: 52px;
+		    height: 52px;
+		    border: 0;
+		    background: rgba(255,255,255,0.9) url(/img/topbtn.svg) no-repeat 50% 50%;
+		    background-size: 100%;
+		    font-size: 0;
+		    line-height: 0;
+		    text-indent: -9999px;
+		    opacity: 0;
+		    transition: .5s;
+		    border-radius: 50%;
+		    border: 1px solid #eee;
+		    box-shadow: 0 0 5px 3px rgb(0 0 0 / 1%);
+		}
+		#top-btn.on {
+		    bottom: 90px;
+		    opacity: 1;
+		    transition: .5s;
+		}
+    </style>
+</th:block>
+<body>
+	<div layout:fragment="content">
+		<div id="notice" class="wrap">
+			<form role="form" method="post" action="/notice">
+				<section id="content" style="margin-top: 0px;">
+					<div class="sub-top-title-area">
+						<div class="on-desktop">
+							<div class="title">공지사항</div>
+						</div>
+					</div>
+					<section class="sub_content notice">
+						<div class="list_section">
+							<ul class="cs-notice-list list_section noticeList">
+								<li class="table-category">
+									<dl class="order-th">
+										<dt class="notice-num">NO</dt>
+										<dt class="notice-status">구분</dt>
+										<dt class="notice-title">제목</dt>
+										<dt class="notice-date">날짜</dt>
+									</dl>
+								</li>
+								<li class="table-list">
+									<dl class="order-td">
+										<dd class="notice-num">4</dd>
+										<dd class="notice-status">공지</dd>
+										<dd class="notice-title">
+											<a href="javascript:;" class="btn_view" id="">공지사항4</a>
+										</dd>
+										<dd class="notice-date">2022.09.20</dd>
+									</dl>
+								</li>
+								<li class="table-list">
+									<dl class="order-td">
+										<dd class="notice-num">3</dd>
+										<dd class="notice-status">공지</dd>
+										<dd class="notice-title">
+											<a href="javascript:;" class="btn_view" id="">공지사항3</a>
+										</dd>
+										<dd class="notice-date">2022.09.20</dd>
+									</dl>
+								</li>
+								<li class="table-list">
+									<dl class="order-td">
+										<dd class="notice-num">2</dd>
+										<dd class="notice-status">공지</dd>
+										<dd class="notice-title">
+											<a href="javascript:;" class="btn_view" id="">공지사항2</a>
+										</dd>
+										<dd class="notice-date">2022.09.20</dd>
+									</dl>
+								</li>
+								<li class="table-list">
+									<dl class="order-td">
+										<dd class="notice-num">1</dd>
+										<dd class="notice-status">공지</dd>
+										<dd class="notice-title">
+											<a href="/notice/post" class="btn_view" id="">공지사항1</a>
+										</dd>
+										<dd class="notice-date">2022.09.20</dd>
+									</dl>
+								</li>
+							</ul>
+						</div>
+					</section>
+				</section>
+			</form>
+			<a href="#top" id="top-btn" class="on">맨 위로가기</a>
+		</div>
+	</div>
+</body>
+
+</html>

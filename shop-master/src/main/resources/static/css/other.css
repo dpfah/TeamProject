@@ -1,0 +1,7 @@
+.star-rating { display: block; *display: inline; width: 140px; height: 29px; vertical-align: middle; background: url(../img/ico_grade.png) no-repeat 0 0; background-size: 140px 180px; *zoom: 1; }
+.star-rating.t00 { background-position:0 0 }
+.star-rating.t01 { background-position:0 -29px }
+.star-rating.t02 { background-position: 0 -59px; }
+.star-rating.t03 { background-position: 0 -89px; }
+.star-rating.t04 { background-position: 0 -119px; }
+.star-rating.t05 { background-position: 0 -149px; }

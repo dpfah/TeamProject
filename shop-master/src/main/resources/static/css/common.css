@@ -1,8 +1,19 @@
+p { vertical-align: middle; }
+a { color: #666666; text-decoration: none; }
+ul, ol, dl, dt, dd, li { list-style: none; padding: 0; margin: 0; }
+div, h1, h2, h3, h4, h5, h6, ul, li, dl, dt, dd, p, form, fieldset, input, table, tr, th, td, button, textarea, select { margin: 0; padding: 0; }
+section, nav, article, aside, header, footer, main { display: block; }
+img { border: 0; vertical-align: top; }
+
 .fl_L{float:left !important; }
 .fl_R{float:right !important;}
-
+.ta_c { padding-left: 0 !important; padding-right: 0 !important; text-align: center !important; }
 
 /* float clear */
 .clearfix:after { clear:both; display:block; content:""; height:0; visibility:hidden;  }
 * html .clearfix { height:1px; }
 .clearfix { display:block; min-height:1px; }
+
+
+.btn-default { background: #EEEEEE; border-radius: 5px; color: #333333; font-size: 14px; line-height: 44px; text-align: center; }
+.btn-more { display: inline-block; width: auto; padding: 14px 60px; background: #333; border-radius: 5px; color: #fff; font-size: 18px; }

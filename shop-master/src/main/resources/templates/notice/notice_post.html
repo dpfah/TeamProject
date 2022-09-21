@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>빵주머니 - 공지사항</title>
+	
+	<link th:href="@{/css/notice.css}" rel="stylesheet">
+	<link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+	<style>
+        .error {
+            color: #bd2130;
+        }
+        
+		#notice .notice-view { margin-bottom: 80px; border-top: 2px solid #333; }
+		#notice .notice-view-title-area { margin: 40px auto 57px; text-align: center; }
+		#notice .notice-view-status { display: inline-block; padding: 6px 11px; font-size: 15px; font-weight: 500; color: #fff; background: #333; }
+		#notice .notice-view h3 { margin: 28px 0 17px; font-size: 32px; font-weight: 500; color: #000000; text-align: center; }
+		#notice .notice-view-date { font-size: 16px; }
+		#notice .notice-view .notice-view-txt-area { font-size: 16px; line-height: 1.75; padding: 0 60px 60px 60px; border-bottom: 2px solid #333; min-height: 500px; margin-bottom: 50px; }
+		#notice .btn-more { display: inline-block; width: auto; padding: 14px 60px; background: #333; border-radius: 5px; color: #fff; font-size: 18px; }
+
+		.ta_c { padding-left: 0 !important; padding-right: 0 !important; text-align: center !important; }
+		
+		#top-btn { overflow: hidden; position: fixed; z-index: 41; right: 31px; bottom: 0; width: 52px; height: 52px; border: 0; background: rgba(255,255,255,0.9) url(/img/topbtn.svg) no-repeat 50% 50%; background-size: 100%; font-size: 0; line-height: 0; text-indent: -9999px; opacity: 0; transition: .5s; border-radius: 50%; border: 1px solid #eee; box-shadow: 0 0 5px 3px rgb(0 0 0 / 1%); }
+		#top-btn.on { bottom: 90px; opacity: 1; transition: .5s; }
+    </style>
+</th:block>
+<body>
+	<div layout:fragment="content">
+		<div id="notice" class="wrap">
+			<form role="form" method="post" action="/notice/post">
+				<section id="content" style="margin-top: 0px;">
+					<div class="sub-top-title-area">
+						<div class="on-desktop">
+							<div class="title">공지사항</div>
+						</div>
+					</div>
+					<section class="sub_content notice">
+						<div class="list_section">
+							<div class="notice-view">
+								<div class="notice-view-title-area">
+									<span class="notice-view-status">#공지</span>
+									<h3>공지사항1</h3>
+									<span class="notice-view-date">2022.09.20</span>
+								</div>
+								<div class="notice-view-txt-area">
+									<!-- 이미지 파일로 공지 작성 -->
+									<p style="text-align: center;">
+										<img alt src="" style=" width: 100%; height: auto;">
+									</p>
+								</div>
+							</div>
+							<div class="btn_area ta_c">
+								<a href="/notice" class="btn-more btn_list">목록보기</a>
+							</div>
+						</div>
+					</section>
+				</section>
+			</form>
+			<a href="#top" id="top-btn" class="on">맨 위로가기</a>
+		</div>
+	</div>
+</body>
+
+</html>
