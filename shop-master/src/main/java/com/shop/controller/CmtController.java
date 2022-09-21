@@ -41,7 +41,7 @@ public class CmtController {
 //    public String main(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
 //
 //        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-//        Page<MainCmtDto> cmts = itemService.getMainCmtPage(itemSearchDto, pageable);
+//        Page<MainCmtDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
 //
 //        model.addAttribute("cmts", cmts);
 //        model.addAttribute("cmtSearchDto", cmtSearchDto);

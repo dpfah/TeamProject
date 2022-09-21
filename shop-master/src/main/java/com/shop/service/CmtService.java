@@ -16,6 +16,7 @@ import org.thymeleaf.util.StringUtils;
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtImgDto;
 import com.shop.dto.CmtSearchDto;
+import com.shop.dto.MainCmtDto;
 import com.shop.dto.MyCmtHistDto;
 import com.shop.entity.Cmt;
 import com.shop.entity.CmtImg;
@@ -166,7 +167,12 @@ public class CmtService {
         cmtRepository.deleteById(cmtId);
         
     }
-	
-   
+
+
+//    @Transactional(readOnly = true)
+//    public Page<MainCmtDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable){
+//        return cmtRepository.getMainCmtPage(cmtSearchDto, pageable);
+//    }
+//   
 
 }
