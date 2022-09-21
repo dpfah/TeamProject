@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
+import org.apache.groovy.parser.antlr4.util.StringUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,6 +19,7 @@ import com.shop.dto.MemberFormDto;
 import com.shop.dto.MemberImgDto;
 import com.shop.entity.Member;
 import com.shop.entity.MemberImg;
+import com.shop.entity.Oqna;
 import com.shop.repository.MemberImgRepository;
 import com.shop.repository.MemberRepository;
 
@@ -82,15 +84,21 @@ public class MemberService implements UserDetailsService {
         return memberFormDto;
     }
 
-    public Long updateMember(MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList, PasswordEncoder passwordEncoder) throws Exception{
-    	//문의 수정
+    public Long updateMember(String email, MemberFormDto memberFormDto, List<MultipartFile> memberImgFileList, PasswordEncoder passwordEncoder) throws Exception{
+    	//멤버 수정
         Member member = memberRepository.findById(memberFormDto.getId())
                  .orElseThrow(EntityNotFoundException::new);
         member.updateMember(memberFormDto, passwordEncoder);
         
         List<Long> memberImgIds = memberFormDto.getMemberImgIds();
         
-       if(memberImgIds.isEmpty()){ 
+        
+		
+		List<MemberImg> savedMemberImg = memberImgRepository.findByMemberEmail(email);
+            //    .orElseThrow(EntityNotFoundException::new);
+        
+        
+       if(memberImgIds.isEmpty() && savedMemberImg == null && savedMemberImg.size() == 0){ 
     	   
     	   for(int i =0; i<memberImgFileList.size();i++) {
         	MemberImg memberImg = new MemberImg();
@@ -109,6 +117,31 @@ public class MemberService implements UserDetailsService {
 
         return member.getId();
     }
-
+    
+//    public void deleteMember(String email) throws Exception{
+//        Member member = memberRepository.findByEmail(email);
+//        
+//          //      .orElseThrow(EntityNotFoundException::new)
+//        
+//
+////        List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
+////        
+////        if(oqnaImgList != null && oqnaImgList.size() != 0) {
+////        	 
+////        	oqnaImgRepository.deleteByOqnaId(oqnaId);
+////        	
+////        	
+////        }
+//        
+////        Long memberId = memberRepository.findById(null)
+////        
+////        oqnaService.deleteOqna(oqnaId);
+//        
+//        memberImgService.deleteMemberImg(email); //memberImgService에서 첨부된 Img를 삭제해준다
+//
+//        memberRepository.deleteByEmail(email); //member게시글을 삭제한다.
+//        
+//    }
+//    
 
 }
