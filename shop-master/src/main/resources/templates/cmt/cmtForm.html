@@ -96,8 +96,9 @@
 	        <p class="h1 title">
 	            커뮤니티 작성하기
 	        </p>
+	        <p class="warning">※ 타 사이트 광고를 기재하시는 경우, 임의로 삭제될 수 있사오니 타광고 기재는 삼가해 주세요.</p>
 	        <input type="hidden" th:field="*{id}">
-		    <div class="container px-4 px-lg-5 my-5">
+		    <div class="row">
 		        <div class="row align-items-center">
 		            <div class="col-md-12">
 						<div class="input-group ">
@@ -106,10 +107,9 @@
 				        <p th:if="${#fields.hasErrors('cmtTitle')}" th:errors="*{cmtTitle}" class="fieldError">Incorrect data</p>
 			     	</div>
 			    </div>
-			    <p class="warning">※ 타 사이트 광고를 기재하시는 경우, 임의로 삭제될 수 있사오니 타광고 기재는 삼가해 주세요.</p>
+			    
 				<div class="input-group">
 		            <textarea class="" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요"></textarea>
-		            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="문의 내용을 입력해주세요"></textarea>
 	        	</div>
 	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p>
 	        	
@@ -133,20 +133,12 @@
 		            </div>
 		        </div>
 		        
-		        <div sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-			        <p class="small-title mt-4">문의 답변을 작성해주세요</p>
-					<div class="input-group">
-			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtReply}" placeholder="문의 답변을 입력해주세요"></textarea>
-		        	</div>
-		        	<p th:if="${#fields.hasErrors('cmtReply')}" th:errors="*{cmtReply}" class="fieldError">Incorrect data</p>
-		        </div>
 		        <div th:if="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
 		            <button th:formaction="@{/cmt/new}" type="submit" class="btn btn-secondary save">등록</button>
 		        </div>
 		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
 		            <button th:formaction="@{'/cmt/update/' + ${cmtFormDto.id} }" type="submit" class="btn save">수정</button>
 		            <button  type="button" class="btn btn-secondary  close save" aria-label="Close">
-		          	<span aria-hidden="true" th:data-id="${cmtFormDto.id}" onclick ="deleteCmt(this)" class="btn btn-danger ">삭제하기</span>
 		       		</button>
 		            <button  type="button" class="btn close save" aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 		            	<span aria-hidden="true" th:data-id="${cmtFormDto.id}" onclick ="deleteCmt(this)">삭제하기</span>
