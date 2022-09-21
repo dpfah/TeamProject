@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -60,6 +62,29 @@ public class CmtImgService {
 	        }
 	    }
 
+	    // 삭제하기
+		public void deleteCmtImg(Long cmtId) throws Exception {
+			List<CmtImg> cmtImgList = cmtImgRepository.findByCmtId(cmtId); //cmtImgRepository에서 cmtId를 찾아서 cmtImg 리스트를 만들어준다.
+			
+			if(cmtImgList != null && cmtImgList.size() != 0) { // 리스트가 null이거나 리스트 사이즈가 0이 아닐때 리스트에 있는 이미지를 삭제해준다.
+				
+				for(CmtImg cmtImg : cmtImgList) {
+					if(!StringUtils.isEmpty(cmtImg.getImgName())) { //cmtImg의 이름부분이 채워져 있으면 폴더에 저장된 파일을 삭제할 것이다.
+						fileService.deleteFile(cmtImgLocation+"/"+
+								cmtImg.getImgName());
+					}
+					cmtImgRepository.deleteByCmtId(cmtId); // 그리고DB에 저장 된 것을 삭제해준다.
+				}
+			}
+		}
+
   
 
 }
+
+
+
+
+
+
+

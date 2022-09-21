@@ -14,6 +14,9 @@
 	    
 	    <!-- 사용자 지정 css -->    
 	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
+	    
+	    <meta name="_csrf" th:content="${_csrf.token}"/>
+    	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 	</head>
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
@@ -42,6 +45,39 @@
                 $(this).siblings(".custom-file-label").html(fileName);
             });
         }
+        
+        function deleteCmt(obj){
+	 		var cmtId = obj.dataset.id;
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/cmt/delete/" + cmtId;
+
+            $.ajax({
+                url      : url,
+                type     : "DELETE",
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    location.href='/cmts';
+                },
+                error : function(jqXHR, status, error){
+
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseJSON.message);
+                    }
+
+                }
+            });
+	
+		}
 
     </script>
 
@@ -118,12 +154,13 @@
 		        <div th:if="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
 		            <button th:formaction="@{/cmt/new}" type="submit" class="btn save">등록</button>
 		        </div>
-		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
+		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}">
 		            <button th:formaction="@{'/cmt/update/' + ${cmtFormDto.id} }" type="submit" class="btn save">수정</button>
+		            <button  type="button" class="btn close save" aria-label="Close">
+		          	<span aria-hidden="true" th:data-id="${cmtFormDto.id}" onclick ="deleteCmt(this)">삭제하기</span>
+		       		</button>
 		        </div>
-		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center">
-		            <button th:formaction="@{'/cmt/delete/' + ${cmtFormDto.id} }" type="submit" class="btn save">삭제</button>
-		        </div>
+		        
 		        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> 
 		    </div>           
 	    </form>

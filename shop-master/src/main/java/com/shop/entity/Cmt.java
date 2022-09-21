@@ -35,7 +35,7 @@ public class Cmt extends BaseEntity{
     private Long id;       //고유 번호
 
     @Column(nullable = false, length = 50)
-    private String cmtTitle; //
+    private String cmtTitle; //제목
     
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
@@ -79,8 +79,8 @@ public class Cmt extends BaseEntity{
         this.cmtStatus = CmtStatus.CANCEL;
     }
 
-
-
+    
+    
 
 
 }

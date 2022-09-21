@@ -10,30 +10,19 @@ public class MainCmtDto {
 
     private Long id;
 
-    private String cmtNm;
+    private String cmtTitle;
 
     private String cmtDetail;
 
     private String imgUrl;
 
-    private double price;	// 적립금
-    
-    private double percent;	// 정가
-    
-    private double ori_price;	// 할인가
-    
-    private String cmtSummary;		// 요약정보
 
     @QueryProjection
-    public MainCmtDto(Long id, String cmtNm, String Detail, String cmtSummary, String imgUrl,double price, double percent, double ori_price){
+    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl){
         this.id = id;
-        this.cmtNm = cmtNm;
+        this.cmtTitle = cmtTitle;
         this.cmtDetail = cmtDetail;
         this.imgUrl = imgUrl;
-        this.price = price;
-        this.ori_price = ori_price;
-        this.percent = percent;
-        this.cmtSummary = cmtSummary;
     }
 
 }

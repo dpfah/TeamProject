@@ -1,0 +1,24 @@
+#cmtDtl p{
+	margin-bottom:8px;
+}
+.cmtBox{
+	width:100%;
+}
+.cmtBox h1{
+	font-weight:bold;
+	font-size:28px;
+}
+.cmtBox .cmtImg{
+	width:1080px;
+	height:600px;
+	overflow:hidden;
+	margin:10px auto;
+}
+.cmtImg img{
+	width:100%;
+	height:auto;
+	
+}
+.cmtBox .form-control{
+	border:0;
+}
