@@ -143,10 +143,10 @@
 					        <td class="align-middle">
 						     	<div class="d-flex mb-3">
 						            <div class="ml-3">
-						                <th:block th:if="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).QnA}">
+						                <th:block th:if="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).Y}">
 						                    <button type="button" class="btn btn-outline-secondary" th:value="${oqna.oqnaId}" onclick="cancelOqna(this.value)">문의취소</button>
 						                </th:block>
-						                <th:block th:unless="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).QnA}">
+						                <th:block th:unless="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).Y}">
 						                    <span>(취소 완료)</span>
 						                </th:block>
 						            </div>

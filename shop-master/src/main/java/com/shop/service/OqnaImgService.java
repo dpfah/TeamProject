@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
+
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 @Service
@@ -58,7 +61,21 @@ public class OqnaImgService {
 	            savedOqnaImg.updateOqnaImg(oriImgName, imgName, imgUrl);
 	        }
 	    }
-	    
+
+		public void deleteOqnaImg(Long oqnaId) {
+		    List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
+	        
+	        if(oqnaImgList != null && oqnaImgList.size() != 0) {
+	        	
+	        	for(OqnaImg oqnaImg : oqnaImgList) {
+	        		oqnaImgRepository.deleteByOqnaId(oqnaId);
+	        	}
+	        	
+	        	
+	        }
+			
+	}
+    
 	    
 
 }

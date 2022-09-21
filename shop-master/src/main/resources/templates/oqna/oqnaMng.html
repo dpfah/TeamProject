@@ -55,7 +55,7 @@
                 <td>
                     <a th:href="'/oqna/dtl/'+${oqna.id}" th:text="${oqna.oqnaTitle}"></a>
                 </td>
-                <td th:text="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).QnA} ? '문의중' : '문의취소'"></td>
+                <td th:text="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).Y} ? '문의중' : '문의취소'"></td>
                 <td th:text="${oqna.createdBy}"></td>
                 <td th:text="${oqna.regTime}"></td>
             </tr>
@@ -101,8 +101,8 @@
                 <option value="사이트이용">사이트이용</option>
             </select> -->
             <select th:field="*{searchOqnaStatus}" class="form-control" style="width:auto;">
-                <option value="QnA">문의중</option>
-                <option value="Cancel">문의 취소</option>
+                <option value="Y">문의중</option>
+                <option value="N">문의 취소</option>
             </select>
             <select th:field="*{searchBy}" class="form-control" style="width:auto;">
                 <option value="oqnaTitle">1:1문의명</option>
