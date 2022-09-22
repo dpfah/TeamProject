@@ -56,11 +56,7 @@
 	text-align:center;
 	margin:30px auto;
 }
-.cmtBox button{
-	position:absolute;
-	right:0;
-	top:0;
-}
+
 .cmtBox button > a{
 	color:#fff;
 	font-size:16px;
@@ -70,4 +66,42 @@
 	color:#fff;
 
 }
+.ctmButtons{
+	display:block;
+	position:absolute;
+	right:0;
+	top:0;
+}
+.cmtBox button{
+	display:inline-block;
+	float:right;
+	width:120px;
+	margin-left:5px;
+}
+.jb-box {
+	position:relative;
+	width: 100%;
+	height: 320px;
+	overflow: hidden;
+	margin: 0px auto;
+	padding:0px;
+	background-color:#000;
+	}
+.jb-box video { 
+	width: 100%;
+	opacity:70%;
+	position:absolute;
+	left: 0;
+    bottom: 0%;
+	}
+.jb-box p{
+	position:absolute;
+	left:50%;
+	top:50%;
+	color:#000;	
+}
+
+
+
+
 

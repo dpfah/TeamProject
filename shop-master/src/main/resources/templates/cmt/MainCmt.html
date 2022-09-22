@@ -8,12 +8,12 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>cmt menu</title>
+        <title>커뮤니티</title>
         <!-- Bootstrap icons-->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="/css/cmt_menu_styles.css" rel="stylesheet" />
-        <link href="/css/cmt_menu.css" rel="stylesheet" />
+        <link href="/css/item_menu.css" rel="stylesheet" />
+        <link href="/css/cmt_styles.css" rel="stylesheet" />
         <style>
 		@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
 		</style>
@@ -24,79 +24,92 @@
     </th:block>
     <body>
         <!-- content 시작-->
-	 	<section id="cmt" class="cmt_menu" layout:fragment="content">	
+	 	<section id="cmt" class="item_menu" layout:fragment="content">	
 	        <!-- banner-->
 	        <div id="banner" >
 	            <div class="container">
 	                <div class="text-center text-white">
 	                    <h1 class="display-4 fw-bolder title fst-italic">커뮤니티</h1>
-	                    <img src="/img/cmt_banner.jpg">
+	                    <div class="container jb-box">
+	                         <video width="100%" height="auto" autoplay loop muted >
+	                            <source src="/img/isorepublic-free-video-baker-croissants.mp4" type="video/mp4">
+	                    		<strong>Your browser does not support the video tag.</strong>
+	                    	 </video>
+	                    </div>
 	                </div>
 	            </div>
 	        </div>
 	        <!-- small nav -->
 	        <div class="container pt-3 pb-3 px-4 my-5 sub-top-title-area">
                 <div class="text-left text-black">
-                    <h1 class="title">Shop</h1>
+                    <h1 class="title">커뮤니티</h1>
                 </div>
 	        </div>
-	        
-	        
 	        <!-- Section-->
 	        <section class="py-5 mb-3" >
 	            <div class="container px-4 mt-5">
 	                <div class="row gx-3 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
 	                <th:block th:each="cmt, status: ${cmts.getContent()}">	                	
 		                    <div class="col mb-5">
-		                        <div class="card h-100 border border-0">
-		                       		<a th:href="'/cmt/' +${cmt.id}" class="text-dark">
+		                        <div class="Mitems card h-100 border border-0">
+		                       		<a th:href="'/cmt/dtl/' +${cmt.id}" class="text-dark">
+		                       			<div class="imgCut">
 			                            <!-- Product image-->
-			                            <div class="card-img-top bg-light">
-			                          		<img th:src="${cmt.imgUrl}" th:alt="${cmt.cmtTitle}">
-			                            </div>
+			                          		<img th:src="${cmt.imgUrl}" th:alt="${cmt.cmtTitle}" class="card-img-top bg-light">
 			                            <!-- Product details-->
+		                       			</div>
 			                            <div class="product-list">
-				                            <div class="card-body">
-				                                <div class="text-left">
-				                                    <!-- Product name-->
-				                                    <h5 class="product-name fw-bolder">[[${cmt.cmtTitle}]]</h5>
-				                                    <!-- Product price-->
-				                                   	<div class="origin-price">[[${cmt.member_id}]]</div>
-				                                    <p>[[${cmt.cmtDate}]]원</p>
-				                                </div>
-				                            </div>
-				                            <!-- Product actions-->
-				                            <div class="cmtDetail card-footer pt-0 border-top-0 bg-transparent">
-				                                <div class="text-left">[[${cmt.cmtDetail}]]</div>
+				                            <div class="card-body text-left">
+			                                    <!-- Product name-->
+			                                    <h5 class="product-name fw-bolder">[[${cmt.cmtTitle}]]</h5>
+			                                   	<div class="origin-price">[[${cmt.createdBy}]]</div>
 				                            </div>
 			                            </div>
 		                            </a>
 		                        </div>
 		                    </div>
-	                	  
 	                </th:block>
 	                </div>
-	                 <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
-				        <ul class="pagination justify-content-center">
-				
-				            <li class="page-cmt" th:classappend="${cmts.number eq 0}?'disabled':''">
-				                <a th:href="@{'/cmt' + '?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number-1}}" aria-label='Previous' class="page-link previous">
-				                    <span aria-hidden='true'>Previous</span>
-				                </a>
-				            </li>
-				
-				            <li class="page-cmt" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
-				                <a th:href="@{'/cmt' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
-				            </li>
-				
-				            <li class="page-cmt" th:classappend="${cmts.number+1 ge cmts.totalPages}?'disabled':''">
-				                <a th:href="@{'/cmt' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number+1}}" aria-label='Next' class="page-link next">
-				                    <span aria-hidden='true'>Next</span>
-				                </a>
-				            </li>
-				
-				        </ul>
-				    </div>
+	                  		<!-- paging -->
+					        <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
+					            <ul class="pagination justify-content-center">
+					
+					                <li class="page-item" th:classappend="${cmts.first}?'disabled'">
+					                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link">
+					                        <span aria-hidden='true'>Previous</span>
+					                    </a>
+					                </li>
+					
+					                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
+					                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+					                </li>
+					
+					                <li class="page-item" th:classappend="${cmts.last}?'disabled'">
+					                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link">
+					                        <span aria-hidden='true'>Next</span>
+					                    </a>
+					                </li>
+					
+					            </ul>
+					        </div>
+					       
+						    
+					
+					        <div class="form-inline justify-content-center" th:object="${cmtSearchDto}">
+					            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
+					                <option value="all">전체기간</option>
+					                <option value="1d">1일</option>
+					                <option value="1w">1주</option>
+					                <option value="1m">1개월</option>
+					                <option value="6m">6개월</option>
+					            </select>
+					            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+					            	<option value="">옵션</option>
+					                <option value="name">이름</option>
+					            </select>
+					            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+					            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+					        </div>
 	            </div>
 	        </section>
 	        <!-- Footer-->
