@@ -41,7 +41,7 @@ public class Item extends BaseEntity {
     private double percent; //할인율
     
     @Column(name="ori_price", nullable = false)
-    private double ori_price; //가격
+    private int ori_price; //가격
     
     @Column(name="price", nullable = false)
     private double price; //가격
@@ -76,7 +76,7 @@ public class Item extends BaseEntity {
         this.itemType = itemFormDto.getItemType();
         this.itemSNm = itemFormDto.getItemSNm();
         this.itemSummary = itemFormDto.getItemSummary();
-        this.percent = itemFormDto.getPercent();
+        this.percent = Math.round(itemFormDto.getPercent()*100)/100;
         this.point = itemFormDto.getPoint();
         
     }

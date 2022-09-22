@@ -15,7 +15,7 @@ public class ItemDto {
     
     private String itemSNm;
 
-    private double ori_price;
+    private int ori_price;
     
     private double price;
     
