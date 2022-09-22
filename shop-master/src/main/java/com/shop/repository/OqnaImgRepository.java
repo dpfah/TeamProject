@@ -12,7 +12,7 @@ public interface OqnaImgRepository extends JpaRepository<OqnaImg, Long> {
 
     OqnaImg findByOqnaIdAndRepimgYn(Long oqnaId, String repimgYn);
 
-	OqnaImg deleteByOqnaId(Long oqnaId);
+	Long deleteByOqnaId(Long oqnaId);
 
 	List<OqnaImg> findByOqnaId(Long oqnaId);
 

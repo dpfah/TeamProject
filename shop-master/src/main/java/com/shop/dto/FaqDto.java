@@ -7,15 +7,15 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CmtDto {
+public class FaqDto {
 
     private Long id;
 
-    private String cmtTitle;
-   
-    private String name;
+    private String faqTitle;
     
-    private String cmtDetail;
+    private String faqReply;
+    
+    private String qnaType;
 
     private LocalDateTime regTime;
 

@@ -1,7 +1,10 @@
 package com.shop.entity;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -13,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.shop.constant.OqnaStatus;
@@ -58,6 +62,9 @@ public class Oqna extends BaseEntity{
     private String oqnaReply; //oQnA 답변
     
     private int count; //수량
+    
+//    @OneToMany(mappedBy = "oqnaId", cascade = {CascadeType.ALL}, orphanRemoval=true)
+//    private List<OqnaImg> oqnaImgs;
 
     public void updateOqna(OqnaFormDto oqnaFormDto){
         this.oqnaTitle = oqnaFormDto.getOqnaTitle();
@@ -75,14 +82,14 @@ public class Oqna extends BaseEntity{
 		oqna.setOqnaDetail(oqnaFormDto.getOqnaDetail());
 		oqna.setQnaType(oqnaFormDto.getQnaType());
 		oqna.setOqnaReply(oqnaFormDto.getOqnaReply());
-        oqna.setOqnaStatus(OqnaStatus.QnA);
+        oqna.setOqnaStatus(OqnaStatus.Y);
         oqna.setOqnaDate(LocalDateTime.now());
         return oqna;
     }
 
 
     public void cancelOqna() {
-        this.oqnaStatus = OqnaStatus.CANCEL;
+        this.oqnaStatus = OqnaStatus.N;
     }
 
 

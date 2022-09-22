@@ -22,8 +22,8 @@ public class CmtImgDto {
 
     private static ModelMapper modelMapper = new ModelMapper();
 
-    public static CmtImgDto of(CmtImg oQnAImg) {
-        return modelMapper.map(oQnAImg,CmtImgDto.class);
+    public static CmtImgDto of(CmtImg cmtImg) {
+        return modelMapper.map(cmtImg,CmtImgDto.class);
     }
 
 }

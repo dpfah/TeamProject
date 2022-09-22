@@ -14,8 +14,11 @@ import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import com.shop.dto.CmtSearchDto;
+import com.shop.dto.MainCmtDto;
+import com.shop.dto.QMainCmtDto;
 import com.shop.entity.Cmt;
 import com.shop.entity.QCmt;
+import com.shop.entity.QCmtImg;
 
 
 public class CmtRepositoryCustomImpl implements CmtRepositoryCustom{
@@ -80,44 +83,47 @@ public class CmtRepositoryCustomImpl implements CmtRepositoryCustom{
 
         return new PageImpl<>(content, pageable, total);
     }
+    
+    private BooleanExpression cmtTitleLike(String searchQuery){
+        return StringUtils.isEmpty(searchQuery) ? null : QCmt.cmt.cmtTitle.like("%" + searchQuery + "%");
+    }
 
 
-//    @Override
-//    public Page<MyCmtHistDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable) {
-//        QCmt cmt = QCmt.cmt;
-//        QCmtImg cmtImg = QCmtImg.cmtImg;
-//
-//        List<MyCmtHistDto> content = queryFactory
-//                .select(
-//                        new QMyCmtHistDto(
-//                                cmt.id,
-//                                cmt.cmtTitle,
-//                                cmt.cmtDetail,
-//                                cmtImg.imgUrl,
-//                                cmt.cmtDate,
-//                                cmt.cmtStatus
-//                                )
-//                )
-//                .from(cmtImg)
-//                .join(cmtImg.cmt, cmt)
-//                .where(cmtImg.repimgYn.eq("Y"))
-//                .where(cmtTitleLike(cmtSearchDto.getSearchQuery()))
-//                .orderBy(cmt.id.desc())
-//                .offset(pageable.getOffset())
-//                .limit(pageable.getPageSize())
-//                .fetch();
-//
-//        long total = queryFactory
-//                .select(Wildcard.count)
-//                .from(cmtImg)
-//                .join(cmtImg.cmt, cmt)
-//                .where(cmtImg.repimgYn.eq("Y"))
-//                .where(cmtTitleLike(cmtSearchDto.getSearchQuery()))
-//                .fetchOne()
-//                ;
-//
-//        return new PageImpl<>(content, pageable, total);
-//    }
+    // 메인 제품
+    @Override
+    public Page<MainCmtDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable) {
+        QCmt cmt = QCmt.cmt;
+        QCmtImg cmtImg = QCmtImg.cmtImg;
+
+        List<MainCmtDto> content = queryFactory
+                .select(
+                        new QMainCmtDto(
+                                cmt.id,
+                                cmt.cmtTitle,
+                                cmt.cmtDetail,
+                                cmtImg.imgUrl,
+                                cmt.name)
+                )
+                .from(cmtImg)
+                .join(cmtImg.cmt, cmt)
+                .where(cmtImg.repimgYn.eq("Y"))
+                .where(cmtTitleLike(cmtSearchDto.getSearchQuery()))
+                .orderBy(cmt.id.desc())
+                .offset(pageable.getOffset())
+                .limit(pageable.getPageSize())
+                .fetch();
+
+        long total = queryFactory
+                .select(Wildcard.count)
+                .from(cmtImg)
+                .join(cmtImg.cmt, cmt)
+                .where(cmtImg.repimgYn.eq("Y"))
+                .where(cmtTitleLike(cmtSearchDto.getSearchQuery()))
+                .fetchOne()
+                ;
+
+        return new PageImpl<>(content, pageable, total);
+    }
     
 
 }

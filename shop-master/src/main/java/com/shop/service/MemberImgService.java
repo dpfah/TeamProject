@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.List;
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import com.shop.entity.MemberImg;
+import com.shop.entity.OqnaImg;
 import com.shop.repository.MemberImgRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -59,5 +62,20 @@ public class MemberImgService {
 	            savedMemberImg.updateMemberImg(oriImgName, imgName, imgUrl);
 	        } 
 	    }
-
+	    
+//		public void deleteMemberImg(String email) throws Exception {
+//		    List<MemberImg> memberImgList = memberImgRepository.findByMemberEmail(email); //oqnaImgRepository에서 oqnaId를 찾아서 oqnaImg 리스트를 만들어준다.
+//	        
+//	        if(memberImgList != null && memberImgList.size() != 0) { // 리스트가 null이거나 리스트 사이즈가 0이 아닐때 리스트에 있는 이미지를 삭제해준다.
+//	        	
+//	        	for(MemberImg memberImg : memberImgList) {
+//	        		 if(!StringUtils.isEmpty(memberImg.getImgName())) { //oqnaImg의 이름부분이 채워져 있으면 폴더에 저장된 파일을 삭제할 것이다.
+//	 	                fileService.deleteFile(memberImgLocation+"/"+
+//	 	                        memberImg.getImgName());
+//	 	            }
+//	        		memberImgRepository.deleteByMemberEmail(email);// 그리고DB에 저장 된 것을 삭제해준다.
+//	        		
+//	        	}
+//	        }
+//		}	
 }

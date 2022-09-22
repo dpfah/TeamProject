@@ -1,0 +1,75 @@
+#cmtDtl p{
+	margin-bottom:8px;
+}
+.cmtBox{
+	width:100%;
+	position:relative;
+}
+.cmtBox h1{
+	font-weight:bold;
+	font-size:34px;
+}
+.cmtBox .cmtImg{
+	overflow:hidden;
+}
+.cmtImg img{
+	width:100%;
+	height:auto;
+}
+.cmtBox .form-control{
+	border:0;
+}
+
+
+.cmtF{
+	
+}
+.cmtF input, .cmtF .input-group , .cmtF textarea{
+	border:0;
+	font-size: 34px;
+	width:100%;
+	margin-bottom:5px;
+}
+.cmtF input::placeholder, .cmtF .input-group::placeholder , .cmtF textarea::placeholder{
+	color:#ddd;
+	font-weight: bold;
+}
+.cmtF input::after, .cmtF .input-group::after , .cmtF textarea::after{
+	border:0;
+}
+.cmtF .input-title{
+	color:#666;
+	font-weight: bold;
+}
+.cmtF textarea{
+	font-size: 16px;
+	color:#666;
+	font-weight: normal;
+	height:600px;
+}
+.cmtF .fieldError{
+	color:red;
+}
+
+
+
+.cmtBox .cmtP{
+	font-size:16px;
+	text-align:center;
+	margin:30px auto;
+}
+.cmtBox button{
+	position:absolute;
+	right:0;
+	top:0;
+}
+.cmtBox button > a{
+	color:#fff;
+	font-size:16px;
+	text-align:center;
+}
+.cmtBox button > a:hover{
+	color:#fff;
+
+}
+

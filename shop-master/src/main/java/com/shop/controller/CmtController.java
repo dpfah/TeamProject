@@ -25,6 +25,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtSearchDto;
+import com.shop.dto.MainCmtDto;
 import com.shop.dto.MyCmtHistDto;
 import com.shop.entity.Cmt;
 import com.shop.service.CmtService;
@@ -37,18 +38,18 @@ public class CmtController {
 
     private final CmtService cmtService;
     
-//    @GetMapping(value = "/cmt")
-//    public String cmt(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
-//
-//        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
-//        Page<MyCmtHistDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
-//
-//        model.addAttribute("cmts", cmts);
-//        model.addAttribute("cmtSearchDto", cmtSearchDto);
-//        model.addAttribute("maxPage", 5);
-//
-//        return "mypage/cmt";
-//    }
+    @GetMapping(value = "/mainCmt")
+    public String main(CmtSearchDto cmtSearchDto, Optional<Integer> page, Model model){
+
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
+        Page<MainCmtDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
+
+        model.addAttribute("cmts", cmts);
+        model.addAttribute("cmtSearchDto", cmtSearchDto);
+        model.addAttribute("maxPage", 2);
+
+        return "cmt/MainCmt";
+    }
     
     //마이페이지에서 1:1문의 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
@@ -67,21 +68,6 @@ public class CmtController {
     }
     
     
-    // 마이페이지에서 1:1 문의 취소하기
-    @PostMapping("/cmt/{cmtId}/cancel")
-    public @ResponseBody ResponseEntity cancelCmt(@PathVariable("cmtId") Long cmtId , Principal principal){
-
-        if(!cmtService.validateCmt(cmtId, principal.getName())){
-            return new ResponseEntity<String>("주문 취소 권한이 없습니다.", HttpStatus.FORBIDDEN);
-        }
-
-        cmtService.cancelCmt(cmtId);
-        return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
-    }
-    
-
-
-    
     // 1:1문의 작성
     @GetMapping(value = "/cmt/new")
     public String cmtForm(Model model, Principal principal){
@@ -99,10 +85,10 @@ public class CmtController {
             return "cmt/cmtForm";
         }
 
-        if(cmtImgFileList.get(0).isEmpty() && cmtFormDto.getId() == null){
-            model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
-            return "cmt/cmtForm";
-        }
+//        if(cmtImgFileList.get(0).isEmpty() && cmtFormDto.getId() == null){
+//            model.addAttribute("errorMessage", "첫번째 이미지는 필수 입력 값 입니다.");
+//            return "cmt/cmtForm";
+//        }
         
         // email을 세션에서 받아온다.
         String email = principal.getName();
@@ -180,13 +166,21 @@ public class CmtController {
         return "cmt/cmtDtl";
     }
     
-    // 삭제버튼
-    @DeleteMapping("/cmt/delete/{cmtid}")
-    public String delete(@PathVariable("cmtid") Long cmtid) {
-    	 
-        cmtService.deleteCmt(cmtid);
-        return "cmt/cmtForm";
+    // 삭제하기
+    @DeleteMapping(value = "/cmt/delete/{cmtId}")
+    public @ResponseBody ResponseEntity deleteCmt(@PathVariable("cmtId")
+    	Long cmtId, Principal principal, @Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
+            Model model) throws Exception
+    {
+    
+    	if(!cmtService.validateCmt(cmtId, principal.getName())) {
+    		return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+    	}
+    	
+    	cmtService.deleteCmt(cmtId);
+    	return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
     }
     
+
 
 }

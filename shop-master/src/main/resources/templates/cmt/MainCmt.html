@@ -18,7 +18,10 @@
 		@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
 		</style>
     </head>
-    
+    <th:block layout:fragment="script">
+	    <style>
+	    </style>
+    </th:block>
     <body>
         <!-- content 시작-->
 	 	<section id="bread" class="cmt_menu" layout:fragment="content">	
@@ -26,7 +29,7 @@
 	        <div id="banner" >
 	            <div class="container">
 	                <div class="text-center text-white">
-	                    <h1 class="display-4 fw-bolder title fst-italic">커뮤니티</h1>
+	                    <h1 class="display-4 fw-bolder title fst-italic">Bread</h1>
 	                    <img src="/img/bread_banner.jpg">
 	                </div>
 	            </div>
@@ -34,7 +37,7 @@
 	        <!-- small nav -->
 	        <div class="container pt-3 pb-3 px-4 my-5 sub-top-title-area">
                 <div class="text-left text-black">
-                    <h1 class="title">커뮤니티</h1>
+                    <h1 class="title">Shop</h1>
                 </div>
 	        </div>
 	        <nav class="sub-top-nav-area navbar navbar-expand-lg">
@@ -42,7 +45,19 @@
 			    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			      <span class="navbar-toggler-icon"></span>
 			    </button>
-			    
+			    <div class="collapse navbar-collapse" id="navbarNav">
+			      <ul class="navbar-nav">
+			        <li class="nav-cmt">
+			          <a class="nav-link" href="/cake">Cake</a>
+			        </li>
+			        <li class="nav-cmt">
+			          <a class="nav-link" href="/cookies">Cookies</a>
+			        </li>
+			        <li class="nav-cmt">
+			          <a class="nav-link" href="/bread">Bread</a>
+			        </li>
+			      </ul>
+			    </div>
 			  </div>
 			</nav>
 	        <!-- Section-->
@@ -64,7 +79,8 @@
 				                                    <!-- Product name-->
 				                                    <h5 class="product-name fw-bolder">[[${cmt.cmtTitle}]]</h5>
 				                                    <!-- Product price-->
-				                                   	<div class="origin-price">[[${cmt.Summary}]]</div>
+				                                   	<div class="origin-price">[[${cmt.member_id}]]</div>
+				                                    <p>[[${cmt.cmtDate}]]원</p>
 				                                </div>
 				                            </div>
 				                            <!-- Product actions-->
@@ -78,6 +94,27 @@
 	                	  
 	                </th:block>
 	                </div>
+	                 <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
+				        <ul class="pagination justify-content-center">
+				
+				            <li class="page-cmt" th:classappend="${cmts.number eq 0}?'disabled':''">
+				                <a th:href="@{'/bread' + '?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number-1}}" aria-label='Previous' class="page-link previous">
+				                    <span aria-hidden='true'>Previous</span>
+				                </a>
+				            </li>
+				
+				            <li class="page-cmt" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
+				                <a th:href="@{'/bread' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+				            </li>
+				
+				            <li class="page-cmt" th:classappend="${cmts.number+1 ge cmts.totalPages}?'disabled':''">
+				                <a th:href="@{'/bread' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number+1}}" aria-label='Next' class="page-link next">
+				                    <span aria-hidden='true'>Next</span>
+				                </a>
+				            </li>
+				
+				        </ul>
+				    </div>
 	            </div>
 	        </section>
 	        <!-- Footer-->

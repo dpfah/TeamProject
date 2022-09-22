@@ -37,4 +37,5 @@ public interface CmtRepository extends JpaRepository<Cmt, Long>,
     )
     Long countCmt(@Param("email") String email);
 
+
 }

@@ -80,20 +80,18 @@
 			<input type="hidden" id="memberId" th:value="${member.id}">
 		        <h1 style="margin-bottom: 20px;">개인정보 수정</h1>
 		        <div th:each="memberImg : ${member.memberImgDtoList}" class="text-center pt-5">
-			    	<img th:if="${not #strings.isEmpty(memberImg.imgUrl)}" th:src="${memberImg.imgUrl}" class="rounded mgb-15" width="300" height="300">
+			    	<img th:if="${not #strings.isEmpty(memberImg.imgUrl)}" th:src="${memberImg.imgUrl}" class="rounded-circle mb-5 bg-light" width="300" height="300">
 				</div>
 		        <div class="form-group">
 		            <p class="form-control" th:text="${member.name}"></p>
 		        </div>
-		        <div class="form-group">
-			        <div class="radio-wrap multi-column">
-			        	<div class="flt-l">
-			        		<p class="form-control" th:text="${member.birth}"></p>
-			        	</div>
-			        	<div class="radio-area">
-			        		<p class="form-control" th:text="${member.gender}"></p>
-			        	</div>
-			        </div>
+		        <div class="radio-wrap multi-column">
+		        	<div class="flt-l">
+		        		<p class="form-control" th:text="${member.birth}"></p>
+		        	</div>
+		        	<div class="radio-area">
+		        		<p class="form-control" th:text="${member.gender}"></p>
+		        	</div>
 		        </div>
 		        <div class="form-group">
 		       		<p class="form-control" th:text="${member.phone}"></p>

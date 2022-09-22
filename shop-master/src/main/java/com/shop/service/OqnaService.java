@@ -17,9 +17,14 @@ import com.shop.dto.MyOqnaHistDto;
 import com.shop.dto.OqnaFormDto;
 import com.shop.dto.OqnaImgDto;
 import com.shop.dto.OqnaSearchDto;
+import com.shop.dto.OrderHistDto;
+import com.shop.dto.OrderItemDto;
+import com.shop.entity.ItemImg;
 import com.shop.entity.Member;
 import com.shop.entity.Oqna;
 import com.shop.entity.OqnaImg;
+import com.shop.entity.Order;
+import com.shop.entity.OrderItem;
 import com.shop.repository.MemberRepository;
 import com.shop.repository.OqnaImgRepository;
 import com.shop.repository.OqnaRepository;
@@ -109,7 +114,7 @@ public class OqnaService {
     public Page<MyOqnaHistDto> getOqnaList(String email, Pageable pageable) {
 
         List<Oqna> oqnas = oqnaRepository.findOqnas(email, pageable);
-        Long totalCount = oqnaRepository.countOqna(email); //빼야함
+        Long totalCount = oqnaRepository.countOqna(email); //수정
 
         List<MyOqnaHistDto> myOqnaHistDtos = new ArrayList<>();
         
@@ -145,17 +150,26 @@ public class OqnaService {
     
    
     
-    public void deleteOqna(Long oqnaId){
+    public void deleteOqna(Long oqnaId) throws Exception{
         Oqna oqna = oqnaRepository.findById(oqnaId)
                 .orElseThrow(EntityNotFoundException::new);
         
-        List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
+
+//        List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
+//        
+//        if(oqnaImgList != null && oqnaImgList.size() != 0) {
+//        	 
+//        	oqnaImgRepository.deleteByOqnaId(oqnaId);
+//        	
+//        	
+//        }
         
-        if(oqnaImgList != null && oqnaImgList.size() != 0) {
-        	oqnaImgRepository.deleteByOqnaId(oqnaId);
-        }
+        oqnaImgService.deleteOqnaImg(oqnaId); //oqnaImgService에서 첨부된 Img를 삭제해준다
+
+        oqnaRepository.deleteById(oqnaId); //oqna게시글을 삭제한다.
         
-        oqnaRepository.deleteById(oqnaId);
     }
+    
+
 
 }

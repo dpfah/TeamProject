@@ -23,7 +23,7 @@ public class ItemFormDto {
     @NotBlank(message = "상품명은 필수 입력 값입니다.")
     private String itemNm;
     
-    @NotBlank(message = "상품부제목은 필수 입력 값입니다.")
+
     private String itemSNm;
 
     @NotNull(message = "가격은 필수 입력 값입니다.")
@@ -68,7 +68,7 @@ public class ItemFormDto {
     }
     
     public double getPrice() {
-    	return Math.round((ori_price - (ori_price *percent/100))/10)*10;
+    	return Math.round((ori_price - (ori_price *percent/100)));
     }
 
 }

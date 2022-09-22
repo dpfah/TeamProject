@@ -1,19 +1,24 @@
 package com.shop.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.MemberFormDto;
@@ -86,7 +91,7 @@ public class MemberController {
 
   //멤버 업데이트 페이지에서 수정 내용 
     @PostMapping(value = "/update/{email}")
-    public String memberUpdate(@Valid MemberFormDto memberFormDto, BindingResult bindingResult,
+    public String memberUpdate(@PathVariable("email") String email, @Valid MemberFormDto memberFormDto, BindingResult bindingResult,
                              @RequestParam("memberImgFile") List<MultipartFile> memberImgFileList, Model model){
         if(bindingResult.hasErrors()){
             return "member/memberUpdateForm";
@@ -98,7 +103,8 @@ public class MemberController {
         }
 
         try {
-			memberService.updateMember(memberFormDto, memberImgFileList, passwordEncoder);
+			
+			memberService.updateMember(email, memberFormDto, memberImgFileList, passwordEncoder);
         } catch (Exception e){
             model.addAttribute("errorMessage", "개인정보 수정 중 에러가 발생하였습니다.");
             return "member/memberUpdateForm";
@@ -115,5 +121,19 @@ public class MemberController {
         return "member/memberDtl";
     }
     
+    
+//    @DeleteMapping(value = "/delete/{email}")
+//    public @ResponseBody ResponseEntity deleteMember(@PathVariable("email") String email, Principal principal, @Valid MemberFormDto memberFormDto, BindingResult bindingResult,
+//            Model model) throws Exception
+//    {
+//    
+//		//    	if(!principal.getName().equals(email)) {
+////    		return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+////    	}
+////    	
+//    	memberService.deleteMember(email);
+//    	return new ResponseEntity<String>(email, HttpStatus.OK);
+//    }
+
 
 }

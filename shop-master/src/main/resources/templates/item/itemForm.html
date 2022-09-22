@@ -103,9 +103,9 @@
 				        </div>
 				        <p th:if="${#fields.hasErrors('itemNm')}" th:errors="*{itemNm}" class="fieldError">Incorrect data</p>
 	                	<div class="input-group">
-	                		<input class="form-control" type="text" th:field="*{itemSNm}" placeholder="부제목을 입력해주세요">
+	                		<input class="form-control" type="text" th:field="*{itemSNm}" required placeholder="부제목을 입력해주세요">
 	                	</div>
-	                	<p th:if="${#fields.hasErrors('itemSNm')}" th:errors="*{itemSNm}" class="fieldError">Incorrect data</p>
+<!--	                	<p th:if="${#fields.hasErrors('itemSNm')}" th:errors="*{itemSNm}" class="fieldError">Incorrect data</p>-->
 	                	<div>
 	                    	<input class="form-control percent" type="text" th:field="*{percent}" placeholder="할인률">
 	                    	<span class="percentS">%</span>
