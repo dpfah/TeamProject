@@ -14,6 +14,10 @@
 	    
 	    <!-- 사용자 지정 css -->    
 	    <link th:href="@{/css/itemDtl_styles.css}" rel="stylesheet">
+	    
+		<!--삭제하기 위해서 넣음-->
+	    <meta name="_csrf" th:content="${_csrf.token}"/>
+    	<meta name="_csrf_header" th:content="${_csrf.headerName}"/>
 	</head>
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
@@ -42,6 +46,39 @@
                 $(this).siblings(".custom-file-label").html(fileName);
             });
         }
+        
+               function deleteFaq(obj){
+	 		var faqId = obj.dataset.id;
+            var token = $("meta[name='_csrf']").attr("content");
+            var header = $("meta[name='_csrf_header']").attr("content");
+
+            var url = "/faq/delete/" + faqId;
+
+            $.ajax({
+                url      : url,
+                type     : "DELETE",
+                beforeSend : function(xhr){
+                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                    xhr.setRequestHeader(header, token);
+                },
+                dataType : "json",
+                cache   : false,
+                success  : function(result, status){
+                    location.href='/admin/faqs';
+                },
+                error : function(jqXHR, status, error){
+
+                    if(jqXHR.status == '401'){
+                        alert('로그인 후 이용해주세요');
+                        location.href='/members/login';
+                    } else{
+                        alert(jqXHR.responseJSON.message);
+                    }
+
+                }
+            });
+	
+		}
 
     </script>
 
@@ -54,8 +91,9 @@
     </style>
 </th:block>
 
-	<section id="itemForm" class="py-5 itemA" layout:fragment="content">	
+	<section id="faqForm" class="py-5 itemA" layout:fragment="content">	
 	    <form role="form" method="post" enctype="multipart/form-data" th:object="${faqFormDto}">
+	    	<input type="hidden" th:field="*{id}">
 	        <p class="h2">
 	            FAQ 등록
 	        </p>
@@ -92,9 +130,13 @@
 		        </div>
 		        <div th:unless="${#strings.isEmpty(faqFormDto.id)}" style="text-align: center">
 		            <button th:formaction="@{'/admin/faq/' + ${faqFormDto.id} }" type="submit" class="btn save">수정</button>
+		            <button  type="button" class="btn close save" aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		            	<span aria-hidden="true" th:data-id="${faqFormDto.id}" onclick ="deleteFaq(this)">삭제하기</span>
+		            </button>
 		        </div>
 		        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> 
 		    </div>           
 	    </form>
+	    
 	</section>
 </html>

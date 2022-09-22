@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import java.security.Principal;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -8,12 +9,16 @@ import javax.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.shop.dto.FaqFormDto;
 import com.shop.dto.FaqSearchDto;
@@ -111,6 +116,15 @@ public class FaqController {
         model.addAttribute("maxPage", 5);
 
         return "faq/faqMng";
+    }
+    
+    @DeleteMapping(value = "/faq/delete/{faqId}")
+    public @ResponseBody ResponseEntity deleteFaq(@PathVariable("faqId") Long faqId, Principal principal, @Valid FaqFormDto faqFormDto, BindingResult bindingResult,
+            Model model) throws Exception
+    {
+    	
+    	faqService.deleteFaq(faqId);
+    	return new ResponseEntity<Long>(faqId, HttpStatus.OK);
     }
 
 }
