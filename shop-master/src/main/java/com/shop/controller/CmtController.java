@@ -43,7 +43,7 @@ public class CmtController {
 
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
         Page<MainCmtDto> cmts = cmtService.getMainCmtPage(cmtSearchDto, pageable);
-
+        
         model.addAttribute("cmts", cmts);
         model.addAttribute("cmtSearchDto", cmtSearchDto);
         model.addAttribute("maxPage", 2);
@@ -55,7 +55,7 @@ public class CmtController {
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
     public String cmtHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 4);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
         Page<MyCmtHistDto> myCmtsHistDtoList = cmtService.getCmtList(principal.getName(), pageable);
        
         // 세션에서 받아온 이메일
@@ -148,7 +148,7 @@ public class CmtController {
     @GetMapping(value = {"/admin/cmts", "/admin/cmts/{page}"})
     public String cmtManage(CmtSearchDto cmtSearchDto, @PathVariable("page") Optional<Integer> page, Model model){
 
-        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 3);
+        Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
         Page<Cmt> cmts = cmtService.getAdminCmtPage(cmtSearchDto, pageable);
 
         model.addAttribute("cmts", cmts);

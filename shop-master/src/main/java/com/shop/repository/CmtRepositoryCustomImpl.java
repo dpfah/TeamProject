@@ -1,6 +1,7 @@
 package com.shop.repository;
 
 import java.time.LocalDateTime;
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -102,7 +103,7 @@ public class CmtRepositoryCustomImpl implements CmtRepositoryCustom{
                                 cmt.cmtTitle,
                                 cmt.cmtDetail,
                                 cmtImg.imgUrl,
-                                cmt.name)
+                                cmt.createdBy)
                 )
                 .from(cmtImg)
                 .join(cmtImg.cmt, cmt)

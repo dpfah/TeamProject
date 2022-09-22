@@ -23,8 +23,6 @@ public class CmtFormDto {
     @NotBlank(message = "상세 설명은 필수 입력 값입니다.")
     private String cmtDetail;
     
-    private String name;
-    
     private String cmtReply;
 
     private List<CmtImgDto> cmtImgDtoList = new ArrayList<>();

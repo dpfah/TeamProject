@@ -18,7 +18,7 @@ public class MyCmtHistDto {
     
     private String cmtReply;
     
-    private String name;
+    
 
 
     public MyCmtHistDto(Cmt cmt){
@@ -26,8 +26,6 @@ public class MyCmtHistDto {
         this.cmtTitle = cmt.getCmtTitle();
 		this.cmtDate = cmt.getCmtDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.cmtReply = cmt.getCmtReply();
-        this.name = cmt.getName();
-
     }
 
 }

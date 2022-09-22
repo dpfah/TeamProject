@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
+      
+
 
 <!-- 사용자 스크립트 추가 -->
 <th:block layout:fragment="script">
@@ -33,20 +35,37 @@
         select{
             margin-right:10px;
         }
+        
+        .CmtTSu td{
+			text-align:center;
+		}
+		.CmtTSu th{
+			background-color:#f1f1f1;
+			font-weight: bold;
+			text-align:center;
+		}
+		.CmtTSu td a{
+			color:#666;
+		}
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
     <form th:action="@{'/admin/cmts/' + ${cmts.number}}" role="form" method="get" th:object="${cmts}">
-        <table class="table">
+        <table class="table CmtTSu">
+			<colgroup>
+                <col width="25%"/>
+                <col width="25%"/>
+                <col width="25%"/>
+                <col width="25%"/>
+            </colgroup>        
             <thead>
             <tr>
-                <td>문의번호</td>
-                <td>제목</td>
-                <td>상태</td>
-                <td>등록자</td>
-                <td>등록일</td>
+                <th>문의번호</th>
+                <th>제목</th>
+                <th>등록자</th>
+                <th>등록일</th>
             </tr>
             </thead>
             <tbody>
@@ -56,7 +75,7 @@
                     <a th:href="'/cmt/dtl/'+${cmt.id}" th:text="${cmt.cmtTitle}"></a>
                 </td>
                 <td th:text="${cmt.createdBy}"></td>
-                <td th:text="${cmt.regTime}"></td>
+                <td th:text="${cmt.cmtDate}"></td>
             </tr>
             </tbody>
         </table>
@@ -82,6 +101,8 @@
 
             </ul>
         </div>
+        <!-- paging -->
+	    
 
         <div class="form-inline justify-content-center" th:object="${cmtSearchDto}">
             <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
@@ -92,8 +113,8 @@
                 <option value="6m">6개월</option>
             </select>
             <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-                <option value="cmtTitle">1:1문의명</option>
-                <option value="createdBy">등록자</option>
+            	<option value="">옵션</option>
+                <option value="name">이름</option>
             </select>
             <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
             <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>

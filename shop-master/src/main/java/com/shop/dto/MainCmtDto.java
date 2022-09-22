@@ -16,15 +16,17 @@ public class MainCmtDto {
 
     private String imgUrl;
 
-    private String name;
+    private String createdBy;
+    
+    
 
     @QueryProjection
-    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String name){
+    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String createdBy){
         this.id = id;
         this.cmtTitle = cmtTitle;
         this.cmtDetail = cmtDetail;
         this.imgUrl = imgUrl;
-        this.name = name;
+        this.createdBy = createdBy;
     }
 
 }

@@ -51,14 +51,11 @@ public class Cmt extends BaseEntity{
     
     private int count; //수량
     
-    @Column(name="name")
-    private String name;
 
     public void updateCmt(CmtFormDto cmtFormDto){
         this.cmtTitle = cmtFormDto.getCmtTitle();
         this.cmtDetail = cmtFormDto.getCmtDetail();
         this.cmtReply = cmtFormDto.getCmtReply();
-        this.name = cmtFormDto.getName();
     }
 
 
@@ -70,7 +67,6 @@ public class Cmt extends BaseEntity{
 		cmt.setCmtDetail(cmtFormDto.getCmtDetail());
 		cmt.setCmtReply(cmtFormDto.getCmtReply());
         cmt.setCmtDate(LocalDateTime.now());
-        cmt.setName(cmtFormDto.getName());
         return cmt;
     }
 
