@@ -1,5 +1,6 @@
 package com.shop.dto;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import lombok.Getter;
@@ -15,10 +16,10 @@ public class NoticeDto {
     
     private String noticeTitle;
     
-    private String text;
+    private String noticeText;
 
     private LocalDateTime regTime;
 
     private LocalDateTime updateTime;
-
+    
 }
