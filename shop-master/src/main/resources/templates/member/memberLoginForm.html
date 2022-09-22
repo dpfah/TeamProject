@@ -59,67 +59,9 @@
 							<a href="/members/new" ap-click-area="login" ap-click-name="login-click" ap-click-data="회원가입" title="회원가입"><span>회원가입</span></a>
 							<p></p>
 				  		</div>
-				  		<div class="fl_R">
-							<a href="#" class="no-account-link" title="비회원 주문조회">비회원 주문조회</a>
-				  		</div>
 				  	</div>
-				  	
-			    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			  		
 			  	</div>
-			  	<div class="login-box no-account-area">
-			  		<h2>비회원 주문 조회</h2>
-					<dl class="login-input-area">
-						<dt class="inp-order-num"><input type="text" id="orderNum" name="i_sOrdercd"  placeholder="주문번호를 입력하세요"></dt>
-						<dt class="inp-phone-num">
-							<ul>
-								<li>
-									<select class="selectbox-ty" name="i_iPhone1" id="i_iPhone1" tabindex="1">
-										<option value="">선택</option>
-										
-										
-											<option value="010">010</option>
-										
-											<option value="011">011</option>
-										
-											<option value="016">016</option>
-										
-											<option value="019">019</option>
-										
-											<option value="017">017</option>
-										
-											<option value="018">018</option>
-										
-										
-									</select>
-									<!-- <select name="" id="">
-										<option value="">010</option>
-										<option value="">011</option>
-										<option value="">016</option>
-										<option value="">017</option>
-										<option value="">018</option>
-										<option value="">019</option>
-									</select> -->
-								</li>
-								<li><input type="text" class="onlyNumber" name="i_iPhone2" id="i_iPhone2" maxlength="4"></li>
-								<li><input type="text" class="onlyNumber"  name="i_iPhone3" id="i_iPhone3" maxlength="4"></li>
-							</ul>
-						</dt>
-					</dl>
-					<dl class="login-submit-area">
-						<dt class="btn-login" id="btn_order_login"><a href="#">조회</a></dt>
-					</dl>
-					<div class="login-link-area clearfix">
-						
-							
-							
-								<div class="fl_L"><a href="https://join-on.amorepacific.com/member/step1.do?siteCd=CUB&chCd=W&returnUrl=https://www.vitalbeautie.com/mbr/mbr_member_login.do&pageTitle=%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85&menuId=&subMenuId=&breadCrumb=HOME+%3E+%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85"><span>회원가입</span></a></div>
-							
-						
-						<div class="fl_R"><a href="#" class="account-link">회원 로그인</a></div>
-					</div>
-			  	</div>
-			  	
+		    	<input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 			</form>
 		</div>
 	</div>

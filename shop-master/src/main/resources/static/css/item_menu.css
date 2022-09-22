@@ -733,7 +733,6 @@ img {
 .mypage .lnb-mypage-category li a:after {
     content: "";
     display: inline-block;
-    background: url(../images/common/ico-btn-black-small.svg) no-repeat center center;
     width: 16px;
     height: 16px;
     vertical-align: middle;

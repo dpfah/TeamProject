@@ -93,8 +93,8 @@
 
 <body>
 	<div layout:fragment="content">
-		<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
-		    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
+	    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
+	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
 				<div class="join-box mt-5" style="margin-bottom: 3rem;">
 			        <h1 style="margin-bottom: 20px;">회원가입</h1>
 			        <div class="form-group">
@@ -118,7 +118,7 @@
 				        		</ul>
 				        	</div>
 				        	<div class="flt-r">
-				        		<input type="text" class="form-control" id="gender" value="" placeholder="성별" style="text-align: center;">
+				        		<input type="text" class="form-control" id="gender" placeholder="성별" style="text-align: center;">
 				        	</div>
 				        </div>
 			        </div>
@@ -145,13 +145,11 @@
 			        <dt class="btn-join" id="btn-join">
 			            <button class="btn_join">회원가입</button>
 			        </dt>
-			        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-			        
 			    </div>
-		    </form>
-		</div>
+		    </div>
+		    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+	    </form>
 	</div>
-
 </body>
 
 </html>
