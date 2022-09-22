@@ -106,16 +106,14 @@
 	                		<input class="form-control" type="text" th:field="*{itemSNm}" required placeholder="부제목을 입력해주세요">
 	                	</div>
 <!--	                	<p th:if="${#fields.hasErrors('itemSNm')}" th:errors="*{itemSNm}" class="fieldError">Incorrect data</p>-->
-	                	<div>
+	                	<div class="input-percent">
 	                    	<input class="form-control percent" type="text" th:field="*{percent}" placeholder="할인률">
 	                    	<span class="percentS">%</span>
-	                	</div>
-	                	<p th:if="${#fields.hasErrors('percent')}" th:errors="*{percent}" class="fieldError">Incorrect data</p>
-	                    <div>
-				            <input type="number" th:field="*{ori_price}" class="form-control price_input" placeholder="상품의 가격을 입력해주세요">
-				        </div>
-				        <p th:if="${#fields.hasErrors('ori_price')}" th:errors="*{ori_price}" class="fieldError">Incorrect data</p>
-               
+		                	<p th:if="${#fields.hasErrors('percent')}" th:errors="*{percent}" class="fieldError">Incorrect data</p>
+					        
+					        <input type="number" th:field="*{ori_price}" class="form-control price_input" placeholder="상품의 가격을 입력해주세요">
+					        <p th:if="${#fields.hasErrors('ori_price')}" th:errors="*{ori_price}" class="fieldError">Incorrect data</p>
+               			</div>
 	                	<div class="input-group stockNumber">
 				            <input type="number" th:field="*{stockNumber}" class="form-control" placeholder="상품의 재고를 입력해주세요">
         				</div>
@@ -143,17 +141,11 @@
 			    </div>
 			    
 			    <!--상품 상세, 리뷰, 배송및 교환 nav-->
-			    <nav class="navbar navbar-expand-lg mt-5 mb-5">
-				  <div class="container-fluid mt-5">			    
-				    <div class="tab-product-area collapse navbar-collapse" id="navbarNav">
-				      <ul class="tab-product-ul navbar-nav">
-				        <li class="nav-item">
-				          <span>상세정보</span>
-				        </li>				     
-				      </ul>
-				    </div>
-				  </div>
-				</nav>
+			      <ul class="tab-product-ul navbar-nav">
+			        <li class="nav-item">
+			          <span>상세정보</span>
+			        </li>				     
+			      </ul>
 				<div class="input-group">
 		            <div class="input-group-prepend">
 		                <span class="input-group-text">상품 상세 내용</span>

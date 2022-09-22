@@ -118,30 +118,5 @@ public class MemberService implements UserDetailsService {
         return member.getId();
     }
     
-//    public void deleteMember(String email) throws Exception{
-//        Member member = memberRepository.findByEmail(email);
-//        
-//          //      .orElseThrow(EntityNotFoundException::new)
-//        
-//
-////        List<OqnaImg> oqnaImgList = oqnaImgRepository.findByOqnaId(oqnaId);
-////        
-////        if(oqnaImgList != null && oqnaImgList.size() != 0) {
-////        	 
-////        	oqnaImgRepository.deleteByOqnaId(oqnaId);
-////        	
-////        	
-////        }
-//        
-////        Long memberId = memberRepository.findById(null)
-////        
-////        oqnaService.deleteOqna(oqnaId);
-//        
-//        memberImgService.deleteMemberImg(email); //memberImgService에서 첨부된 Img를 삭제해준다
-//
-//        memberRepository.deleteByEmail(email); //member게시글을 삭제한다.
-//        
-//    }
-//    
 
 }
