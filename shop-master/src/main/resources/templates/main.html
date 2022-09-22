@@ -81,50 +81,46 @@
     </div>
     
 	<div class="Mbox01 mb-5">
-    <div class="row mt-5">
-        <th:block th:each="item, status: ${items.getContent()}">
-            <div class="col-md-4 mb-4">
-                <div class="Mitems card  border border-0">
-                    <a th:href="'/item/' +${item.id}" class="text-dark">
-                    	<div class="imgCut">
-                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
-                    	</div>
-                        <div class="card-body">
-                            <p class="card-title  ">[[${item.itemNm}]]</p>
-                            <p class="priceCss">
-	                             <span>[[${item.percent}]]</span> [[${item.ori_price}]]원
-                            </p>
-
-                            <p class="card-text summaryCss">[[${item.itemSummary}]]</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </th:block>
-    </div>
-
-    <div class="navigation Page" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
-        <ul class="pagination justify-content-center">
-
-			
-            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
-                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
-                    <span aria-hidden='true'>Previous</span>
-                </a>
-            </li>
-
-            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
-                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-            </li>
-
-            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
-                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
-                    <span aria-hidden='true'>Next</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
+	    <div class="row mt-5">
+	        <th:block th:each="item, status: ${items.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0">
+	                    <a th:href="'/item/' +${item.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
+	                    	</div>
+	                        <div class="card-body">
+	                            <p class="card-title  ">[[${item.itemNm}]]</p>
+	                            <p class="priceCss">
+		                             <span>[[${item.percent}]]</span> [[${item.ori_price}]]원
+	                            </p>
+	
+	                            <p class="card-text summaryCss">[[${item.itemSummary}]]</p>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	
+	    <div class="navigation Page" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
 	</div>
 	
 	<div class="Mbox02 mb-5">
