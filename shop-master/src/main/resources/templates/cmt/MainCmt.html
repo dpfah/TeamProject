@@ -62,7 +62,7 @@
 				                            <div class="card-body text-left">
 			                                    <!-- Product name-->
 			                                    <h5 class="product-name fw-bolder">[[${cmt.cmtTitle}]]</h5>
-			                                   	<div class="origin-price">[[${cmt.createdBy}]]</div>
+			                                   	<p class="Cmtwriter">[[${cmt.createdBy}]]</p>
 				                            </div>
 			                            </div>
 		                            </a>
@@ -83,6 +83,7 @@
 					                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
 					                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
 					                </li>
+					
 					
 					                <li class="page-item" th:classappend="${cmts.last}?'disabled'">
 					                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link">
