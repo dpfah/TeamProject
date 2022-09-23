@@ -19,7 +19,7 @@ public class CookiesItemDto {
 
     private double price;
     
-    private double ori_price;
+    private int ori_price;
     
     private double percent;
     
@@ -27,7 +27,7 @@ public class CookiesItemDto {
 
 
     @QueryProjection
-    public CookiesItemDto(Long id, String itemNm, String itemDetail, String imgUrl,double ori_price ,double price,double percent, ItemType itemType){
+    public CookiesItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;

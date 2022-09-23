@@ -44,6 +44,7 @@
 		}
     </style>
 </th:block>
+
 <body>
 	<div layout:fragment="content">
 		<div id="notice" class="wrap">
@@ -65,49 +66,20 @@
 										<dt class="notice-date">날짜</dt>
 									</dl>
 								</li>
-								<li class="table-list">
+								<li class="table-list" th:each="notice, status: ${notices.getContent()}">
 									<dl class="order-td">
-										<dd class="notice-num">4</dd>
-										<dd class="notice-status">공지</dd>
+										<dd class="notice-num">[[${notice.id}]]</dd>
+										<dd class="notice-status">[[${notice.noticeType}]]</dd>
 										<dd class="notice-title">
-											<a href="javascript:;" class="btn_view" id="">공지사항4</a>
+											<a th:href="'/notice/post/' +${notice.id}" class="btn_view" id="">[[${notice.noticeTitle}]]</a>
 										</dd>
-										<dd class="notice-date">2022.09.20</dd>
-									</dl>
-								</li>
-								<li class="table-list">
-									<dl class="order-td">
-										<dd class="notice-num">3</dd>
-										<dd class="notice-status">공지</dd>
-										<dd class="notice-title">
-											<a href="javascript:;" class="btn_view" id="">공지사항3</a>
-										</dd>
-										<dd class="notice-date">2022.09.20</dd>
-									</dl>
-								</li>
-								<li class="table-list">
-									<dl class="order-td">
-										<dd class="notice-num">2</dd>
-										<dd class="notice-status">공지</dd>
-										<dd class="notice-title">
-											<a href="javascript:;" class="btn_view" id="">공지사항2</a>
-										</dd>
-										<dd class="notice-date">2022.09.20</dd>
-									</dl>
-								</li>
-								<li class="table-list">
-									<dl class="order-td">
-										<dd class="notice-num">1</dd>
-										<dd class="notice-status">공지</dd>
-										<dd class="notice-title">
-											<a href="/notice/post" class="btn_view" id="">공지사항1</a>
-										</dd>
-										<dd class="notice-date">2022.09.20</dd>
+										<dd class="notice-date" th:text="${#temporals.format(notice.regTime, 'yyyy-MM-dd HH:mm:ss')}"></dd>
 									</dl>
 								</li>
 							</ul>
 						</div>
 					</section>
+					
 				</section>
 			</form>
 			<a href="#top" id="top-btn" class="on">맨 위로가기</a>

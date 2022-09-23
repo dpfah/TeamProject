@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>빵주머니 - FQA</title>
+</head>
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+	<style>
+
+    </style>
+</th:block>
+<body>
+	<div layout:fragment="content">
+		<div class="accordion" id="accordionExample" th:each="faq, status: ${faqs.getContent()}">
+		  <div class="accordion-item">
+		    <h2 class="accordion-header" id="headingOne">
+		      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		      <span>[[${faq.qnaType}]]</span>
+		      <span> [[${faq.faqTitle}]]</span>
+		      </button>
+		    </h2>
+		    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		      <div class="accordion-body">
+		        <strong>[[${faq.faqReply}]]</strong>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		 <div class="navigation Page" th:with="start=${(faqs.number/maxPage)*maxPage + 1}, end=(${(faqs.totalPages == 0) ? 1 : (start + (maxPage - 1) < faqs.totalPages ? start + (maxPage - 1) : faqs.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${faqs.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${faqs.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${faqs.number+1 ge faqs.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+</body>
+
+</html>

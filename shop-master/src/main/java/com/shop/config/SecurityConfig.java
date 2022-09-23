@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -33,7 +34,7 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .mvcMatchers("/","/bread/**", "/cake/**","/cookies/**", "/members/**", "/item/**", "/images/**").permitAll()
+                .mvcMatchers("/","/bread/**", "/cake/**","/cookies/**", "/members/**", "/item/**", "/images/**", "/notice/**", "/mainFaq","/mainCmt").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;
@@ -42,7 +43,11 @@ public class SecurityConfig {
                 .authenticationEntryPoint(new CustomAuthenticationEntryPoint())
         ;
 
+        http.sessionManagement()
+        .sessionCreationPolicy(SessionCreationPolicy.ALWAYS); // 스프링 시큐리티가 항상 세션을 생성: 로그인, 회원가입 토큰 null이라서 2번 해야되는데 이걸로 해결 
+        
         return http.build();
+        
     }
 
     @Bean

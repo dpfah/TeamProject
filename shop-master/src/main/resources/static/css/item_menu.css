@@ -374,7 +374,7 @@ body {
 }
 
 .itemA .tab-product-ul{
-	width: 1056px;
+	width: 789px;
     height: 64px;
     line-height: 3;
 }
@@ -385,8 +385,19 @@ body {
     text-align: center;
 }
 
+.itemA form{
+	margin: 50px auto;
+    width: 80%;
+    padding: 40px 0;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 0 10px rgb(0 0 0 / 5%);
+} 
 
-	
+.itemA form > p{
+	padding-left: 40px;
+}	
 	
 
 /*itemDtl*/
@@ -488,16 +499,17 @@ img {
 }
 
 #itemForm .price_input{
-    width: 63%;
-    position: absolute;
-    left: 167px;
-    bottom: 225px;
+    width: 70%;
+    position: relative;
+    left: 109px;
+    bottom: 63px;
 }
 
 #itemForm .percentS{
-	bottom: 230px;
-    position: absolute;
-    left: 136px;
+	width: 53%;
+    position: relative;
+    left: 89px;
+    bottom: 31px;
 }
 
 #itemForm .stockNumber{
@@ -533,6 +545,9 @@ img {
 	margin-top: 50px;
 }
 
+#itemForm .input-percent{
+	height: 38px;
+}
 
 /* mypage */
 
@@ -732,7 +747,6 @@ img {
 .mypage .lnb-mypage-category li a:after {
     content: "";
     display: inline-block;
-    background: url(../images/common/ico-btn-black-small.svg) no-repeat center center;
     width: 16px;
     height: 16px;
     vertical-align: middle;
@@ -973,11 +987,10 @@ img {
     transition: all 0.5s;
 }
 #memberDtl .radio-area {
-	width: 22.535%;
+	width: 37.12%;
 	height: 38px; 
-	margin-left: 3.724%; 
+	margin-left: 4.1%;
 	box-sizing: border-box; 
-	border: 1px solid #e0e0e0;
 	float: left;
 }
 #memberDtl .hide {
@@ -1031,6 +1044,9 @@ img {
     border: 1px solid transparent;
 }
 
+.oqnaF input, .oqnaF .input-group{
+	width:100%;
+}
 
 
 

@@ -34,7 +34,7 @@
 <body>
 	<div layout:fragment="content">
 		<div id="notice" class="wrap">
-			<form role="form" method="post" action="/notice/post">
+			<form role="form" method="post" action="'/notice/post/' +${notice.id}">
 				<section id="content" style="margin-top: 0px;">
 					<div class="sub-top-title-area">
 						<div class="on-desktop">
@@ -42,18 +42,21 @@
 						</div>
 					</div>
 					<section class="sub_content notice">
+						<input type="hidden" id="noticePostId" th:value="${notice.id}">
 						<div class="list_section">
 							<div class="notice-view">
 								<div class="notice-view-title-area">
-									<span class="notice-view-status">#공지</span>
-									<h3>공지사항1</h3>
-									<span class="notice-view-date">2022.09.20</span>
+									<span class="notice-view-status" th:text="'#' +${notice.noticeType}"></span>
+									<h3 th:text="${notice.noticeTitle}"></h3>
+									<span class="notice-view-date" th:text="${#temporals.format(notice.regTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
 								</div>
 								<div class="notice-view-txt-area">
 									<!-- 이미지 파일로 공지 작성 -->
 									<p style="text-align: center;">
 										<img alt src="" style=" width: 100%; height: auto;">
 									</p>
+									<!-- 텍스트로 공지 작성 -->
+									<div th:text="${notice.noticeText}"></div>
 								</div>
 							</div>
 							<div class="btn_area ta_c">
