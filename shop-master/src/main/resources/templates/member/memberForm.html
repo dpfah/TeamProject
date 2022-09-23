@@ -93,19 +93,25 @@
 
 <body>
 	<div layout:fragment="content">
-	    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}">
+	    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}" class="was-validated">
 	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
 				<div class="join-box mt-5" style="margin-bottom: 3rem;">
 			        <h1 style="margin-bottom: 20px;">회원가입</h1>
 			        <div class="form-group">
-			            <input type="text" th:field="*{name}" class="form-control" placeholder="이름(실명으로 입력해주세요)">
-			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>
+			            <input type="text" th:field="*{name}" class="form-control" placeholder="이름(실명으로 입력해주세요)" required>
+			            <div class="invalid-feedback">이름을 입력해주세요</div>
+<!--			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>-->
+			        </div>
+			        <div class="form-group">
+			            <input type="text" th:field="*{nickName}" class="form-control" placeholder="닉네임" required >
+			            <div class="invalid-feedback">닉네임을 입력해주세요</div>
+<!--			        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>-->
 			        </div>
 			        <div class="form-group">
 				        <div class="radio-wrap multi-column">
 				        	<div class="flt-l">
-				        		<input type="text" th:field="*{birth}" class="form-control" placeholder="생년월일8자리(ex.20010101)">
-			            		<p th:if="${#fields.hasErrors('birth')}" th:errors="*{birth}" class="fieldError">Incorrect data</p>
+				        		<input type="text" th:field="*{birth}" class="form-control" placeholder="생년월일8자리(ex.20010101)" required>
+			            		<div class="invalid-feedback">생년월일을 입력해주세요</div>
 				        	</div>
 				        	<div class="radio-area">
 				        		<ul>
@@ -123,24 +129,29 @@
 				        </div>
 			        </div>
 			        <div class="form-group">
-			        	<input type="tel" th:field="*{phone}" class="form-control" placeholder="전화번호 입력 ( -, 띄어쓰기 없이 번호만 입력 )">
-			            		<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>
+			        	<input type="tel" th:field="*{phone}" class="form-control" placeholder="전화번호 입력 ( -, 띄어쓰기 없이 번호만 입력 )" required>
+			        	<div class="invalid-feedback">전화번호를 입력해주세요</div>
+<!--			            		<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>-->
 			        </div>
 			        <div class="form-group">
-			            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일">
+			            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일" required>
+			            <div class="invalid-feedback">이메일을 입력해주세요</div>
 			            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
 			        </div>
 			        <div class="form-group">
-			            <input type="password" id="userPw" th:field="*{password}" class="form-control" placeholder="비밀번호">
-			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>
+			            <input type="password" id="userPw" th:field="*{password}" class="form-control" placeholder="비밀번호"  minlength = "8" maxlenght="16" required>
+			            <div class="invalid-feedback">패스워드를 입력해주세요.</div>
+<!--			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>-->
 			        </div>
 			        <div class="form-group">
-			            <input type="password" id="userPwChk" class="form-control" placeholder="비밀번호확인">
+			            <input type="password" id="userPwChk" class="form-control" placeholder="비밀번호확인" required>
 			          	<font id="chkNotice" size="2"></font>
+			          	<div class="invalid-feedback">패스워드를 확인해주세요</div>
 			        </div>
 			        <div class="form-group">
-			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요">
-			            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>
+			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요" required>
+			            <div class="invalid-feedback">주소를 입력해주세요</div>
+<!--			            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>-->
 			        </div>
 			        <dt class="btn-join" id="btn-join">
 			            <button class="btn_join">회원가입</button>

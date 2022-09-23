@@ -1,5 +1,6 @@
 package com.shop.controller;
 
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shop.dto.BreadItemDto;
 import com.shop.dto.CakeItemDto;
 import com.shop.dto.CookiesItemDto;
+import com.shop.dto.ItemCommentResponseDto;
 import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemSearchDto;
 import com.shop.entity.Item;
@@ -163,9 +165,28 @@ public class ItemController {
     }
 
     @GetMapping(value = "/item/{itemId}")
-    public String itemDtl(Model model, @PathVariable("itemId") Long itemId){
+    public String itemDtl(Model model, @PathVariable("itemId") Long itemId, Principal principal){
         ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
+        
+        List<ItemCommentResponseDto> itemComments = itemFormDto.getItemComments();
+
+        /* 댓글 관련 */
+        if (itemComments != null && !itemComments.isEmpty()) {
+            model.addAttribute("itemComments", itemComments);
+        }
+
+        /* 사용자 관련 */
+        if (principal != null) {
+            model.addAttribute("member", principal.getName());
+
+            /*게시글 작성자 본인인지 확인*/
+            if (itemFormDto.getCreatedBy().equals(principal.getName())) {
+                model.addAttribute("writer", true);
+            }
+        }
+        itemService.updateView(itemId); // views ++ 조회수
         model.addAttribute("item", itemFormDto);
+        
         return "item/itemDtl";
     }
 

@@ -14,14 +14,17 @@ import org.springframework.web.multipart.MultipartFile;
 import com.shop.dto.BreadItemDto;
 import com.shop.dto.CakeItemDto;
 import com.shop.dto.CookiesItemDto;
+import com.shop.dto.ItemCommentResponseDto;
 import com.shop.dto.ItemContentImgDto;
 import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemImgDto;
 import com.shop.dto.ItemSearchDto;
 import com.shop.dto.MainItemDto;
 import com.shop.entity.Item;
+import com.shop.entity.ItemComment;
 import com.shop.entity.ItemContentImg;
 import com.shop.entity.ItemImg;
+import com.shop.repository.ItemCommentRepository;
 import com.shop.repository.ItemContentImgRepository;
 import com.shop.repository.ItemImgRepository;
 import com.shop.repository.ItemRepository;
@@ -42,6 +45,8 @@ public class ItemService {
     private final ItemImgRepository itemImgRepository;
     
     private final ItemContentImgRepository itemContentImgRepository;
+    
+    private final ItemCommentRepository itemCommentRepository;
 
     public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList, List<MultipartFile> itemContentImgFileList) throws Exception{
 
@@ -77,8 +82,18 @@ public class ItemService {
     public ItemFormDto getItemDtl(Long itemId){
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
         List<ItemContentImg> itemContentImgList = itemContentImgRepository.findByItemIdOrderByIdAsc(itemId);
+        List<ItemComment> itemCommentList = itemCommentRepository.findByItemIdOrderByIdAsc(itemId);
+        
         List<ItemImgDto> itemImgDtoList = new ArrayList<>();
         List<ItemContentImgDto> itemContentImgDtoList = new ArrayList<>();
+        List<ItemCommentResponseDto> itemCommentResponseDtoList = new ArrayList<>();
+        
+        for(ItemComment itemComment : itemCommentList) {
+        	ItemCommentResponseDto itemCommentResponseDto = ItemCommentResponseDto.of(itemComment);
+        	itemCommentResponseDtoList.add(itemCommentResponseDto);
+        }
+        
+        
         for (ItemImg itemImg : itemImgList) {
             ItemImgDto itemImgDto = ItemImgDto.of(itemImg);
             itemImgDtoList.add(itemImgDto);
@@ -92,6 +107,7 @@ public class ItemService {
         Item item = itemRepository.findById(itemId)
                 .orElseThrow(EntityNotFoundException::new);
         ItemFormDto itemFormDto = ItemFormDto.of(item);
+        itemFormDto.setItemComments(itemCommentResponseDtoList);
         itemFormDto.setItemImgDtoList(itemImgDtoList);
         itemFormDto.setItemContentImgDtoList(itemContentImgDtoList);
         return itemFormDto;
@@ -119,6 +135,14 @@ public class ItemService {
 
         return item.getId();
     }
+    
+    
+    /* 조회수 */
+    @Transactional
+    public int updateView(Long id) {
+        return itemRepository.updateView(id);
+    }
+
 
     @Transactional(readOnly = true)
     public Page<Item> getAdminItemPage(ItemSearchDto itemSearchDto, Pageable pageable){

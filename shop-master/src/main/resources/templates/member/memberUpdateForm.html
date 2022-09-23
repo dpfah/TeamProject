@@ -121,7 +121,12 @@
 			        <div class="form-group">
 			            <input type="text" th:field="*{name}" class="form-control" placeholder="이름(실명으로 입력해주세요)" required >
 			            <div class="invalid-feedback">이름을 입력해주세요</div>
-<!--			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>-->
+<!--			        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>-->
+			        </div>
+			        <div class="form-group">
+			            <input type="text" th:field="*{nickName}" class="form-control" placeholder="닉네임" required >
+			            <div class="invalid-feedback">닉네임을 입력해주세요</div>
+<!--			        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>-->
 			        </div>
 			        <div class="form-group">
 				        <div class="radio-wrap multi-column">

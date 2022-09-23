@@ -32,6 +32,12 @@
 	                calculateToalPrice();
 	            });
 	            
+	            	// 댓글 저장
+		        $('#btn-comment-save').on('click', function () {
+		            itemCommentSave();
+		        });
+
+	            
 	            //상품 프로필 슬라이드
 	            let slideIndex = 0;
 				showSlides(slideIndex);
@@ -124,6 +130,53 @@
 	                }
 	            });
 	        }
+	        
+	        
+	            /** 댓글 저장 */
+		    function itemCommentSave() {
+			 	var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+	           
+		        var paramData = {
+		            itemId: $('#itemId').val(),
+		            itemComment: $('#itemComment').val()
+		        }
+		
+		        // 공백 및 빈 문자열 체크
+		        if (!paramData.itemComment || paramData.itemComment.trim() === "") {
+		            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+		            return false;
+		        } else {
+		            $.ajax({
+		                type: 'POST',
+		                url: '/api/item/' + paramData.itemId + '/itemComments',
+		                dataType: 'JSON',
+		                contentType: 'application/json; charset=utf-8',
+		                data: JSON.stringify(paramData),
+		                beforeSend : function(xhr){
+	                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+	                    xhr.setRequestHeader(header, token);
+	                },
+	                 dataType : "json",
+	                 cache   : false,
+		             success  : function(result, status){
+		                alert("댓글이 등록되었습니다.");
+		               location.href='/';
+		               
+		             },
+	                error : function(jqXHR, status, error){
+	
+		                    if(jqXHR.status == '401'){
+		                        alert('로그인 후 이용해주세요');
+		                        location.href='/members/login';
+		                    } else{
+		                        alert(jqXHR.responseText);
+		                    }
+		
+		                }
+	            	});
+		   	 	}
+		    }
 	
 	
 			//상품 프로필 슬라이드
@@ -150,6 +203,12 @@
 			  slides[slideIndex-1].style.display = "block";  
 			  dots[slideIndex-1].className += " active";
 			}
+			
+		
+		    
+		    
+		 
+		
 	    </script>
 	</th:block>
 	
@@ -273,7 +332,7 @@
 						<p>후기 총 평점</p>
 						<p class="star-rating-avg">4.8</p>
 						<div class="star-rating t04"></div>
-						<a href="" class="btn_review_reg2" id=""><span>후기 작성하기</span></a>
+						<a href="#itemComment_div" class="btn_review_reg2" id=""><span>후기 작성하기</span></a>
 					</div>
 					<!-- Modal Popup : 상품후기작성(비회원일 경우) -->
 					<div id="pop_review_reg_noaccount" class="modal-wrap pop-review-reg-noaccount" style="overflow-y: auto; display: none;">
@@ -287,407 +346,40 @@
 							</div>
 						</div>
 					</div>
-					<div class="photo-review">
-						<div class="review-title-group">
-							<span>포토 상품후기</span>
-						</div>
-						<div class="photoReviewSimpleList" id="photoReviewSimpleList">
-							<div class="photo-review-list">
-								<ul>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-									<li>
-										<a href="" class="btn_review_view" id="" site="AP">
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" alt="" onerror="" src="">
-										</a>
-									</li>
-								</ul>
-							</div>
-						</div>
+					<div class="card" id= "itemComment_div">
+					    <form>
+					        <input type="hidden" id="itemId" value="{{item.id}}">
+					                <textarea id="itemComment" class="form-control" rows="4" placeholder="댓글을 입력하세요"></textarea>
+					            <div class="card-footer">
+					                <button type="button" id="btn-comment-save"class="btn btn-outline-primary bi bi-pencil-square"> 등록</button>
+					            </div>
+					    </form>
 					</div>
-					
-					<div class="photo-review-list">
-						<button type="button" class="btn-photo-more btn_morePhoto">더보기</button>
-						<div class="photo-photo"></div>
-					</div>
-					
 					
 					<div class="photoReviewList" id="photoReviewList">
 						<div class="normal-review">
 							<ul class="review-list">
 								<input type="hidden" id="i_iReviewIdx" value="">
 								<li>
-									<ul>
+									<ul th:each="itemComment : ${itemComments}">
 										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
 											<div class="review-user-txt">
 												<div class="star-rating-group">
 													<div class="star-rating t04"></div>
-													<span>4</span>
 												</div>
 												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
 												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
+													<span class="review-user-id" th:text="${itemComment.memberId}">내용</span>
+													<span class="review-reg-date" th:text="${itemComment.createdDate}">등록날짜</span>
 												</p>
 											</div>
 										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
 										<li class="review-content">
-											
+											<div th:text="${itemComment.itemComment}"></div>
 											<!-- (AP몰에서 작성된 리뷰입니다.) -->
 										</li>
 										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="/img/profile_ic.png" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
-								</li>
-								<li>
-									<ul>
-										<li class="review-user">
-											<div class="review-user-img">
-												<img src="/img/profile_ic.png" alt="프로필없음" onerror="fnNoImage(this);">
-											</div>
-											<div class="review-user-txt">
-												<div class="star-rating-group">
-													<div class="star-rating t04"></div>
-													<span>4</span>
-												</div>
-												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
-												<p>
-													<span class="review-user-id">유저아이디</span>
-													<span class="review-reg-date">등록날짜</span>
-												</p>
-											</div>
-										</li>
-										<li class="review-img">
-											<ul>
-												<li>
-													<a href="" class="btn_review_view" id="" site="AP">
-														<img src="" alt="" onerror="fnNoImage(this);">
-													</a>
-												</li>
-											</ul>
-										</li>
-										<li class="review-content">
-											
-											<!-- (AP몰에서 작성된 리뷰입니다.) -->
-										</li>
-										<li class="review-bottom"> </li>
-									</ul>
+<!--									</ul>-->
 								</li>
 							</ul>
 						</div>
@@ -801,9 +493,6 @@
 							<div class="">
 								<div class="sub-img-list swiper-other-item">
 									<a href="" id="" class="btn_detail">
-										<div>
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" onerror="fnNoImage(this);" alt="상품명" src="">
-										</div>
 										<dl class="sub-img-txt">
 											<dt>상품명</dt>
 											<dd class="product-price-del">원가</dd>
@@ -815,9 +504,6 @@
 								</div>
 								<div class="sub-img-list swiper-other-item">
 									<a href="" id="" class="btn_detail">
-										<div>
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" onerror="fnNoImage(this);" alt="상품명" src="">
-										</div>
 										<dl class="sub-img-txt">
 											<dt>상품명</dt>
 											<dd class="product-price-del">원가</dd>
@@ -829,9 +515,6 @@
 								</div>
 								<div class="sub-img-list swiper-other-item">
 									<a href="" id="" class="btn_detail">
-										<div>
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" onerror="fnNoImage(this);" alt="상품명" src="">
-										</div>
 										<dl class="sub-img-txt">
 											<dt>상품명</dt>
 											<dd class="product-price-del">원가</dd>
@@ -843,9 +526,6 @@
 								</div>
 								<div class="sub-img-list swiper-other-item">
 									<a href="" id="" class="btn_detail">
-										<div>
-											<img class="fade-in ls-is-cached lazyloaded" data-src="" onerror="fnNoImage(this);" alt="상품명" src="">
-										</div>
 										<dl class="sub-img-txt">
 											<dt>상품명</dt>
 											<dd class="product-price-del">원가</dd>

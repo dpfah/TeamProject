@@ -11,6 +11,7 @@ import org.modelmapper.ModelMapper;
 import com.shop.constant.ItemSellStatus;
 import com.shop.constant.ItemType;
 import com.shop.entity.Item;
+import com.shop.entity.Member;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -46,6 +47,11 @@ public class ItemFormDto {
     private ItemSellStatus itemSellStatus;
     
     private ItemType itemType;
+    
+    private String createdBy;
+    
+    // 댓글
+    private List<ItemCommentResponseDto> itemComments = new ArrayList<>();
 
     //상품 대표사진 이미지, 이미지 슬라이드
     private List<ItemImgDto> itemImgDtoList = new ArrayList<>();
@@ -74,5 +80,6 @@ public class ItemFormDto {
     	return Math.round(ori_price - (ori_price *percent/100));
     	}
     }
+
 
 }

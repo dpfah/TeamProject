@@ -22,6 +22,8 @@ public class MemberFormDto {
 
     private String name;
     
+    private String nickName;
+    
     private String birth;
     
     private String gender;
@@ -34,7 +36,6 @@ public class MemberFormDto {
 
     
     private String password;
-
 
     private String address;
     

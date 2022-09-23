@@ -1,12 +1,18 @@
 package com.shop.entity;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
 // 엔티티란 데이터 베이스의 테이블에 대응하는 클래스
@@ -65,7 +71,16 @@ public class Item extends BaseEntity {
     
     @Enumerated(EnumType.STRING) // enum 타입 매핑
     private ItemType itemType; //상품 종류
+    
+    @OneToMany(mappedBy = "item", fetch = FetchType.EAGER, cascade = CascadeType.REMOVE)
+    @OrderBy("id asc") // 댓글 정렬
+    private List<ItemComment> itemComments;
 
+    
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int view; // 조회수
+    
+    
     public void updateItem(ItemFormDto itemFormDto){
         this.itemNm = itemFormDto.getItemNm();
         this.ori_price = itemFormDto.getOri_price();
