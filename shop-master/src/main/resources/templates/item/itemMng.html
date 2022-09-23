@@ -32,19 +32,59 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
+        
+        .content{
+	    	padding:100px 0;
+	    }
         select{
             margin-right:10px;
         }
+        
+        .CmtTSu td{
+            vertical-align: middle;
+		    height: 80px;
+		    padding: 15px 10px;
+		    font-size: 15px;
+			text-align:center;
+			white-space: nowrap;
+		}
+		.CmtTSu th{
+			border-top: 2px solid #999;
+		    vertical-align: middle;
+		    height: 47px;
+		    padding: 15px 10px;
+		    font-size: 16px;
+		    font-weight: 500;
+		    color: #000000;
+		    text-align: center;
+		}
+		
+		.CmtTSu td a{
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  
+		  width: 200px;
+		  height: 20px;
+		}
+		.cmtTitle{
+		font-size: 38px;
+	    font-weight: 500;
+	    color: #000000;
+	    text-align: left;
+	    }
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
     <form th:action="@{'/admin/items/' + ${items.number}}" role="form" method="get" th:object="${items}">
-        <table class="table">
+        <h1 class="cmtTitle">
+			제품 관리자
+		</h1>
+        <table class="table CmtTSu">
             <thead>
             <tr>
-                <td>상품아이디</td>
+                <td>NO</td>
                 <td>상품명</td>
                 <td>상태</td>
                 <td>등록자</td>
@@ -104,7 +144,7 @@
                 <option value="createdBy">등록자</option>
             </select>
             <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+            <button id="searchBtn" type="submit" class="btn btn-primary ml-2">검색</button>
         </div>
     </form>
 

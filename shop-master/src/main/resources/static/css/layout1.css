@@ -75,6 +75,7 @@ header,section,article,aside,footer,main,a,button,input,textarea,img,nav,ul,ol,l
 a:active,
 a:hover {
   outline: none;
+  text-decoration:none;
 }
  
 .nav-link a,.nav-link, a {
@@ -85,7 +86,7 @@ a:hover {
  
 .nav-link:hover, a:hover {
   color          : #666;
-  text-decoration: underline;
+  text-decoration: none;
 }
  
 abbr[title] {
