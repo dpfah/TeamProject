@@ -18,5 +18,5 @@ public class CmtDto {
     private LocalDateTime regTime;
 
     private LocalDateTime updateTime;
-
+    
 }

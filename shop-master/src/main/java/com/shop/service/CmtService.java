@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
+import com.shop.dto.CmtDto;
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtImgDto;
 import com.shop.dto.CmtSearchDto;
@@ -63,6 +64,9 @@ public class CmtService {
 
         return cmt.getId();
     }
+
+   
+
 
 
     public Long updateCmt(CmtFormDto cmtFormDto, List<MultipartFile> cmtImgFileList) throws Exception{
@@ -168,6 +172,20 @@ public class CmtService {
     public Page<MainCmtDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable){
         return cmtRepository.getMainCmtPage(cmtSearchDto, pageable);
     }
+
+
+    /* Views Counting */
+    @Transactional
+    public int updateView(Long Id) {
+        return cmtRepository.updateView(Id);
+    }
+
+
+
+
+
    
 
 }
+
+

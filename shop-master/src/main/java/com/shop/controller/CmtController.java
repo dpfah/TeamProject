@@ -50,8 +50,9 @@ public class CmtController {
 
         return "cmt/MainCmt";
     }
+
     
-    //마이페이지에서 1:1문의 리스트
+        //마이페이지에서 1:1문의 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
     public String cmtHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
@@ -158,11 +159,12 @@ public class CmtController {
         return "cmt/cmtMng";
     }
 
-    // 1:1문의 상세보기
+    // 상세페이지
     @GetMapping(value = "/cmt/dtl/{cmtId}")
     public String cmtDtl(Model model, @PathVariable("cmtId") Long cmtId){
         CmtFormDto cmtFormDto = cmtService.getCmtDtl(cmtId);
         model.addAttribute("cmt", cmtFormDto);
+        cmtService.updateView(cmtId); // views ++
         return "cmt/cmtDtl";
     }
     
@@ -181,6 +183,8 @@ public class CmtController {
     	return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
     }
     
+
+
 
 
 }

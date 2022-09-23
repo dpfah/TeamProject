@@ -49,7 +49,9 @@ public class Cmt extends BaseEntity{
 
     private String cmtReply; //cmt 답변
     
-    private int count; //수량
+    // 조회수
+    @Column(columnDefinition = "integer default 0", nullable = false)
+    private int view;
     
 
     public void updateCmt(CmtFormDto cmtFormDto){

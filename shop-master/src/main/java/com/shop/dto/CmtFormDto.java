@@ -3,7 +3,6 @@ package com.shop.dto;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
 
 import org.modelmapper.ModelMapper;
 
@@ -17,10 +16,10 @@ public class CmtFormDto {
 
     private Long id;
 
-    @NotBlank(message = "제목은 필수 입력 값입니다.")
+//    @NotBlank(message = "제목은 필수 입력 값입니다.")
     private String cmtTitle;
 
-    @NotBlank(message = "상세 설명은 필수 입력 값입니다.")
+//    @NotBlank(message = "상세 설명은 필수 입력 값입니다.")
     private String cmtDetail;
     
     private String cmtReply;
@@ -32,7 +31,8 @@ public class CmtFormDto {
     private String cmtDate; //질문날짜
     
     private String createdBy;	// 작성자
-    
+
+    private int view;	// 조회수
 
     private static ModelMapper modelMapper = new ModelMapper();
 

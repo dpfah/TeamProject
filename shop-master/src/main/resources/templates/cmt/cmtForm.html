@@ -92,7 +92,7 @@
 </th:block>
 
 	<section id="cmtForm" class="py-5 cmtDF" layout:fragment="content">	
-	    <form role="form" method="post" enctype="multipart/form-data" th:object="${cmtFormDto}" class="cmtF cmtBox">
+	    <form role="form" method="post" enctype="multipart/form-data" th:object="${cmtFormDto}" class="cmtF cmtBox was-validated" >
 	        <p class="h1 title">
 	            커뮤니티 작성하기
 	        </p>
@@ -101,24 +101,26 @@
 		    <div class="row">
 		        <div class="row align-items-center">
 		            <div class="col-md-12">
-						<div class="input-group ">
-				            <input type="text" th:field="*{cmtTitle}" class=" input-title" placeholder="제목을 입력해주세요">
+						<div class="form-group ">
+				            <input type="text" th:field="*{cmtTitle}" class=" input-title form-control" placeholder="제목을 입력해주세요" required>
 				        </div>
-				        <p th:if="${#fields.hasErrors('cmtTitle')}" th:errors="*{cmtTitle}" class="fieldError">Incorrect data</p>
+				        <div class="invalid-feedback">제목을 입력해주세요</div>
+<!-- 				        <p th:if="${#fields.hasErrors('cmtTitle')}" th:errors="*{cmtTitle}" class="fieldError">Incorrect data</p> -->
 			     	</div>
 			    </div>
 			    
-				<div class="input-group">
-		            <textarea class="" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요"></textarea>
-	        	</div>
-	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p>
+					<div class="form-group">
+			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요" required></textarea>
+		        	</div>
+		        		<div class="invalid-feedback">내용을 입력해주세요</div>
+	<!-- 	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p> -->
+		        	
 	        	
-	        	
-				<p class="small-title mt-5">이미지를 업로드해주세요.(최대 5개까지 업로드 가능)</p>
+				<p class="small-title mt-5" >이미지를 업로드해주세요.(최대 5개까지 업로드 가능)</p>
 		        <div th:if="${#lists.isEmpty(cmtFormDto.cmtImgDtoList)}">
-		            <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}">
+		            <div class="form-group" th:each="num: ${#numbers.sequence(1,5)}" >
 		                <div class="custom-file img-div">
-		                    <input type="file" class="custom-file-input" name="cmtImgFile">
+		                    <input type="file" class="custom-file-input" name="cmtImgFile" >
 		                    <label class="custom-file-label" th:text="첨부이미지 + ${num}"></label>
 		                </div>
 		            </div>

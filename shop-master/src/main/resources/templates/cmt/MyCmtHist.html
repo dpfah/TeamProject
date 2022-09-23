@@ -148,11 +148,13 @@
 				<div class="table-responsive">
 			        <table class="table cart CmtTa">
 			            <colgroup>
-			                <col width="50%"/>
-			                <col width="50%"/>
+			                <col width="34%"/>
+			                <col width="33%"/>
+			                <col width="33%"/>
 			            </colgroup>
 			            <tr class="text-center CmtTSu">
 			                <td>제목</td>
+			                <td>조회수</td>
 			                <td>날짜</td>
  			            </tr>
 			        	<tr th:each="cmt : ${cmts.getContent()}" >
@@ -160,6 +162,9 @@
 			        			<a th:href="'/cmt/dtl/' + ${cmt.cmtId}" class="text-dark">
 						            <span th:text="${cmt.cmtTitle}" class="orderTitle"></span>
 			        			</a>
+			        		</td>
+			        		<td class="align-middle">
+						            <span th:text="${cmt.view}" class="orderTitle"></span>
 			        		</td>
 			        		<td class="align-middle">
 						            <span th:text="${cmt.cmtDate}" class="cmtDate"></span>

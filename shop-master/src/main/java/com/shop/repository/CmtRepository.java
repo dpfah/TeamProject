@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
@@ -36,6 +37,12 @@ public interface CmtRepository extends JpaRepository<Cmt, Long>,
             "where o.member.email = :email"
     )
     Long countCmt(@Param("email") String email);
+    
+    // 조회수
+    @Modifying
+    @Query("update Cmt p set p.view = p.view + 1 where p.id = :id")
+    int updateView(@Param("id") Long id);
+
 
 
 }
