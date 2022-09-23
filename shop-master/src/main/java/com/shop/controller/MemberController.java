@@ -91,10 +91,10 @@ public class MemberController {
             return "member/memberUpdateForm";
         }
 
-        if(memberImgFileList.get(0).isEmpty()){
-            model.addAttribute("errorMessage", "프로필이미지는 필수 입력 값 입니다.");
-            return "member/memberUpdateForm";
-        }
+//        if(memberImgFileList.get(0).isEmpty()){
+//            model.addAttribute("errorMessage", "프로필이미지는 필수 입력 값 입니다.");
+//            return "member/memberUpdateForm";
+//        }
 
         try {
 			
