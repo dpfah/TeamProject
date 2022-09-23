@@ -50,8 +50,9 @@ public class CmtController {
 
         return "cmt/MainCmt";
     }
+
     
-    //마이페이지에서 1:1문의 리스트
+        //마이페이지에서 1:1문의 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
     public String cmtHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
@@ -98,7 +99,7 @@ public class CmtController {
 			
 			cmtService.saveCmt(email, cmtFormDto, cmtImgFileList);
         } catch (Exception e){
-            model.addAttribute("errorMessage", "질문 등록 중 에러가 발생하였습니다.");
+            model.addAttribute("errorMessage", "글 작성 중 에러가 발생하였습니다. 양식을 다시 확인해 주세요");
             return "cmt/cmtForm";
         }
 
@@ -113,7 +114,7 @@ public class CmtController {
             CmtFormDto cmtFormDto = cmtService.getCmtDtl(cmtId);
             model.addAttribute("cmtFormDto", cmtFormDto);
         } catch(EntityNotFoundException e){
-            model.addAttribute("errorMessage", "존재하지 않는 상품 입니다.");
+            model.addAttribute("errorMessage", "존재하지 않는 글입니다.");
             model.addAttribute("cmtFormDto", new CmtFormDto());
             return "cmt/cmtForm";
         }
@@ -137,7 +138,7 @@ public class CmtController {
         try {
             cmtService.updateCmt(cmtFormDto, cmtImgFileList);
         } catch (Exception e){
-            model.addAttribute("errorMessage", "문의 수정 중 에러가 발생하였습니다.");
+            model.addAttribute("errorMessage", "글 수정 중 에러가 발생하였습니다.");
             return "cmt/cmtForm";
         }
 
@@ -158,11 +159,12 @@ public class CmtController {
         return "cmt/cmtMng";
     }
 
-    // 1:1문의 상세보기
+    // 상세페이지
     @GetMapping(value = "/cmt/dtl/{cmtId}")
     public String cmtDtl(Model model, @PathVariable("cmtId") Long cmtId){
         CmtFormDto cmtFormDto = cmtService.getCmtDtl(cmtId);
         model.addAttribute("cmt", cmtFormDto);
+        cmtService.updateView(cmtId); // views ++
         return "cmt/cmtDtl";
     }
     
@@ -181,6 +183,8 @@ public class CmtController {
     	return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
     }
     
+
+
 
 
 }

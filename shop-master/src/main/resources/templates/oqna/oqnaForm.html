@@ -91,7 +91,7 @@
 </th:block>
 
 	<section id="oqnaForm" class="py-5 oqnaDF" layout:fragment="content">	
-	    <form role="form" method="post" enctype="multipart/form-data" th:object="${oqnaFormDto}" class="was-validated">
+	    <form role="form" method="post" enctype="multipart/form-data" th:object="${oqnaFormDto}">
 	        <p class="h2 title">
 	            1:1 문의하기
 	        </p>
@@ -111,16 +111,14 @@
 					        </div>
 		            	<p class="small-title">제목을 작성해주세요</p>
 						<div class="input-group">
-				            <input type="text" th:field="*{oqnaTitle}" class="form-control input-title" placeholder="제목을 입력해주세요" required>
-				            <div class="invalid-feedback">제목을 입력해주세요.</div>
+				            <input type="text" th:field="*{oqnaTitle}" class="form-control input-title" placeholder="제목을 입력해주세요">
 				        </div>
-<!--				        <p th:if="${#fields.hasErrors('oqnaTitle')}" th:errors="*{oqnaTitle}" class="fieldError">Incorrect data</p>-->
+				        <p th:if="${#fields.hasErrors('oqnaTitle')}" th:errors="*{oqnaTitle}" class="fieldError">Incorrect data</p>
 			     	</div>
 			    </div>
 			    <p class="small-title mt-3">문의 사항을 작성해주세요</p>
 				<div class="input-group">
-		            <textarea class="form-control" aria-label="With textarea" th:field="*{oqnaDetail}" placeholder="문의 내용을 입력해주세요" required></textarea>
-		            <div class="invalid-feedback">문의 내용을 입력해주세요.</div>
+		            <textarea class="form-control" aria-label="With textarea" th:field="*{oqnaDetail}" placeholder="문의 내용을 입력해주세요"></textarea>
 	        	</div>
 	        	<p th:if="${#fields.hasErrors('oqnaDetail')}" th:errors="*{oqnaDetail}" class="fieldError">Incorrect data</p>
 	        	<p class="warning">※ 문의글에 개인정보를 기재하시는 경우, 상담완료 이후 임의로 삭제될 수 있사오니 개인정보 기재는 삼가해 주세요.</p><br>

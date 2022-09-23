@@ -18,7 +18,7 @@ public class MyCmtHistDto {
     
     private String cmtReply;
     
-    
+    private int view;	// 조회수
 
 
     public MyCmtHistDto(Cmt cmt){
@@ -26,6 +26,7 @@ public class MyCmtHistDto {
         this.cmtTitle = cmt.getCmtTitle();
 		this.cmtDate = cmt.getCmtDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         this.cmtReply = cmt.getCmtReply();
+        this.view = cmt.getView();
     }
 
 }

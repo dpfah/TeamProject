@@ -31,6 +31,7 @@
         			<a th:href="'/cmt/update/' + ${cmt.id}" class="update">수정하기</a>
         		</button>		    
 				<h1 class="input-title mb-5" th:text="${cmt.cmtTitle}">e</h1>
+				조회수 <p class="small-title" th:text="${cmt.view}"></p>
 				<p class="small-title" th:text="${cmt.createdBy}"></p>
 		   		<div th:each="cmtImg : ${cmt.cmtImgDtoList}" class="text-center cmtImg">
 			    	<img th:if="${not #strings.isEmpty(cmtImg.imgUrl)}" th:src="${cmtImg.imgUrl}" class="rounded mgb-15">

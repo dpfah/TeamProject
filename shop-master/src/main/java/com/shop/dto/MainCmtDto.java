@@ -18,15 +18,17 @@ public class MainCmtDto {
 
     private String createdBy;
     
+    private int view;
     
 
     @QueryProjection
-    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String createdBy){
+    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String createdBy, int view){
         this.id = id;
         this.cmtTitle = cmtTitle;
         this.cmtDetail = cmtDetail;
         this.imgUrl = imgUrl;
         this.createdBy = createdBy;
+        this.view = view;
     }
 
 }

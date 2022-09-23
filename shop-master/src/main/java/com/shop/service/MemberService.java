@@ -98,7 +98,7 @@ public class MemberService implements UserDetailsService {
             //    .orElseThrow(EntityNotFoundException::new);
         
         
-       if(memberImgIds.isEmpty() && savedMemberImg.size() == 0){ 
+       if(memberImgIds.isEmpty() && savedMemberImg == null && savedMemberImg.size() == 0){ 
     	   
     	   for(int i =0; i<memberImgFileList.size();i++) {
         	MemberImg memberImg = new MemberImg();
