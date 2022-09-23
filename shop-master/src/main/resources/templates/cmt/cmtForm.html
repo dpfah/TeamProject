@@ -84,12 +84,7 @@
 
 </th:block>
 
-<!-- 사용자 CSS 추가 -->
-<th:block layout:fragment="css">
-    <style>
-	
-    </style>
-</th:block>
+
 
 	<section id="cmtForm" class="py-5 cmtDF" layout:fragment="content">	
 	    <form role="form" method="post" enctype="multipart/form-data" th:object="${cmtFormDto}" class="cmtF cmtBox was-validated" >
@@ -102,7 +97,7 @@
 		        <div class="row align-items-center">
 		            <div class="col-md-12">
 						<div class="form-group ">
-				            <input type="text" th:field="*{cmtTitle}" class=" input-title form-control" placeholder="제목을 입력해주세요" required>
+				            <input type="text" th:field="*{cmtTitle}" class=" input-title form-control" placeholder="제목을 입력해주세요" required maxlength="50">
 				        </div>
 				        <div class="invalid-feedback">제목을 입력해주세요</div>
 <!-- 				        <p th:if="${#fields.hasErrors('cmtTitle')}" th:errors="*{cmtTitle}" class="fieldError">Incorrect data</p> -->
@@ -110,7 +105,7 @@
 			    </div>
 			    
 					<div class="form-group">
-			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요" required></textarea>
+			            <textarea class="form-control" aria-label="With textarea" th:field="*{cmtDetail}" placeholder="내용을 입력해주세요" required maxlength="1000"></textarea>
 		        	</div>
 		        		<div class="invalid-feedback">내용을 입력해주세요</div>
 	<!-- 	        	<p th:if="${#fields.hasErrors('cmtDetail')}" th:errors="*{cmtDetail}" class="fieldError">Incorrect data</p> -->

@@ -14,14 +14,13 @@
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="/css/item_menu.css" rel="stylesheet" />
         <link href="/css/cmt_styles.css" rel="stylesheet" />
-        <style>
-		@import url('https://fonts.googleapis.com/css2?family=Lora:wght@700&display=swap');
-		</style>
     </head>
-    <th:block layout:fragment="script">
-	    <style>
-	    </style>
-    </th:block>
+    
+    <!-- 사용자 JS 추가 -->
+<th:block layout:fragment="script">
+    <script>
+    </script>
+</th:block>
     <body>
         <!-- content 시작-->
 	 	<section id="cmt" class="item_menu" layout:fragment="content">	
@@ -63,8 +62,7 @@
 				                            <div class="card-body text-left">
 			                                    <!-- Product name-->
 			                                    <h5 class="product-name fw-bolder">[[${cmt.cmtTitle}]]</h5>
-			                                   	<p class="Cmtwriter">[[${cmt.createdBy}]] · [[${cmt.view}]]</p>
-			                                   	<p class="small-title" th:text="${cmt.view}"></p>
+			                                   	<p class="Cmtwriter">[[${cmt.createdBy}]] · 조회수 [[${cmt.view}]]</p>
 			                                   	
 				                            </div>
 			                            </div>
@@ -120,9 +118,5 @@
 	        <footer class="py-5">
 	           
 	        </footer>
-	        <!-- Bootstrap core JS-->
-	        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-	        <!-- Core theme JS-->
-	        <script src="js/scripts.js"></script>
 	 	</section>
 

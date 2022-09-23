@@ -48,7 +48,9 @@
 .cmtF .fieldError{
 	color:red;
 }
-
+#cmtForm textarea{
+	 resize: none;
+}
 
 
 .cmtBox .cmtP{
@@ -100,12 +102,16 @@
 	top:50%;
 	color:#000;	
 }
-
+.product-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 304px;
+  height: 20px;
+}
 
 
 .Cmtwriter{
 	font-size:14px;
 }
-
-
 
