@@ -19,10 +19,10 @@ public class OqnaFormDto {
 
     private Long id;
 
-    @NotBlank(message = "상품명은 필수 입력 값입니다.")
+//    @NotBlank(message = "제목은 필수 입력 값입니다.")
     private String oqnaTitle;
 
-    @NotBlank(message = "상품 상세는 필수 입력 값입니다.")
+//    @NotBlank(message = "질문 상세는 필수 입력 값입니다.")
     private String oqnaDetail;
     
     private String oqnaReply;
