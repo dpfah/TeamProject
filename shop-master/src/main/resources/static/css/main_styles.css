@@ -13,6 +13,12 @@
 	color: #333333;
     font-size: 16px;
 }
+.MToggle .menu a{
+	cursor:pointer;
+}
+.MToggle .menu .hide{
+	display:none;
+}
 /* .Hmenu .nav-item a:hover{ */
 /* 	background-color:#fad4a8; */
 /* } */

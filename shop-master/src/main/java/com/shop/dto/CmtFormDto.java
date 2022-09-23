@@ -31,6 +31,8 @@ public class CmtFormDto {
     
     private String cmtDate; //질문날짜
     
+    private String createdBy;	// 작성자
+    
 
     private static ModelMapper modelMapper = new ModelMapper();
 
