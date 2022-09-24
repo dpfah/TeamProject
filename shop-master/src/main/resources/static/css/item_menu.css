@@ -472,6 +472,14 @@ img {
 	margin-top: 50px;
 }
 
+#itemDtl .sell-badge{
+	display: inline-block;
+    padding: 6px 11px;
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+    background: #333;
+}
 
 
 /*itemForm*/
