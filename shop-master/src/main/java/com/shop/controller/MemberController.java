@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -68,11 +69,11 @@ public class MemberController {
     }
     
     //멤버 업데이트 페이지 가져오기
-    @GetMapping(value = "/update/{email}")// email로 정한 이유는 세션에서 받아온 값으로 접속하기 위해서.
-    public String memberDtl(Model model, @PathVariable("email") String email){
+    @GetMapping(value = "/update")// email로 정한 이유는 세션에서 받아온 값으로 접속하기 위해서.
+    public String memberDtl(Model model, Principal principal){
 
         try {
-			MemberFormDto memberFormDto = memberService.getMemberDtl(email);
+			MemberFormDto memberFormDto = memberService.getMemberDtl(principal.getName());
             model.addAttribute("memberFormDto", memberFormDto);
         } catch(EntityNotFoundException e){
             model.addAttribute("errorMessage", "존재하지 않는 아이디 입니다.");
@@ -97,23 +98,32 @@ public class MemberController {
         }
 
         try {
-			
+			// 자신의 개인정보수정을 위해 세션에 저장된 이메일로 개인정보를 찾아내서 수정함.
 			memberService.updateMember(email, memberFormDto, memberImgFileList, passwordEncoder);
         } catch (Exception e){
             model.addAttribute("errorMessage", "개인정보 수정 중 에러가 발생하였습니다.");
             return "member/memberUpdateForm";
         }
 
-        return "redirect:/members/dtl/{email}";
+        return "redirect:/members/dtl";
     }
     
     // 멤버 상세보기
-    @GetMapping(value = "/dtl/{email}") //세션
-    public String memberDtl1(Model model, @PathVariable("email") String email){
-        MemberFormDto memberFormDto = memberService.getMemberDtl(email);
+    @GetMapping(value = "/dtl") //세션
+    public String memberDtl1(Model model,Principal principal){
+    	// 세션에서 이메일로 받아와서 처리
+        MemberFormDto memberFormDto = memberService.getMemberDtl(principal.getName());
         model.addAttribute("member", memberFormDto);
         return "member/memberDtl";
     }
+    
+//    // 멤버 상세보기
+//    @GetMapping(value = "/dtl/{email}") //세션
+//    public String memberDtl1(Model model, @PathVariable("email") String email){
+//        MemberFormDto memberFormDto = memberService.getMemberDtl(email);
+//        model.addAttribute("member", memberFormDto);
+//        return "member/memberDtl";
+//    }
     
     
 //    @DeleteMapping(value = "/delete/{email}")
