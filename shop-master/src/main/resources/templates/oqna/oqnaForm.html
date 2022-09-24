@@ -111,7 +111,7 @@
 					        </div>
 		            	<p class="small-title">제목을 작성해주세요</p>
 						<div class="input-group">
-				            <input type="text" th:field="*{oqnaTitle}" class="form-control input-title" placeholder="제목을 입력해주세요">
+				            <input type="text" th:field="*{oqnaTitle}" class="form-control input-title" placeholder="제목을 입력해주세요" maxlength="30">
 				        </div>
 				        <p th:if="${#fields.hasErrors('oqnaTitle')}" th:errors="*{oqnaTitle}" class="fieldError">Incorrect data</p>
 			     	</div>
@@ -154,7 +154,7 @@
 		        </div>
 		        <div th:unless="${#strings.isEmpty(oqnaFormDto.id)}" style="text-align: center">
 		            <button th:formaction="@{'/oqna/update/' + ${oqnaFormDto.id} }" type="submit" class="btn save">수정</button>
-		            <button  type="button" class="btn close save" aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		            <button  type="button" class="btn close " aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
 		            	<span aria-hidden="true" th:data-id="${oqnaFormDto.id}" onclick ="deleteOqna(this)">삭제하기</span>
 		            </button>
 		        </div>

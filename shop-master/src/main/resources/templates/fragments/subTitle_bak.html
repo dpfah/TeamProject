@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <div class="content-lg-12 mt-5 mypage item_menu" th:fragment="subTitle">
+		<div class="sub-title-mypage  ">
+			<div class="sub-top clearfix">
+				<div class="sub-title-user">
+					<dl>
+						<dt>
+							<p th:text="${email} + '님'">
+							</p>
+						</dt>
+						<dd>
+							빵주머니 몰에 오신 걸 환영합니다.
+						</dd>
+					</dl>
+				</div>
+				<ul class="my-wallet clearfix">
+					<li>
+						<a href="#">
+							<dl>
+								<dt>빵포인트</dt>
+							</dl>
+						</a>
+					</li>
+				</ul>
+				<div class="user-qna clearfix">
+					<a href="">
+						<dl>
+							<dt>1:1문의</dt>
+							<dd class="btn-pink">
+								<!--1:1문의 개수 들어갈 곳-->
+								<span></span>
+							</dd>
+						<dl>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="content-lg-12 mt-5 "></div>
+		<div class="lnb-mypage-category">
+			<h1>마이페이지</h1>
+			<ul>
+				<li><a href="/mypage/orders" title="주문 및 배송">주문 및 배송</a></li>
+				<li><a href="" title="배송지 관리">배송지 관리</a></li>
+				<li><a href="" title="빵포인트">빵포인트</a></li>
+				<li><a href="/oqnas" title="1:1 문의">1:1 문의</a></li>
+				<li><a href="/cmts" title="커뮤니티 게시글 관리">커뮤니티 게시글 관리</a></li>
+				<li><a th:href="'/members/dtl/' + ${email}" title="개인 정보 관리">개인 정보 관리</a></li>
+			</ul>
+		</div>
+	</div>
+</html>

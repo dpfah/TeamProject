@@ -548,7 +548,8 @@ img {
     width: 100%;
     padding: 40px 0;
     margin: 0px auto 0 auto;
-    background: #F7F7F7;
+    background:url("/img/mybackground.jpg") repeat 100%;
+    background-size:contain;
 }
 
 
@@ -558,12 +559,10 @@ img {
     margin: 0 auto;
 }
 .mypage .sub-title-user{
-	float: left;
-    width: 32%;
-    min-height: 160px;
-    padding: 52px 20px 0 20px;
+    width: 99%;
+    padding: 59px 0;
     background: #FFFFFF;
-    border-radius: 10px 0 0 10px;
+    opacity:0.9;
 
 }
 
@@ -581,11 +580,10 @@ img {
     color: #666;
     overflow: hidden;
     letter-spacing:-0.03em;
-    margin-bottom: 10px;
 }
 
 .mypage .sub-title-user dl dt p {
-    font-size: 22px;
+    font-size: 27px;
     margin-bottom: 0px;
     font-weight: 600;
     color: #333;
@@ -789,6 +787,7 @@ img {
     position: absolute;
     right: 0;
     margin-top:0;
+    top: 178px;
 }
 
 .cs-counsel-top dd.use_talk_add a{
