@@ -388,6 +388,30 @@ img {
 	vertical-align: middle;
 }
 
+#itemDtl .list-itemComment{
+	margin-top: 16px;
+    font-size: 22px;
+    color: #999;
+    line-height: 1.5;
+}
+
+
+
+#itemDtl .comment-area{
+	text-align: right;
+	 width:100%;
+}
+
+#itemDtl #itemComment{
+	height: auto;
+    width: 95%;
+    margin: 0 auto;
+}
+
+#btn-comment-save{
+	display: inline-block;
+}
+
 /* Slideshow container */
 .slideshow-container {
   max-width: 1000px;

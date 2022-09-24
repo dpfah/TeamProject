@@ -21,7 +21,7 @@ public class ItemCommentResponseDto {
     private String itemComment;
     private String createdDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
     private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
-    private Long memberId;
+    private String memberEmail;
     private Long itemId;
 
     /* Entity -> Dto*/
