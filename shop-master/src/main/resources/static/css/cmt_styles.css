@@ -94,6 +94,17 @@
 .ctmButtons{
 	margin-top:30px;
 }
+.MainTitleBox{
+	position:relative;
+}
+.cmtMainButton{
+	position:absolute;
+	right:0;
+	top:0;
+	padding:10px 20px;
+	
+	
+}
 .cmtTitle{
 	font-size: 32px;
     font-weight: 500;
