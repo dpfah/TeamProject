@@ -26,7 +26,7 @@
 	 	<section id="cmt" class="item_menu" layout:fragment="content">	
 	        <!-- banner-->
 	        <div id="banner" >
-	            <div class="container">
+	            <div class="row">
 	                <div class="text-center text-white">
 	                    <h1 class="display-4 fw-bolder title fst-italic">커뮤니티</h1>
 	                    <div class="container jb-box">
@@ -39,14 +39,14 @@
 	            </div>
 	        </div>
 	        <!-- small nav -->
-	        <div class="container pt-3 pb-3 px-4 my-5 sub-top-title-area">
+	        <div class="container my-5 sub-top-title-area">
                 <div class="text-left text-black">
                     <h1 class="title">커뮤니티</h1>
                 </div>
 	        </div>
 	        
 	        <!-- Section-->
-	        <section class="py-5 mb-3" >
+	        <section class=" mb-3 cmtStyle" >
 	            <div class="container px-4 mt-5">
 	                <div class="row gx-3 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
 	                <th:block th:each="cmt, status: ${cmts.getContent()}">	                	
@@ -59,10 +59,11 @@
 			                            <!-- Product details-->
 		                       			</div>
 			                            <div class="product-list">
-				                            <div class="card-body text-left">
+				                            <div class=" text-left">
 			                                    <!-- Product name-->
-			                                    <h5 class="product-name fw-bolder">[[${cmt.cmtTitle}]]</h5>
-			                                   	<p class="Cmtwriter">[[${cmt.createdBy}]] · 조회수 [[${cmt.view}]]</p>
+			                                    <p class="product-name ">[[${cmt.cmtTitle}]]</p>
+			                                   	<p class="Cmtwriter"><span>작성자</span> [[${cmt.createdBy}]] · <span>조회수</span> [[${cmt.view}]]</p>
+			                                   	<p class="Cmtwriter"><span>등록일</span> [[${cmt.regTime}]]</p>
 			                                   	
 				                            </div>
 			                            </div>

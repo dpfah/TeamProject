@@ -32,6 +32,8 @@
     <style>
         .content{
 	    	padding:100px 0;
+		    width: 1000px;
+		    margin: 0 auto;
 	    }
         select{
             margin-right:10px;
@@ -64,19 +66,20 @@
 		  height: 20px;
 		}
 		.cmtTitle{
-		font-size: 38px;
-	    font-weight: 500;
-	    color: #000000;
-	    text-align: left;
-	    }
+			font-size: 32px;
+		    font-weight: 500;
+		    color: #000000;
+		    margin-bottom: 27px;
+		    text-align: left;
+		}
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
     <form th:action="@{'/admin/faqs/' + ${faqs.number}}" role="form" method="get" th:object="${faqs}">
-    <h1 class="cmtTitle">
-			faq 관리자
+	    <h1 class="cmtTitle">
+				faq 관리자
 		</h1>
         <table class="table CmtTSu">
         	    

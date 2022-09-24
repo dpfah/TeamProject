@@ -95,6 +95,8 @@
 		.MCHdot li{
 			list-style:disc;
 			padding: 5px 0;
+			font-size: 14px;
+   			margin-left: 5%;
 		}
 		.CmtTa td{
 			text-align:center;
@@ -103,47 +105,31 @@
 			background-color:#f1f1f1;
 			font-weight: bold;
 		}
+		.cs-counsel-top dd{
+			font-size:14px;
+		}
 		
     </style>
 </th:block>
 
-	<div layout:fragment="content" class="col-lg-9 float-right content-log-12">
-		<div id="cmtHist" class="item_menu mypage">
-			<h1 class="mb-3">커뮤니티</h1>
-		
-		    <div class="accordion" id="accordionExample">
-			  <div class="accordion-item">
-			    <h2 class="accordion-header" id="headingOne">
-			      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-			        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-square-text" viewBox="0 0 16 16">
-					  <path d="M14 1a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1h-2.5a2 2 0 0 0-1.6.8L8 14.333 6.1 11.8a2 2 0 0 0-1.6-.8H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h2.5a1 1 0 0 1 .8.4l1.9 2.533a1 1 0 0 0 1.6 0l1.9-2.533a1 1 0 0 1 .8-.4H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-					  <path d="M3 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zM3 6a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9A.5.5 0 0 1 3 6zm0 2.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5z"/>
-					</svg>
-			        <p class="cmtAco">작성 가이드</p>
-			      </button>
-			    </h2>
-			    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-			      <div class="accordion-body">
-			        <ul class="MCHdot">
-			        	<li>커버사진과 제목은 에디터에 의해 변경될 수 있습니다.</li>
-						<li>글 작성과 이미지 업로드 시, 타인의 지식재산권을 침해하지 않도록 유의해주세요.</li>
-						<li>사진 첨부 시 용량은 장당 최대 20MB까지 업로드할 수 있고, jpg, png, webp, heif, heic, gif 포맷을 지원합니다.</li>
-						<li>사진 최대 5장까지 가능합니다.</li>
-					</ul>
-			      </div>
-			    </div>
-			  </div>
-			  </div>
-			</div>
-			
-			
-		    <dl class="cs-counsel-top">
-		    	
+	<div layout:fragment="content"  class=" float-right content-log-12">
+		<div id="oqnaHist" class="item_menu mypage">
+			<dl class="cs-counsel-top">
+		    	<dt>작성 가이드</dt>
+		    	<br class="w_view">
+		    	 <dd>
+		    	 * 커버사진과 제목은 에디터에 의해 변경될 수 있습니다.<br class="m_view">
+				 * 글 작성과 이미지 업로드 시, 타인의 지식재산권을 침해하지 않도록 유의해주세요.<br class="m_view">
+				 * 사진 첨부 시 용량은 장당 최대 20MB까지 업로드할 수 있고, jpg, png, webp, heif, heic, gif 포맷을 지원합니다.<br class="m_view">
+				 * 사진 최대 5장까지 가능합니다.</dd>
 		    	<dd class="cs_counsel_add use_talk_add">
-		    		<a href="/cmt/new" class="btn_black btn_counsel btn-outline-secondary">작성하기</a>
+		    		<a href="/cmt/new" class="btn_black btn_counsel btn-outline-secondary">등록하기</a>
 		    	</dd>
 		    </dl>
-		    
+		    <h4 class="mb-1">
+		        커뮤니티
+		    </h4>
+		
 			<div class="mt-3 mb-5">
 				<div class="table-responsive">
 			        <table class="table cart CmtTa">
@@ -152,10 +138,10 @@
 			                <col width="33%"/>
 			                <col width="33%"/>
 			            </colgroup>
-			            <tr class="text-center CmtTSu">
-			                <td>제목</td>
-			                <td>조회수</td>
-			                <td>날짜</td>
+			            <tr class="text-center ">
+			                <th>제목</th>
+			                <th>조회수</th>
+			                <th>날짜</th>
  			            </tr>
 			        	<tr th:each="cmt : ${cmts.getContent()}" >
 			        		<td class="align-middle">

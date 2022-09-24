@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap');
 
 html {
 	
@@ -38,10 +38,7 @@ body {
 }
  
 html {
-  font-family: -apple-system,
-    BlinkMacSystemFont,
-    /* 한글 폰트 들어갈 자리 */
-    'NotoSansKR','roboto','돋움','AppleSDGothicNeoR', Dotum,sans-serif
+  font-family:"Nanum Gothic","Noto Sans KR",'roboto','돋움','AppleSDGothicNeoR', Dotum,sans-serif
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   /* `font` 속성 리셋 */
   font-size                  : 16px;
@@ -70,6 +67,7 @@ header,section,article,aside,footer,main,a,button,input,textarea,img,nav,ul,ol,l
   padding  : 0;
   /* 폰트 크기 상속 */
   font-size: inherit;
+  
 }
  
 a:active,
@@ -162,7 +160,6 @@ video {
 }
  
 canvas,
-img,
 video {
   max-width : 100%;
   height    : auto;
@@ -195,10 +192,7 @@ p {
   margin-bottom: 1rem;
 }
  
-/* 인접한 요소 인 경우 여백 추가 */
-*+p {
-  margin-top: 1rem;
-}
+
  
 ul,
 ol,
@@ -222,14 +216,12 @@ figure {
 }
  
 h1,h2,h3,h4,h5,h6,.h1,.h2,.h3,.h4,.h5,.h6{
-  margin        : 0 0 20px 0;
   font-weight   : normal;
   color         : #333;
   text-transform: none;
 }
  
 /* 인접한 요소 인 경우 여백 추가 */
-*+h1,*+h2,*+h3,*+h4,*+h5,*+h6,*+.h1,*+.h2,*+.h3,*+.h4,*+.h5,*+.h6{margin-top:40px;}
  
 h1,
 .h1 {

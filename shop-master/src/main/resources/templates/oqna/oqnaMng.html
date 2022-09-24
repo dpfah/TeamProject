@@ -30,23 +30,65 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
+        .content{
+	    	padding:100px 0;
+		    width: 1000px;
+		    margin: 0 auto;
+	    	
+	    }
         select{
             margin-right:10px;
         }
+        
+        .CmtTSu td{
+            vertical-align: middle;
+		    height: 80px;
+		    padding: 15px 10px;
+		    font-size: 15px;
+			text-align:center;
+		}
+		.CmtTSu th{
+			border-top: 2px solid #999;
+		    vertical-align: middle;
+		    height: 47px;
+		    padding: 15px 10px;
+		    font-size: 16px;
+		    font-weight: 500;
+		    color: #000000;
+		    text-align: center;
+		}
+		
+		.CmtTSu td a{
+		  overflow: hidden;
+		  text-overflow: ellipsis;
+		  
+		  width: 200px;
+		  height: 20px;
+		}
+		.cmtTitle{
+			font-size: 32px;
+		    font-weight: 500;
+		    color: #000000;
+		    margin-bottom: 27px;
+		    text-align: left;
+		}
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
     <form th:action="@{'/admin/oqnas/' + ${oqnas.number}}" role="form" method="get" th:object="${oqnas}">
-        <table class="table">
+    	<h1 class="cmtTitle">
+				1:1문의 관리자
+		</h1>
+        <table class="table CmtTSu">
             <thead>
             <tr>
-                <td>문의번호</td>
-                <td>제목</td>
-                <td>상태</td>
-                <td>등록자</td>
-                <td>등록일</td>
+                <th>NO</th>
+                <th>제목</th>
+                <th>상태</th>
+                <th>등록자</th>
+                <th>등록일</th>
             </tr>
             </thead>
             <tbody>

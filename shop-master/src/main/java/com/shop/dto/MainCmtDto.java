@@ -1,5 +1,7 @@
 package com.shop.dto;
 
+import java.time.LocalDateTime;
+
 import com.querydsl.core.annotations.QueryProjection;
 
 import lombok.Getter;
@@ -20,15 +22,18 @@ public class MainCmtDto {
     
     private int view;
     
+    private LocalDateTime regTime;
+    
 
     @QueryProjection
-    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String createdBy, int view){
+    public MainCmtDto(Long id, String cmtTitle, String cmtDetail, String imgUrl, String createdBy, int view ,LocalDateTime regTime){
         this.id = id;
         this.cmtTitle = cmtTitle;
         this.cmtDetail = cmtDetail;
         this.imgUrl = imgUrl;
         this.createdBy = createdBy;
         this.view = view;
+        this.regTime = regTime;
     }
 
 }

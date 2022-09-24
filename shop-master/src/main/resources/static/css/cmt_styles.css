@@ -1,16 +1,56 @@
 #cmtDtl p{
-	margin-bottom:8px;
+	margin-bottom:0px;
+}
+#cmtDtl h1.title{
+	font-size: 38px;
+    color: #000000;
+    text-align: left;
+    position:relative;
+}
+#cmtDtl h1 > span{
+	width: 8px;
+    height: 8px;
+    background-color: red;
+    position: absolute;
+    color: red;
+    display: inline-block;
+    top: 0;
+    left: 155px;
+    border-radius: 30px;
 }
 .cmtBox{
-	width:100%;
-	position:relative;
+	width: 800px;
+    position: relative;
+    margin: 0 auto;
 }
-.cmtBox h1{
-	font-weight:bold;
-	font-size:34px;
+.cmtBox .small-title{
+	text-align:center;
+    color: #666;
+}
+.cmtDtlWriter {
+	text-align:center;
+}
+.cmtDate{
+	font-size:12px;
+	text-align:center;
+}
+.DtlTextBox{
+	margin-bottom:70px;
+}
+.cmtDtlWriter p{
+	text-align:center;
+	display:inline-block;
+}
+.DtlTextBox .Dtlh1{
+	margin: 100px 0 17px;
+    font-size: 32px;
+    font-weight: 500;
+    color: #000000;
+    text-align: center;
 }
 .cmtBox .cmtImg{
 	overflow:hidden;
+	margin-bottom: 10px
 }
 .cmtImg img{
 	width:100%;
@@ -52,37 +92,42 @@
 	 resize: none;
 }
 
-
+.cmtTitle{
+	font-size: 32px;
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 27px;
+    text-align: left;
+}
 .cmtBox .cmtP{
 	font-size:16px;
 	text-align:center;
-	margin:30px auto;
 }
-
-.cmtBox button > a{
-	color:#fff;
-	font-size:16px;
-	text-align:center;
-}
-.cmtBox button > a:hover{
-	color:#fff;
-
-}
-.ctmButtons{
-	display:block;
-	position:absolute;
-	right:0;
-	top:0;
-}
-.cmtBox button{
+#cmtDtl button{
 	display:inline-block;
 	float:right;
 	width:120px;
 	margin-left:5px;
 }
+#cmtDtl button > a{
+	color:#fff;
+	font-size:16px;
+	text-align:center;
+}
+#cmtDtl button > a:hover{
+	color:#fff;
+
+}
+#ctmButtons{
+	display:block;
+	position:absolute;
+	right:0;
+	top:0;
+}
+
 .jb-box {
 	position:relative;
-	width: 100%;
+	width: 99%;
 	height: 320px;
 	overflow: hidden;
 	margin: 0px auto;
@@ -107,11 +152,28 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   width: 304px;
-  height: 20px;
 }
 
 
 .Cmtwriter{
 	font-size:14px;
 }
+.Mitems .Cmtwriter span{
+	color:#888;
+	font-weight:normal;
+	font-size:12px;
+	margin:0;
+}
+.cmtStyle .form-control{
+	margin:0 4px;
+}
+.cmtStyle .btn{
+	margin:0 4px;
+}
 
+.cmtDF{
+	margin-top: 100px;
+}
+.cmtDF .warning{
+	margin-bottom:30px;
+}
