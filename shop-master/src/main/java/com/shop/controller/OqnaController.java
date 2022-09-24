@@ -116,7 +116,7 @@ public class OqnaController {
             return "oqna/oqnaForm";
         }
 
-        return "redirect:/";
+        return "redirect:/oqnas";
     }
 
     //1:1 문의 업데이트 페이지 가져오기

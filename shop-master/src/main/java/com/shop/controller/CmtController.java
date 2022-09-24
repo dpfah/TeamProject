@@ -103,7 +103,7 @@ public class CmtController {
             return "cmt/cmtForm";
         }
 
-        return "redirect:/";
+        return "redirect:/mainCmt";
     }
 
     //1:1 문의 업데이트 페이지 가져오기
@@ -142,7 +142,7 @@ public class CmtController {
             return "cmt/cmtForm";
         }
 
-        return "redirect:/";
+        return "redirect:/cmt/dtl/{cmtId}";
     }
 
     //관리자 페이지에서  목록보기

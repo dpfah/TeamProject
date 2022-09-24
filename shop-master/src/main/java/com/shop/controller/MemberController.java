@@ -104,7 +104,7 @@ public class MemberController {
             return "member/memberUpdateForm";
         }
 
-        return "redirect:/";
+        return "redirect:/members/dtl/{email}";
     }
     
     // 멤버 상세보기

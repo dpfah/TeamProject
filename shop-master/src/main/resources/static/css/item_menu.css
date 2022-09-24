@@ -343,13 +343,14 @@
     background: #FFFFFF;
     height: 64px;
     position: relative;
-    right: 64px;
+
 }
 
 .itemA .tab-product-ul{
 	width: 789px;
     height: 64px;
     line-height: 3;
+    margin: auto;
 }
 
 .itemA .tab-product-ul > li {
@@ -407,9 +408,12 @@ img {
     margin: 0 auto;
 }
 
-#btn-comment-save{
+#itemDtl #btn-comment-save{
 	display: inline-block;
+	border: 1px solid #bfbebe;
+    color: #333;
 }
+
 
 /* Slideshow container */
 .slideshow-container {
@@ -466,6 +470,8 @@ img {
 	width:5rem;
 	margin-top: 50px;
 }
+
+
 
 /*itemForm*/
 #itemForm .input-group {
@@ -541,6 +547,8 @@ img {
 	width:5rem;
 	margin-top: 50px;
 }
+
+
 
 #itemForm .input-percent{
 	height: 38px;
@@ -924,6 +932,15 @@ img {
 	width:5rem;
 	margin-top: 50px;
 }
+
+.oqnaDF .delete{
+	background-color: #bd2130;
+	color:#EEEEEE;
+	width:5rem;
+	margin-top: 50px;
+	margin-left: 10px;
+}
+
 
 .oqnaDF .fieldError {
     color: #bd2130;
