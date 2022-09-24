@@ -52,9 +52,9 @@
 								</div>
 								<div class="notice-view-txt-area">
 									<!-- 이미지 파일로 공지 작성 -->
-									<p style="text-align: center;">
-										<img alt src="" style=" width: 100%; height: auto;">
-									</p>
+									<div th:each="noticeImg : ${notice.noticeImgDtoList}" style="text-align: center;">
+										<img th:if="${not #strings.isEmpty(noticeImg.imgUrl)}" th:src="${noticeImg.imgUrl}" style=" width: 100%; height: auto;">
+									</div>
 									<!-- 텍스트로 공지 작성 -->
 									<div th:text="${notice.noticeText}"></div>
 								</div>
