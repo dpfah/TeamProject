@@ -236,7 +236,7 @@
 	            </div>
 	            <div class="col-md-6">
 	                <div class="small mb-1">
-						<span th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge badge-primary mgb-15">
+						<span th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge badge-success mgb-15">
 			                판매중
 			            </span>
 			            <span th:unless="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge btn-danger mgb-15" >
@@ -312,7 +312,7 @@
 					</div>
 				    <div class="jumbotron-fluid mgt-30">
 				        <div class="container">
-				            <h4 class="">상품 상세 설명</h4>
+				            <h3 class="fw-bold mt-5">상품 상세 설명</h4>
 				            <hr class="my-4">
 				            <p class="lead" th:text="${item.itemDetail}"></p>
 				        </div>

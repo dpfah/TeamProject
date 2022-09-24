@@ -60,7 +60,6 @@
 }
 
 
-
 .item_menu .product-list{
 	height: auto;
     margin-top: 10px;
@@ -384,6 +383,8 @@
 #item_Dtl .mySlides {
 	display: none
 }
+
+
 img {
 	vertical-align: middle;
 }
