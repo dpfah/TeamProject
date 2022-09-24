@@ -103,7 +103,8 @@ public class CmtRepositoryCustomImpl implements CmtRepositoryCustom{
                                 cmt.cmtDetail,
                                 cmtImg.imgUrl,
                                 cmt.createdBy,
-                                cmt.view)
+                                cmt.view,
+                                cmt.regTime)
                 )
                 .from(cmtImg)
                 .join(cmtImg.cmt, cmt)

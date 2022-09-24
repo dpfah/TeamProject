@@ -19,7 +19,7 @@
 }
 
 .item_menu .sub-top-title-area .title {
-    font-size: 48px;
+    font-size: 38px;
     color: #000000;
     text-align: left;
 }
@@ -82,7 +82,6 @@
 }
 
 .item_menu .product-list .product-name{
-	margin-bottom: 8px;
     color: #333333;
     font-size: 18px;
     /* font-weight: 500; */
@@ -757,8 +756,7 @@ img {
 #orderHist, #oqnaHist{
 	width: 820px;
     float: right;
-    padding-top: 50px;
-    height: 740px;
+    padding-top: 40px;
 }
 
 #orderHist h4, #oqnaHist h4{

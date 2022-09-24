@@ -1,7 +1,8 @@
 package com.shop.dto;
 
-
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
@@ -26,6 +27,10 @@ public class NoticeFormDto {
     private NoticeType noticeType;
     
     private LocalDateTime regTime;
+    
+    private List<NoticeImgDto> noticeImgDtoList = new ArrayList<>();
+
+    private List<Long> noticeImgIds = new ArrayList<>();
 
     private static ModelMapper modelMapper = new ModelMapper();
 

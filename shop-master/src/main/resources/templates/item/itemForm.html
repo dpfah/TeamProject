@@ -56,9 +56,8 @@
 
 	<section id="itemForm" class="py-5 itemA" layout:fragment="content">	
 	    <form role="form" method="post" enctype="multipart/form-data" th:object="${itemFormDto}">
-	        <p class="h2">
-	            상품 등록
-	        </p>
+	        <p class="h2" th:if="${#strings.isEmpty(itemFormDto.id)}">상품 등록</p>
+	        <p class="h2" th:unless="${#strings.isEmpty(itemFormDto.id)}">상품 수정</p>
 	        <input type="hidden" th:field="*{id}">
 		    <div class="container px-4 px-lg-5 my-5">
 		        <div class="row gx-4 gx-lg-5 align-items-center">

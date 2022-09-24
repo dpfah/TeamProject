@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap');
+
 #header{
 	height:125px;
 }
@@ -23,9 +25,11 @@
 /* 	background-color:#fad4a8; */
 /* } */
 .logo{
-	font-size: 21px;
-	font-weight: bold;
+	font-size: 31px;
+	font-family: 'Jua','Nanum Gothic','Noto Sans KR', sans-serif;
+	color:#a57643 !important;
 }
+
 .logo img{
 	width: 35px;
 }
@@ -36,9 +40,12 @@
 }
 .cartO{
 	position: absolute;
-    right: 22px;
-    top: 7px;
-    background-color:#FC454C;
+    right: 7px;
+    top: 12px;
+    background-color: #FC454C;
+    width: 18px;
+    height: 18px;
+    font-size: 11px;
 }
 .text-Price{
 	font-size: 36px;
@@ -53,7 +60,6 @@
 .footer{
 	border-top: 1px solid #ddd;
 	text-align: left;
-	color:#333;
 	clear:both;
 }
 .footer li{
@@ -62,9 +68,10 @@
 	float:left;
 	padding-right:5px;
 }
-.footer li a{
-	color:#333;
+footer a, footer p, footer .logo{
+	color:#666 !important;
 }
+
 .footer ul{
 	display: -webkit-box;
 	    padding: 0;
@@ -143,7 +150,7 @@
     transform: scale(1.1);
 }
 .Mitems p{
-	margin-bottom: 3px;	
+	margin: 0px;	
 }
 .Mitems .card-title{
 	font-weight: 600;
@@ -196,7 +203,7 @@
 	font-size: 24px;
     margin: 20px auto;
     padding: 30px 90px;
-    width:800px;
+    width:810px;
     text-align: left;
 }
 .Mbox02 .Bbox02 .BboxCircle{
@@ -216,7 +223,7 @@
 	display:inline;
 }
 .MBox03{
-	height:200px;
+	height:201px;
 	margin-bottom: 100px;
 	border: 1px solid #ddd;
 }
@@ -227,10 +234,11 @@
 .MBox03 .box03{
 	display:inline-block;
 	float:left;
-	padding: 27px 60px;
+	padding: 19px 60px;
 }
 .MBox03 p{
 	margin-bottom: 0;
+	margin-top: 0
 }
 .Mbox03 .boxText{
 	color:#ddd;
@@ -242,7 +250,7 @@
 }
 #header form .bi{
 	position:absolute;
-	right: 80px;
-    top: 12px;
+	right: 64px;
+    top: 20px;
 }
 

@@ -5,7 +5,18 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<!-- google web font Logo용 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic&family=Noto+Sans+KR&display=swap" rel="stylesheet">
 
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+       
+      
+    </style>
+</th:block>
 
                                             
 <div th:fragment="header" id="header">
@@ -35,10 +46,10 @@
 			</ul>
 		</div>
 <!-- Navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <div class="container  col-lg-12">
+        <nav class="navbar navbar-expand-lg " style="padding: 0;">
+            <div class="container  col-lg-12" style="padding: 0;">
                 <a class="navbar-brand logo" href="/">
-                	<img src="/img/logo02.png" alt="logo_image"> 빵주머니
+                	 <strong>빵</strong>주머니
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">

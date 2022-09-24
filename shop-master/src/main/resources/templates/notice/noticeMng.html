@@ -64,9 +64,10 @@
 		  height: 20px;
 		}
 		.cmtTitle{
-		font-size: 38px;
+		font-size: 32px;
 	    font-weight: 500;
 	    color: #000000;
+	    margin-bottom: 27px;
 	    text-align: left;
 	    }
     </style>
@@ -94,7 +95,7 @@
                     <a th:href="'/admin/notice/'+${notice.id}" th:text="${notice.noticeTitle}"></a>
                 </td>
                 <td th:text="${notice.createdBy}"></td>
-                <td th:text="${notice.regTime}"></td>
+                <td th:text="${#temporals.format(notice.regTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </tbody>
         </table>

@@ -21,24 +21,29 @@
 	<th:block layout:fragment="script">
 
 	</th:block>
-	<section id="cmtDtl" class="py-5 cmtDF " layout:fragment="content">	
+	<section id="cmtDtl" class="cmtDF " layout:fragment="content">	
 	    	<input type="hidden" id="cmtId" th:value="${cmt.id}">
-	        <p class="title">
-	            커뮤니티 상세보기
-	        </p>
-		    <div class="cmtBox">
-        		<button type="button" class="btn btn-secondary"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+	        <div class="text-left text-black">
+                    <h1 class="title">커뮤니티 <span></span></h1>
+            </div>
+            <button type="button" class="btn btn-secondary"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
         			<a th:href="'/cmt/update/' + ${cmt.id}" class="update">수정하기</a>
-        		</button>		    
-				<h1 class="input-title mb-5" th:text="${cmt.cmtTitle}">e</h1>
-				조회수 <p class="small-title" th:text="${cmt.view}"></p>
-				<p class="small-title" th:text="${cmt.createdBy}"></p>
+        	</button>
+                
+		    <div class="cmtBox">
+        	
+        		<div class="DtlTextBox">
+					<h1 class="input-title Dtlh1 " th:text="${cmt.cmtTitle}">e</h1>
+					
+					<div class="cmtDtlWriter">작성자 <p class="small-title" th:text="${cmt.createdBy}"></p></div>
+					<p class="cmtDate" th:text="${cmt.cmtDate}"></p>
+				</div>
 		   		<div th:each="cmtImg : ${cmt.cmtImgDtoList}" class="text-center cmtImg">
 			    	<img th:if="${not #strings.isEmpty(cmtImg.imgUrl)}" th:src="${cmtImg.imgUrl}" class="rounded mgb-15">
 				</div>
 				<p class="cmtP" th:text="${cmt.cmtDetail}"></p>
 
-
+					
         		
         		
 		    </div>           
