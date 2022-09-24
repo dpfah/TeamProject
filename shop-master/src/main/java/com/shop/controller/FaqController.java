@@ -70,7 +70,7 @@ public class FaqController {
             return "faq/faqForm";
         }
 
-        return "redirect:/";
+        return "redirect:/admin/faqs";
     }
 
     @GetMapping(value = "/admin/faq/{faqId}")
@@ -102,7 +102,7 @@ public class FaqController {
             return "faq/faqForm";
         }
 
-        return "redirect:/";
+        return "redirect:/admin/faqs";
     }
 
     @GetMapping(value = {"/admin/faqs", "/admin/faqs/{page}"})

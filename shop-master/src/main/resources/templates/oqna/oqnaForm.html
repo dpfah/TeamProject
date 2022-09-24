@@ -154,8 +154,8 @@
 		        </div>
 		        <div th:unless="${#strings.isEmpty(oqnaFormDto.id)}" style="text-align: center">
 		            <button th:formaction="@{'/oqna/update/' + ${oqnaFormDto.id} }" type="submit" class="btn save">수정</button>
-		            <button  type="button" class="btn close save" aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
-		            	<span aria-hidden="true" th:data-id="${oqnaFormDto.id}" onclick ="deleteOqna(this)">삭제하기</span>
+		            <button  type="button" class="btn delete" aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" th:data-id="${oqnaFormDto.id}" onclick ="deleteOqna(this)">
+		            	삭제
 		            </button>
 		        </div>
 		       
