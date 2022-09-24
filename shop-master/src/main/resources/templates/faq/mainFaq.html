@@ -15,7 +15,12 @@
 </th:block>
 <body>
 	<div layout:fragment="content">
-		<div class="accordion" id="accordionExample" th:each="faq, status: ${faqs.getContent()}">
+		<div  id="notice" class="accordion" id="accordionExample" th:each="faq, status: ${faqs.getContent()}">
+			 <div class="sub-top-title-area">
+				<div class="on-desktop">
+					<div class="title">FAQ</div>
+				</div>
+			</div>
 		  <div class="accordion-item">
 		    <h2 class="accordion-header" id="headingOne">
 		      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">

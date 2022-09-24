@@ -37,5 +37,24 @@ public class ItemCommentService {
 
         return dto.getId();
     }
+    
+//    /* UPDATE */    
+//    @Transactional    
+//    public void update(Long id, ItemCommentRequestDto dto) { 
+//    	ItemComment itemComment = itemCommentRepository.findById(id).orElseThrow(() -> 
+//    	new IllegalArgumentException("해당 댓글이 존재하지 않습니다. " + id));         
+//    	itemComment.update(dto.getItemComment());    
+//    }
+//    
+//    /* DELETE */    
+//    @Transactional    
+//    public void delete(Long id) { 
+//    	ItemComment itemComment = itemCommentRepository.findById(id).orElseThrow(() ->                
+//    	new IllegalArgumentException("해당 댓글이 존재하지 않습니다. id=" + id));         
+//    	itemCommentRepository.delete(itemComment);   
+//    }
+    
+    
+   
 }
 

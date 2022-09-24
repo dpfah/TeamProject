@@ -45,6 +45,11 @@ public class ItemComment {
     private Item item;
 
     @ManyToOne // 댓글 입장에서 멤버 한명당 댓글 여러개이므로 다대일 관계이다.
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "member_email")
     private Member member; // 작성자
+    
+//    /* 댓글 수정을 위한 setter */    
+//    public void update(String itemComment) { 
+//    	this.itemComment = itemComment;    }
+
 }
