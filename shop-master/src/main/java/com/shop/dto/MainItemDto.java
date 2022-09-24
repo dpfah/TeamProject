@@ -28,11 +28,11 @@ public class MainItemDto {
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
+        this.itemSummary = itemSummary;
         this.imgUrl = imgUrl;
         this.price = price;
         this.ori_price = ori_price;
         this.percent = percent;
-        this.itemSummary = itemSummary;
     }
 
 }
