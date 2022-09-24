@@ -600,12 +600,10 @@ img {
     margin: 0 auto;
 }
 .mypage .sub-title-user{
-	float: left;
-    width: 32%;
-    min-height: 160px;
-    padding: 52px 20px 0 20px;
+    width: 99%;
+    padding: 59px 0;
     background: #FFFFFF;
-    border-radius: 10px 0 0 10px;
+    opacity:0.9;
 
 }
 
