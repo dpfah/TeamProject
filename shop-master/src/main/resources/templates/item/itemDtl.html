@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 
 <html xmlns:th="http://www.thymeleaf.org"
@@ -511,3 +512,518 @@
 	    </div>	    
 	</section>
 </html>
+=======
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+	<head>
+	    <meta name="_csrf" th:content="${_csrf.token}"/>
+	    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	    <meta name="description" content="" />
+	    <meta name="author" content="" />
+	    <title>Shop Item - Start Bootstrap Template</title>
+	    <!-- Bootstrap icons-->
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />  
+	    
+	    <!-- 사용자 지정 css -->  
+	    <link th:href="@{/css/common.css}" rel="stylesheet">
+	    <link th:href="@{/css/other.css}" rel="stylesheet">
+	    <link th:href="@{/css/item_tab.css}" rel="stylesheet">
+	</head>
+
+	<!-- 사용자 스크립트 추가 -->
+	<th:block layout:fragment="script">
+	    <script th:inline="javascript">
+	        $(document).ready(function(){
+	
+	            calculateToalPrice();
+	
+	            $("#count").change( function(){
+	                calculateToalPrice();
+	            });
+	            
+	            	// 댓글 저장
+		        $('#btn-comment-save').on('click', function () {
+		            itemCommentSave();
+		        });
+		        
+	            
+	            //상품 프로필 슬라이드
+	            let slideIndex = 0;
+				showSlides(slideIndex);
+
+	        });
+	  // 할인율 계산
+	        function calculateToalPrice(){
+	            var count = $("#count").val();
+	            var price = $("#price").val();
+	            var totalPrice = price*count;
+	            $("#totalPrice").html(totalPrice + '원');
+	        }
+	
+	        function order(){
+	            var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+	
+	            var url = "/order";
+	            var paramData = {
+	                itemId : $("#itemId").val(),
+	                count : $("#count").val()
+	            };
+	
+	            var param = JSON.stringify(paramData);
+	
+	            $.ajax({
+	                url      : url,
+	                type     : "POST",
+	                contentType : "application/json",
+	                data     : param,
+	                beforeSend : function(xhr){
+	                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+	                    xhr.setRequestHeader(header, token);
+	                },
+	                dataType : "json",
+	                cache   : false,
+	                success  : function(result, status){
+	                    alert("주문이 완료 되었습니다.");
+	                    location.href='/';
+	                },
+	                error : function(jqXHR, status, error){
+	
+	                    if(jqXHR.status == '401'){
+	                        alert('로그인 후 이용해주세요');
+	                        location.href='/members/login';
+	                    } else{
+	                        alert(jqXHR.responseText);
+	                    }
+	
+	                }
+	            });
+	        }
+	        
+	        
+								
+	
+	        function addCart(){
+	            var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+	
+	            var url = "/cart";
+	            var paramData = {
+	                itemId : $("#itemId").val(),
+	                count : $("#count").val(),
+	            };
+	
+	            var param = JSON.stringify(paramData);
+	
+	            $.ajax({
+	                url      : url,
+	                type     : "POST",
+	                contentType : "application/json",
+	                data     : param,
+	                beforeSend : function(xhr){
+	                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+	                    xhr.setRequestHeader(header, token);
+	                },
+	                dataType : "json",
+	                cache   : false,
+	                success  : function(result, status){
+	                    alert("상품을 장바구니에 담았습니다.");
+	                    location.href='/';
+	                },
+	                error : function(jqXHR, status, error){
+	
+	                    if(jqXHR.status == '401'){
+	                        alert('로그인 후 이용해주세요');
+	                        location.href='/members/login';
+	                    } else{
+	                        alert(jqXHR.responseText);
+	                    }
+	
+	                }
+	            });
+	        }
+	        
+	        
+	            /** 댓글 저장 */
+		    function itemCommentSave() {
+			 	var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+		        var paramData = {
+		            itemId: $('#itemId').val(),
+		            itemComment: $('#itemComment').val()
+		        }
+		
+		        // 공백 및 빈 문자열 체크
+		        if (!paramData.itemComment || paramData.itemComment.trim() === "") {
+		            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+		            return false;
+		        } else {
+		            $.ajax({
+		                type: 'POST',
+		                url: '/api/item/' + paramData.itemId + '/itemComments',
+		                dataType: 'JSON',
+		                contentType: 'application/json; charset=utf-8',
+		                data: JSON.stringify(paramData),
+		                beforeSend : function(xhr){
+	                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+	                    xhr.setRequestHeader(header, token);
+	                },
+	                 dataType : "json",
+	                 cache   : false,
+		             success  : function(result, status){
+		               alert('후기가 등록되었습니다.');
+		               location.href='/';
+		               
+		             },
+	                error : function(jqXHR, status, error){
+	
+		                    if(jqXHR.status == '401'){
+		                        alert('로그인 후 이용해주세요');
+		                        location.href='/members/login';
+		                    } else{
+		                        alert(jqXHR.responseText);
+		                    }
+		
+		                }
+	            	});
+		   	 	}
+		    }
+	
+			//상품 프로필 슬라이드
+			function plusSlides(n) {
+			  showSlides(slideIndex += n);
+			}
+			
+			function currentSlide(n) {
+			  showSlides(slideIndex = n);
+			}
+			
+			function showSlides(n) {
+			  let i;
+			  let slides = document.getElementsByClassName("mySlides");
+			  let dots = document.getElementsByClassName("dot");
+			  if (n > slides.length) {slideIndex = 1}    
+			  if (n < 1) {slideIndex = slides.length}
+			  for (i = 0; i < slides.length; i++) {
+			    slides[i].style.display = "none";
+			  }
+			  for (i = 0; i < dots.length; i++) {
+			    dots[i].className = dots[i].className.replace(" active", "");
+			  }
+			  slides[slideIndex-1].style.display = "block";  
+			  dots[slideIndex-1].className += " active";
+			}
+			
+		
+		    
+		    
+		 
+		
+	    </script>
+	</th:block>
+	
+
+
+
+	<!-- Product section-->
+	<section id="itemDtl" class="py-5 itemA " layout:fragment="content">	
+	 <input type="hidden" id="itemId" th:value="${item.id}">
+	    <div class="container px-4 px-lg-5 my-5">
+		    <div class="row gx-4 gx-lg-5 align-items-center">
+		        <div class="col-md-6">	
+			        <div class="slideshow-container">
+						<div class="mySlides " th:each="itemImg : ${item.itemImgDtoList}">
+						  <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class = "rounded repImg" th:alt="${item.itemNm}">
+						</div>
+					</div>
+					<br>
+					<div style="text-align:center" class="slide-dot">
+					  <span class="dot" onclick="currentSlide(1)"></span> 
+					  <span class="dot" onclick="currentSlide(2)"></span> 
+					  <span class="dot" onclick="currentSlide(3)"></span>
+					</div>
+	            </div>
+	            <div class="col-md-6">
+	                <div class="small mb-1">
+						<span th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge badge-success mgb-15">
+			                판매중
+			            </span>
+			            <span th:unless="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="badge btn-danger mgb-15" >
+			                품절
+			            </span>
+					</div>
+	                <h3 class="itemNm fw-bolder" th:text="${item.itemNm}">e</h3>
+	                <div class="fs-5 mb-3">
+	                	<p class="lead small-title" th:text="${item.itemSNm}"></p>
+	                    <div class="ori-price text-decoration-line-through" th:text="${item.ori_price}"></div>
+	                    <span class="percent" th:text="${item.percent}">%</span>
+	                    <input type="hidden" th:value="${item.price}" id="price" name="price">
+	                    <span name="totalPrice" id="totalPrice" class="discount-amount"></span>
+	                </div>
+	               
+	                <div class="row mb-3">
+	                	<div class="dropdown col-10">
+						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" th:text="${item.itemNm}">
+						  </button>
+						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+						    <li><a class="dropdown-item" th:text="${item.itemNm}"></a><span class="lead small-price" th:text="${item.price}"></span><span class="lead small-priceW">원</span></li>
+						  </ul>
+						</div>
+	                    <input class="form-control count text-center me-3 col-2" id="count" name="count" type="number" value="1" min="1" style="max-width: 3rem" />
+	                </div>
+	                <!--상품 정보: 맛있게 먹는 법-->
+	                <div class="product-summary">
+	                	<ul class="product-intake">
+	                		<li>
+	                			<p class="summary" th:text="${item.itemSummary}"></p>
+	                		</li>
+	                	</ul>
+	                	<div class="product-usage">
+	                		<p>포인트적립</p>
+	                		<ul class="product-info-etc">
+	                			<li class="expectBpoint" th:text="${item.point}+'p'" type="number"></li>
+	                		</ul>
+	                	</div>			
+	                </div>
+		            <div th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right mt-3">
+		                <button type="button" class="btn btn-cart btn-lg" onclick="addCart()">장바구니 담기</button>
+		                <button type="button" class="btn btn-purchase btn-primary btn-lg" onclick="order()">주문하기</button>
+		            </div>
+		            <div th:unless="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right">
+		                <button type="button" class="btn btn-danger btn-lg">품절</button>
+		            </div>
+		     	</div>
+		    </div>
+		    
+		    <!--상품 상세, 리뷰, 배송및 교환 nav-->
+		    <nav class="navbar navbar-expand-lg mt-5 mb-5">
+			  <div class="container-fluid mt-5">			    
+			    <div class="tab-product-area collapse navbar-collapse" id="navbarNav">
+			      <ul class="tab-product-ul navbar-nav">
+			        <li class="nav-item">
+			          <a class="nav-link active" aria-current="page" href="#ss_info">상세정보</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="#ss_photo">후기</a>
+			        </li>
+			        <li class="nav-item">
+			          <a class="nav-link" href="#ss_shipping">배송 및 교환</a>
+			        </li>
+			      </ul>
+			    </div>
+			  </div>
+			</nav>
+			
+			<div class="tab-detail-product" style="padding-top: 0px;">
+				<div class="tab_area" id="ss_info" style="display: block;">
+					<div th:each="itemImg : ${item.itemImgDtoList}" class="text-center pt-5">
+			    	<img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class="rounded mgb-15" width="800">
+					</div>
+				    <div class="jumbotron-fluid mgt-30">
+				        <div class="container">
+				            <h3 class="fw-bold mt-5">상품 상세 설명</h4>
+				            <hr class="my-4">
+				            <p class="lead" th:text="${item.itemDetail}"></p>
+				        </div>
+				    </div>
+				</div>
+				
+				<div class="sub-banner-bottom">
+					<ul class="product-bottom-banner slick-initialized slick-slider">
+						<div class="slick-list draggable">
+							<div class="slick-track" style="opacity: 1; width: 0px;"></div>
+						</div>
+					</ul>
+				</div>
+				
+				<!-- 탭 : 상품후기  -->
+				<div class="tab_area" id="ss_photo" style="display: block;">
+					<div class="review-title">
+						<p>후기 총 평점</p>
+						<p class="star-rating-avg">4.8</p>
+						<div class="star-rating t04"></div>
+						<a href="#itemComment_div" class="btn_review_reg2" id=""><span>후기 작성하기</span></a>
+					</div>
+					<!-- Modal Popup : 상품후기작성(비회원일 경우) -->
+					<div id="pop_review_reg_noaccount" class="modal-wrap pop-review-reg-noaccount" style="overflow-y: auto; display: none;">
+						<div class="modal-content">
+							<div class="modal-cont"><p><span>로그인이 필요한 서비스입니다.</span></p> <p><span>로그인 페이지로</span> 이동할까요?</p></div>
+							<div class="btn-select-area">
+								<ul class="clearfix">
+									<li><a href="javascript:;" class="btn-default btn-order-cart">취소</a></li>
+									<li><a href="/members/login" class="btn-default btn-order-back btn_review_reg3">로그인하기</a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div id= "itemComment_div">
+					    <form class="comment-area">
+					        <input type="hidden" id="itemId" value="{{item.id}}">
+			                <textarea id="itemComment" class="form-control" rows="4" placeholder="후기를 입력하세요"></textarea>
+			                <button type="button" id="btn-comment-save" class="btn btn-light  mr-3 mt-3"> 등록</button>
+					    </form>
+					</div>
+					
+					<div class="photoReviewList" id="photoReviewList">
+						<div class="normal-review">
+							<ul class="review-list">
+								<li>
+									<ul th:each="itemComment : ${itemComments}" class="mb-3 border-bottom">
+										<li class="review-user">
+											<input type="hidden" class="itemCommentId" th:value="${itemComment.id}">
+											<input type="hidden" class="itemId" th:value="${item.id}">
+											<div class="review-user-txt">
+												<div class="star-rating-group">
+													<div class="star-rating t04">
+													</div>
+												</div>
+												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
+												<p>
+													<span class="review-user-id" th:text="${itemComment.memberEmail}">멤버 아이디</span>
+													<span class="review-reg-date" th:text="${itemComment.createdDate}">등록날짜</span>
+												</p>
+											</div>
+										</li>
+										<li class="review-content mb-4">
+											<div th:text="${itemComment.itemComment}" class="list-itemComment"></div>
+											<!-- (AP몰에서 작성된 리뷰입니다.) -->
+										</li>
+									</ul>
+								</li>
+							</ul>
+						</div>
+					</div>
+					
+					<div class="btn-product-review">
+						<a href="" class="btn-default btn-review-more btn_photoMore"><span class="more"><em>리뷰 10</em>개 더보기</span></a>
+					</div>
+				</div>
+				
+				<div class="sub-banner-bottom">
+					<ul class="product-bottom-banner slick-initialized slick-slider">
+						<div class="slick-list draggable">
+							<div class="slick-track" style="opacity: 1; width: 0px;"></div>
+						</div>
+					</ul>
+				</div>
+				
+				<div class="tab_area" id="ss_shipping" style="display: block;">
+					<p class="product-delivery-title">배송/반품/교환 정보</p>
+					<dl>
+						<dt>배송지역</dt>
+						<dd>ㆍ전국 가능(군부대 일부 지역은 제외)</dd>
+						<dd>ㆍ도서산간지역 추가비용 없음</dd>
+					</dl>
+					<dl>
+						<dt>배송기간</dt>
+						<dd>ㆍ입금확인 후 2~4일 가량 소요되며, 지역에 따라 약간의 차이가 있을 수 있습니다. (연휴, 공휴일, 일부 도서지역 및 사서함 주소는 2~3일 추가 소요 예상됩니다.)</dd>
+					</dl>
+					<dl>
+						<dt>배송비</dt>
+						<dd>ㆍ최종 결제금액이 15,000원 미만 주문 시 배송비 2,500원이 부과됩니다.</dd>					
+						<dd>ㆍ교환 및 반품 시에는 교환 배송비 5,000원, 반품 배송비 2,500원이 부과됩니다. </dd>
+						<dd style="margin-left: 10px;">   - 교환/반품비 입금 확인 후 교환/반품이 진행됩니다.</dd>
+						<dd style="margin-left: 10px;">   - 반품 및 교환 입금 계좌: 우리은행 1005-102-622-822 </dd>
+					</dl>
+					<dl>
+						<dt>교환/반품이 가능한 경우</dt>
+						<dd>ㆍ단순 변심, 착오 구매에 따른 교환/반품은 상품을 공급받은 날부터 10일 이내에 가능합니다. (배송비 2,500원 소비자 부담)</dd>
+						<dd>ㆍ단, 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우에는 교환 및 반품이 불가능합니다. (상품 확인을 위하여 포장 훼손한 경우는 제외)</dd>
+						<dd>ㆍ공급 받으신 상품 내용이 표기, 광고내용과 다르거나 다르게 이행된 경우에는 그 상품을 공급받은 날부터 3개월 이내, 그 사실을 안 날 또는 알 수 있었던 날부터 30일 이내 청약철회가 가능합니다.<br>(반품/교환 배송비 회사 부담)</dd>
+						<dd>ㆍ반품 시 상품대금 환불은 상품 회수 및 청약철회가 확정된 날로부터 3영업일 이내 진행되며, 기한을 초과한 경우 지연기간에 대하여 연 100분의 20을 곱하여 산정한 지연이자를 지급합니다.</dd>
+					</dl>
+					<dl>
+						<dt>교환/반품이 불가능한 경우</dt>
+						<dd>ㆍ소비자에게 책임이 있는 사유로 재화 등이 멸실되거나 훼손된 경우(재화 등의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외)</dd>
+						<dd>ㆍ소비자의 사용 또는 일부 소비로 재화 등의 가치가 현저히 감소한 경우</dd>
+						<dd>ㆍ시간이 지나 다시 판매하기 곤란할 정도로 재화 등의 가치가 현저히 감소한 경우</dd>
+						<dd>ㆍ복제가 가능한 재화 등의 포장을 훼손한 경우</dd>
+						<dd>ㆍ소비자의 주문에 따라 개별적으로 생산되는 재화 등 또는 이와 유사한 재화 등에 대하여 청약철회 등을 인정하는 경우 통신판매업자에게 회복할 수 없는 중대한 피해가 예상되는 경우로서 사전에 해당 거래에 대하여 별도로 그 사실을 고지하고 소비자의 서면(전자문서 포함)에 의한 동의를 받은 경우</dd>
+					</dl>
+					<dl>
+						<dt>주의사항</dt>
+						<dd>ㆍ상품당 1회 최대 30개까지 주문할 수 있으며, 해당 상품에 대한 주문횟수는 1 아이디(ID) 당 1일 최대 3회로 제한합니다. (고객 배송정보를 고려하여 동일 또는 사실상 동일 주소지일 경우에는 1인 고객으로 집계할 수 있습니다.</dd>
+						<dd>ㆍ주문한 상품이 장기 품절되는 경우 SMS 안내와 함께 자동 주문취소 및 환불 처리가 진행됩니다.</dd>
+						<dd>ㆍ상품 교환/반품시에는 고객상담실(080-033-5454)로 문의하신 후 보내주셔야 원활히 처리됩니다.<br>상담시간: 9:00 ~ 12:00 / 13:00~17:00 (토,일,공휴일 휴무) 반품 시 증정사은품까지 함께 동봉하여 보내주셔야 합니다.</dd>
+						<dd>ㆍ택배는 CJ 택배를 꼭 이용해주시기 바랍니다. (타 택배 이용시 반품 및 교환이 지연되거나 추가 비용이 발생 될 수 있습니다.)</dd>
+						<dd>ㆍ반송주소: 부산광역시 가야동 ㈜빵주머니 온라인 사업부 앞.</dd>
+						<dd>ㆍ구매자가 미성년자인 경우에는 상품 구입 시 법정대리인이 동의하지 아니하면 미성년자 본인 또는 법정대리인이 구매 취소할 수 있습니다.</dd>
+						<dd>ㆍ거래에 관한 이용약관은 본 쇼핑몰 하단의 사이트 이용약관을 통해 확인하실 수 있습니다.</dd>
+					</dl>
+				</div>
+				
+				<div class="sub-banner-bottom">
+					<ul class="product-bottom-banner slick-initialized slick-slider">
+						<div class="slick-list draggable">
+							<div class="slick-track" style="opacity: 1; width: 0px;"></div>
+						</div>
+					</ul>
+				</div>
+				
+				<div class="product-other-area">
+					<p>다른 상품</p>
+					<div class="swiper-mobile-wrap">
+						<div id="swiper_other_product" class="sub-scroll">
+							<div class="">
+								<div class="sub-img-list swiper-other-item">
+									<a href="" id="" class="btn_detail">
+										<dl class="sub-img-txt">
+											<dt>상품명</dt>
+											<dd class="product-price-del">원가</dd>
+											<dd class="product-price-dc">할인률%</dd>
+											<dd class="product-price"><span>판매가</span>원</dd>
+											<dd class="product-txt">상품 정보</dd>
+										</dl>
+									</a>
+								</div>
+								<div class="sub-img-list swiper-other-item">
+									<a href="" id="" class="btn_detail">
+										<dl class="sub-img-txt">
+											<dt>상품명</dt>
+											<dd class="product-price-del">원가</dd>
+											<dd class="product-price-dc">할인률%</dd>
+											<dd class="product-price"><span>판매가</span>원</dd>
+											<dd class="product-txt">상품 정보</dd>
+										</dl>
+									</a>
+								</div>
+								<div class="sub-img-list swiper-other-item">
+									<a href="" id="" class="btn_detail">
+										<dl class="sub-img-txt">
+											<dt>상품명</dt>
+											<dd class="product-price-del">원가</dd>
+											<dd class="product-price-dc">할인률%</dd>
+											<dd class="product-price"><span>판매가</span>원</dd>
+											<dd class="product-txt">상품 정보</dd>
+										</dl>
+									</a>
+								</div>
+								<div class="sub-img-list swiper-other-item">
+									<a href="" id="" class="btn_detail">
+										<dl class="sub-img-txt">
+											<dt>상품명</dt>
+											<dd class="product-price-del">원가</dd>
+											<dd class="product-price-dc">할인률%</dd>
+											<dd class="product-price"><span>판매가</span>원</dd>
+											<dd class="product-txt">상품 정보</dd>
+										</dl>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<a href="#top" id="top-btn" class="on">맨 위로가기</a>
+			</div>
+			
+	    </div>	    
+	</section>
+</html>
+>>>>>>> branch 'main' of https://github.com/dpfah/TeamProject.git

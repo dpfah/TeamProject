@@ -3,6 +3,15 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/layout1}">
 
+<head>
+    <meta charset="utf-8" />
+    <title>빵주머니</title>
+	
+    <!-- 사용자 지정 css -->
+    <link th:href="@{/css/item_tab.css}" rel="stylesheet">
+    
+</head>
+
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
     <style>
@@ -84,6 +93,9 @@
     </div>
     
 	<div class="Mbox01 mb-5">
+		<div class="main-title-area">
+			<h2>신메뉴</h2>
+		</div>
 	    <div class="row mt-5">
 	        <th:block th:each="item, status: ${items.getContent()}">
 	            <div class="col-md-4 mb-4">
@@ -126,6 +138,147 @@
 	    </div>
 	</div>
 	
+	<div class="Mbox01 mb-5" id="bread">
+		<div class="main-title-area">
+			<h2>빵</h2>
+			<a href="/bread" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="BREAD" ap-click-data="더보기">더보기<span>></span></a>
+		</div>
+	    <div class="row mt-5">
+	        <th:block th:each="bread, status: ${breads.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0">
+	                    <a th:href="'/item/' +${bread.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${bread.imgUrl}" th:alt="${bread.itemNm}" class="card-img-top">
+	                    	</div>
+	                        <div class="card-body">
+	                            <p class="card-title">[[${bread.itemNm}]]</p>
+	                            <p class="priceCss">
+		                             <span >[[${bread.ori_price}]]</span> [[${bread.price}]]원
+	                            </p>
+	
+	                            <p class="card-text summaryCss">[[${bread.itemSummary}]]</p>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	
+	    <div class="navigation Page" th:with="start=${(breads.number/maxPage)*maxPage + 1}, end=(${(breads.totalPages == 0) ? 1 : (start + (maxPage - 1) < breads.totalPages ? start + (maxPage - 1) : breads.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${breads.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${breads.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${breads.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${breads.number+1 ge breads.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${breads.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="Mbox01 mb-5" id="cookie">
+		<div class="main-title-area">
+			<h2>쿠키</h2>
+			<a href="/cookies" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="COOKIE" ap-click-data="더보기">더보기<span>></span></a>
+		</div>
+	    <div class="row mt-5">
+	        <th:block th:each="cookie, status: ${cookies.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0">
+	                    <a th:href="'/item/' +${cookie.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${cookie.imgUrl}" th:alt="${cookie.itemNm}" class="card-img-top">
+	                    	</div>
+	                        <div class="card-body">
+	                            <p class="card-title">[[${cookie.itemNm}]]</p>
+	                            <p class="priceCss">
+		                             <span >[[${cookie.ori_price}]]</span> [[${cookie.price}]]원
+	                            </p>
+	
+	                            <p class="card-text summaryCss">[[${cookie.itemSummary}]]</p>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	
+	    <div class="navigation Page" th:with="start=${(cookies.number/maxPage)*maxPage + 1}, end=(${(cookies.totalPages == 0) ? 1 : (start + (maxPage - 1) < cookies.totalPages ? start + (maxPage - 1) : cookies.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${cookies.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cookies.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cookies.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${cookies.number+1 ge breads.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cookies.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="Mbox01 mb-5" id="cake">
+		<div class="main-title-area">
+			<h2>케이크</h2>
+			<a href="/cake" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="CAKE" ap-click-data="더보기">더보기<span>></span></a>
+		</div>
+	    <div class="row mt-5">
+	        <th:block th:each="cake, status: ${cakes.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0">
+	                    <a th:href="'/item/' +${cake.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${cake.imgUrl}" th:alt="${cake.itemNm}" class="card-img-top">
+	                    	</div>
+	                        <div class="card-body">
+	                            <p class="card-title">[[${cake.itemNm}]]</p>
+	                            <p class="priceCss">
+		                             <span >[[${cake.ori_price}]]</span> [[${cake.price}]]원
+	                            </p>
+	
+	                            <p class="card-text summaryCss">[[${cake.itemSummary}]]</p>
+	                        </div>
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	
+	    <div class="navigation Page" th:with="start=${(cakes.number/maxPage)*maxPage + 1}, end=(${(cakes.totalPages == 0) ? 1 : (start + (maxPage - 1) < cakes.totalPages ? start + (maxPage - 1) : cakes.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${cakes.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cakes.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cakes.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${cakes.number+1 ge breads.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cakes.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
 	<div class="Mbox02 mb-5">
 		<h3 class="fw-bold">잠시만요!</h3>
 		<p class="mb-4 text-center">빵주머니에서만 제공되는 혜택 가져가세요!</p>
@@ -159,5 +312,10 @@
 			<p>많은 관심 부탁드려요!</p>
 		</div>
 	</div>
+	
+	<a href="#bread" id="move-btn" class="on bread">빵으로 이동</a>
+	<a href="#cookie" id="move-btn" class="on cookie">쿠키로 이동</a>
+	<a href="#cake" id="move-btn" class="on cake">케이크로 이동</a>
+	<a href="#top" id="top-btn" class="on">맨 위로가기</a>
 
 </div>

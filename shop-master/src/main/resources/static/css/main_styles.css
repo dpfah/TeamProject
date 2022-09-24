@@ -114,6 +114,7 @@ footer a, footer p, footer .logo{
 }
 .main{
 	display:inline-block;
+	margin-bottom: 60px;
 }
 .mban{
 	margin-left: 10px;
@@ -253,4 +254,27 @@ footer a, footer p, footer .logo{
 	right: 64px;
     top: 20px;
 }
+
+.main-title-area h2 {
+    color: #333;
+    font-weight: 700;
+}
+.main-btn {
+    position: absolute;
+	right: 0;
+    font-size: 16px;
+    color: #333;
+}
+.main-btn span {
+    font-size: 20px;
+}
+
+#move-btn { overflow: hidden; position: fixed; z-index: 41; right: 31px; bottom: 0; width: 52px; height: 52px; border: 0; font-size: 0; line-height: 0; text-indent: -9999px; opacity: 0; transition: .5s; border: 1px solid #eee; box-shadow: 0 0 5px 3px rgb(0 0 0 / 1%); }
+#move-btn.bread { background: rgba(255,255,255,0.9) url(../img/btn_bread.png) no-repeat 50% 50%; background-size: 80%; }
+#move-btn.cookie { background: rgba(255,255,255,0.9) url(../img/btn_cookie.png) no-repeat 50% 50%; background-size: 80%; }
+#move-btn.cake { background: rgba(255,255,255,0.9) url(../img/btn_cake.png) no-repeat 50% 50%; background-size: 80%; }
+#move-btn.on { opacity: 1; transition: .5s; }
+#move-btn.on.bread { bottom: 282px;}
+#move-btn.on.cookie { bottom: 231px;}
+#move-btn.on.cake { bottom: 180px;}
 
