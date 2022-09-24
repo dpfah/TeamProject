@@ -6,16 +6,54 @@
 <head>
     <meta charset="UTF-8">
     <title>빵주머니 - FQA</title>
+    
+	<link th:href="@{/css/notice.css}" rel="stylesheet">
+	<link th:href="@{/css/common.css}" rel="stylesheet">
 </head>
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
 	<style>
-
+  .error {
+            color: #bd2130;
+        }
+        .notice{
+        	text-align:center;
+        	
+        }
+        .notice dt{
+        	font-weight:bold;
+        }
+        #top-btn {
+		    overflow: hidden;
+		    position: fixed;
+		    z-index: 41;
+		    right: 31px;
+		    bottom: 0;
+		    width: 52px;
+		    height: 52px;
+		    border: 0;
+		    background: rgba(255,255,255,0.9) url(/img/topbtn.svg) no-repeat 50% 50%;
+		    background-size: 100%;
+		    font-size: 0;
+		    line-height: 0;
+		    text-indent: -9999px;
+		    opacity: 0;
+		    transition: .5s;
+		    border-radius: 50%;
+		    border: 1px solid #eee;
+		    box-shadow: 0 0 5px 3px rgb(0 0 0 / 1%);
+		}
+		#top-btn.on {
+		    bottom: 90px;
+		    opacity: 1;
+		    transition: .5s;
+		}
+    </style>
     </style>
 </th:block>
 <body>
 	<div layout:fragment="content">
-		<div  class="accordion" id="accordionExample" th:each="faq, status: ${faqs.getContent()}">
+		<div  class="accordion" id="accordionExample notice" th:each="faq, status: ${faqs.getContent()}">
 			 <div class="sub-top-title-area">
 				<div class="on-desktop">
 					<div class="title">FAQ</div>
