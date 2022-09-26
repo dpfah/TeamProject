@@ -63,7 +63,7 @@
 				                            <div class=" text-left">
 			                                    <!-- Product name-->
 			                                    <p class="product-name ">[[${cmt.cmtTitle}]]</p>
-			                                   	<p class="Cmtwriter"><span>작성자</span> [[${cmt.createdBy}]] · <span>조회수</span> [[${cmt.view}]]</p>
+			                                   	<p class="Cmtwriter"><span>작성자</span> [[${#strings.substring(#strings.replace(cmt.createdBy, '@', '*****'), 0, 8)}]] · <span>조회수</span> [[${cmt.view}]]</p>
 			                                   	<p class="Cmtwriter"><span>등록일</span> [[${cmt.regTime}]]</p>
 			                                   	
 				                            </div>

@@ -389,7 +389,7 @@
 												</div>
 												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->
 												<p>
-													<span class="review-user-id" th:text="${itemComment.memberEmail}">멤버 아이디</span>
+													<span class="review-user-id" th:text="${#strings.substring(#strings.replace(itemComment.memberEmail, '@', '*****'), 0, 8)}">멤버 아이디</span>
 													<span class="review-reg-date" th:text="${itemComment.createdDate}">등록날짜</span>
 												</p>
 											</div>

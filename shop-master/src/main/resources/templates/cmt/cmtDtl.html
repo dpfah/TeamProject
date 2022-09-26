@@ -35,7 +35,7 @@
         		<div class="DtlTextBox">
 					<h1 class="input-title Dtlh1 " th:text="${cmt.cmtTitle}">e</h1>
 					
-					<div class="cmtDtlWriter">작성자 <p class="small-title" th:text="${cmt.createdBy}"></p></div>
+					<div class="cmtDtlWriter">작성자 <p class="small-title" th:text="${#strings.substring(#strings.replace(cmt.createdBy, '@', '*****'), 0, 8)}"></p></div>
 					<p class="cmtDate" th:text="${cmt.cmtDate}"></p>
 				</div>
 		   		<div th:each="cmtImg : ${cmt.cmtImgDtoList}" class="text-center cmtImg">
