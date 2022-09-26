@@ -19,7 +19,11 @@
 	    <link th:href="@{/css/common.css}" rel="stylesheet">
 	    <link th:href="@{/css/other.css}" rel="stylesheet">
 	    <link th:href="@{/css/item_tab.css}" rel="stylesheet">
+	    <style>
+	    .reviewList { display:none; } 
+	    </style>
 	</head>
+
 
 	<!-- 사용자 스크립트 추가 -->
 	<th:block layout:fragment="script">
@@ -45,7 +49,7 @@
 
 	        });
 	        
-	         $(function(){
+	         $(function(){				
 			    $(".reviewList").slice(0, 10).show(); // select the first ten
 			    $("#load").click(function(e){ // click event for load more
 			        e.preventDefault();
@@ -395,13 +399,14 @@
 											<!-- (AP몰에서 작성된 리뷰입니다.) -->
 										</li>
 									</ul>
+										<a href="#" id="load" class="btn-default btn-review-more btn_photoMore"><span class="more"><em>리뷰 10</em>개 더보기</span></a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					
 					<div class="btn-product-review">
-						<a href="#" id="load" class="btn-default btn-review-more btn_photoMore"><span class="more"><em>리뷰 10</em>개 더보기</span></a>
+					
 					</div>
 				</div>
 				
