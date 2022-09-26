@@ -60,14 +60,19 @@
 			    });
 			});
 	        
-	        
+	        function addComma(value){
+		        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		        return value; 
+		    }
 	  // 할인율 계산
 	        function calculateToalPrice(){
 	            var count = $("#count").val();
 	            var price = $("#price").val();
 	            var totalPrice = price*count;
-	            $("#totalPrice").html(totalPrice + '원');
+	            $("#totalPrice").html(totalPrice + '원'); 
 	        }
+	        
+	       
 	
 	        function order(){
 	            var token = $("meta[name='_csrf']").attr("content");
@@ -264,7 +269,7 @@
 	                <h3 class="itemNm fw-bolder" th:text="${item.itemNm}">e</h3>
 	                <div class="fs-5 mb-3">
 	                	<p class="lead small-title" th:text="${item.itemSNm}"></p>
-	                    <div class="ori-price text-decoration-line-through" th:text="${item.ori_price}"></div>
+	                    <div class="ori-price text-decoration-line-through" th:text="${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}"></div>
 	                    <span class="percent" th:text="${item.percent}">%</span>
 	                    <input type="hidden" th:value="${item.price}" id="price" name="price">
 	                    <span name="totalPrice" id="totalPrice" class="discount-amount"></span>

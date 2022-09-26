@@ -77,8 +77,8 @@
 			                                    <!-- Product name-->
 			                                    <h5 class="product-name fw-bolder">[[${item.itemNm}]]</h5>
 			                                    <!-- Product price-->
-			                                   	<div class="origin-price">[[${item.ori_price}]]원</div>
-			                                    <span>[[${item.percent}]]%</span>[[${item.price}]]원
+			                                   	<div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
+			                                    <span>[[${item.percent}]]%</span>[[${#numbers.formatInteger(item.price, 0, 'COMMA')}]]원
 				                            </div>
 				                            <!-- Product actions-->
 				                            <div class="itemDetail card-footer pt-0 border-top-0 bg-transparent">

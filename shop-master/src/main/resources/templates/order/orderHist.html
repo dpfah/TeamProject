@@ -130,7 +130,7 @@
 						            		<span th:text="${orderItem.count} +'개'"></span>
 						            	</td> 
 						            	<td >
-						            		<span th:text="${orderItem.orderPrice} +'원'"></span>
+						            		<span th:text="${#numbers.formatInteger(orderItem.orderPrice, 0, 'COMMA')} +'원'"></span>
 						            	</td>
 						            </tr>
 						        </table>
