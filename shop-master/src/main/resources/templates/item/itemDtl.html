@@ -60,10 +60,10 @@
 			    });
 			});
 	        
-	        function addComma(value){
-		        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-		        return value; 
-		    }
+	    //    function addComma(value){
+		//        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+		//        return value; 
+		//    }
 	  // 할인율 계산
 	        function calculateToalPrice(){
 	            var count = $("#count").val();
@@ -280,7 +280,7 @@
 						  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false" th:text="${item.itemNm}">
 						  </button>
 						  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-						    <li><a class="dropdown-item" th:text="${item.itemNm}"></a><span class="lead small-price" th:text="${item.price}"></span><span class="lead small-priceW">원</span></li>
+						    <li><a class="dropdown-item" th:text="${item.itemNm}"></a><span class="lead small-price" th:text="${#numbers.formatInteger(item.price, 0, 'COMMA')} + '원'"></span><span class="lead small-priceW"></span></li>
 						  </ul>
 						</div>
 	                    <input class="form-control count text-center me-3 col-2" id="count" name="count" type="number" value="1" min="1" style="max-width: 3rem" />
