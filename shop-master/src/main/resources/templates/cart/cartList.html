@@ -243,7 +243,7 @@
 	                <td class="text-center align-middle cart_td_text">
 	                    <span th:id="'price_' + ${cartItem.cartItemId}"
 	                          th:data-price="${cartItem.price}"
-	                          th:text="${cartItem.price} + '원'" class="align-self-center mr-2 fs18">
+	                          th:text="${#numbers.formatInteger(cartItem.price, 0, 'COMMA')} + '원'" class="align-self-center mr-2 fs18">
 	                    </span>
 	                </td>
 	                <!-- 수량 -->
@@ -261,7 +261,7 @@
 	                	<span class="input-group mt-2 fs18 cart_td_text">
 	                		<!--할인율 적용하기 위해 percent 값을 받아온다.-->
 	                        <span th:id="'totalPrice_' + ${cartItem.cartItemId}"
-	                     		 name="totalPrice" th:text="${cartItem.price * cartItem.count} + '원'">
+	                     		 name="totalPrice" th:text="${#numbers.formatInteger(cartItem.price * cartItem.count, 0, 'COMMA')} + '원'">
 	               			 </span>
 		                	<button type="button" class="close cart_close" aria-label="Close">
 		                        <span aria-hidden="true" th:data-id="${cartItem.cartItemId}" onclick="deleteCartItem(this)">&times;</span>
