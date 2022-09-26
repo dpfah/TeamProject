@@ -9,7 +9,7 @@
 	
     <!-- 사용자 지정 css -->
     <link th:href="@{/css/item_tab.css}" rel="stylesheet">
-    
+    <link th:href="@{/css/other.css}" rel="stylesheet">
 </head>
 
 <!-- 사용자 CSS 추가 -->
@@ -105,6 +105,8 @@
 	                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
 	                    	</div>
 	                        <div class="card-body">
+									<p class="star-rating-avg">4.8</p>
+									<div class="star-rating t04"></div>
 	                            <p class="card-title  ">[[${item.itemNm}]]</p>
 	                            <p class="priceCss">
 	                            <div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
