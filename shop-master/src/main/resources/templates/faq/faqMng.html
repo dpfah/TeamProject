@@ -98,7 +98,7 @@
                     <a th:href="'/admin/faq/'+${faq.id}" th:text="${faq.faqTitle}"></a>
                 </td>
                 <td th:text="${faq.createdBy}"></td>
-                <td th:text="${faq.regTime}"></td>
+                <td th:text="${#temporals.format(faq.regTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </tbody>
         </table>

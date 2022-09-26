@@ -99,7 +99,7 @@
                 </td>
                 <td th:text="${oqna.oqnaStatus == T(com.shop.constant.OqnaStatus).Y} ? '문의중' : '문의취소'"></td>
                 <td th:text="${oqna.createdBy}"></td>
-                <td th:text="${oqna.regTime}"></td>
+                <td th:text="${#temporals.format(oqna.regTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </tbody>
         </table>
