@@ -8,7 +8,8 @@ import com.shop.entity.ItemComment;
 
 public interface ItemCommentRepository extends JpaRepository<ItemComment, Long> {
 
-	List<ItemComment> findByItemIdOrderByIdAsc(Long itemId);
+	List<ItemComment> findByItemIdOrderByIdDesc(Long itemId);
+
 
 
 }

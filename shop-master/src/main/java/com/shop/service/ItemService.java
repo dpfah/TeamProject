@@ -77,12 +77,13 @@ public class ItemService {
 
         return item.getId();
     }
+    
 
     @Transactional(readOnly = true)
     public ItemFormDto getItemDtl(Long itemId){
         List<ItemImg> itemImgList = itemImgRepository.findByItemIdOrderByIdAsc(itemId);
         List<ItemContentImg> itemContentImgList = itemContentImgRepository.findByItemIdOrderByIdAsc(itemId);
-        List<ItemComment> itemCommentList = itemCommentRepository.findByItemIdOrderByIdAsc(itemId);
+        List<ItemComment> itemCommentList = itemCommentRepository.findByItemIdOrderByIdDesc(itemId);
         
         List<ItemImgDto> itemImgDtoList = new ArrayList<>();
         List<ItemContentImgDto> itemContentImgDtoList = new ArrayList<>();

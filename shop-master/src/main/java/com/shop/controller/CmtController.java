@@ -108,8 +108,9 @@ public class CmtController {
 
     //1:1 문의 업데이트 페이지 가져오기
     @GetMapping(value = "/cmt/update/{cmtId}")
-    public String cmtDtl(@PathVariable("cmtId") Long cmtId, Model model){
+    public String cmtDtl(@PathVariable("cmtId") Long cmtId, Model model, Principal principal){
 
+    	
         try {
             CmtFormDto cmtFormDto = cmtService.getCmtDtl(cmtId);
             model.addAttribute("cmtFormDto", cmtFormDto);
@@ -118,7 +119,7 @@ public class CmtController {
             model.addAttribute("cmtFormDto", new CmtFormDto());
             return "cmt/cmtForm";
         }
-
+        model.addAttribute("email", principal.getName());
         return "cmt/cmtForm";
     }
 
