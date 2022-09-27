@@ -22,7 +22,6 @@ public class Member extends BaseEntity {
 
     private String name;
     
-    private String nickName;
     
     private String birth;
     
@@ -46,7 +45,6 @@ public class Member extends BaseEntity {
     
     public void updateMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         this.name = memberFormDto.getName();
-        this.nickName = memberFormDto.getNickName();
         this.birth = memberFormDto.getBirth();
         this.gender = memberFormDto.getGender();
         this.phone = memberFormDto.getPhone();
@@ -58,7 +56,6 @@ public class Member extends BaseEntity {
     public static Member createMember(MemberFormDto memberFormDto, PasswordEncoder passwordEncoder){
         Member member = new Member();
         member.setName(memberFormDto.getName());
-        member.setNickName(memberFormDto.getNickName());
         member.setBirth(memberFormDto.getBirth());
         member.setGender(memberFormDto.getGender());
         member.setPhone(memberFormDto.getPhone());
