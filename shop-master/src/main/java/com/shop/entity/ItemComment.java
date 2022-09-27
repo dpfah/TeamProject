@@ -48,8 +48,8 @@ public class ItemComment {
     @JoinColumn(name = "member_email")
     private Member member; // 작성자
     
-//    /* 댓글 수정을 위한 setter */    
-//    public void update(String itemComment) { 
-//    	this.itemComment = itemComment;    }
+    /* 댓글 수정을 위한 setter */    
+    public void update(String itemComment) { 
+    	this.itemComment = itemComment;    }
 
 }

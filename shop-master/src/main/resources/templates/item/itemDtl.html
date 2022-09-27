@@ -124,7 +124,7 @@
 	            var url = "/cart";
 	            var paramData = {
 	                itemId : $("#itemId").val(),
-	                count : $("#count").val(),
+	                count : $("#count").val()
 	            };
 	
 	            var param = JSON.stringify(paramData);
@@ -140,7 +140,7 @@
 	                },
 	                dataType : "json",
 	                cache   : false,
-	                success  : function(result, status){
+	                	success  : function(result, status){
 	                    alert("상품을 장바구니에 담았습니다.");
 	                    location.href='/';
 	                },
@@ -165,7 +165,7 @@
 		        var paramData = {
 		            itemId: $('#itemId').val(),
 		            itemComment: $('#itemComment').val()
-		        }
+		        };
 		
 		        // 공백 및 빈 문자열 체크
 		        if (!paramData.itemComment || paramData.itemComment.trim() === "") {
@@ -181,14 +181,14 @@
 		                beforeSend : function(xhr){
 	                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
 	                    xhr.setRequestHeader(header, token);
-	                },
-	                 dataType : "json",
-	                 cache   : false,
-		             success  : function(result, status){
-		               alert('후기가 등록되었습니다.');
-		               location.href='/';
-		               
-		             },
+	                	},
+		                 dataType : "json",
+		                 cache   : false,
+			             success  : function(result, status){
+			              	alert("후기가 등록되었습니다.");
+				            location.href= location.href;
+				               
+			               },
 	                error : function(jqXHR, status, error){
 	
 		                    if(jqXHR.status == '401'){
@@ -202,6 +202,96 @@
 	            	});
 		   	 	}
 		    }
+		    
+		    
+		    
+		    
+		 	/** 댓글 삭제 */   
+			function itemCommentDelete(e) {
+				var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+			 	var paramData = {
+					id: $(e).parents(".review-user-txt").find(".itemCommentId").val(),
+		            itemId: $(e).parents(".review-user-txt").find(".itemId").val(),
+		            itemComment: $(e).parents(".reviewList").find(".list-itemComment").text()
+		        };
+				$.ajax({                
+				  type: 'DELETE',               
+				  url: '/api/item/' + paramData.itemId + '/itemComments/' + paramData.id,                
+                  contentType: 'application/json; charset=utf-8',
+                  data: JSON.stringify(paramData),
+                  beforeSend : function(xhr){
+                  /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+                  xhr.setRequestHeader(header, token);
+                  },
+                  dataType : "json",
+                  cache   : false,
+		          success  : function(result, status){
+	              	alert("댓글이 삭제되었습니다.");
+		            location.href= location.href;
+		               
+	               },
+	               error : function(jqXHR, status, error){
+	
+	                    if(jqXHR.status == '401'){
+	                        alert('로그인 후 이용해주세요');
+	                        location.href='/members/login';
+	                    } else{
+	                        alert(jqXHR.responseText);
+	                    }
+		
+	               }
+            	 });   
+			}	    
+	
+	
+			 /** 댓글 수정 */    
+	/*       function itemCommentUpdate() { 
+				var token = $("meta[name='_csrf']").attr("content");
+	            var header = $("meta[name='_csrf_header']").attr("content");
+	           
+		        var paramData = {
+					id: $('#id').val(),
+		            itemId: $('#itemId').val(),
+		            itemComment: $('#itemComment').val()
+		        }
+		       
+				 // 공백 및 빈 문자열 체크
+		        if (!paramData.itemComment || paramData.itemComment.trim() === "") {
+		            alert("공백 또는 입력하지 않은 부분이 있습니다.");
+		            return false;
+		        } else {   
+	           			$.ajax({
+			                type: 'PUT',                
+			                url: '/api/item/' + paramData.itemId + '/itemComments/' + paramData.id,                
+			                dataType: 'JSON',                
+			                contentType: 'application/json; charset=utf-8',                
+			                data: JSON.stringify(paramData), 
+			                beforeSend : function(xhr){  */
+		                    /* 데이터를 전송하기 전에 헤더에 csrf값을 설정 */
+		                 /*   xhr.setRequestHeader(header, token); 
+	                	},            
+			                dataType : "json",
+			                cache   : false,
+				            success  : function(result, status){
+				                alert("댓글이 수정되었습니다.");
+				               location.href='/';
+				               
+				             },
+			                error : function(jqXHR, status, error){
+			
+				                    if(jqXHR.status == '401'){
+				                        alert('로그인 후 이용해주세요');
+				                        location.href='/members/login';
+				                    } else{
+				                        alert(jqXHR.responseText);
+				                    }
+				
+				                }
+			            	});   
+		                 }   
+		               }
+		               */
 	
 			//상품 프로필 슬라이드
 			function plusSlides(n) {
@@ -385,9 +475,9 @@
 								<li>
 									<ul th:each="itemComment : ${itemComments}" class="mb-3 border-bottom reviewList" >
 										<li class="review-user">
-											<input type="hidden" class="itemCommentId" th:value="${itemComment.id}">
-											<input type="hidden" class="itemId" th:value="${item.id}">
 											<div class="review-user-txt">
+												<input type="hidden" class="itemCommentId" th:value="${itemComment.id}">
+											 	<input type="hidden" class="itemId" th:value="${itemComment.itemId}">
 												<div class="star-rating-group">
 													<div class="star-rating t04">
 													</div>
@@ -396,6 +486,8 @@
 												<p>
 													<span class="review-user-id" th:text="${#strings.substring(#strings.replace(itemComment.memberEmail, '@', '*****'), 0, 8)}">멤버 아이디</span>
 													<span class="review-reg-date" th:text="${itemComment.createdDate}">등록날짜</span>
+<!--													 <a type="button" data-toggle="collapse" data-target=".multi-collapse-{id}" class="bi bi-pencil-square"></a><!-- 댓글 수정 버튼 -->  -->
+													 <a type="button" onclick="itemCommentDelete(this)" class="bi bi-x-square" ></a> <!-- 댓글 삭제 버튼 -->
 												</p>
 											</div>
 										</li>
@@ -404,14 +496,12 @@
 											<!-- (AP몰에서 작성된 리뷰입니다.) -->
 										</li>
 									</ul>
-			
 								</li>
 							</ul>
 						</div>
 					</div>
-					
 					<div class="btn-product-review">
-												<a href="#" id="load" class="btn-default btn-review-more btn_photoMore"><span class="more"><em>리뷰 10</em>개 더보기</span></a>
+						<a href="#" id="load" class="btn-default btn-review-more btn_photoMore"><span class="more"><em>리뷰 10</em>개 더보기</span></a>
 					</div>
 				</div>
 				
