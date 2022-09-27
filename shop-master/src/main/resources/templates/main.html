@@ -94,7 +94,7 @@
     
 	<div class="Mbox01 mb-5">
 		<div class="main-title-area">
-			<h2>신메뉴</h2>
+			<h2>Best Menu</h2>
 		</div>
 	    <div class="row mt-5">
 	        <th:block th:each="item, status: ${items.getContent()}">
@@ -105,8 +105,10 @@
 	                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
 	                    	</div>
 	                        <div class="card-body">
-									<p class="star-rating-avg">4.8</p>
-									<div class="star-rating t04"></div>
+								<div class="starGroup">
+									<div class="star-rating t04"></div>  <p class="star-rating-avg">4.8</p>
+								</div>
+									
 	                            <p class="card-title  ">[[${item.itemNm}]]</p>
 	                            <p class="priceCss">
 	                            <div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
@@ -143,7 +145,7 @@
 	
 	<div class="Mbox01 mb-5" id="bread">
 		<div class="main-title-area">
-			<h2>빵</h2>
+			<h2>Bread</h2>
 			<a href="/bread" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="BREAD" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
@@ -190,7 +192,7 @@
 	
 	<div class="Mbox01 mb-5" id="cookie">
 		<div class="main-title-area">
-			<h2>쿠키</h2>
+			<h2>Cookies</h2>
 			<a href="/cookies" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="COOKIE" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
@@ -237,7 +239,7 @@
 	
 	<div class="Mbox01 mb-5" id="cake">
 		<div class="main-title-area">
-			<h2>케이크</h2>
+			<h2>Cake</h2>
 			<a href="/cake" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="CAKE" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">

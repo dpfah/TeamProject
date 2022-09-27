@@ -278,3 +278,28 @@ footer a, footer p, footer .logo{
 #move-btn.on.cookie { bottom: 231px;}
 #move-btn.on.cake { bottom: 180px;}
 
+.starGroup{
+	display:inline-block;
+	width:100%;
+}
+.star-rating, .star-rating-avg{
+	display:inline-block;
+	float: left;
+}
+.star-rating{
+	margin-right:15px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
