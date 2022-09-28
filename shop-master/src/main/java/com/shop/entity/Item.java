@@ -80,9 +80,9 @@ public class Item extends BaseEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view; // 조회수
     
-//    @Column(columnDefinition = "double default 0")
+//    @Column
 //    private double rating;
-    
+//    
     
     
     public void updateItem(ItemFormDto itemFormDto){

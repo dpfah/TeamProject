@@ -115,7 +115,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 itemImg.imgUrl,
                                 item.price,
                                 item.percent,
-                                item.ori_price)
+                                item.ori_price
+                               )
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
