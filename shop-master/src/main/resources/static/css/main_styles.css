@@ -290,6 +290,20 @@ footer a, footer p, footer .logo{
 	margin-right:15px;
 }
 
+#itemRating{
+	float: left;
+    margin: 0 0 30px 18px;
+    height: 30px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+    font-size: 20px;    
+}
+
+#itemRatingT{
+	float:left;
+	 margin: 0 0 30px 23px;
+}
+
 
 
 
