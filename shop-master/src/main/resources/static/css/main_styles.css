@@ -249,10 +249,13 @@ footer a, footer p, footer .logo{
 	background:#f6f6f6;
 	border:1px solid #f6f6f6;
 }
+.MsearchBox{
+	position:relative;
+}
 #header form .bi{
 	position:absolute;
-	right: 64px;
-    top: 12px;
+	right: 14px;
+    top: 10px;
 }
 
 .main-title-area h2 {
