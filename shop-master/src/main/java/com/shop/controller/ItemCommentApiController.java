@@ -30,8 +30,6 @@ public class ItemCommentApiController {
                                       Principal principal) {
     	itemCommentService.itemCommentSave(principal.getName(), id, dto);
     	return ResponseEntity.ok(id);
-        
-    	
     }
     
     /* UPDATE */    

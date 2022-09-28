@@ -105,7 +105,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
         QItem item = QItem.item;
         QItemImg itemImg = QItemImg.itemImg;
 
-        List<MainItemDto> content = queryFactory
+        List<MainItemDto> content = (List<MainItemDto>) queryFactory
                 .select(
                         new QMainItemDto(
                                 item.id,
