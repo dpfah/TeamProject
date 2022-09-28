@@ -41,6 +41,15 @@
         .navigation{
         	display:none;
         }
+        .no-items {
+    		display: flex;
+        	align-items: center;
+			height: 300px;
+		}
+        .no-items h2 {
+			width: 100%;
+    		text-align: center;
+		}
     </style>
 </th:block>
 
@@ -97,6 +106,11 @@
 			<h2>Best Menu</h2>
 		</div>
 	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(items.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 상품이 없습니다.</h2>
+	    		</div>
+	    	</th:block>
 	        <th:block th:each="item, status: ${items.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -149,6 +163,11 @@
 			<a href="/bread" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="BREAD" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(breads.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 빵이 없습니다.</h2>
+	    		</div>
+	    	</th:block>
 	        <th:block th:each="bread, status: ${breads.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -196,6 +215,11 @@
 			<a href="/cookies" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="COOKIE" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(cookies.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 쿠키가 없습니다.</h2>
+	    		</div>
+	    	</th:block>
 	        <th:block th:each="cookie, status: ${cookies.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -243,6 +267,11 @@
 			<a href="/cake" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="CAKE" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(cakes.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 케이크가 없습니다.</h2>
+	    		</div>
+	    	</th:block>
 	        <th:block th:each="cake, status: ${cakes.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">

@@ -13,12 +13,37 @@
 <!-- 사용자 CSS 추가 -->
 <th:block layout:fragment="css">
 	<style>
-  .error {
+  		.error {
             color: #bd2130;
         }
+        .content {
+		    padding-top: 100px;
+		    padding-bottom: 100px;
+		}
+		.sub-top-title-area .on-desktop {
+		    padding-bottom: 10px;
+		    border-bottom: 0px solid #403a3a;
+		}
+		.sub-top-title-area .title {
+		    font-size: 38px;
+		    font-weight: 500;
+		    color: #000000;
+		    text-align: left;
+		    padding-bottom: 10px;
+		    border-bottom: 0px solid #403a3a;
+		}
+        .no-posts {
+    		display: flex;
+        	align-items: center;
+			height: 300px;
+		}
+        .no-posts h2 {
+			width: 100%;
+    		text-align: center;
+		}
+		
         .notice{
-        	text-align:center;
-        	
+        	text-align:center;	
         }
         .notice dt{
         	font-weight:bold;
@@ -53,44 +78,51 @@
 </th:block>
 <body>
 	<div layout:fragment="content">
-		<div  class="accordion" id="accordionExample notice" th:each="faq, status: ${faqs.getContent()}">
-			 <div class="sub-top-title-area">
-				<div class="on-desktop">
-					<div class="title">FAQ</div>
-				</div>
+		<div class="sub-top-title-area">
+			<div class="on-desktop">
+				<div class="title">FAQ</div>
 			</div>
-		  <div class="accordion-item">
-		    <h2 class="accordion-header" id="headingOne">
-		      <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		      <span>[[${faq.qnaType}]]</span>
-		      <span> [[${faq.faqTitle}]]</span>
-		      </button>
-		    </h2>
-		    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-		      <div class="accordion-body">
-		        <strong>[[${faq.faqReply}]]</strong>
-		      </div>
-		    </div>
-		  </div>
 		</div>
-		 <div class="navigation Page" th:with="start=${(faqs.number/maxPage)*maxPage + 1}, end=(${(faqs.totalPages == 0) ? 1 : (start + (maxPage - 1) < faqs.totalPages ? start + (maxPage - 1) : faqs.totalPages)})" >
-	        <ul class="pagination justify-content-center">
-	            <li class="page-item" th:classappend="${faqs.number eq 0}?'disabled':''">
-	                <a th:href="@{'/' + '?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number-1}}" aria-label='Previous' class="page-link">
-	                    <span aria-hidden='true'>Previous</span>
-	                </a>
-	            </li>
-	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${faqs.number eq page-1}?'active':''">
-	                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-	            </li>
-	
-	            <li class="page-item" th:classappend="${faqs.number+1 ge faqs.totalPages}?'disabled':''">
-	                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number+1}}" aria-label='Next' class="page-link">
-	                    <span aria-hidden='true'>Next</span>
-	                </a>
-	            </li>
-	        </ul>
-	    </div>
+    	<th:block th:if="${#lists.isEmpty(faqs.getContent())}">
+    		<div class="no-posts">
+    			<h2>등록된 FAQ 게시물이 없습니다.</h2>
+    		</div>
+    	</th:block>
+		<div class="accordion" id="accordionExample notice" th:each="faq, status: ${faqs.getContent()}">
+			<div class="accordion-item">
+		  		<h2 class="accordion-header" id="headingOne">
+		      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		      			<span>[[${faq.qnaType}]]</span>
+		      			<span> [[${faq.faqTitle}]]</span>
+		      		</button>
+		    	</h2>
+		    	<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+		      		<div class="accordion-body">
+		        		<strong>[[${faq.faqReply}]]</strong>
+		      		</div>
+		    	</div>
+		  	</div>
+		</div>
+    	<th:block th:if="${not #lists.isEmpty(faqs.getContent())}">
+			<div class="navigation Page" th:with="start=${(faqs.number/maxPage)*maxPage + 1}, end=(${(faqs.totalPages == 0) ? 1 : (start + (maxPage - 1) < faqs.totalPages ? start + (maxPage - 1) : faqs.totalPages)})" style="margin-top: 40px;">
+		        <ul class="pagination justify-content-center">
+		            <li class="page-item" th:classappend="${faqs.number eq 0}?'disabled':''">
+		                <a th:href="@{'/' + '?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number-1}}" aria-label='Previous' class="page-link">
+		                    <span aria-hidden='true'>Previous</span>
+		                </a>
+		            </li>
+		            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${faqs.number eq page-1}?'active':''">
+		                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+		            </li>
+		
+		            <li class="page-item" th:classappend="${faqs.number+1 ge faqs.totalPages}?'disabled':''">
+		                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number+1}}" aria-label='Next' class="page-link">
+		                    <span aria-hidden='true'>Next</span>
+		                </a>
+		            </li>
+		        </ul>
+		    </div>
+    	</th:block>
 	</div>
 </body>
 

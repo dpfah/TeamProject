@@ -51,6 +51,7 @@ public class CartService {
         if(savedCartItem != null){
             savedCartItem.addCount(cartItemDto.getCount());
             return savedCartItem.getId();
+            
         } else {
             CartItem cartItem = CartItem.createCartItem(cart, item, cartItemDto.getCount());
             cartItemRepository.save(cartItem);
@@ -90,7 +91,6 @@ public class CartService {
     public void updateCartItemCount(Long cartItemId, int count){
         CartItem cartItem = cartItemRepository.findById(cartItemId)
                 .orElseThrow(EntityNotFoundException::new);
-
         cartItem.updateCount(count);
     }
 
