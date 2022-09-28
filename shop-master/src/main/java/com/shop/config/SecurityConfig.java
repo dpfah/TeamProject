@@ -48,7 +48,7 @@ public class SecurityConfig {
         
 //        카카오 로그인
         http.oauth2Login()
-        		.loginPage("/member/login");
+        		.loginPage("/members/login");
         
         return http.build();
         
