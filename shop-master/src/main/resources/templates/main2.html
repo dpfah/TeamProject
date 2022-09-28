@@ -9,7 +9,7 @@
 	
     <!-- 사용자 지정 css -->
     <link th:href="@{/css/item_tab.css}" rel="stylesheet">
-    <link th:href="@{/css/other.css}" rel="stylesheet">
+    
 </head>
 
 <!-- 사용자 CSS 추가 -->
@@ -41,15 +41,6 @@
         .navigation{
         	display:none;
         }
-        .no-items {
-    		display: flex;
-        	align-items: center;
-			height: 300px;
-		}
-        .no-items h2 {
-			width: 100%;
-    		text-align: center;
-		}
     </style>
 </th:block>
 
@@ -103,14 +94,9 @@
     
 	<div class="Mbox01 mb-5">
 		<div class="main-title-area">
-			<h2>Best Menu</h2>
+			<h2>신메뉴</h2>
 		</div>
 	    <div class="row mt-5">
-	    	<th:block th:if="${#lists.isEmpty(items.getContent())}">
-	    		<div class="no-items">
-	    			<h2>판매중인 상품이 없습니다.</h2>
-	    		</div>
-	    	</th:block>
 	        <th:block th:each="item, status: ${items.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -119,10 +105,6 @@
 	                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
 	                    	</div>
 	                        <div class="card-body">
-								<div class="starGroup">
-									<div class="star-rating t04"></div>  <p class="star-rating-avg">4.8</p>
-								</div>
-									
 	                            <p class="card-title  ">[[${item.itemNm}]]</p>
 	                            <p class="priceCss">
 	                            <div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
@@ -159,15 +141,10 @@
 	
 	<div class="Mbox01 mb-5" id="bread">
 		<div class="main-title-area">
-			<h2>Bread</h2>
+			<h2>빵</h2>
 			<a href="/bread" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="BREAD" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
-	    	<th:block th:if="${#lists.isEmpty(breads.getContent())}">
-	    		<div class="no-items">
-	    			<h2>판매중인 빵이 없습니다.</h2>
-	    		</div>
-	    	</th:block>
 	        <th:block th:each="bread, status: ${breads.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -211,15 +188,10 @@
 	
 	<div class="Mbox01 mb-5" id="cookie">
 		<div class="main-title-area">
-			<h2>Cookies</h2>
+			<h2>쿠키</h2>
 			<a href="/cookies" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="COOKIE" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
-	    	<th:block th:if="${#lists.isEmpty(cookies.getContent())}">
-	    		<div class="no-items">
-	    			<h2>판매중인 쿠키가 없습니다.</h2>
-	    		</div>
-	    	</th:block>
 	        <th:block th:each="cookie, status: ${cookies.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -263,15 +235,10 @@
 	
 	<div class="Mbox01 mb-5" id="cake">
 		<div class="main-title-area">
-			<h2>Cake</h2>
+			<h2>케이크</h2>
 			<a href="/cake" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="CAKE" ap-click-data="더보기">더보기<span>></span></a>
 		</div>
 	    <div class="row mt-5">
-	    	<th:block th:if="${#lists.isEmpty(cakes.getContent())}">
-	    		<div class="no-items">
-	    			<h2>판매중인 케이크가 없습니다.</h2>
-	    		</div>
-	    	</th:block>
 	        <th:block th:each="cake, status: ${cakes.getContent()}">
 	            <div class="col-md-4 mb-4">
 	                <div class="Mitems card  border border-0">
@@ -321,19 +288,19 @@
 			<p class="BboxCircle">
 				<img src="/img/icon_wallet.png">
 			</p>
-			<p>회원가입시 <b>회원 할인가</b> 제공</p>
+			<p>회원가입시 <b>3,000P</b> 적립 및 상품<b>100원 쿠폰</b> 증정</p>
 		</div>
 		<div class="Bbox02">
 			<p class="BboxCircle">
 				<img src="/img/icon_hands.png">
 			</p>
-			<p>친구 추천시 나와 친구 <b>쿠킹클래스 참여권</b> 지급</p>
+			<p>친구 추천시 나와 친구 <b>5,000P</b> 지급</p>
 		</div>
 		<div class="Bbox02">
 			<p class="BboxCircle">
 				<img src="/img/icon_coin.png">
 			</p>
-			<p>포토리뷰 작성시 <b>빵 하나 더!</b> 증정 이벤트</p>
+			<p>포토리뷰 작성시 <b>2,000P</b> 적립</b> 증정</p>
 		</div>
 	</div>
 	

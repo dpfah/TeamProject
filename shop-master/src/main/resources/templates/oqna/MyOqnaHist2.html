@@ -122,8 +122,13 @@
 			                <td>날짜</td>
 			                <td>상태</td>
 			            </tr>
-			        	<tr th:each="oqna : ${oqnas.getContent()}">
 			        		
+			            <tr th:if="${#lists.isEmpty(oqnas.getContent())}">
+			            	<td colspan="4">
+			            		1:1문의 내역이 없습니다.
+			            	</td>
+			            </tr>
+			        	<tr th:each="oqna : ${oqnas.getContent()}">
 			        		<td class="align-middle">
 				        		<div class="d-flex mb-3">
 						            <span th:text="${oqna.qnaType}" class="qnaType"></span>

@@ -50,7 +50,7 @@ public class NoticeController {
         model.addAttribute("noticeSearchDto", noticeSearchDto);
         model.addAttribute("maxPage", 5);
 
-        return "notice/noticeMain";
+        return "notice/MainNotice";
     }
     
     @GetMapping(value = "/admin/notice/new")

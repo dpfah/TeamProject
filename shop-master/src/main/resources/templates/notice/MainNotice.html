@@ -48,6 +48,12 @@
 		    opacity: 1;
 		    transition: .5s;
 		}
+        .no-posts {
+			height: 300px;
+		}
+        .no-posts h4 {
+			line-height: 300px;
+		}
     </style>
 </th:block>
 
@@ -71,6 +77,9 @@
 										<dt class="notice-title">제목</dt>
 										<dt class="notice-date">날짜</dt>
 									</dl>
+								</li>
+								<li th:if="${#lists.isEmpty(notices.getContent())}" class="no-posts">
+					    			<h4>등록된 공지사항이 없습니다.</h4>
 								</li>
 								<li class="table-list" th:each="notice, status: ${notices.getContent()}">
 									<dl class="order-td">

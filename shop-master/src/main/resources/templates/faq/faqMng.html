@@ -72,6 +72,15 @@
 		    margin-bottom: 27px;
 		    text-align: left;
 		}
+        .no-posts {
+			height: 300px;
+			border-bottom: 2px solid rgb(227, 227, 227);
+		}
+        .no-posts h4 {
+			line-height: 300px;
+			width: 100%;
+    		text-align: center;
+		}
     </style>
 </th:block>
 
@@ -79,7 +88,7 @@
 
     <form th:action="@{'/admin/faqs/' + ${faqs.number}}" role="form" method="get" th:object="${faqs}">
 	    <h1 class="cmtTitle">
-				faq 관리자
+				FAQ 관리자
 		</h1>
         <table class="table CmtTSu">
         	    
@@ -102,7 +111,11 @@
             </tr>
             </tbody>
         </table>
+		<div th:if="${#lists.isEmpty(faqs.getContent())}" class="no-posts">
+			<h4>등록된 FAQ 게시물이 없습니다.</h4>
+		</div>
 
+		<th:block th:if="${not #lists.isEmpty(faqs.getContent())}">
         <div th:with="start=${(faqs.number/maxPage)*maxPage + 1}, end=(${(faqs.totalPages == 0) ? 1 : (start + (maxPage - 1) < faqs.totalPages ? start + (maxPage - 1) : faqs.totalPages)})" >
             <ul class="pagination justify-content-center">
 
@@ -140,6 +153,7 @@
             <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
             <button id="searchBtn" type="submit" class="btn btn-primary ml-2">검색</button>
         </div>
+		</th:block>
     </form>
 
 </div>

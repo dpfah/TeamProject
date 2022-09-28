@@ -16,6 +16,22 @@
         <link href="/css/cmt_styles.css" rel="stylesheet" />
     </head>
     
+    <!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+	<style>
+        .no-posts {
+			height: 300px;
+			border-top: 2px solid rgb(227, 227, 227);
+			border-bottom: 2px solid rgb(227, 227, 227);
+		}
+        .no-posts h2 {
+			width: 100%;
+    		text-align: center;
+			line-height: 300px;
+		}
+    </style>
+</th:block>
+    
     <!-- 사용자 JS 추가 -->
 <th:block layout:fragment="script">
     <script>
@@ -49,6 +65,11 @@
 	        <!-- Section-->
 	        <section class=" mb-3 cmtStyle" >
 	            <div class="container px-4 mt-5">
+			    	<th:block th:if="${#lists.isEmpty(cmts.getContent())}">
+			    		<div class="no-posts">
+			    			<h2>등록된 커뮤니티 게시글이 없습니다.</h2>
+			    		</div>
+			    	</th:block>
 	                <div class="row gx-3 row-cols-2 row-cols-md-3 row-cols-xl-3 justify-content-left">
 	                <th:block th:each="cmt, status: ${cmts.getContent()}">	                	
 		                    <div class="col mb-5">
@@ -64,7 +85,7 @@
 			                                    <!-- Product name-->
 			                                    <p class="product-name ">[[${cmt.cmtTitle}]]</p>
 			                                   	<p class="Cmtwriter"><span>작성자</span> [[${#strings.substring(#strings.replace(cmt.createdBy, '@', '*****'), 0, 8)}]] · <span>조회수</span> [[${cmt.view}]]</p>
-			                                   	<p class="Cmtwriter"><span>등록일</span> [[${cmt.regTime}]]</p>
+			                                   	<p class="Cmtwriter"><span>등록일</span> [[${#temporals.format(cmt.regTime, 'yyyy-MM-dd HH:mm:ss')}]]</p>
 			                                   	
 				                            </div>
 			                            </div>
@@ -73,47 +94,50 @@
 		                    </div>
 	                </th:block>
 	                </div>
-	                  		<!-- paging -->
-					        <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
-					            <ul class="pagination justify-content-center">
-					
-					                <li class="page-item" th:classappend="${cmts.first}?'disabled'">
-					                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link">
-					                        <span aria-hidden='true'>Previous</span>
-					                    </a>
-					                </li>
-					
-					                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
-					                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
-					                </li>
-					
-					
-					                <li class="page-item" th:classappend="${cmts.last}?'disabled'">
-					                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link">
-					                        <span aria-hidden='true'>Next</span>
-					                    </a>
-					                </li>
-					
-					            </ul>
-					        </div>
-					       
-						    
-					
-					        <div class="form-inline justify-content-center" th:object="${cmtSearchDto}">
-					            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
-					                <option value="all">전체기간</option>
-					                <option value="1d">1일</option>
-					                <option value="1w">1주</option>
-					                <option value="1m">1개월</option>
-					                <option value="6m">6개월</option>
-					            </select>
-					            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-					            	<option value="">옵션</option>
-					                <option value="name">이름</option>
-					            </select>
-					            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-					            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
-					        </div>
+    				
+    				<th:block th:if="${not #lists.isEmpty(cmts.getContent())}">
+                  		<!-- paging -->
+				        <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
+				            <ul class="pagination justify-content-center">
+				
+				                <li class="page-item" th:classappend="${cmts.first}?'disabled'">
+				                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link">
+				                        <span aria-hidden='true'>Previous</span>
+				                    </a>
+				                </li>
+				
+				                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
+				                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+				                </li>
+				
+				
+				                <li class="page-item" th:classappend="${cmts.last}?'disabled'">
+				                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link">
+				                        <span aria-hidden='true'>Next</span>
+				                    </a>
+				                </li>
+				
+				            </ul>
+				        </div>
+				       
+					    
+				
+				        <div class="form-inline justify-content-center" th:object="${cmtSearchDto}">
+				            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
+				                <option value="all">전체기간</option>
+				                <option value="1d">1일</option>
+				                <option value="1w">1주</option>
+				                <option value="1m">1개월</option>
+				                <option value="6m">6개월</option>
+				            </select>
+				            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
+				            	<option value="">옵션</option>
+				                <option value="name">이름</option>
+				            </select>
+				            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
+				            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+				        </div>
+    				</th:block>
 	            </div>
 	        </section>
 	        <!-- Footer-->

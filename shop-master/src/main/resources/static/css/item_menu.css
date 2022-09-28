@@ -1070,5 +1070,16 @@ img {
 	width:100%;
 }
 
+/* bread.html, cake.html, cookies.html => class="no-items" */
+.no-items {
+	display: flex;
+	align-items: center;
+	height: 300px;
+}
+.no-items h2 {
+	width: 100%;
+	text-align: center;
+}
+
 
 
