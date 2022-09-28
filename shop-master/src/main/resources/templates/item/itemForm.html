@@ -44,13 +44,6 @@
 
 </th:block>
 
-<!-- 사용자 CSS 추가 -->
-<th:block layout:fragment="css">
-    <style>
-	
-    </style>
-</th:block>
-
 	<section id="itemForm" class="py-5 itemA" layout:fragment="content">	
 	    <form role="form" method="post" enctype="multipart/form-data" th:object="${itemFormDto}">
 	        <p class="h2" th:if="${#strings.isEmpty(itemFormDto.id)}">상품 등록</p>

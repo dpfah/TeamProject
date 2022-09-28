@@ -23,6 +23,8 @@ public class ItemCommentRequestDto {
     private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
     private Member member;
     private Item item;
+    private double totalItemRating;
+    private int itemRating;
 
     /* Dto -> Entity */
     public ItemComment toEntity() {
@@ -31,6 +33,7 @@ public class ItemCommentRequestDto {
                 .itemComment(itemComment)
                 .createdDate(createdDate)
                 .modifiedDate(modifiedDate)
+                .itemRating(itemRating)
                 .member(member)
                 .item(item)
                 .build();

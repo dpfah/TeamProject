@@ -122,7 +122,8 @@
 			                <td>날짜</td>
 			                <td>상태</td>
 			            </tr>
-			        	<tr th:each="oqna : ${oqnas.getContent()}" >
+			        	<tr th:each="oqna : ${oqnas.getContent()}">
+			        		
 			        		<td class="align-middle">
 				        		<div class="d-flex mb-3">
 						            <span th:text="${oqna.qnaType}" class="qnaType"></span>

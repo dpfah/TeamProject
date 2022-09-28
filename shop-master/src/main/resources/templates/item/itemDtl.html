@@ -46,7 +46,10 @@
 	            let slideIndex = 0;
 				showSlides(slideIndex);
 				
-
+			
+		        getItemTotalRating(); // 총평점 구함
+		            
+				
 	        });
 	        
 	         $(function(){				
@@ -164,7 +167,9 @@
 	            var header = $("meta[name='_csrf_header']").attr("content");
 		        var paramData = {
 		            itemId: $('#itemId').val(),
-		            itemComment: $('#itemComment').val()
+		            itemComment: $('#itemComment').val(),
+		            itemRating: $('#itemRating').val()
+		            
 		        };
 		
 		        // 공백 및 빈 문자열 체크
@@ -319,7 +324,37 @@
 			}
 			
 		
-		  
+		   function getItemTotalRating(){
+            var itemTotalRating = 0;
+            $("input[name=itemCommentId]").each(function() {
+                var itemCommentId = $(this).val();
+                var itemRating = Number($("#itemRating_" + itemCommentId).val());                
+                itemTotalRating += itemRating;
+            });
+            
+			var itemATR = itemTotalRating/$("input[name=itemCommentId]").length; //itemCommentId가 들어간 input의 갯수로 나눠주면 평균 평점이 나온다.
+            
+           $("#itemTotalRating").html(itemATR.toFixed(1));
+            
+            
+            
+            
+            var itemSATR = parseInt(itemATR); // itemSATR= 전체평균평점을 int로 바꿈
+             if(itemSATR == 0){
+				$("#itemTotalStar").html('<div class="star-rating t00"></div>');	
+			}else if(itemSATR == 1){
+				$("#itemTotalStar").html('<div class="star-rating t01"></div>');	
+			}else if(itemSATR == 2){
+				$("#itemTotalStar").html('<div class="star-rating t02"></div>');
+			}else if(itemSATR == 3){
+				$("#itemTotalStar").html('<div class="star-rating t03"></div>');
+			}else if(itemSATR == 4){
+				$("#itemTotalStar").html('<div class="star-rating t04"></div>');
+			}else if(itemSATR == 5){
+				$("#itemTotalStar").html('<div class="star-rating t05"></div>');
+			}
+			
+        }
 				    
 		 
 		
@@ -444,8 +479,10 @@
 				<div class="tab_area" id="ss_photo" style="display: block;">
 					<div class="review-title">
 						<p>후기 총 평점</p>
-						<p class="star-rating-avg">4.8</p>
-						<div class="star-rating t04"></div>
+						<div>
+							<p class="star-rating-avg" id="itemTotalRating"></p>
+							<div id="itemTotalStar"></div>
+						</div>
 						<a href="#itemComment_div" class="btn_review_reg2" id=""><span>후기 작성하기</span></a>
 					</div>
 					<!-- Modal Popup : 상품후기작성(비회원일 경우) -->
@@ -463,7 +500,15 @@
 			<!--		후기 쓰기			-->
 					<div id= "itemComment_div">
 					    <form class="comment-area">
-					        <input type="hidden" id="itemId" value="{{item.id}}">
+					    	<input type="hidden" id="itemId" value="{{item.id}}">
+					    	<select id="itemRating">
+					        	<option th:value="1">★</option>
+					        	<option th:value="2">★★</option>
+					        	<option th:value="3">★★★</options>
+					        	<option th:value="4">★★★★</options>
+					        	<option th:value="5">★★★★★</option>
+					    	</select>
+					    	
 			                <textarea id="itemComment" class="form-control" rows="4" placeholder="후기를 입력하세요"></textarea>
 			                <button type="button" id="btn-comment-save" class="btn btn-light  mr-3 mt-3"> 등록</button>
 					    </form>
@@ -476,10 +521,19 @@
 									<ul th:each="itemComment : ${itemComments}" class="mb-3 border-bottom reviewList" >
 										<li class="review-user">
 											<div class="review-user-txt">
-												<input type="hidden" class="itemCommentId" th:value="${itemComment.id}">
+												<input type="hidden" name="itemCommentId" class="itemCommentId" th:value="${itemComment.id}">
 											 	<input type="hidden" class="itemId" th:value="${itemComment.itemId}">
+											 	<input type="hidden" th:id="'itemRating_' + ${itemComment.id}" th:value="${itemComment.itemRating}">
 												<div class="star-rating-group">
-													<div class="star-rating t04">
+													<div class="star-rating t01" th:if="${#strings.equals(itemComment.itemRating, 1)}">
+													</div>
+													<div class="star-rating t02" th:if="${#strings.equals(itemComment.itemRating, 2)}">
+													</div>
+													<div class="star-rating t03" th:if="${#strings.equals(itemComment.itemRating, 3)}">
+													</div>
+													<div class="star-rating t04" th:if="${#strings.equals(itemComment.itemRating, 4)}">
+													</div>
+													<div class="star-rating t05" th:if="${#strings.equals(itemComment.itemRating, 5)}">
 													</div>
 												</div>
 												<!-- 별점 1-5 : t01, t02, t03, t04, t05 -->

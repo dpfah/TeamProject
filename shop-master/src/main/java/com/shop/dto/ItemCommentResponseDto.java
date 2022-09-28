@@ -23,6 +23,7 @@ public class ItemCommentResponseDto {
     private String modifiedDate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
     private String memberEmail;
     private Long itemId;
+    private int itemRating;
 
     /* Entity -> Dto*/
 //    public ItemCommentResponseDto(ItemComment itemComment) {

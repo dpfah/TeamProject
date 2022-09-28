@@ -39,6 +39,11 @@ public class ItemComment {
     @Column(name = "modified_date")
     @LastModifiedDate
     private String modifiedDate; // 위와 동일
+    
+    @Column
+    private int itemRating; // 평점을 위한 필드추가
+    
+   
 
     @ManyToOne
     @JoinColumn(name = "item_id")
@@ -52,4 +57,5 @@ public class ItemComment {
     public void update(String itemComment) { 
     	this.itemComment = itemComment;    }
 
+    
 }
