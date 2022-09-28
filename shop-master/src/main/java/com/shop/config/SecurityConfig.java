@@ -46,6 +46,10 @@ public class SecurityConfig {
         http.sessionManagement()
         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS); // 스프링 시큐리티가 항상 세션을 생성: 로그인, 회원가입 토큰 null이라서 2번 해야되는데 이걸로 해결 
         
+//        카카오 로그인
+        http.oauth2Login()
+        		.loginPage("/member/login");
+        
         return http.build();
         
     }
