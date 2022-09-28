@@ -82,6 +82,12 @@
         .fs24{
             font-size:24px
         }
+        .no-posts{
+			height: 300px;
+		}
+        .no-posts td{
+			line-height: 300px;
+		}
 		
     </style>
 </th:block>
@@ -122,7 +128,7 @@
 			                <td>날짜</td>
 			                <td>상태</td>
 			            </tr>
-			            <tr th:if="${#lists.isEmpty(oqnas.getContent())}">
+			            <tr th:if="${#lists.isEmpty(oqnas.getContent())}" class="no-posts">
 			            	<td colspan="4">
 			            		1:1문의 내역이 없습니다.
 			            	</td>
@@ -159,6 +165,7 @@
 					        </td>
 					    </tr>
 					</table>	
+					<th:block th:if="${not #lists.isEmpty(oqnas.getContent())}" class="no-posts">
 				    <div th:with="start=${(oqnas.number/maxPage)*maxPage + 1}, end=(${(oqnas.totalPages == 0) ? 1 : (start + (maxPage - 1) < oqnas.totalPages ? start + (maxPage - 1) : oqnas.totalPages)})" >
 				        <ul class="pagination justify-content-center">
 				            <li class="page-item" th:classappend="${oqnas.number eq 0}?'disabled':''">
@@ -178,6 +185,7 @@
 				            </li>
 				        </ul>
 				    </div>   
+					</th:block>
 				</div>
 			</div>
 			<!--/#oqnaHist-->
