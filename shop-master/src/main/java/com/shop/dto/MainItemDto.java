@@ -35,6 +35,7 @@ public class MainItemDto {
         this.price = price;
         this.ori_price = ori_price;
         this.percent = percent;
+//        this.rating = rating;
     }
 
 }

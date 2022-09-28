@@ -32,6 +32,7 @@ public class ItemCommentApiController {
     	return ResponseEntity.ok(id);
     }
     
+    
     /* UPDATE */    
     @PutMapping({"/item/{itemId}/itemComments/{id}"})    
     public ResponseEntity update(@PathVariable Long itemId, @PathVariable Long id, @RequestBody ItemCommentRequestDto dto) {
