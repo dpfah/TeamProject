@@ -101,25 +101,25 @@
         <p class="h3 font-weight-bold mt-5" th:text="${itemSearchDto.searchQuery} + '검색 결과'"></p>
     </div>
     
-   <div class="Mbox01 mb-5">
-      <div class="main-title-area">
-         <h2>Best Menu</h2>
-      </div>
-       <div class="row mt-5">
-          <th:block th:if="${#lists.isEmpty(items.getContent())}">
-             <div class="no-items">
-                <h2>판매중인 상품이 없습니다.</h2>
-             </div>
-          </th:block>
-           <th:block th:each="item, status: ${items.getContent()}">
-               <div class="col-md-4 mb-4">
-                   <div class="Mitems card  border border-0 item_menu">
-                       <a th:href="'/item/' +${item.id}" class="text-dark">
-                          <div class="imgCut">
-                              <img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
-                          </div>
-                            <div class="product-list">
-                               <div class="text-left">
+	<div class="Mbox01 mb-5">
+		<div class="main-title-area">
+			<h2>Best Menu</h2>
+		</div>
+	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(items.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 상품이 없습니다.</h2>
+	    		</div>
+	    	</th:block>
+	        <th:block th:each="item, status: ${items.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0 item_menu">
+	                    <a th:href="'/item/' +${item.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
+	                    	</div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
                                     <!-- Product name-->
                                     <p class="product-name">[[${item.itemNm}]]</p>
                                     <!-- Product price-->
@@ -153,303 +153,303 @@
                                    <div class="text-left">[[${item.itemSummary}]]</div>
                                </div>
                             </div>
-                       </a>
-                   </div>
-               </div>
-           </th:block>
-       </div>
-       <div class="navigation Page" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
-           <ul class="pagination justify-content-center">
-               <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
-                   <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
-                       <span aria-hidden='true'>Previous</span>
-                   </a>
-               </li>
-               <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-               </li>
-   
-               <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
-                       <span aria-hidden='true'>Next</span>
-                   </a>
-               </li>
-           </ul>
-       </div>
-   </div>
-   
-   <div class="Mbox01 mb-5" id="bread">
-      <div class="main-title-area">
-         <h2>Bread</h2>
-         <a href="/bread" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="BREAD" ap-click-data="더보기">더보기<span>></span></a>
-      </div>
-       <div class="row mt-5">
-          <th:block th:if="${#lists.isEmpty(breads.getContent())}">
-             <div class="no-items">
-                <h2>판매중인 빵이 없습니다.</h2>
-             </div>
-          </th:block>
-          <th:block th:each="bread, status: ${breads.getContent()}">
-               <div class="col-md-4 mb-4">
-                   <div class="Mitems card  border border-0 item_menu">
-                       <a th:href="'/item/' +${bread.id}" class="text-dark">
-                          <div class="imgCut">
-                              <img th:src="${bread.imgUrl}" th:alt="${bread.itemNm}" class="card-img-top">
-                          </div>
-                            <div class="product-list">
-                               <div class="text-left">
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	    <div class="navigation Page" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${items.number+1 ge items.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${items.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="Mbox01 mb-5" id="bread">
+		<div class="main-title-area">
+			<h2>Bread</h2>
+			<a href="/bread" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="BREAD" ap-click-data="더보기">더보기<span>></span></a>
+		</div>
+	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(breads.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 빵이 없습니다.</h2>
+	    		</div>
+	    	</th:block>
+	    	<th:block th:each="bread, status: ${breads.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0 item_menu">
+	                    <a th:href="'/item/' +${bread.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${bread.imgUrl}" th:alt="${bread.itemNm}" class="card-img-top">
+	                    	</div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
                                     <!-- Product name-->
                                     <p class="product-name">[[${bread.itemNm}]]</p>
                                     <!-- Product price-->
-                                      <div class="origin-price">[[${#numbers.formatInteger(bread.ori_price, 0, 'COMMA')}]]원</div>
+                                   	<div class="origin-price">[[${#numbers.formatInteger(bread.ori_price, 0, 'COMMA')}]]원</div>
                                     <span>[[${bread.percent}]]%</span>[[${#numbers.formatInteger(bread.price, 0, 'COMMA')}]]원
-                               </div>
-                               <li>
-                           <div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 0)}">
-                           </div>
-                           <div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 1)}">
-                           </div>
-                           <div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 2)}">
-                           </div>
-                           <div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 3)}">
-                           </div>
-                           <div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 4)}">
-                           </div>
-                           <div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 5)}">
-                           </div>
-                           <dl>
-                              <dd>
-                                 [[${bread.grade}]]
-                              </dd>
-                              <dd class="deco">|</dd>
-                              <dd>리뷰</dd>
-                              <dd>[[${bread.commentsCount}]]</dd>
-                           </dl>
-                               </li>
-                               <!-- Product actions-->
-                               <div class="itemDetail pt-0 border-top-0 bg-transparent">
-                                   <div class="text-left">[[${bread.itemSummary}]]</div>
-                               </div>
+	                            </div>
+	                            <li>
+									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 0)}">
+									</div>
+									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 1)}">
+									</div>
+									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 2)}">
+									</div>
+									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 3)}">
+									</div>
+									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 4)}">
+									</div>
+									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 5)}">
+									</div>
+									<dl>
+										<dd>
+											[[${bread.grade}]]
+										</dd>
+										<dd class="deco">|</dd>
+										<dd>리뷰</dd>
+										<dd>[[${bread.commentsCount}]]</dd>
+									</dl>
+	                            </li>
+	                            <!-- Product actions-->
+	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+	                                <div class="text-left">[[${bread.itemSummary}]]</div>
+	                            </div>
                             </div>
-                       </a>
-                   </div>
-               </div>
-           </th:block>
-       </div>
-       <div class="navigation Page" th:with="start=${(breads.number/maxPage)*maxPage + 1}, end=(${(breads.totalPages == 0) ? 1 : (start + (maxPage - 1) < breads.totalPages ? start + (maxPage - 1) : breads.totalPages)})" >
-           <ul class="pagination justify-content-center">
-               <li class="page-item" th:classappend="${breads.number eq 0}?'disabled':''">
-                   <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${breads.number-1}}" aria-label='Previous' class="page-link">
-                       <span aria-hidden='true'>Previous</span>
-                   </a>
-               </li>
-               <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${breads.number eq page-1}?'active':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-               </li>
-   
-               <li class="page-item" th:classappend="${breads.number+1 ge breads.totalPages}?'disabled':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${breads.number+1}}" aria-label='Next' class="page-link">
-                       <span aria-hidden='true'>Next</span>
-                   </a>
-               </li>
-           </ul>
-       </div>
-   </div>
-   
-   <div class="Mbox01 mb-5" id="cookie">
-      <div class="main-title-area">
-         <h2>Cookies</h2>
-         <a href="/cookies" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="COOKIE" ap-click-data="더보기">더보기<span>></span></a>
-      </div>
-       <div class="row mt-5">
-          <th:block th:if="${#lists.isEmpty(cookies.getContent())}">
-             <div class="no-items">
-                <h2>판매중인 쿠키가 없습니다.</h2>
-             </div>
-          </th:block>
-           <th:block th:each="cookie, status: ${cookies.getContent()}">
-               <div class="col-md-4 mb-4">
-                   <div class="Mitems card  border border-0 item_menu">
-                       <a th:href="'/item/' +${cookie.id}" class="text-dark">
-                          <div class="imgCut">
-                              <img th:src="${cookie.imgUrl}" th:alt="${cookie.itemNm}" class="card-img-top">
-                          </div>
-                            <div class="product-list">
-                               <div class="text-left">
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	    <div class="navigation Page" th:with="start=${(breads.number/maxPage)*maxPage + 1}, end=(${(breads.totalPages == 0) ? 1 : (start + (maxPage - 1) < breads.totalPages ? start + (maxPage - 1) : breads.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${breads.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${breads.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${breads.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${breads.number+1 ge breads.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${breads.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="Mbox01 mb-5" id="cookie">
+		<div class="main-title-area">
+			<h2>Cookies</h2>
+			<a href="/cookies" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="COOKIE" ap-click-data="더보기">더보기<span>></span></a>
+		</div>
+	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(cookies.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 쿠키가 없습니다.</h2>
+	    		</div>
+	    	</th:block>
+	        <th:block th:each="cookie, status: ${cookies.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0 item_menu">
+	                    <a th:href="'/item/' +${cookie.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${cookie.imgUrl}" th:alt="${cookie.itemNm}" class="card-img-top">
+	                    	</div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
                                     <!-- Product name-->
                                     <p class="product-name">[[${cookie.itemNm}]]</p>
                                     <!-- Product price-->
-                                      <div class="origin-price">[[${#numbers.formatInteger(cookie.ori_price, 0, 'COMMA')}]]원</div>
+                                   	<div class="origin-price">[[${#numbers.formatInteger(cookie.ori_price, 0, 'COMMA')}]]원</div>
                                     <span>[[${cookie.percent}]]%</span>[[${#numbers.formatInteger(cookie.price, 0, 'COMMA')}]]원
-                               </div>
-                               <li>
-                           <div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 0)}">
-                           </div>
-                           <div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 1)}">
-                           </div>
-                           <div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 2)}">
-                           </div>
-                           <div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 3)}">
-                           </div>
-                           <div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 4)}">
-                           </div>
-                           <div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 5)}">
-                           </div>
-                           <dl>
-                              <dd>
-                                 [[${cookie.grade}]]
-                              </dd>
-                              <dd class="deco">|</dd>
-                              <dd>리뷰</dd>
-                              <dd>[[${cookie.commentsCount}]]</dd>
-                           </dl>
-                               </li>
-                               <!-- Product actions-->
-                               <div class="itemDetail pt-0 border-top-0 bg-transparent">
-                                   <div class="text-left">[[${cookie.itemSummary}]]</div>
-                               </div>
+	                            </div>
+	                            <li>
+									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 0)}">
+									</div>
+									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 1)}">
+									</div>
+									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 2)}">
+									</div>
+									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 3)}">
+									</div>
+									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 4)}">
+									</div>
+									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 5)}">
+									</div>
+									<dl>
+										<dd>
+											[[${cookie.grade}]]
+										</dd>
+										<dd class="deco">|</dd>
+										<dd>리뷰</dd>
+										<dd>[[${cookie.commentsCount}]]</dd>
+									</dl>
+	                            </li>
+	                            <!-- Product actions-->
+	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+	                                <div class="text-left">[[${cookie.itemSummary}]]</div>
+	                            </div>
                             </div>
-                       </a>
-                   </div>
-               </div>
-           </th:block>
-       </div>
-       <div class="navigation Page" th:with="start=${(cookies.number/maxPage)*maxPage + 1}, end=(${(cookies.totalPages == 0) ? 1 : (start + (maxPage - 1) < cookies.totalPages ? start + (maxPage - 1) : cookies.totalPages)})" >
-           <ul class="pagination justify-content-center">
-               <li class="page-item" th:classappend="${cookies.number eq 0}?'disabled':''">
-                   <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cookies.number-1}}" aria-label='Previous' class="page-link">
-                       <span aria-hidden='true'>Previous</span>
-                   </a>
-               </li>
-               <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cookies.number eq page-1}?'active':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-               </li>
-   
-               <li class="page-item" th:classappend="${cookies.number+1 ge breads.totalPages}?'disabled':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cookies.number+1}}" aria-label='Next' class="page-link">
-                       <span aria-hidden='true'>Next</span>
-                   </a>
-               </li>
-           </ul>
-       </div>
-   </div>
-   
-   <div class="Mbox01 mb-5" id="cake">
-      <div class="main-title-area">
-         <h2>Cake</h2>
-         <a href="/cake" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="CAKE" ap-click-data="더보기">더보기<span>></span></a>
-      </div>
-       <div class="row mt-5">
-          <th:block th:if="${#lists.isEmpty(cakes.getContent())}">
-             <div class="no-items">
-                <h2>판매중인 케이크가 없습니다.</h2>
-             </div>
-          </th:block>
-           <th:block th:each="cake, status: ${cakes.getContent()}">
-               <div class="col-md-4 mb-4">
-                   <div class="Mitems card  border border-0 item_menu">
-                       <a th:href="'/item/' +${cake.id}" class="text-dark">
-                          <div class="imgCut">
-                              <img th:src="${cake.imgUrl}" th:alt="${cake.itemNm}" class="card-img-top">
-                          </div>
-                            <div class="product-list">
-                               <div class="text-left">
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	    <div class="navigation Page" th:with="start=${(cookies.number/maxPage)*maxPage + 1}, end=(${(cookies.totalPages == 0) ? 1 : (start + (maxPage - 1) < cookies.totalPages ? start + (maxPage - 1) : cookies.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${cookies.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cookies.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cookies.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${cookies.number+1 ge breads.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cookies.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="Mbox01 mb-5" id="cake">
+		<div class="main-title-area">
+			<h2>Cake</h2>
+			<a href="/cake" class="main-btn main-btn-type1" ap-click-area="MAIN" ap-click-name="CAKE" ap-click-data="더보기">더보기<span>></span></a>
+		</div>
+	    <div class="row mt-5">
+	    	<th:block th:if="${#lists.isEmpty(cakes.getContent())}">
+	    		<div class="no-items">
+	    			<h2>판매중인 케이크가 없습니다.</h2>
+	    		</div>
+	    	</th:block>
+	        <th:block th:each="cake, status: ${cakes.getContent()}">
+	            <div class="col-md-4 mb-4">
+	                <div class="Mitems card  border border-0 item_menu">
+	                    <a th:href="'/item/' +${cake.id}" class="text-dark">
+	                    	<div class="imgCut">
+	                        	<img th:src="${cake.imgUrl}" th:alt="${cake.itemNm}" class="card-img-top">
+	                    	</div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
                                     <!-- Product name-->
                                     <p class="product-name">[[${cake.itemNm}]]</p>
                                     <!-- Product price-->
-                                      <div class="origin-price">[[${#numbers.formatInteger(cake.ori_price, 0, 'COMMA')}]]원</div>
+                                   	<div class="origin-price">[[${#numbers.formatInteger(cake.ori_price, 0, 'COMMA')}]]원</div>
                                     <span>[[${cake.percent}]]%</span>[[${#numbers.formatInteger(cake.price, 0, 'COMMA')}]]원
-                               </div>
-                               <li>
-                           <div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 0)}">
-                           </div>
-                           <div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 1)}">
-                           </div>
-                           <div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 2)}">
-                           </div>
-                           <div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 3)}">
-                           </div>
-                           <div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 4)}">
-                           </div>
-                           <div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 5)}">
-                           </div>
-                           <dl>
-                              <dd>
-                                 [[${cake.grade}]]
-                              </dd>
-                              <dd class="deco">|</dd>
-                              <dd>리뷰</dd>
-                              <dd>[[${cake.commentsCount}]]</dd>
-                           </dl>
-                               </li>
-                               <!-- Product actions-->
-                               <div class="itemDetail pt-0 border-top-0 bg-transparent">
-                                   <div class="text-left">[[${cake.itemSummary}]]</div>
-                               </div>
+	                            </div>
+	                            <li>
+									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 0)}">
+									</div>
+									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 1)}">
+									</div>
+									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 2)}">
+									</div>
+									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 3)}">
+									</div>
+									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 4)}">
+									</div>
+									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 5)}">
+									</div>
+									<dl>
+										<dd>
+											[[${cake.grade}]]
+										</dd>
+										<dd class="deco">|</dd>
+										<dd>리뷰</dd>
+										<dd>[[${cake.commentsCount}]]</dd>
+									</dl>
+	                            </li>
+	                            <!-- Product actions-->
+	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+	                                <div class="text-left">[[${cake.itemSummary}]]</div>
+	                            </div>
                             </div>
-                       </a>
-                   </div>
-               </div>
-           </th:block>
-       </div>
-   
-       <div class="navigation Page" th:with="start=${(cakes.number/maxPage)*maxPage + 1}, end=(${(cakes.totalPages == 0) ? 1 : (start + (maxPage - 1) < cakes.totalPages ? start + (maxPage - 1) : cakes.totalPages)})" >
-           <ul class="pagination justify-content-center">
-               <li class="page-item" th:classappend="${cakes.number eq 0}?'disabled':''">
-                   <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cakes.number-1}}" aria-label='Previous' class="page-link">
-                       <span aria-hidden='true'>Previous</span>
-                   </a>
-               </li>
-               <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cakes.number eq page-1}?'active':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
-               </li>
-   
-               <li class="page-item" th:classappend="${cakes.number+1 ge breads.totalPages}?'disabled':''">
-                   <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cakes.number+1}}" aria-label='Next' class="page-link">
-                       <span aria-hidden='true'>Next</span>
-                   </a>
-               </li>
-           </ul>
-       </div>
-   </div>
-   
-   <div class="Mbox02 mb-5">
-      <h3 class="fw-bold">잠시만요!</h3>
-      <p class="mb-4 text-center">빵주머니에서만 제공되는 혜택 가져가세요!</p>
-      
-      <div class="Bbox02">
-         <p class="BboxCircle">
-            <img src="/img/icon_wallet.png">
-         </p>
-         <p>회원가입시 <b>회원 할인가</b> 제공</p>
-      </div>
-      <div class="Bbox02">
-         <p class="BboxCircle">
-            <img src="/img/icon_hands.png">
-         </p>
-         <p>친구 추천시 나와 친구 <b>쿠킹클래스 참여권</b> 지급</p>
-      </div>
-      <div class="Bbox02">
-         <p class="BboxCircle">
-            <img src="/img/icon_coin.png">
-         </p>
-         <p>포토리뷰 작성시 <b>빵 하나 더!</b> 증정 이벤트</p>
-      </div>
-   </div>
-   
-   <div class="MBox03">
-      <img src="/img/Mbanner02.png">
-      <div class="box03">
-         <h3 class="mb-3">매주 수요일 오후 4시<br> 쿠킹클래스 수강생 모집중</h3>
-         <p class="boxText">* 총 수강생은 10명 / 선착순 모집</p>
-         <p>자세한 사항은 클릭 시 확인 가능합니다.</p>
-         <p>많은 관심 부탁드려요!</p>
-      </div>
-   </div>
-   
-   <a href="#bread" id="move-btn" class="on bread">빵으로 이동</a>
-   <a href="#cookie" id="move-btn" class="on cookie">쿠키로 이동</a>
-   <a href="#cake" id="move-btn" class="on cake">케이크로 이동</a>
-   <a href="#top" id="top-btn" class="on">맨 위로가기</a>
+	                    </a>
+	                </div>
+	            </div>
+	        </th:block>
+	    </div>
+	
+	    <div class="navigation Page" th:with="start=${(cakes.number/maxPage)*maxPage + 1}, end=(${(cakes.totalPages == 0) ? 1 : (start + (maxPage - 1) < cakes.totalPages ? start + (maxPage - 1) : cakes.totalPages)})" >
+	        <ul class="pagination justify-content-center">
+	            <li class="page-item" th:classappend="${cakes.number eq 0}?'disabled':''">
+	                <a th:href="@{'/' + '?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cakes.number-1}}" aria-label='Previous' class="page-link">
+	                    <span aria-hidden='true'>Previous</span>
+	                </a>
+	            </li>
+	            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cakes.number eq page-1}?'active':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link">[[${page}]]</a>
+	            </li>
+	
+	            <li class="page-item" th:classappend="${cakes.number+1 ge breads.totalPages}?'disabled':''">
+	                <a th:href="@{'/' +'?searchQuery=' + ${itemSearchDto.searchQuery} + '&page=' + ${cakes.number+1}}" aria-label='Next' class="page-link">
+	                    <span aria-hidden='true'>Next</span>
+	                </a>
+	            </li>
+	        </ul>
+	    </div>
+	</div>
+	
+	<div class="Mbox02 mb-5">
+		<h3 class="fw-bold">잠시만요!</h3>
+		<p class="mb-4 text-center">빵주머니에서만 제공되는 혜택 가져가세요!</p>
+		
+		<div class="Bbox02">
+			<p class="BboxCircle">
+				<img src="/img/icon_wallet.png">
+			</p>
+			<p>회원가입시 <b>회원 할인가</b> 제공</p>
+		</div>
+		<div class="Bbox02">
+			<p class="BboxCircle">
+				<img src="/img/icon_hands.png">
+			</p>
+			<p>친구 추천시 나와 친구 <b>쿠킹클래스 참여권</b> 지급</p>
+		</div>
+		<div class="Bbox02">
+			<p class="BboxCircle">
+				<img src="/img/icon_coin.png">
+			</p>
+			<p>포토리뷰 작성시 <b>빵 하나 더!</b> 증정 이벤트</p>
+		</div>
+	</div>
+	
+	<div class="MBox03">
+		<img src="/img/Mbanner02.png">
+		<div class="box03">
+			<h3 class="mb-3">매주 수요일 오후 4시<br> 쿠킹클래스 수강생 모집중</h3>
+			<p class="boxText">* 총 수강생은 10명 / 선착순 모집</p>
+			<p>자세한 사항은 클릭 시 확인 가능합니다.</p>
+			<p>많은 관심 부탁드려요!</p>
+		</div>
+	</div>
+	
+	<a href="#bread" id="move-btn" class="on bread">빵으로 이동</a>
+	<a href="#cookie" id="move-btn" class="on cookie">쿠키로 이동</a>
+	<a href="#cake" id="move-btn" class="on cake">케이크로 이동</a>
+	<a href="#top" id="top-btn" class="on">맨 위로가기</a>
 
 </div>

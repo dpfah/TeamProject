@@ -7,6 +7,9 @@ import java.util.List;
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.shop.dto.MemberFormDto;
@@ -67,6 +71,25 @@ public class MemberController {
         model.addAttribute("loginErrorMsg", "아이디 또는 비밀번호를 확인해주세요");
         return "/member/memberLoginForm";
     }
+    
+    @PreAuthorize("isAnonymous")
+    @GetMapping("/find_id")
+    public String findId(Model model){
+        model.addAttribute("memberFormDto", new MemberFormDto());
+    	return "/member/memberFindId";
+    }
+
+    // REST 방식에서 값을 읽어내는 동작은 GET이다. ★ 매핑 주소 find_id 아닌 find/id으로 주는 것 주의!
+    @ResponseBody
+    @PreAuthorize("isAnonymous")
+    @GetMapping("/find/id")
+    public ResponseEntity<String> findId(MemberFormDto memberFormDto) {
+        String id = memberService.findId(memberFormDto);
+        if(id == null)
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디를 찾지 못했습니다.");
+        return ResponseEntity.ok(id);
+    }
+
     
     //멤버 업데이트 페이지 가져오기
     @GetMapping(value = "/update")// email로 정한 이유는 세션에서 받아온 값으로 접속하기 위해서.

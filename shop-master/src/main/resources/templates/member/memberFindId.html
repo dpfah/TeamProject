@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>빵주머니 - 회원가입</title>
+    <title>빵주머니 - 아이디찾기</title>
    
    <link th:href="@{/css/join.css}" rel="stylesheet">
 </head>
@@ -55,6 +55,9 @@
 		    background: #fff;
 		    margin: 0;
 		}
+		.form-group {
+		    margin-bottom: 2rem;
+		}
 
     </style>
 </th:block>
@@ -70,35 +73,32 @@
             }
         });
         
-        	$(function(){
-	    $('#userPw').keyup(function(){
-	      $('#chkNotice').html('');
+        $('#findId').click(function() {
+	        $.ajax("/member/find/id")
+	            .done((result) => { Swal.fire("성공", "아이디 : " + result, "success") })
+	            .fail((response) => {
+	                // 서버에서 보낸 오류 메시지
+	                console.log(response.responseText);
+	                // 서버에서 보낸 상태 코드
+	                console.log(response.status);
+	                Swal.fire("검색 실패", response.responseText, "error");
+	            }).always(()=>{
+	                // 성공과 실패에 상관없이 항상 실행되는 코드
+	                $('#find_id_name').val("")
+	            });
 	    });
-	
-	    $('#userPwChk').keyup(function(){
-	
-	        if($('#userPw').val() != $('#userPwChk').val()){
-	          $('#chkNotice').html('비밀번호 일치하지 않음<br><br>');
-	          $('#chkNotice').attr('color', '#f82a2aa3');
-	        } else{
-	          $('#chkNotice').html('비밀번호 일치함<br><br>');
-	          $('#chkNotice').attr('color', '#199894b3');
-	        }
-	
-	    });
-	});
     </script>
 
 </th:block>
 
 <body>
 	<div layout:fragment="content">
-	    <form action="/members/new" role="form" method="post"  th:object="${memberFormDto}" class="was-validated">
 	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
 				<div class="join-box mt-5" style="margin-bottom: 3rem;">
-			        <h1 style="margin-bottom: 20px;">회원가입</h1>
+			        <h1 style="margin-bottom: 50px;">아이디찾기</h1>
+	    			<form action="/members/find/id" role="form" method="get"  th:object="${memberFormDto}" class="was-validated">
 			        <div class="form-group">
-			            <input type="text" th:field="*{name}" class="form-control" placeholder="이름(실명으로 입력해주세요)" required>
+			            <input type="text" th:field="*{name}" id="find_id_name" class="form-control" placeholder="이름(실명으로 입력해주세요)" required>
 			            <div class="invalid-feedback">이름을 입력해주세요</div>
 <!--			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="fieldError">Incorrect data</p>-->
 			        </div>
@@ -128,33 +128,13 @@
 			        	<div class="invalid-feedback">전화번호를 입력해주세요</div>
 <!--			            		<p th:if="${#fields.hasErrors('phone')}" th:errors="*{phone}" class="fieldError">Incorrect data</p>-->
 			        </div>
-			        <div class="form-group">
-			            <input type="email" th:field="*{email}" class="form-control" placeholder="이메일" required>
-			            <div class="invalid-feedback">이메일을 입력해주세요</div>
-			            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="fieldError">Incorrect data</p>
-			        </div>
-			        <div class="form-group">
-			            <input type="password" id="userPw" th:field="*{password}" class="form-control" placeholder="비밀번호"  minlength = "8" maxlenght="16" required>
-			            <div class="invalid-feedback">패스워드를 입력해주세요.</div>
-<!--			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="fieldError">Incorrect data</p>-->
-			        </div>
-			        <div class="form-group">
-			            <input type="password" id="userPwChk" class="form-control" placeholder="비밀번호확인" required>
-			          	<font id="chkNotice" size="2"></font>
-			          	<div class="invalid-feedback">패스워드를 확인해주세요</div>
-			        </div>
-			        <div class="form-group">
-			            <input type="text" th:field="*{address}" class="form-control" placeholder="주소를 입력해주세요" required>
-			            <div class="invalid-feedback">주소를 입력해주세요</div>
-<!--			            <p th:if="${#fields.hasErrors('address')}" th:errors="*{address}" class="fieldError">Incorrect data</p>-->
-			        </div>
-			        <dt class="btn-join" id="btn-join">
-			            <button class="btn_join">회원가입</button>
+			        <dt class="btn-join">
+			            <button class="btn_join" id="findId">아이디 찾기</button>
 			        </dt>
+				    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+			    	</form>
 			    </div>
 		    </div>
-		    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
-	    </form>
 	</div>
 </body>
 

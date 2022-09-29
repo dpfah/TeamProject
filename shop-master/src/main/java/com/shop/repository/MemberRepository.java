@@ -16,9 +16,11 @@ public interface MemberRepository extends JpaRepository<Member, Long> {
     Member findByEmail(String email);
 
 //	String deleteByEmail(String email);
-
-
-
+    
+    Member findByName(String name);
+    
+    Member findByNameAndBirthAndGenderAndPhone(String name,String birth, String gender, String phone);
+    
 
 
 }

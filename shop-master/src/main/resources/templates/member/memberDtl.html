@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>빵주머니 - 개인정보</title>
    
    <link th:href="@{/css/join.css}" rel="stylesheet">
 </head>
@@ -78,7 +78,7 @@
 		<div id="memberDtl" class="mt-5" style="padding-top: 1rem; padding-bottom: 130px;">
 			<div class="join-box mt-5" style="margin-bottom: 3rem;">
 			<input type="hidden" id="memberId" th:value="${member.id}">
-		        <h1 style="margin-bottom: 20px;">개인정보 수정</h1>
+		        <h1 style="margin-bottom: 20px;">개인정보</h1>
 		        <div th:each="memberImg : ${member.memberImgDtoList}" class="text-center pt-5">
 			    	<img th:if="${not #strings.isEmpty(memberImg.imgUrl)}" th:src="${memberImg.imgUrl}" class="rounded-circle mb-5 bg-light" width="300" height="300">
 				</div>
