@@ -152,7 +152,7 @@
 		                </div>
 			     	</div>
 			    </div>
-			    <div class="ctmButtons" style="text-align:center; margin:0 auto;">
+			    <div class="ctmButtons" style="text-align:center;">
 		            <button th:formaction="@{/admin/notice/new}" type="submit" class="btn  btn-secondary" th:if="${#strings.isEmpty(noticeFormDto.id)}">저장</button>
 			            <button th:formaction="@{'/admin/notice/' + ${noticeFormDto.id} }" type="submit" class="btn btn-secondary"  th:unless="${#strings.isEmpty(noticeFormDto.id)}">수정</button>
 			        <button  type="button" class="btn btn-danger" aria-label="Close" sec:authorize="hasAnyAuthority('ROLE_ADMIN')" >
