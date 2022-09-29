@@ -36,6 +36,8 @@ public class OqnaFormDto {
     private String oqnaDate; //질문날짜
     
     private OqnaStatus oqnaStatus; //질문 상태
+    
+    private String createdBy;
 
     private static ModelMapper modelMapper = new ModelMapper();
 

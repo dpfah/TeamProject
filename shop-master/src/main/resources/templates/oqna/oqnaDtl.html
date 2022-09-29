@@ -44,7 +44,8 @@
 		        	</div>
 		        </div>
 		        <div style="text-align: center;">
-		        	<a th:href="'/oqna/update/' + ${oqna.id}" class="btn update">수정하기</a>
+		        	<a th:href="'/oqna/update/' + ${oqna.id}" class="btn update" th:if="${#strings.equals(email, oqna.createdBy)}">수정하기</a>
+		        	<a th:href="'/oqna/update/' + ${oqna.id}" class="btn update ml-2" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">관리자 답글</a>
 		        </div>
 		    </div>           
 	    </form>

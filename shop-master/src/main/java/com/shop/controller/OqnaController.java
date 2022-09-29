@@ -174,8 +174,9 @@ public class OqnaController {
 
     // 1:1문의 상세보기
     @GetMapping(value = "/oqna/dtl/{oqnaId}")
-    public String oqnaDtl(Model model, @PathVariable("oqnaId") Long oqnaId){
+    public String oqnaDtl(Model model, @PathVariable("oqnaId") Long oqnaId, Principal principal){
         OqnaFormDto oqnaFormDto = oqnaService.getOqnaDtl(oqnaId);
+        model.addAttribute("email", principal.getName());
         model.addAttribute("oqna", oqnaFormDto);
         return "oqna/oqnaDtl";
     }
