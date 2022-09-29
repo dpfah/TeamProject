@@ -55,13 +55,13 @@ public class CmtController {
         //마이페이지에서 커뮤니티 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
     public String cmtHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
-    	
+       
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 10);
         Page<MyCmtHistDto> myCmtsHistDtoList = cmtService.getCmtList(principal.getName(), pageable);
        
         // 세션에서 받아온 이메일
         model.addAttribute("email", principal.getName());
-        model.addAttribute("cmts",	myCmtsHistDtoList);
+        model.addAttribute("cmts",   myCmtsHistDtoList);
         model.addAttribute("page", pageable.getPageNumber());
         model.addAttribute("maxPage", 5);
 
@@ -72,7 +72,7 @@ public class CmtController {
     // 커뮤니티 작성
     @GetMapping(value = "/cmt/new")
     public String cmtForm(Model model, Principal principal){
-    	model.addAttribute("email", principal.getName());
+       model.addAttribute("email", principal.getName());
         model.addAttribute("cmtFormDto", new CmtFormDto());
         return "cmt/cmtForm";
     }
@@ -96,8 +96,8 @@ public class CmtController {
         //Long cmtWriter;
         
         try {
-			
-			cmtService.saveCmt(email, cmtFormDto, cmtImgFileList);
+         
+         cmtService.saveCmt(email, cmtFormDto, cmtImgFileList);
         } catch (Exception e){
             model.addAttribute("errorMessage", "글 작성 중 에러가 발생하였습니다. 양식을 다시 확인해 주세요");
             return "cmt/cmtForm";
@@ -106,11 +106,11 @@ public class CmtController {
         return "redirect:/mainCmt";
     }
 
-    //1:1 문의 업데이트 페이지 가져오기
+    //커뮤니티 업데이트 페이지 가져오기
     @GetMapping(value = "/cmt/update/{cmtId}")
     public String cmtDtl(@PathVariable("cmtId") Long cmtId, Model model, Principal principal){
 
-    	
+       
         try {
             CmtFormDto cmtFormDto = cmtService.getCmtDtl(cmtId);
             model.addAttribute("cmtFormDto", cmtFormDto);
@@ -120,10 +120,11 @@ public class CmtController {
             return "cmt/cmtForm";
         }
         model.addAttribute("email", principal.getName());
+
         return "cmt/cmtForm";
     }
 
-  //1:1 문의 수정한 내용 
+  //커뮤니티 수정한 내용 
     @PostMapping(value = "/cmt/update/{cmtId}")
     public String cmtUpdate(@Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
                              @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Model model){
@@ -162,8 +163,16 @@ public class CmtController {
 
     // 상세페이지
     @GetMapping(value = "/cmt/dtl/{cmtId}")
-    public String cmtDtl(Model model, @PathVariable("cmtId") Long cmtId){
+    public String cmtDtl(Model model, @PathVariable("cmtId") Long cmtId, Principal principal){
         CmtFormDto cmtFormDto = cmtService.getCmtDtl(cmtId);
+        
+        if (principal != null) {
+           model.addAttribute("email", principal.getName());
+
+     
+        }
+        
+        
         model.addAttribute("cmt", cmtFormDto);
         cmtService.updateView(cmtId); // views ++
         return "cmt/cmtDtl";
@@ -172,16 +181,16 @@ public class CmtController {
     // 삭제하기
     @DeleteMapping(value = "/cmt/delete/{cmtId}")
     public @ResponseBody ResponseEntity deleteCmt(@PathVariable("cmtId")
-    	Long cmtId, Principal principal, @Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
+       Long cmtId, Principal principal, @Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
             Model model) throws Exception
     {
     
-    	if(!cmtService.validateCmt(cmtId, principal.getName())) {
-    		return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
-    	}
-    	
-    	cmtService.deleteCmt(cmtId);
-    	return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
+       if(!cmtService.validateCmt(cmtId, principal.getName())) {
+          return new ResponseEntity<String>("수정 권한이 없습니다.", HttpStatus.FORBIDDEN);
+       }
+       
+       cmtService.deleteCmt(cmtId);
+       return new ResponseEntity<Long>(cmtId, HttpStatus.OK);
     }
     
 
