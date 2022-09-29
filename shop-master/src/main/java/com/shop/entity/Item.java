@@ -80,9 +80,9 @@ public class Item extends BaseEntity {
     @Column(columnDefinition = "integer default 0", nullable = false)
     private int view; // 조회수
     
-//    @Column
-//    private double rating;
-//    
+    @Column(columnDefinition = "double default 0")
+    private double grade;
+    
     
     
     public void updateItem(ItemFormDto itemFormDto){
@@ -97,6 +97,11 @@ public class Item extends BaseEntity {
         this.itemSummary = itemFormDto.getItemSummary();
         this.percent = Math.round(itemFormDto.getPercent()*100)/100;
         this.point = itemFormDto.getPoint();
+        
+    }
+    
+    public void updateItemGrade(ItemFormDto itemFormDto) {
+    	this.grade = itemFormDto.getGrade();
     }
 
     public void removeStock(int stockNumber){

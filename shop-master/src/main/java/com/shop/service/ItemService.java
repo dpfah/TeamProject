@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -140,6 +141,16 @@ public class ItemService {
     }
     
     
+    public Long updateItemGrade(ItemFormDto itemFormDto) throws Exception{
+        //상품 수정
+        Item item = itemRepository.findById(itemFormDto.getId())
+                .orElseThrow(EntityNotFoundException::new);
+        item.updateItemGrade(itemFormDto);
+
+        return item.getId();
+    }
+    
+    
     /* 조회수 */
     @Transactional
     public int updateView(Long id) {
@@ -171,5 +182,8 @@ public class ItemService {
     public Page<CakeItemDto> getCakeItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
         return itemRepository.getCakeItemPage(itemSearchDto, pageable);
     }
+
+
+
 
 }
