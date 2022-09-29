@@ -20,6 +20,7 @@ import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemImgDto;
 import com.shop.dto.ItemSearchDto;
 import com.shop.dto.MainItemDto;
+import com.shop.entity.CartItem;
 import com.shop.entity.Item;
 import com.shop.entity.ItemComment;
 import com.shop.entity.ItemContentImg;
@@ -53,7 +54,8 @@ public class ItemService {
         //상품 등록
         Item item = itemFormDto.createItem();
         itemRepository.save(item);
-
+        
+        
         //프로필 이미지 등록
         for(int i=0;i<itemImgFileList.size();i++){
             ItemImg itemImg = new ItemImg();

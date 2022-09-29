@@ -26,7 +26,6 @@
 		}
 		.sub-top-title-area .title {
 		    font-size: 38px;
-		    font-weight: 500;
 		    color: #000000;
 		    text-align: left;
 		    padding-bottom: 10px;
@@ -74,7 +73,18 @@
 		    opacity: 1;
 		    transition: .5s;
 		}
-    </style>
+		.faqTypeT{
+			padding-right:30px;
+		}
+		.accordion-button{
+			padding: 30px;
+		}
+		.accordion-body{
+			padding:30px 30px 30px 131px;
+		}
+		.FaqReply{
+			word-break: break-all;
+		}
     </style>
 </th:block>
 <body>
@@ -90,16 +100,16 @@
     		</div>
     	</th:block>
 		<div class="accordion" id="accordionExample notice" th:each="faq, status: ${faqs.getContent()}">
-			<div class="accordion-item">
+			<div class="accordion-item ">
 		  		<h2 class="accordion-header" id="headingOne">
-		      		<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		      			<span>[[${faq.qnaType}]]</span>
-		      			<span> [[${faq.faqTitle}]]</span>
+		      		<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		      			<span class="faqTypeT">[[${faq.qnaType}]]</span>
+		      			<span class="faqTitle"> [[${faq.faqTitle}]]</span>
 		      		</button>
 		    	</h2>
 		    	<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
 		      		<div class="accordion-body">
-		        		<strong>[[${faq.faqReply}]]</strong>
+		        		<p class="faqTypeT">[[${faq.faqReply}]]</p>
 		      		</div>
 		    	</div>
 		  	</div>

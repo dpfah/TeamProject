@@ -105,7 +105,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
         QItem item = QItem.item;
         QItemImg itemImg = QItemImg.itemImg;
 
-        List<MainItemDto> content = queryFactory
+        List<MainItemDto> content = (List<MainItemDto>) queryFactory
                 .select(
                         new QMainItemDto(
                                 item.id,
@@ -115,7 +115,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 itemImg.imgUrl,
                                 item.price,
                                 item.percent,
-                                item.ori_price)
+                                item.ori_price
+                               )
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)

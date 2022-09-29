@@ -22,6 +22,8 @@ public class MainItemDto {
     private int ori_price;	// 정가
     
     private String itemSummary;		// 요약정보
+    
+    private double rating;
 
     @QueryProjection
     public MainItemDto(Long id, String itemNm, String itemDetail, String itemSummary, String imgUrl,double price, double percent, int ori_price){
@@ -33,6 +35,7 @@ public class MainItemDto {
         this.price = price;
         this.ori_price = ori_price;
         this.percent = percent;
+//        this.rating = rating;
     }
 
 }

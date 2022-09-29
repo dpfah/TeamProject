@@ -324,6 +324,7 @@
 			}
 			
 		
+		//평점 구하기
 		   function getItemTotalRating(){
             var itemTotalRating = 0;
             $("input[name=itemCommentId]").each(function() {
@@ -334,7 +335,12 @@
             
 			var itemATR = itemTotalRating/$("input[name=itemCommentId]").length; //itemCommentId가 들어간 input의 갯수로 나눠주면 평균 평점이 나온다.
             
-           $("#itemTotalRating").html(itemATR.toFixed(1));
+           if(isNaN(itemATR)){
+				itemATR = 0;
+				}
+				
+			$("#itemTotalRating").html(itemATR.toFixed(1));
+				
             
             
             
@@ -355,7 +361,9 @@
 			}
 			
         }
-				    
+		
+		 
+	
 		 
 		
 	    </script>
@@ -395,7 +403,7 @@
 	                <div class="fs-5 mb-3">
 	                	<p class="lead small-title" th:text="${item.itemSNm}"></p>
 	                    <div class="ori-price text-decoration-line-through" th:text="${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}"></div>
-	                    <span class="percent" th:text="${item.percent}">%</span>
+	                    <span class="percent" th:text="${item.percent} + '%'"></span>
 	                    <input type="hidden" th:value="${item.price}" id="price" name="price">
 	                    <span name="totalPrice" id="totalPrice" class="discount-amount"></span>
 	                </div>
