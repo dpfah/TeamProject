@@ -52,6 +52,8 @@ public class ItemFormDto {
     
     private double grade;
     
+    private double commentsCount;
+    
     // 댓글
     private List<ItemCommentResponseDto> itemComments = new ArrayList<>();
 

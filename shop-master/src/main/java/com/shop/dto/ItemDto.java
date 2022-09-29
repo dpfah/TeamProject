@@ -36,5 +36,7 @@ public class ItemDto {
     private String itemType;
     
     private double grade;
+    
+    private double commentsCount;
 
 }

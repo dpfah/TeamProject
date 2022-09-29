@@ -159,7 +159,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.percent,
                                 item.itemType,
                                 item.itemSummary,
-                                item.grade)
+                                item.grade,
+                                item.commentsCount)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
