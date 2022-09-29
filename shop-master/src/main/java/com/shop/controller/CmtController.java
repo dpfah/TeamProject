@@ -52,7 +52,7 @@ public class CmtController {
     }
 
     
-        //마이페이지에서 1:1문의 리스트
+        //마이페이지에서 커뮤니티 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
     public String cmtHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
@@ -69,7 +69,7 @@ public class CmtController {
     }
     
     
-    // 1:1문의 작성
+    // 커뮤니티 작성
     @GetMapping(value = "/cmt/new")
     public String cmtForm(Model model, Principal principal){
     	model.addAttribute("email", principal.getName());
@@ -77,7 +77,7 @@ public class CmtController {
         return "cmt/cmtForm";
     }
     
-    // 1:1문의 작성
+    // 커뮤니티 작성
     @PostMapping(value = "/cmt/new")
     public String cmtNew(@Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
                           Model model, @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Principal principal){
@@ -106,7 +106,7 @@ public class CmtController {
         return "redirect:/mainCmt";
     }
 
-    //1:1 문의 업데이트 페이지 가져오기
+    //커뮤니티 업데이트 페이지 가져오기
     @GetMapping(value = "/cmt/update/{cmtId}")
     public String cmtDtl(@PathVariable("cmtId") Long cmtId, Model model, Principal principal){
 
@@ -120,10 +120,11 @@ public class CmtController {
             return "cmt/cmtForm";
         }
         model.addAttribute("email", principal.getName());
+
         return "cmt/cmtForm";
     }
 
-  //1:1 문의 수정한 내용 
+  //너뮤니티 수정한 내용 
     @PostMapping(value = "/cmt/update/{cmtId}")
     public String cmtUpdate(@Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
                              @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Model model){

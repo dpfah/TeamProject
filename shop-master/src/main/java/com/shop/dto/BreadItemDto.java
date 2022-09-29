@@ -27,9 +27,10 @@ public class BreadItemDto {
     
     private String itemSummary;
 
-
+    private double grade;
+    
     @QueryProjection
-    public BreadItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType, String itemSummary){
+    public BreadItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType, String itemSummary, double grade){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
@@ -39,7 +40,7 @@ public class BreadItemDto {
         this.percent = percent;
         this.itemType = itemType;
         this.itemSummary =itemSummary;
-
+        this.grade = grade;
     }
 
 }

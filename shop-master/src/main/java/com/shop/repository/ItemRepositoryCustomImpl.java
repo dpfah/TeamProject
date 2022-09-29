@@ -115,7 +115,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 itemImg.imgUrl,
                                 item.price,
                                 item.percent,
-                                item.ori_price
+                                item.ori_price,
+                                item.grade
                                )
                 )
                 .from(itemImg)
@@ -157,7 +158,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.price,
                                 item.percent,
                                 item.itemType,
-                                item.itemSummary)
+                                item.itemSummary,
+                                item.grade)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
@@ -199,7 +201,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.price,
                                 item.percent,
                                 item.itemType,
-                                item.itemSummary)
+                                item.itemSummary,
+                                item.grade)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
@@ -241,7 +244,8 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.price,
                                 item.percent,
                                 item.itemType,
-                                item.itemSummary)
+                                item.itemSummary,
+                                item.grade)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)

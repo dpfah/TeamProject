@@ -27,9 +27,10 @@ public class CookiesItemDto {
     
     private String itemSummary;
 
-
+    private double grade;
+    
     @QueryProjection
-    public CookiesItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType, String itemSummary){
+    public CookiesItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType, String itemSummary, double grade){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
@@ -39,6 +40,7 @@ public class CookiesItemDto {
         this.percent = percent;
         this.itemType = itemType;
         this.itemSummary = itemSummary;
+        this.grade = grade;
 
     }
 
