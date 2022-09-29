@@ -97,22 +97,22 @@
     				
     				<th:block th:if="${not #lists.isEmpty(cmts.getContent())}">
                   		<!-- paging -->
-				        <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
+				        <div class="item_menu" th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
 				            <ul class="pagination justify-content-center">
 				
 				                <li class="page-item" th:classappend="${cmts.first}?'disabled'">
-				                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link">
+				                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link previous">
 				                        <span aria-hidden='true'>Previous</span>
 				                    </a>
 				                </li>
 				
 				                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
-				                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+				                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link pNum">[[${page}]]</a>
 				                </li>
 				
 				
 				                <li class="page-item" th:classappend="${cmts.last}?'disabled'">
-				                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link">
+				                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link next">
 				                        <span aria-hidden='true'>Next</span>
 				                    </a>
 				                </li>
@@ -135,7 +135,7 @@
 				                <option value="name">이름</option>
 				            </select>
 				            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-				            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+				            <button id="searchBtn" type="submit" class="btn btn-light">검색</button>
 				        </div>
     				</th:block>
 	            </div>

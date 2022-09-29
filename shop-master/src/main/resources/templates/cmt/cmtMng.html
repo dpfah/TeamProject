@@ -90,7 +90,7 @@
 
 	
 
-    <form th:action="@{'/admin/cmts/' + ${cmts.number}}" role="form" method="get" th:object="${cmts}">
+    <form th:action="@{'/admin/cmts/' + ${cmts.number}}" role="form" method="get" th:object="${cmts}" class="item_menu">
 	    <h1 class="cmtTitle">
 			커뮤니티 관리자
 		</h1>
@@ -129,17 +129,17 @@
             <ul class="pagination justify-content-center">
 
                 <li class="page-item" th:classappend="${cmts.first}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link">
+                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link previous">
                         <span aria-hidden='true'>Previous</span>
                     </a>
                 </li>
 
                 <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
-                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link pNum">[[${page}]]</a>
                 </li>
 
                 <li class="page-item" th:classappend="${cmts.last}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link">
+                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link next">
                         <span aria-hidden='true'>Next</span>
                     </a>
                 </li>
@@ -162,7 +162,7 @@
                 <option value="name">이름</option>
             </select>
             <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-            <button id="searchBtn" type="submit" class="btn btn-primary ml-2">검색</button>
+            <button id="searchBtn" type="submit" class="btn btn-light ml-2">검색</button>
         </div>
 		</th:block>
     </form>
