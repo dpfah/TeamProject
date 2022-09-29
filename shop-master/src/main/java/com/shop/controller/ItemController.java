@@ -188,8 +188,6 @@ public class ItemController {
     public String itemDtl(Model model, @PathVariable("itemId") Long itemId, Principal principal){
         ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
         
-        model.addAttribute("email", principal.getName());
-        
         List<ItemCommentResponseDto> itemComments = itemFormDto.getItemComments();
         
         /* 댓글 관련 */
