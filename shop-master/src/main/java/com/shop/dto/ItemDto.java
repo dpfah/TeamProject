@@ -37,6 +37,6 @@ public class ItemDto {
     
     private double grade;
     
-    private double commentsCount;
+    private int commentsCount;
 
 }

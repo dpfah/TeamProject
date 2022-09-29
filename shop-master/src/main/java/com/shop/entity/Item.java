@@ -83,8 +83,8 @@ public class Item extends BaseEntity {
     @Column(columnDefinition = "double default 0")
     private double grade;
     
-    @Column(columnDefinition = "double default 0")
-    private double commentsCount;
+    @Column(columnDefinition = "int default 0")
+    private int commentsCount;
     
     
     
