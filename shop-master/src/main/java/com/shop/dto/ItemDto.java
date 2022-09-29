@@ -34,9 +34,5 @@ public class ItemDto {
     private LocalDateTime updateTime;
     
     private String itemType;
-    
-    private double grade;
-    
-    private int commentsCount;
 
 }

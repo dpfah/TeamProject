@@ -27,12 +27,9 @@ public class CakeItemDto {
     
     private String itemSummary;
 
-    private double grade;
-    
-    private int commentsCount;
 
     @QueryProjection
-    public CakeItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType, String itemSummary, double grade, int commentsCount){
+    public CakeItemDto(Long id, String itemNm, String itemDetail, String imgUrl,int ori_price ,double price,double percent, ItemType itemType, String itemSummary){
         this.id = id;
         this.itemNm = itemNm;
         this.itemDetail = itemDetail;
@@ -42,7 +39,6 @@ public class CakeItemDto {
         this.percent = percent;
         this.itemType = itemType;
         this.itemSummary = itemSummary;
-        this.grade = grade;
-        this.commentsCount = commentsCount;
+
     }
 }

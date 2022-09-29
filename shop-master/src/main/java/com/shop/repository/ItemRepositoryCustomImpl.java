@@ -115,9 +115,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 itemImg.imgUrl,
                                 item.price,
                                 item.percent,
-                                item.ori_price,
-                                item.grade,
-                                item.commentsCount
+                                item.ori_price
                                )
                 )
                 .from(itemImg)
@@ -159,9 +157,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.price,
                                 item.percent,
                                 item.itemType,
-                                item.itemSummary,
-                                item.grade,
-                                item.commentsCount)
+                                item.itemSummary)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
@@ -203,9 +199,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.price,
                                 item.percent,
                                 item.itemType,
-                                item.itemSummary,
-                                item.grade,
-                                item.commentsCount)
+                                item.itemSummary)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)
@@ -247,9 +241,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
                                 item.price,
                                 item.percent,
                                 item.itemType,
-                                item.itemSummary,
-                                item.grade,
-                                item.commentsCount)
+                                item.itemSummary)
                 )
                 .from(itemImg)
                 .join(itemImg.item, item)

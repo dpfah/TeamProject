@@ -50,11 +50,15 @@ public class ItemFormDto {
     
     private String createdBy;
     
+
     private double grade;
     
     private int view;
     
     private int commentsCount;
+
+//    private double rating;
+
     
     // 댓글
     private List<ItemCommentResponseDto> itemComments = new ArrayList<>();

@@ -106,7 +106,7 @@ public class CmtController {
         return "redirect:/mainCmt";
     }
 
-    //커뮤니티 업데이트 페이지 가져오기
+    //1:1 문의 업데이트 페이지 가져오기
     @GetMapping(value = "/cmt/update/{cmtId}")
     public String cmtDtl(@PathVariable("cmtId") Long cmtId, Model model, Principal principal){
 
@@ -120,11 +120,10 @@ public class CmtController {
             return "cmt/cmtForm";
         }
         model.addAttribute("email", principal.getName());
-
         return "cmt/cmtForm";
     }
 
-  //너뮤니티 수정한 내용 
+  //1:1 문의 수정한 내용 
     @PostMapping(value = "/cmt/update/{cmtId}")
     public String cmtUpdate(@Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
                              @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Model model){
