@@ -454,12 +454,6 @@
                             <p class="summary" th:text="${item.itemSummary}"></p>
                          </li>
                       </ul>
-                      <div class="product-usage">
-                         <p>포인트적립</p>
-                         <ul class="product-info-etc">
-                            <li class="expectBpoint" th:text="${item.point}+'p'" type="number"></li>
-                         </ul>
-                      </div>         
                    </div>
                   <div th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right mt-3">
                       <button type="button" class="btn btn-cart btn-lg" onclick="addCart()">장바구니 담기</button>
@@ -579,7 +573,7 @@
                                        <span class="review-user-id" th:text="${#strings.substring(#strings.replace(itemComment.memberEmail, '@', '*****'), 0, 8)}">멤버 아이디</span>
                                        <span class="review-reg-date" th:text="${itemComment.createdDate}">등록날짜</span>
 <!--                                        <a type="button" data-toggle="collapse" data-target=".multi-collapse-{id}" class="bi bi-pencil-square"></a><!-- 댓글 수정 버튼 --> 
-                                        <a type="button" onclick="itemCommentDelete(this)" class="bi bi-x-square" th:if="${#strings.equals(email, itemComment.memberEmail)}"></a> <!-- 댓글 삭제 버튼 -->
+                                        <a type="button" onclick="itemCommentDelete(this)" class="bi bi-x-square" th:if="${#strings.equals(member, itemComment.memberEmail)}"></a> <!-- 댓글 삭제 버튼 -->
                                     </p>
                                  </div>
                               </li>
@@ -656,61 +650,6 @@
                   </div>
                </ul>
             </div>
-            
-            <div class="product-other-area">
-               <p>다른 상품</p>
-               <div class="swiper-mobile-wrap">
-                  <div id="swiper_other_product" class="sub-scroll">
-                     <div class="">
-                        <div class="sub-img-list swiper-other-item">
-                           <a href="" id="" class="btn_detail">
-                              <dl class="sub-img-txt">
-                                 <dt>상품명</dt>
-                                 <dd class="product-price-del">원가</dd>
-                                 <dd class="product-price-dc">할인률%</dd>
-                                 <dd class="product-price"><span>판매가</span>원</dd>
-                                 <dd class="product-txt">상품 정보</dd>
-                              </dl>
-                           </a>
-                        </div>
-                        <div class="sub-img-list swiper-other-item">
-                           <a href="" id="" class="btn_detail">
-                              <dl class="sub-img-txt">
-                                 <dt>상품명</dt>
-                                 <dd class="product-price-del">원가</dd>
-                                 <dd class="product-price-dc">할인률%</dd>
-                                 <dd class="product-price"><span>판매가</span>원</dd>
-                                 <dd class="product-txt">상품 정보</dd>
-                              </dl>
-                           </a>
-                        </div>
-                        <div class="sub-img-list swiper-other-item">
-                           <a href="" id="" class="btn_detail">
-                              <dl class="sub-img-txt">
-                                 <dt>상품명</dt>
-                                 <dd class="product-price-del">원가</dd>
-                                 <dd class="product-price-dc">할인률%</dd>
-                                 <dd class="product-price"><span>판매가</span>원</dd>
-                                 <dd class="product-txt">상품 정보</dd>
-                              </dl>
-                           </a>
-                        </div>
-                        <div class="sub-img-list swiper-other-item">
-                           <a href="" id="" class="btn_detail">
-                              <dl class="sub-img-txt">
-                                 <dt>상품명</dt>
-                                 <dd class="product-price-del">원가</dd>
-                                 <dd class="product-price-dc">할인률%</dd>
-                                 <dd class="product-price"><span>판매가</span>원</dd>
-                                 <dd class="product-txt">상품 정보</dd>
-                              </dl>
-                           </a>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </div>
-            
             <a href="#top" id="top-btn" class="on">맨 위로가기</a>
          </div>
          

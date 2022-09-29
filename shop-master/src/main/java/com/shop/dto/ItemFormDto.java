@@ -54,6 +54,8 @@ public class ItemFormDto {
     
     private int commentsCount;
     
+    private int view;
+    
     // 댓글
     private List<ItemCommentResponseDto> itemComments = new ArrayList<>();
 
