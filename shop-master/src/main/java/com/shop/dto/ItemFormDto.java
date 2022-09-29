@@ -50,15 +50,9 @@ public class ItemFormDto {
     
     private String createdBy;
     
-
     private double grade;
     
-    private int view;
-    
     private int commentsCount;
-
-//    private double rating;
-
     
     // 댓글
     private List<ItemCommentResponseDto> itemComments = new ArrayList<>();
@@ -85,11 +79,11 @@ public class ItemFormDto {
     }
     
     public double getPrice() {
-    	if(percent == 0) {
-    		return Math.round(ori_price);
-    	}else {
-    	return Math.round(ori_price - (ori_price *percent/100));
-    	}
+       if(percent == 0) {
+          return Math.round(ori_price);
+       }else {
+       return Math.round(ori_price - (ori_price *percent/100));
+       }
     }
 
 

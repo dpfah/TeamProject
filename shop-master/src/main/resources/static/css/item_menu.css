@@ -33,12 +33,12 @@
 }
 
 .item_menu #banner img{
-	width:1056px;
-	height:320px;
-			}
+   width:1056px;
+   height:320px;
+         }
 
 .item_menu .sub-top-nav-area{
-	clear: both;
+   clear: both;
     width: auto;
     height: auto;
     margin: 10px 0px 20px 0px;
@@ -61,19 +61,19 @@
 
 
 .item_menu .product-list{
-	height: auto;
+   height: auto;
     margin-top: 10px;
     text-decoration:none;
 }
 
 .item_menu .product-list .origin-price{
-	color: #4e4242;
+   color: #4e4242;
     font-size: 18px;
     text-decoration: line-through;
 }
 
 .item_menu .product-list span{
-	margin-right: 6px;
+   margin-right: 6px;
     color: #FC454C;
     font-size: 18px;
     font-weight: 600;
@@ -82,15 +82,16 @@
 
 .item_menu .product-list .product-name{
     color: #333333;
+    margin-bottom: 8px;
+    font-weight: 600;
     font-size: 18px;
-    /* font-weight: 500; */
     text-align: left;
     transition: color 0.5s;
     text-decoration: none;
 }
 
 .item_menu .product-list .itemDetail{
-	display: inline-block;
+   display: inline-block;
     width: 90%;
     white-space: nowrap;
     overflow: hidden;
@@ -102,7 +103,7 @@
 }
 
 .item_menu .previous, .next{
-	display: inline-block;
+   display: inline-block;
     width: auto;
     padding: 10px 17px;
     background: #333;
@@ -112,7 +113,7 @@
 }
 
 .item_menu .pNum{
-	display: inline-block;
+   display: inline-block;
     width: auto;
     padding: 10px 15px;
     background: #fff;
@@ -131,23 +132,51 @@
     border-color: #EEEEEE !important;
 }
 
+.item_menu .product-list .star-rating{
+   display: inline-block;
+    width: 75px !important;
+    height: 15px !important;
+    margin: 0 0 0 0;
+    vertical-align: middle;
+    background-size: 100%;
+}
+
+.item_menu .product-list dl{
+   display: inline-block;
+    padding: 0;
+    margin-left: 4px;
+}
+
+.item_menu .product-list dd{
+   display: inline-block;
+    font-size: 13px;
+    color: #666666;
+}
+
+.item_menu .product-list .deco {
+    margin: 0 4px 0 0;
+    color: #aaa;
+    font-size: 12px;
+    vertical-align: baseline;
+}
+
 
 /* bread */
 
 #bread #banner img{
-	height:320px;
+   height:320px;
 }
 
 
 /* cookies */
 #cookies #banner{
-	height:320px;
+   height:320px;
 }
 
 
 /* cake */
 #cake #banner{
-	height:320px;
+   height:320px;
 }
 
 /* itemA */
@@ -169,14 +198,14 @@
 }
 
 .itemA .itemNm{
-	margin-bottom: 10px;
+   margin-bottom: 10px;
     color: #333333;
     font-size: 32px;
     font-weight: 600;
 }
 
 .itemA .btn-cart{
-	background: #EEEEEE;
+   background: #EEEEEE;
     color: #333333;
     width: 49%;
     height:50px;
@@ -185,7 +214,7 @@
     font-weight: 500;
 }
 .itemA .btn-purchase{
-	top: -50px;
+   top: -50px;
     position: relative;
     left: 240px;
     height: 50px;
@@ -199,22 +228,22 @@
 }
 
 .itemA .ori-price{
-	color: #AAAAAA;
-	margin-left: 3px;
-	font-weight: 500;
-	font-size: 30px;
+   color: #AAAAAA;
+   margin-left: 3px;
+   font-weight: 500;
+   font-size: 30px;
 }
 
 .itemA .percent{
     margin-right: 5px;
-	color: #FC454C;
-	font-size: 28px;
-	text-decoration: none;
-	font-weight:600;
+   color: #FC454C;
+   font-size: 28px;
+   text-decoration: none;
+   font-weight:600;
 }
 
 .itemA .discount-amount{
-	margin-left: 3px;
+   margin-left: 3px;
     color: #000000;
     font-size: 28px;
     font-weight: 500;
@@ -222,7 +251,7 @@
 }
 
 .itemA .count{
-	border: 1px solid #333;
+   border: 1px solid #333;
     border-radius: 4px;
     color: #333;
     font-weight: 600;
@@ -233,7 +262,7 @@
 }
 
 .itemA .dropdown-toggle{
-	border: 1px solid #333;
+   border: 1px solid #333;
     border-radius: 4px;
     font-size: 20px;
     font-weight: 500;
@@ -242,27 +271,27 @@
     white-space: nowrap;
     text-overflow: ellipsis;
     background-color: #fff;
-	box-sizing: border-box;
-	color: #333333;
-	display: inline-block;
-	position: relative;
-	margin: 00;
-	width: 100%;
-	height: 50px;
-	z-index: 10;
+   box-sizing: border-box;
+   color: #333333;
+   display: inline-block;
+   position: relative;
+   margin: 00;
+   width: 100%;
+   height: 50px;
+   z-index: 10;
 }
 
 .itemA .dropdown-menu{
-	width: Calc(100% - 22px);
-	white-space: nowrap;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 50px;
-	line-height: 2.5;
+   width: Calc(100% - 22px);
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   height: 50px;
+   line-height: 2.5;
 }
 
 .itemA .small-price{
-	position: absolute;
+   position: absolute;
     bottom: 5px;
     left: 321px;
     font-size: 18px;
@@ -270,7 +299,7 @@
 }
 
 .itemA .small-priceW{
-	position: absolute;
+   position: absolute;
     bottom: 5px;
     left: 353px;
     font-size: 18px;
@@ -333,7 +362,7 @@
     margin-top: 0px;
     line-height: 1.5;
 }
-		
+      
 .itemA .tab-product-area {
     border: 0px solid #F5F5F5;
     border-right: 0;
@@ -346,7 +375,7 @@
 }
 
 .itemA .tab-product-ul{
-	width: 789px;
+   width: 789px;
     height: 64px;
     line-height: 3;
     margin: auto;
@@ -359,7 +388,7 @@
 }
 
 .itemA form{
-	margin: 50px auto;
+   margin: 50px auto;
     width: 80%;
     padding: 40px 0;
     box-sizing: border-box;
@@ -368,29 +397,31 @@
     box-shadow: 0 0 10px rgb(0 0 0 / 5%);
 } 
 
+
+
 .itemA form > p{
-	padding-left: 40px;
-}	
-	
+   padding-left: 40px;
+}   
+   
 
 /*itemDtl*/
 #item_Dtl * {
-	box-sizing: border-box
+   box-sizing: border-box
 }
 #item_Dtl body {
-	font-family: Verdana, sans-serif; margin:0
+   font-family: Verdana, sans-serif; margin:0
 }
 #item_Dtl .mySlides {
-	display: none
+   display: none
 }
 
 
 img {
-	vertical-align: middle;
+   vertical-align: middle;
 }
 
 #itemDtl .list-itemComment{
-	margin-top: 16px;
+   margin-top: 16px;
     font-size: 22px;
     color: #999;
     line-height: 1.5;
@@ -399,19 +430,19 @@ img {
 
 
 #itemDtl .comment-area{
-	text-align: right;
-	 width:100%;
+   text-align: right;
+    width:100%;
 }
 
 #itemDtl #itemComment{
-	height: auto;
+   height: auto;
     width: 95%;
     margin: 0 auto;
 }
 
 #itemDtl #btn-comment-save{
-	display: inline-block;
-	border: 1px solid #bfbebe;
+   display: inline-block;
+   border: 1px solid #bfbebe;
     color: #333;
 }
 
@@ -444,7 +475,7 @@ img {
 
 
 #itemDtl .small-title{
-	margin: 5px 0 50px 0;
+   margin: 5px 0 50px 0;
     font-size: 18px;
     color: #66666666;
 }
@@ -462,18 +493,18 @@ img {
     position: relative;
     font-size: 18px;
     color: #666666;
-	text-decoration: none;
+   text-decoration: none;
 }
 
 #itemDtl .save{
-	background-color: #666666;
-	color:#EEEEEE;
-	width:5rem;
-	margin-top: 50px;
+   background-color: #666666;
+   color:#EEEEEE;
+   width:5rem;
+   margin-top: 50px;
 }
 
 #itemDtl .sell-badge{
-	display: inline-block;
+   display: inline-block;
     padding: 6px 11px;
     font-size: 15px;
     font-weight: 500;
@@ -492,17 +523,17 @@ img {
 #itemForm .fieldError {
     color: #bd2130;
 }
-		
+      
 #itemForm .percent{
     margin-right: 10px;
-	font-size: 16px;
-	text-align:center;
-	font-weight:500;
-	width:23%;
+   font-size: 16px;
+   text-align:center;
+   font-weight:500;
+   width:23%;
 }
 
 #itemForm .form-group{
-	margin-bottom:5px;
+   margin-bottom:5px;
 }
 
 #itemForm .small-title{
@@ -518,22 +549,22 @@ img {
 }
 
 #itemForm .percentS{
-	width: 53%;
+   width: 53%;
     position: relative;
     left: 89px;
     bottom: 31px;
 }
 
 #itemForm .stockNumber{
-	margin-top: 15px;
+   margin-top: 15px;
 }
 
 #itemForm .select_sell{
-	margin-bottom: 10px;
+   margin-bottom: 10px;
 }
 
 #itemForm .repImg{
-	margin-top: -20px;
+   margin-top: -20px;
 }
 
 #itemForm .tab-product-ul > li {
@@ -547,41 +578,41 @@ img {
     position: relative;
     font-size: 18px;
     color: #666666;
-	font-weight: 600;
+   font-weight: 600;
 }
 
 #itemForm .save{
-	background-color: #666666;
-	color:#EEEEEE;
-	width:5rem;
-	margin-top: 50px;
+   background-color: #666666;
+   color:#EEEEEE;
+   width:5rem;
+   margin-top: 50px;
 }
 
 
 
 #itemForm .input-percent{
-	height: 38px;
+   height: 38px;
 }
 
 /* mypage */
 
 .mypage .orderDate{
-	color:#666666;
+   color:#666666;
 }
 
 .mypage .inner_tb{
-	border: none; 
-	width:100%;
+   border: none; 
+   width:100%;
 }
 
 .mypage .inner_tb tr{
-	width:100%
+   width:100%
 }
 
 .mypage .inner_tb td{
-	width:25%; 
-	border-top: none;
-	line-height: 5;
+   width:25%; 
+   border-top: none;
+   line-height: 5;
 }
 
 
@@ -630,11 +661,11 @@ img {
     font-weight: 600;
     color: #333;
     letter-spacing: 0;
-	margin: auto;
+   margin: auto;
 }    
 
 .mypage .my-wallet{
-	width: 32%;
+   width: 32%;
     float: left;
 }
 
@@ -678,9 +709,9 @@ img {
     position: absolute;
     top: -2px;
     right: 0px;
-	float:none;
-	font-weight: 600;
-	font-family: 'brandon-grotesque','NotoSansKR','roboto','돋움','AppleGothic', Dotum, sans-serif;
+   float:none;
+   font-weight: 600;
+   font-family: 'brandon-grotesque','NotoSansKR','roboto','돋움','AppleGothic', Dotum, sans-serif;
     font-size: 16px;
     margin-bottom: 0;
 }
@@ -696,7 +727,7 @@ img {
 }
 
 .mypage .user-qna dl{
-	display: inline-block;
+   display: inline-block;
 }
 
 .mypage .user-qna dl dt {
@@ -718,7 +749,7 @@ img {
 }
 
 .mypage .sub-nav{
-	float: left;
+   float: left;
     font-size: 20px;
     padding: 25px;
 }
@@ -740,8 +771,8 @@ img {
     font-weight: 500;
 }
 .mypage .lnb-mypage-category ul {
-	padding: 0;
-	margin: 0;
+   padding: 0;
+   margin: 0;
     list-style: none;
     width: 100%;
     border: 1px solid #EBEBEB;
@@ -770,13 +801,13 @@ img {
 
 /*orderHist*/
 #orderHist, #oqnaHist{
-	width: 820px;
+   width: 820px;
     float: right;
     padding-top: 40px;
 }
 
 #orderHist h4, #oqnaHist h4{
-	font-size: 24px;
+   font-size: 24px;
     color: #000000;
     position: relative;
     padding-right: 10px;
@@ -785,7 +816,7 @@ img {
 }
 
 #orderHist > p{
-	color: #666666;
+   color: #666666;
     display: inline-block;
     font-size: 13px;
     letter-spacing: -0.03em;
@@ -794,15 +825,15 @@ img {
 /* oqnaHist */
 
 #oqnaHist .table span{
-	margin:auto;
+   margin:auto;
 }
 
 
 .cs-counsel-top{
-	position: relative;
+   position: relative;
     padding: 40px 40px 47px 40px;
     border-top: 2px solid #999999;
-	background-color: #ffffff;
+   background-color: #ffffff;
 }
 
 .cs-counsel-top dt {
@@ -849,8 +880,8 @@ img {
 
 /* oqnaForm, oqnaDetail */
 .oqnaDF{
-	margin:50px auto;
-	width: 80%;
+   margin:50px auto;
+   width: 80%;
     box-sizing: border-box;
     padding: 40px;
     border-radius: 10px;
@@ -859,7 +890,7 @@ img {
 }
 
 .oqnaDF .title{
-	font-size: 24px;
+   font-size: 24px;
     color: #333333;
     font-weight: bold;
     border-bottom: 2px solid #333;
@@ -869,7 +900,7 @@ img {
 }
 
 .oqnaDF select{
-	width: 280px;
+   width: 280px;
     height: 40px;
     vertical-align: middle;
     background-size: 12px 12px;
@@ -880,7 +911,7 @@ img {
 }
 
 .oqnaDF .input-title{
-	padding-left: 11px;
+   padding-left: 11px;
     height: 40px;
     width: 100%;
     line-height: 40px;
@@ -890,13 +921,13 @@ img {
 
 
 .oqnaDF .small-title{
-	margin-bottom: 15px;
+   margin-bottom: 15px;
     color: #333333;
     font-weight: 600;
 }
 
 .oqnaDF .warning{
-	    float: left;
+       float: left;
     font-size: 12px;
     letter-spacing: -0.04em;
     margin-top: 2px;
@@ -906,7 +937,7 @@ img {
 
 
 .oqnaDF textarea{
-	overflow: auto;
+   overflow: auto;
     padding: 10px 15px;
     height: 160px;
     font-size: 16px;
@@ -916,7 +947,7 @@ img {
 }
 
 .oqnaDF .reply{
-	overflow: auto;
+   overflow: auto;
     padding: 10px 15px;
     height: 160px;
     font-size: 16px;
@@ -926,7 +957,7 @@ img {
 }
 
 .oqnaDF .custom-file-input{
-	padding-left: 11px;
+   padding-left: 11px;
     height: 40px;
     width: 100%;
     line-height: 40px;
@@ -935,18 +966,18 @@ img {
 }
 
 .oqnaDF .save{
-	background-color: #666666;
-	color:#EEEEEE;
-	width:5rem;
-	margin-top: 50px;
+   background-color: #666666;
+   color:#EEEEEE;
+   width:5rem;
+   margin-top: 50px;
 }
 
 .oqnaDF .delete{
-	background-color: #bd2130;
-	color:#EEEEEE;
-	width:5rem;
-	margin-top: 50px;
-	margin-left: 10px;
+   background-color: #bd2130;
+   color:#EEEEEE;
+   width:5rem;
+   margin-top: 50px;
+   margin-left: 10px;
 }
 
 
@@ -958,16 +989,16 @@ img {
 /* oqnaDtl */
 
 #oqnaDtl .update{
-	background-color: #666666;
-	color:#EEEEEE;
-	width:7rem;
-	margin-top: 50px;
+   background-color: #666666;
+   color:#EEEEEE;
+   width:7rem;
+   margin-top: 50px;
 }
 
 
 /* memberDtl */
 #memberDtl .btn-update{
-	display: flex;
+   display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -983,18 +1014,18 @@ img {
 }
 
 #memberDtl .join-box { 
-	margin:auto; 
-	width: 100%; 
-	max-width: 800px; 
-	box-sizing: border-box; 
-	padding: 40px; 
-	border-radius: 10px; 
-	background: #fff; 
-	box-shadow: 0 0 10px rgba(0,0,0,0.05); 
+   margin:auto; 
+   width: 100%; 
+   max-width: 800px; 
+   box-sizing: border-box; 
+   padding: 40px; 
+   border-radius: 10px; 
+   background: #fff; 
+   box-shadow: 0 0 10px rgba(0,0,0,0.05); 
 }
 
 #memberDtl .btn_join{
-	display: flex;
+   display: flex;
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -1009,11 +1040,11 @@ img {
     transition: all 0.5s;
 }
 #memberDtl .radio-area {
-	width: 37.12%;
-	height: 38px; 
-	margin-left: 4.1%;
-	box-sizing: border-box; 
-	float: left;
+   width: 37.12%;
+   height: 38px; 
+   margin-left: 4.1%;
+   box-sizing: border-box; 
+   float: left;
 }
 #memberDtl .hide {
     overflow: hidden;
@@ -1026,9 +1057,9 @@ img {
     opacity: 0;
 }
 #memberDtl .radio-area li {
-	box-sizing: border-box;
-	width: 50%;
-	height: 36px;
+   box-sizing: border-box;
+   width: 50%;
+   height: 36px;
     position: relative;
     text-align: center;
     color: #929292;
@@ -1037,22 +1068,22 @@ img {
     border-left: 1px solid #e0e0e0;
 }
 #memberDtl .radio-area li label:before {
-	content:"";
-	position:absolute; 
-	top:50%; 
-	left:0; 
-	display:block; 
-	width:25px; 
-	height:25px; 
-	margin-top:-12px; 
-	font-family:fontello; 
-	color:#3b3b3b; 
-	text-align:center; 
-	line-height:22px; 
-	font-weight:bold; 
-	font-size:10px;
-	border-radius:50%; 
-	box-sizing:border-box
+   content:"";
+   position:absolute; 
+   top:50%; 
+   left:0; 
+   display:block; 
+   width:25px; 
+   height:25px; 
+   margin-top:-12px; 
+   font-family:fontello; 
+   color:#3b3b3b; 
+   text-align:center; 
+   line-height:22px; 
+   font-weight:bold; 
+   font-size:10px;
+   border-radius:50%; 
+   box-sizing:border-box
 }
 #memberDtl .radio-area li label:after {
     content: '';
@@ -1067,19 +1098,18 @@ img {
 }
 
 .oqnaF input, .oqnaF .input-group{
-	width:100%;
+   width:100%;
 }
 
 /* bread.html, cake.html, cookies.html => class="no-items" */
 .no-items {
-	display: flex;
-	align-items: center;
-	height: 300px;
+   display: flex;
+   align-items: center;
+   height: 300px;
 }
 .no-items h2 {
-	width: 100%;
-	text-align: center;
+   width: 100%;
+   text-align: center;
 }
-
 
 
