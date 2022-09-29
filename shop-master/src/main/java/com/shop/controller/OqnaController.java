@@ -155,7 +155,7 @@ public class OqnaController {
             return "oqna/oqnaForm";
         }
 
-        return "redirect:/";
+        return "redirect:/oqnas";
     }
 
     //관리자 페이지에서 전체 1:1 문의 목록보기
