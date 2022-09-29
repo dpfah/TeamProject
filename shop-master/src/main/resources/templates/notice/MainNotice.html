@@ -59,7 +59,7 @@
 
 <body>
 	<div layout:fragment="content">
-		<div id="notice" class="wrap">
+		<div id="notice" class="wrap item_menu">
 			<form role="form" method="post" action="/notice">
 				<section id="content" style="margin-top: 0px;">
 					<div class="sub-top-title-area">
@@ -94,7 +94,26 @@
 							</ul>
 						</div>
 					</section>
-					
+						<th:block th:if="${not #lists.isEmpty(notices.getContent())}">
+							<div class="navigation Page" th:with="start=${(notices.number/maxPage)*maxPage + 1}, end=(${(notices.totalPages == 0) ? 1 : (start + (maxPage - 1) < notices.totalPages ? start + (maxPage - 1) : notices.totalPages)})" style="margin-top: 40px;">
+						        <ul class="pagination justify-content-center">
+						            <li class="page-item" th:classappend="${notices.number eq 0}?'disabled':''">
+						                <a th:href="@{'/notice' + '?searchQuery=' + ${noticeSearchDto.searchQuery} + '&page=' + ${notices.number-1}}" aria-label='Previous' class="page-link previous">
+						                    <span aria-hidden='true'>Previous</span>
+						                </a>
+						            </li>
+						            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${notices.number eq page-1}?'active':''">
+						                <a th:href="@{'/notice' +'?searchQuery=' + ${noticeSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+						            </li>
+						
+						            <li class="page-item" th:classappend="${notices.number+1 ge notices.totalPages}?'disabled':''">
+						                <a th:href="@{'/notice' +'?searchQuery=' + ${noticeSearchDto.searchQuery} + '&page=' + ${notices.number+1}}" aria-label='Next' class="page-link next">
+						                    <span aria-hidden='true'>Next</span>
+						                </a>
+						            </li>
+						        </ul>
+						    </div>
+				    	</th:block>
 				</section>
 			</form>
 			<a href="#top" id="top-btn" class="on">맨 위로가기</a>

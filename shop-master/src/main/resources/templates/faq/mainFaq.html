@@ -118,16 +118,16 @@
 			<div class="navigation Page" th:with="start=${(faqs.number/maxPage)*maxPage + 1}, end=(${(faqs.totalPages == 0) ? 1 : (start + (maxPage - 1) < faqs.totalPages ? start + (maxPage - 1) : faqs.totalPages)})" style="margin-top: 40px;">
 		        <ul class="pagination justify-content-center">
 		            <li class="page-item" th:classappend="${faqs.number eq 0}?'disabled':''">
-		                <a th:href="@{'/' + '?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number-1}}" aria-label='Previous' class="page-link previous">
+		                <a th:href="@{'/mainFaq' + '?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number-1}}" aria-label='Previous' class="page-link previous">
 		                    <span aria-hidden='true'>Previous</span>
 		                </a>
 		            </li>
 		            <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${faqs.number eq page-1}?'active':''">
-		                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+		                <a th:href="@{'/mainFaq' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
 		            </li>
 		
 		            <li class="page-item" th:classappend="${faqs.number+1 ge faqs.totalPages}?'disabled':''">
-		                <a th:href="@{'/' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number+1}}" aria-label='Next' class="page-link next">
+		                <a th:href="@{'/mainFaq' +'?searchQuery=' + ${faqSearchDto.searchQuery} + '&page=' + ${faqs.number+1}}" aria-label='Next' class="page-link next">
 		                    <span aria-hidden='true'>Next</span>
 		                </a>
 		            </li>
