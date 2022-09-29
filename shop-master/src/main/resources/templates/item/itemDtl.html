@@ -370,7 +370,7 @@
 	        };
 			$.ajax({                
 			  type: 'POST',               
-			  url: '/admin/itemGrade/' + paramData.itemId,                
+			  url: '/item/itemGrade/' + paramData.itemId,                
               contentType: 'application/json; charset=utf-8',                                                            
               data: JSON.stringify(paramData),
               beforeSend : function(xhr){
@@ -580,7 +580,7 @@
 													<span class="review-user-id" th:text="${#strings.substring(#strings.replace(itemComment.memberEmail, '@', '*****'), 0, 8)}">멤버 아이디</span>
 													<span class="review-reg-date" th:text="${itemComment.createdDate}">등록날짜</span>
 <!--													 <a type="button" data-toggle="collapse" data-target=".multi-collapse-{id}" class="bi bi-pencil-square"></a><!-- 댓글 수정 버튼 --> 
-													 <a type="button" onclick="itemCommentDelete(this)" class="bi bi-x-square" th:if="${#strings.equals(email, itemComment.memberEmail)}"></a> <!-- 댓글 삭제 버튼 -->
+													 <a type="button" onclick="itemCommentDelete(this)" class="bi bi-x-square" th:if="${#strings.equals(member, itemComment.memberEmail)}"></a> <!-- 댓글 삭제 버튼 -->
 												</p>
 											</div>
 										</li>

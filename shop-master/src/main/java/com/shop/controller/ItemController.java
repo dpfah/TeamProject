@@ -154,7 +154,7 @@ public class ItemController {
         return "redirect:/";
     }
     
-    @PostMapping(value = "/admin/itemGrade/{itemId}")
+    @PostMapping(value = "/item/itemGrade/{itemId}")
     public ResponseEntity itemUpdateGrade(@PathVariable Long itemId,@RequestBody ItemDto dto){
     	ItemFormDto itemFormDto = new ItemFormDto();
     	
@@ -188,7 +188,6 @@ public class ItemController {
     public String itemDtl(Model model, @PathVariable("itemId") Long itemId, Principal principal){
         ItemFormDto itemFormDto = itemService.getItemDtl(itemId);
         
-        model.addAttribute("email", principal.getName());
         
         List<ItemCommentResponseDto> itemComments = itemFormDto.getItemComments();
         
