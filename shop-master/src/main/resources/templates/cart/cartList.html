@@ -28,8 +28,10 @@
                 var count = $("#count_" + cartItemId).val();                
                 orderTotalPrice += price*count;
             });
+            
+            var comma_orderTotalPrice = Number(orderTotalPrice).toLocaleString('en');
 
-            $("#orderTotalPrice").html(orderTotalPrice+'원');
+            $("#orderTotalPrice").html(comma_orderTotalPrice+'원');
         }
 
         function changeCount(obj){

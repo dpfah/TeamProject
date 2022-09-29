@@ -62,20 +62,22 @@
                  }
              });
          });
-           
-       //    function addComma(value){
-      //        value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      //        return value; 
-      //    }
+			
+			// 콤마           
+        //   function addComma(value){
+          //    value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            //  return value; 
+       //	   }
      // 할인율 계산
            function calculateToalPrice(){
                var count = $("#count").val();
                var price = $("#price").val();
-               var totalPrice = price*count;
+               var totalPrice =Number( price*count).toLocaleString('en');
                $("#totalPrice").html(totalPrice + '원'); 
            }
            
           
+               
    
            function order(){
                var token = $("meta[name='_csrf']").attr("content");
