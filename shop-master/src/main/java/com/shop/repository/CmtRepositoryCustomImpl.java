@@ -89,7 +89,7 @@ public class CmtRepositoryCustomImpl implements CmtRepositoryCustom{
     }
 
 
-    // 메인 제품
+    // cmtMain
     @Override
     public Page<MainCmtDto> getMainCmtPage(CmtSearchDto cmtSearchDto, Pageable pageable) {
         QCmt cmt = QCmt.cmt;

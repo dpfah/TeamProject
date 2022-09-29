@@ -52,7 +52,7 @@ public class CmtController {
     }
 
     
-        //마이페이지에서 1:1문의 리스트
+        //마이페이지에서 커뮤니티 리스트
     @GetMapping(value = {"/cmts", "/cmts/{page}"})
     public String cmtHist(@PathVariable("page") Optional<Integer> page, Principal principal, Model model){
     	
@@ -69,7 +69,7 @@ public class CmtController {
     }
     
     
-    // 1:1문의 작성
+    // 커뮤니티 작성
     @GetMapping(value = "/cmt/new")
     public String cmtForm(Model model, Principal principal){
     	model.addAttribute("email", principal.getName());
@@ -77,7 +77,7 @@ public class CmtController {
         return "cmt/cmtForm";
     }
     
-    // 1:1문의 작성
+    // 커뮤니티 작성
     @PostMapping(value = "/cmt/new")
     public String cmtNew(@Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
                           Model model, @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Principal principal){
