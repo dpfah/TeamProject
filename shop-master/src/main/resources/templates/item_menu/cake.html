@@ -77,23 +77,43 @@
 	                       			</div>
 		                            <!-- Product details-->
 		                            <div class="product-list">
-			                            <div class="card-body">
-			                                <div class="text-left">
+				                            <div class="text-left">
 			                                    <!-- Product name-->
-			                                    <h5 class="product-name fw-bolder">[[${item.itemNm}]]</h5>
+			                                    <p class="product-name">[[${item.itemNm}]]</p>
 			                                    <!-- Product price-->
-			                                  <div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
+			                                   	<div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
 			                                    <span>[[${item.percent}]]%</span>[[${#numbers.formatInteger(item.price, 0, 'COMMA')}]]원
-			                                </div>
+				                            </div>
+				                            <li>
+												<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 0)}">
+												</div>
+												<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 1)}">
+												</div>
+												<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 2)}">
+												</div>
+												<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 3)}">
+												</div>
+												<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 4)}">
+												</div>
+												<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 5)}">
+												</div>
+												<dl>
+													<dd>
+														[[${item.grade}]]
+													</dd>
+													<dd class="deco">|</dd>
+													<dd>리뷰</dd>
+													<dd>[[${item.commentsCount}]]</dd>
+												</dl>
+				                            </li>
+				                            <!-- Product actions-->
+				                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+				                                <div class="text-left">[[${item.itemSummary}]]</div>
+				                            </div>
 			                            </div>
-			                            <!-- Product actions-->
-			                            <div class="itemDetail card-footer pt-0 border-top-0 bg-transparent">
-			                                <div class="text-left">[[${item.itemDetail}]]</div>
-			                            </div>
-		                            </div>
-	                            </a>
-	                        </div>
-	                    </div>
+		                            </a>
+		                        </div>
+		                    </div>
 	                </th:block>
 	                </div>
 		    		<th:block th:if="${not #lists.isEmpty(items.getContent())}">

@@ -160,6 +160,7 @@ public class ItemController {
     	
     	itemFormDto.setId(itemId);
     	itemFormDto.setGrade(dto.getGrade());
+    	itemFormDto.setCommentsCount(dto.getCommentsCount());
     	
     	try {
 			itemService.updateItemGrade(itemFormDto);

@@ -82,8 +82,9 @@
 
 .item_menu .product-list .product-name{
     color: #333333;
+    margin-bottom: 8px;
+    font-weight: 600;
     font-size: 18px;
-    /* font-weight: 500; */
     text-align: left;
     transition: color 0.5s;
     text-decoration: none;
@@ -129,6 +130,34 @@
 .item_menu .page-item.active .pNum:hover{
     background-color: #EEEEEE !important;
     border-color: #EEEEEE !important;
+}
+
+.item_menu .product-list .star-rating{
+	display: inline-block;
+    width: 75px !important;
+    height: 15px !important;
+    margin: 0 0 0 0;
+    vertical-align: middle;
+    background-size: 100%;
+}
+
+.item_menu .product-list dl{
+	display: inline-block;
+    padding: 0;
+    margin-left: 4px;
+}
+
+.item_menu .product-list dd{
+	display: inline-block;
+    font-size: 13px;
+    color: #666666;
+}
+
+.item_menu .product-list .deco {
+    margin: 0 4px 0 0;
+    color: #aaa;
+    font-size: 12px;
+    vertical-align: baseline;
 }
 
 
@@ -367,6 +396,8 @@
     background: #fff;
     box-shadow: 0 0 10px rgb(0 0 0 / 5%);
 } 
+
+
 
 .itemA form > p{
 	padding-left: 40px;

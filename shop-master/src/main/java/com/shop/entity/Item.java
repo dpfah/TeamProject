@@ -83,6 +83,9 @@ public class Item extends BaseEntity {
     @Column(columnDefinition = "double default 0")
     private double grade;
     
+    @Column(columnDefinition = "int default 0")
+    private int commentsCount;
+    
     
     
     public void updateItem(ItemFormDto itemFormDto){
@@ -102,6 +105,7 @@ public class Item extends BaseEntity {
     
     public void updateItemGrade(ItemFormDto itemFormDto) {
     	this.grade = itemFormDto.getGrade();
+    	this.commentsCount = itemFormDto.getCommentsCount();
     }
 
     public void removeStock(int stockNumber){

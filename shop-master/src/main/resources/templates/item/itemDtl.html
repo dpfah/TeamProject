@@ -342,6 +342,8 @@
 			var grade = itemATR.toFixed(1);	
 			$("#itemTotalRating").html(grade);
 			
+		
+			
             var itemSATR = parseInt(itemATR); // itemSATR= 전체평균평점을 int로 바꿈
              if(itemSATR == 0){
 				$("#itemTotalStar").html('<div class="star-rating t00"></div>');	
@@ -357,12 +359,14 @@
 				$("#itemTotalStar").html('<div class="star-rating t05"></div>');
 			}
 			
-	
+			
 			var token = $("meta[name='_csrf']").attr("content");
             var header = $("meta[name='_csrf_header']").attr("content");
+           	var commentsCount = $("input[name=itemCommentId]").length; //리뷰개수 넘겨줌
 		 	var paramData = {
 	            itemId: $("#itemId").val(),
-	            grade: grade
+	            grade: grade,
+	            commentsCount: commentsCount
 	        };
 			$.ajax({                
 			  type: 'POST',               
