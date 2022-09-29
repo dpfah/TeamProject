@@ -1,10 +1,10 @@
 package com.shop.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
-import javax.validation.Valid;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -21,7 +21,6 @@ import com.shop.dto.ItemFormDto;
 import com.shop.dto.ItemImgDto;
 import com.shop.dto.ItemSearchDto;
 import com.shop.dto.MainItemDto;
-import com.shop.entity.CartItem;
 import com.shop.entity.Item;
 import com.shop.entity.ItemComment;
 import com.shop.entity.ItemContentImg;

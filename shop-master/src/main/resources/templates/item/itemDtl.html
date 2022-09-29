@@ -455,12 +455,6 @@
 	                			<p class="summary" th:text="${item.itemSummary}"></p>
 	                		</li>
 	                	</ul>
-	                	<div class="product-usage">
-	                		<p>포인트적립</p>
-	                		<ul class="product-info-etc">
-	                			<li class="expectBpoint" th:text="${item.point}+'p'" type="number"></li>
-	                		</ul>
-	                	</div>			
 	                </div>
 		            <div th:if="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL}" class="text-right mt-3">
 		                <button type="button" class="btn btn-cart btn-lg" onclick="addCart()">장바구니 담기</button>

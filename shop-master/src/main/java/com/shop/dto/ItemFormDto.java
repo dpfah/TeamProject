@@ -52,6 +52,8 @@ public class ItemFormDto {
     
     private double grade;
     
+    private int view;
+    
     private int commentsCount;
     
     // 댓글

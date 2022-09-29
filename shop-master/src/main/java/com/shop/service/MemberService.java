@@ -1,11 +1,11 @@
 package com.shop.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
 
-import org.apache.groovy.parser.antlr4.util.StringUtils;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +19,6 @@ import com.shop.dto.MemberFormDto;
 import com.shop.dto.MemberImgDto;
 import com.shop.entity.Member;
 import com.shop.entity.MemberImg;
-import com.shop.entity.Oqna;
 import com.shop.repository.MemberImgRepository;
 import com.shop.repository.MemberRepository;
 

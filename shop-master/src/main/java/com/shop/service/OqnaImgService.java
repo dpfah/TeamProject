@@ -1,6 +1,6 @@
 package com.shop.service;
 
-import com.shop.entity.Oqna;
+
 import com.shop.entity.OqnaImg;
 import com.shop.repository.OqnaImgRepository;
 

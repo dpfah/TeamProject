@@ -1,6 +1,7 @@
 package com.shop.service;
 
 import java.util.ArrayList;
+
 import java.util.List;
 
 import javax.persistence.EntityNotFoundException;
@@ -13,7 +14,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
-import com.shop.dto.CmtDto;
 import com.shop.dto.CmtFormDto;
 import com.shop.dto.CmtImgDto;
 import com.shop.dto.CmtSearchDto;

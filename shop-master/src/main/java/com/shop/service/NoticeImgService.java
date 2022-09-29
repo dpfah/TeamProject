@@ -2,6 +2,7 @@ package com.shop.service;
 
 import java.util.List;
 
+
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Value;
@@ -11,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import com.shop.entity.NoticeImg;
-import com.shop.entity.OqnaImg;
 import com.shop.repository.NoticeImgRepository;
 
 import lombok.RequiredArgsConstructor;

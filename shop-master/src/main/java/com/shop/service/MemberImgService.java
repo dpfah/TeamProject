@@ -1,6 +1,6 @@
 package com.shop.service;
 
-import java.util.List;
+
 
 import javax.persistence.EntityNotFoundException;
 
@@ -11,7 +11,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.thymeleaf.util.StringUtils;
 
 import com.shop.entity.MemberImg;
-import com.shop.entity.OqnaImg;
 import com.shop.repository.MemberImgRepository;
 
 import lombok.RequiredArgsConstructor;
