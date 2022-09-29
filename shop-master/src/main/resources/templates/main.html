@@ -118,7 +118,7 @@
 	                    	<div class="imgCut">
 	                        	<img th:src="${item.imgUrl}" th:alt="${item.itemNm}" class="card-img-top">
 	                    	</div>
-	                      <div class="product-list">
+	                      	<div class="product-list">
 	                            <div class="text-left">
                                     <!-- Product name-->
                                     <p class="product-name">[[${item.itemNm}]]</p>
@@ -158,7 +158,6 @@
 	            </div>
 	        </th:block>
 	    </div>
-	
 	    <div class="navigation Page" th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
 	        <ul class="pagination justify-content-center">
 	            <li class="page-item" th:classappend="${items.number eq 0}?'disabled':''">
@@ -190,27 +189,53 @@
 	    			<h2>판매중인 빵이 없습니다.</h2>
 	    		</div>
 	    	</th:block>
-	        <th:block th:each="bread, status: ${breads.getContent()}">
+	    	<th:block th:each="bread, status: ${breads.getContent()}">
 	            <div class="col-md-4 mb-4">
-	                <div class="Mitems card  border border-0">
+	                <div class="Mitems card  border border-0 item_menu">
 	                    <a th:href="'/item/' +${bread.id}" class="text-dark">
 	                    	<div class="imgCut">
 	                        	<img th:src="${bread.imgUrl}" th:alt="${bread.itemNm}" class="card-img-top">
 	                    	</div>
-	                        <div class="card-body">
-	                            <p class="card-title">[[${bread.itemNm}]]</p>
-	                            <p class="priceCss">
-		                             <span >[[${#numbers.formatInteger(bread.ori_price, 0, 'COMMA')}]]</span> [[${#numbers.formatInteger(bread.price, 0, 'COMMA')}]]원
-	                            </p>
-	
-	                            <p class="card-text summaryCss">[[${bread.itemSummary}]]</p>
-	                        </div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
+                                    <!-- Product name-->
+                                    <p class="product-name">[[${bread.itemNm}]]</p>
+                                    <!-- Product price-->
+                                   	<div class="origin-price">[[${#numbers.formatInteger(bread.ori_price, 0, 'COMMA')}]]원</div>
+                                    <span>[[${bread.percent}]]%</span>[[${#numbers.formatInteger(bread.price, 0, 'COMMA')}]]원
+	                            </div>
+	                            <li>
+									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 0)}">
+									</div>
+									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 1)}">
+									</div>
+									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 2)}">
+									</div>
+									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 3)}">
+									</div>
+									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 4)}">
+									</div>
+									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(bread.grade, 0, 'COMMA'), 5)}">
+									</div>
+									<dl>
+										<dd>
+											[[${bread.grade}]]
+										</dd>
+										<dd class="deco">|</dd>
+										<dd>리뷰</dd>
+										<dd>[[${bread.commentsCount}]]</dd>
+									</dl>
+	                            </li>
+	                            <!-- Product actions-->
+	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+	                                <div class="text-left">[[${bread.itemSummary}]]</div>
+	                            </div>
+                            </div>
 	                    </a>
 	                </div>
 	            </div>
 	        </th:block>
 	    </div>
-	
 	    <div class="navigation Page" th:with="start=${(breads.number/maxPage)*maxPage + 1}, end=(${(breads.totalPages == 0) ? 1 : (start + (maxPage - 1) < breads.totalPages ? start + (maxPage - 1) : breads.totalPages)})" >
 	        <ul class="pagination justify-content-center">
 	            <li class="page-item" th:classappend="${breads.number eq 0}?'disabled':''">
@@ -244,25 +269,51 @@
 	    	</th:block>
 	        <th:block th:each="cookie, status: ${cookies.getContent()}">
 	            <div class="col-md-4 mb-4">
-	                <div class="Mitems card  border border-0">
+	                <div class="Mitems card  border border-0 item_menu">
 	                    <a th:href="'/item/' +${cookie.id}" class="text-dark">
 	                    	<div class="imgCut">
 	                        	<img th:src="${cookie.imgUrl}" th:alt="${cookie.itemNm}" class="card-img-top">
 	                    	</div>
-	                        <div class="card-body">
-	                            <p class="card-title">[[${cookie.itemNm}]]</p>
-	                            <p class="priceCss">
-		                             <span >[[${#numbers.formatInteger(cookie.ori_price, 0, 'COMMA')}]]</span> [[${#numbers.formatInteger(cookie.price, 0, 'COMMA')}]]원
-	                            </p>
-	
-	                            <p class="card-text summaryCss">[[${cookie.itemSummary}]]</p>
-	                        </div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
+                                    <!-- Product name-->
+                                    <p class="product-name">[[${cookie.itemNm}]]</p>
+                                    <!-- Product price-->
+                                   	<div class="origin-price">[[${#numbers.formatInteger(cookie.ori_price, 0, 'COMMA')}]]원</div>
+                                    <span>[[${cookie.percent}]]%</span>[[${#numbers.formatInteger(cookie.price, 0, 'COMMA')}]]원
+	                            </div>
+	                            <li>
+									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 0)}">
+									</div>
+									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 1)}">
+									</div>
+									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 2)}">
+									</div>
+									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 3)}">
+									</div>
+									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 4)}">
+									</div>
+									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(cookie.grade, 0, 'COMMA'), 5)}">
+									</div>
+									<dl>
+										<dd>
+											[[${cookie.grade}]]
+										</dd>
+										<dd class="deco">|</dd>
+										<dd>리뷰</dd>
+										<dd>[[${cookie.commentsCount}]]</dd>
+									</dl>
+	                            </li>
+	                            <!-- Product actions-->
+	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+	                                <div class="text-left">[[${cookie.itemSummary}]]</div>
+	                            </div>
+                            </div>
 	                    </a>
 	                </div>
 	            </div>
 	        </th:block>
 	    </div>
-	
 	    <div class="navigation Page" th:with="start=${(cookies.number/maxPage)*maxPage + 1}, end=(${(cookies.totalPages == 0) ? 1 : (start + (maxPage - 1) < cookies.totalPages ? start + (maxPage - 1) : cookies.totalPages)})" >
 	        <ul class="pagination justify-content-center">
 	            <li class="page-item" th:classappend="${cookies.number eq 0}?'disabled':''">
@@ -296,19 +347,46 @@
 	    	</th:block>
 	        <th:block th:each="cake, status: ${cakes.getContent()}">
 	            <div class="col-md-4 mb-4">
-	                <div class="Mitems card  border border-0">
+	                <div class="Mitems card  border border-0 item_menu">
 	                    <a th:href="'/item/' +${cake.id}" class="text-dark">
 	                    	<div class="imgCut">
 	                        	<img th:src="${cake.imgUrl}" th:alt="${cake.itemNm}" class="card-img-top">
 	                    	</div>
-	                        <div class="card-body">
-	                            <p class="card-title">[[${cake.itemNm}]]</p>
-	                            <p class="priceCss">
-		                             <span >[[${#numbers.formatInteger(cake.ori_price, 0, 'COMMA')}]]</span> [[${#numbers.formatInteger(cake.price, 0, 'COMMA')}]]원
-	                            </p>
-	
-	                            <p class="card-text summaryCss">[[${cake.itemSummary}]]</p>
-	                        </div>
+	                      	<div class="product-list">
+	                            <div class="text-left">
+                                    <!-- Product name-->
+                                    <p class="product-name">[[${cake.itemNm}]]</p>
+                                    <!-- Product price-->
+                                   	<div class="origin-price">[[${#numbers.formatInteger(cake.ori_price, 0, 'COMMA')}]]원</div>
+                                    <span>[[${cake.percent}]]%</span>[[${#numbers.formatInteger(cake.price, 0, 'COMMA')}]]원
+	                            </div>
+	                            <li>
+									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 0)}">
+									</div>
+									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 1)}">
+									</div>
+									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 2)}">
+									</div>
+									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 3)}">
+									</div>
+									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 4)}">
+									</div>
+									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(cake.grade, 0, 'COMMA'), 5)}">
+									</div>
+									<dl>
+										<dd>
+											[[${cake.grade}]]
+										</dd>
+										<dd class="deco">|</dd>
+										<dd>리뷰</dd>
+										<dd>[[${cake.commentsCount}]]</dd>
+									</dl>
+	                            </li>
+	                            <!-- Product actions-->
+	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
+	                                <div class="text-left">[[${cake.itemSummary}]]</div>
+	                            </div>
+                            </div>
 	                    </a>
 	                </div>
 	            </div>
