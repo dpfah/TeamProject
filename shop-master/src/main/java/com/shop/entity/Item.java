@@ -104,8 +104,8 @@ public class Item extends BaseEntity {
     }
     
     public void updateItemGrade(ItemFormDto itemFormDto) {
-    	this.grade = itemFormDto.getGrade();
-    	this.commentsCount = itemFormDto.getCommentsCount();
+       this.grade = itemFormDto.getGrade();
+       this.commentsCount = itemFormDto.getCommentsCount();
     }
 
     public void removeStock(int stockNumber){

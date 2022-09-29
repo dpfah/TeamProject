@@ -3,6 +3,9 @@ package com.shop.entity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+
+import java.util.Optional;
+
 import javax.persistence.*;
 
 @Entity
@@ -20,9 +23,9 @@ public class Cart extends BaseEntity {
     @JoinColumn(name="member_id")
     private Member member;
 
-    public static Cart createCart(Member member){
+    public static Cart createCart(Member member2){
         Cart cart = new Cart();
-        cart.setMember(member);
+        cart.setMember(member2);
         return cart;
     }
 

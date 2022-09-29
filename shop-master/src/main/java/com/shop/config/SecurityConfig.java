@@ -34,7 +34,7 @@ public class SecurityConfig {
 
         http.authorizeRequests()
                 .mvcMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                .mvcMatchers("/","/bread/**", "/cake/**","/cookies/**", "/members/**", "/item/**", "/images/**", "/notice/**", "/mainFaq", "/mainCmt", "/cmt/dtl/**").permitAll()
+                .mvcMatchers("/","/bread/**", "/cake/**","/cookies/**", "/members/**", "/item/**", "/images/**", "/notice/**", "/mainFaq", "/mainCmt", "/cmt/dtl/**", "/api/**").permitAll()
                 .mvcMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
         ;
@@ -48,7 +48,7 @@ public class SecurityConfig {
         
 //        카카오 로그인
         http.oauth2Login()
-        		.loginPage("/members/login");
+              .loginPage("/members/login");
         
         return http.build();
         

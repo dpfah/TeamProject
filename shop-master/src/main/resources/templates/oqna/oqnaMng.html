@@ -87,7 +87,7 @@
 
 <div layout:fragment="content">
 
-    <form th:action="@{'/admin/oqnas/' + ${oqnas.number}}" role="form" method="get" th:object="${oqnas}">
+    <form th:action="@{'/admin/oqnas/' + ${oqnas.number}}" role="form" method="get" th:object="${oqnas}" class="item_menu">
     	<h1 class="cmtTitle">
 				1:1문의 관리자
 		</h1>
@@ -122,17 +122,17 @@
             <ul class="pagination justify-content-center">
 
                 <li class="page-item" th:classappend="${oqnas.first}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${oqnas.number - 1} + ')'" aria-label='Previous' class="page-link">
+                    <a th:onclick="'javascript:page(' + ${oqnas.number - 1} + ')'" aria-label='Previous' class="page-link previous">
                         <span aria-hidden='true'>Previous</span>
                     </a>
                 </li>
 
                 <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${oqnas.number eq page-1}?'active':''">
-                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link pNum">[[${page}]]</a>
                 </li>
 
                 <li class="page-item" th:classappend="${oqnas.last}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${oqnas.number + 1} + ')'" aria-label='Next' class="page-link">
+                    <a th:onclick="'javascript:page(' + ${oqnas.number + 1} + ')'" aria-label='Next' class="page-link next">
                         <span aria-hidden='true'>Next</span>
                     </a>
                 </li>
@@ -148,24 +148,12 @@
                 <option value="1m">1개월</option>
                 <option value="6m">6개월</option>
             </select>
-             <!--<select th:field="*{qnaType}" class="form-control" style="width:auto;">
-                <option value="all">전체타입</option>
-                <option value="상품">상품</option>
-                <option value="결제_배송">결제/배송</option>
-                <option value="반품_교환">반품/교환</option>
-                <option value="포인트_이벤트_쿠폰">포인트/이벤트/쿠푼</option>
-                <option value="사이트이용">사이트이용</option>
-            </select> -->
-            <select th:field="*{searchOqnaStatus}" class="form-control" style="width:auto;">
-                <option value="Y">문의중</option>
-                <option value="N">문의 취소</option>
-            </select>
             <select th:field="*{searchBy}" class="form-control" style="width:auto;">
                 <option value="oqnaTitle">1:1문의명</option>
                 <option value="createdBy">등록자</option>
             </select>
             <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-            <button id="searchBtn" type="submit" class="btn btn-primary">검색</button>
+            <button id="searchBtn" type="submit" class="btn btn-light ml-2">검색</button>
         </div>
 		</th:block>
     </form>

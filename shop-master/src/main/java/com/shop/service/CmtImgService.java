@@ -1,6 +1,6 @@
 package com.shop.service;
 
-import com.shop.entity.Cmt;
+
 import com.shop.entity.CmtImg;
 import com.shop.repository.CmtImgRepository;
 

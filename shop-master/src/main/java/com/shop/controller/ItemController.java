@@ -156,17 +156,17 @@ public class ItemController {
     
     @PostMapping(value = "/admin/itemGrade/{itemId}")
     public ResponseEntity itemUpdateGrade(@PathVariable Long itemId,@RequestBody ItemDto dto){
-    	ItemFormDto itemFormDto = new ItemFormDto();
-    	
-    	itemFormDto.setId(itemId);
-    	itemFormDto.setGrade(dto.getGrade());
-    	itemFormDto.setCommentsCount(dto.getCommentsCount());
-    	
-    	try {
-			itemService.updateItemGrade(itemFormDto);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+       ItemFormDto itemFormDto = new ItemFormDto();
+       
+       itemFormDto.setId(itemId);
+       itemFormDto.setGrade(dto.getGrade());
+       itemFormDto.setCommentsCount(dto.getCommentsCount());
+       
+       try {
+         itemService.updateItemGrade(itemFormDto);
+      } catch (Exception e) {
+         e.printStackTrace();
+      }
         return ResponseEntity.ok(itemId);
     }
 

@@ -93,8 +93,8 @@ public class ItemService {
         List<ItemCommentResponseDto> itemCommentResponseDtoList = new ArrayList<>();
         
         for(ItemComment itemComment : itemCommentList) {
-        	ItemCommentResponseDto itemCommentResponseDto = ItemCommentResponseDto.of(itemComment);
-        	itemCommentResponseDtoList.add(itemCommentResponseDto);
+           ItemCommentResponseDto itemCommentResponseDto = ItemCommentResponseDto.of(itemComment);
+           itemCommentResponseDtoList.add(itemCommentResponseDto);
         }
         
         
@@ -103,7 +103,7 @@ public class ItemService {
             itemImgDtoList.add(itemImgDto);
         }
         
-		for (ItemContentImg itemContentImg : itemContentImgList) {
+      for (ItemContentImg itemContentImg : itemContentImgList) {
             ItemContentImgDto itemContentImgDto = ItemContentImgDto.of(itemContentImg);
             itemContentImgDtoList.add(itemContentImgDto);
         }

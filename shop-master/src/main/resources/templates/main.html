@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <title>빵주머니</title>
-	
+   
     <!-- 사용자 지정 css -->
     <link th:href="@{/css/item_tab.css}" rel="stylesheet">
     <link th:href="@{/css/other.css}" rel="stylesheet">
@@ -39,62 +39,62 @@
             text-align:center;
         }
         .navigation{
-        	display:none;
+           display:none;
         }
         .no-items {
-    		display: flex;
-        	align-items: center;
-			height: 300px;
-		}
+          display: flex;
+           align-items: center;
+         height: 300px;
+      }
         .no-items h2 {
-			width: 100%;
-    		text-align: center;
-		}
+         width: 100%;
+          text-align: center;
+      }
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
-	<div class="main">
-		<div id="carouselExampleIndicators" class="carousel slide mslide" data-bs-ride="carousel">
-		  <div class="carousel-indicators">
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		    <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-		  </div>
-		  <div class="carousel-inner">
-		    <div class="carousel-item active">
-		      <img src="/img/slide01.png" alt="First slide" class="d-block w-1000 " >
-		    </div>
-		    <div class="carousel-item">
-			  <img src="/img/slide02.png" alt="Second slide" class="d-block w-1000 " >		     
-		    </div>
-		    <div class="carousel-item">
-			  <img src="/img/slide03.png" alt="Third slide" class="d-block w-1000 " >	
-		    </div>
-		  </div>
-		  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
-		    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-		    <span class="visually-hidden">Previous</span>
-		  </button>
-		  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
-		    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-		    <span class="visually-hidden">Next</span>
-		  </button>
-		</div>
+   <div class="main">
+      <div id="carouselExampleIndicators" class="carousel slide mslide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="/img/slide01.png" alt="First slide" class="d-block w-1000 " >
+          </div>
+          <div class="carousel-item">
+           <img src="/img/slide02.png" alt="Second slide" class="d-block w-1000 " >           
+          </div>
+          <div class="carousel-item">
+           <img src="/img/slide03.png" alt="Third slide" class="d-block w-1000 " >   
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
 
-		<div class="mbanner">
-			<div class="mban">
-				<img src="/img/banner01.png" alt="이벤트1">
-			</div>
-			<div class="mban">
-				<img src="/img/banner02.png" alt="이벤트2">
-			</div>
-			<div class="mban">
-				<img src="/img/banner03.png" alt="이벤트3">
-			</div>
-		</div>
-	</div>
+      <div class="mbanner">
+         <div class="mban">
+            <img src="/img/banner01.png" alt="이벤트1">
+         </div>
+         <div class="mban">
+            <img src="/img/banner02.png" alt="이벤트2">
+         </div>
+         <div class="mban">
+            <img src="/img/banner03.png" alt="이벤트3">
+         </div>
+      </div>
+   </div>
 
     <input type="hidden" name="searchQuery" th:value="${itemSearchDto.searchQuery}">
     <div th:if="${not #strings.isEmpty(itemSearchDto.searchQuery)}" class="center">
@@ -123,35 +123,35 @@
                                     <!-- Product name-->
                                     <p class="product-name">[[${item.itemNm}]]</p>
                                     <!-- Product price-->
-                                   	<div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
+                                      <div class="origin-price">[[${#numbers.formatInteger(item.ori_price, 0, 'COMMA')}]]원</div>
                                     <span>[[${item.percent}]]%</span>[[${#numbers.formatInteger(item.price, 0, 'COMMA')}]]원
-	                            </div>
-	                            <li>
-									<div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 0)}">
-									</div>
-									<div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 1)}">
-									</div>
-									<div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 2)}">
-									</div>
-									<div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 3)}">
-									</div>
-									<div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 4)}">
-									</div>
-									<div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 5)}">
-									</div>
-									<dl>
-										<dd>
-											[[${item.grade}]]
-										</dd>
-										<dd class="deco">|</dd>
-										<dd>리뷰</dd>
-										<dd>[[${item.commentsCount}]]</dd>
-									</dl>
-	                            </li>
-	                            <!-- Product actions-->
-	                            <div class="itemDetail pt-0 border-top-0 bg-transparent">
-	                                <div class="text-left">[[${item.itemSummary}]]</div>
-	                            </div>
+                               </div>
+                               <li>
+                           <div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 0)}">
+                           </div>
+                           <div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 1)}">
+                           </div>
+                           <div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 2)}">
+                           </div>
+                           <div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 3)}">
+                           </div>
+                           <div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 4)}">
+                           </div>
+                           <div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 5)}">
+                           </div>
+                           <dl>
+                              <dd>
+                                 [[${item.grade}]]
+                              </dd>
+                              <dd class="deco">|</dd>
+                              <dd>리뷰</dd>
+                              <dd>[[${item.commentsCount}]]</dd>
+                           </dl>
+                               </li>
+                               <!-- Product actions-->
+                               <div class="itemDetail pt-0 border-top-0 bg-transparent">
+                                   <div class="text-left">[[${item.itemSummary}]]</div>
+                               </div>
                             </div>
 	                    </a>
 	                </div>

@@ -126,6 +126,4 @@ public class MemberService implements UserDetailsService {
             return null;
         return member.getEmail();
     }
-
-
 }

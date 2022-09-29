@@ -34,71 +34,72 @@
     <style>
         
         .content{
-	    	padding:100px 0;
-	    	width: 1000px;
-    		margin: 0 auto;
-	    }
+          padding:100px 0;
+          width: 1000px;
+          margin: 0 auto;
+       }
         select{
             margin-right:10px;
         }
         
         .CmtTSu td{
             vertical-align: middle;
-		    height: 80px;
-		    padding: 15px 10px;
-		    font-size: 15px;
-			text-align:center;
-			white-space: nowrap;
-		}
-		.CmtTSu th{
-			border-top: 2px solid #999;
-		    vertical-align: middle;
-		    height: 47px;
-		    padding: 15px 10px;
-		    font-size: 16px;
-		    font-weight: 500;
-		    color: #000000;
-		    text-align: center;
-		}
-		
-		.CmtTSu td a{
-		  overflow: hidden;
-		  text-overflow: ellipsis;
-		  
-		  width: 200px;
-		  height: 20px;
-		}
-		.cmtTitle{
-			font-size: 32px;
-		    font-weight: 500;
-		    color: #000000;
-		    margin-bottom: 27px;
-		    text-align: left;
-		}
+          height: 80px;
+          padding: 15px 10px;
+          font-size: 15px;
+         text-align:center;
+         white-space: nowrap;
+      }
+      .CmtTSu th{
+         border-top: 2px solid #999;
+          vertical-align: middle;
+          height: 47px;
+          padding: 15px 10px;
+          font-size: 16px;
+          font-weight: 500;
+          color: #000000;
+          text-align: center;
+      }
+      
+      .CmtTSu td a{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+        width: 200px;
+        height: 20px;
+      }
+      .cmtTitle{
+         font-size: 32px;
+          font-weight: 500;
+          color: #000000;
+          margin-bottom: 27px;
+          text-align: left;
+      }
         .no-posts {
-			height: 300px;
-			border-bottom: 2px solid rgb(227, 227, 227);
-		}
+         height: 300px;
+         border-bottom: 2px solid rgb(227, 227, 227);
+      }
         .no-posts h4 {
-			line-height: 300px;
-			width: 100%;
-    		text-align: center;
-		}
+         line-height: 300px;
+         width: 100%;
+          text-align: center;
+      }
     </style>
 </th:block>
 
 <div layout:fragment="content">
 
-    <form th:action="@{'/admin/items/' + ${items.number}}" role="form" method="get" th:object="${items}">
+    <form th:action="@{'/admin/items/' + ${items.number}}" role="form" method="get" th:object="${items}" class="item_menu">
         <h1 class="cmtTitle">
-			상품 관리자
-		</h1>
+         상품 관리자
+      </h1>
         <table class="table CmtTSu">
             <thead>
             <tr>
                 <th>NO</th>
                 <th>상품명</th>
                 <th>상태</th>
+                <th>조회수</th>
                 <th>등록자</th>
                 <th>등록일</th>
             </tr>
@@ -110,31 +111,32 @@
                     <a th:href="'/admin/item/'+${item.id}" th:text="${item.itemNm}"></a>
                 </td>
                 <td th:text="${item.itemSellStatus == T(com.shop.constant.ItemSellStatus).SELL} ? '판매중' : '품절'"></td>
+                 <td th:text="${item.view}"></td>
                 <td th:text="${item.createdBy}"></td>
                 <td th:text="${#temporals.format(item.regTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
             </tr>
             </tbody>
         </table>
-		<div th:if="${#lists.isEmpty(items.getContent())}" class="no-posts">
-			<h4>등록된 상품이 없습니다.</h4>
-		</div>
+      <div th:if="${#lists.isEmpty(items.getContent())}" class="no-posts">
+         <h4>등록된 상품이 없습니다.</h4>
+      </div>
 
-		<th:block th:if="${not #lists.isEmpty(items.getContent())}">
+      <th:block th:if="${not #lists.isEmpty(items.getContent())}">
         <div th:with="start=${(items.number/maxPage)*maxPage + 1}, end=(${(items.totalPages == 0) ? 1 : (start + (maxPage - 1) < items.totalPages ? start + (maxPage - 1) : items.totalPages)})" >
             <ul class="pagination justify-content-center">
 
                 <li class="page-item" th:classappend="${items.first}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous' class="page-link">
+                    <a th:onclick="'javascript:page(' + ${items.number - 1} + ')'" aria-label='Previous' class="page-link previous">
                         <span aria-hidden='true'>Previous</span>
                     </a>
                 </li>
 
                 <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${items.number eq page-1}?'active':''">
-                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link">[[${page}]]</a>
+                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link pNum">[[${page}]]</a>
                 </li>
 
                 <li class="page-item" th:classappend="${items.last}?'disabled'">
-                    <a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link">
+                    <a th:onclick="'javascript:page(' + ${items.number + 1} + ')'" aria-label='Next' class="page-link next">
                         <span aria-hidden='true'>Next</span>
                     </a>
                 </li>
@@ -160,9 +162,9 @@
                 <option value="createdBy">등록자</option>
             </select>
             <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-            <button id="searchBtn" type="submit" class="btn btn-primary ml-2">검색</button>
+            <button id="searchBtn" type="submit" class="btn btn-light ml-2">검색</button>
         </div>
-		</th:block>
+      </th:block>
     </form>
 
 </div>
