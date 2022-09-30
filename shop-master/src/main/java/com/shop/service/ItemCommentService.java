@@ -1,5 +1,7 @@
 package com.shop.service;
 
+import java.util.Optional;
+
 import javax.transaction.Transactional;
 
 
@@ -26,7 +28,8 @@ public class ItemCommentService {
     /* CREATE */
     @Transactional
     public Long itemCommentSave(String email, Long id, ItemCommentRequestDto dto) {
-        Member member = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByEmail(email);
+        Member member = result.get();
         Item item = itemRepository.findById(id).orElseThrow(() ->
                 new IllegalArgumentException("댓글 쓰기 실패: 해당 게시글이 존재하지 않습니다." + id));
 

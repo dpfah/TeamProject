@@ -2,6 +2,7 @@ package com.shop.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -42,7 +43,8 @@ public class OqnaService {
     public Long saveOqna(String email, OqnaFormDto oqnaFormDto, List<MultipartFile> oqnaImgFileList) throws Exception{
 
     	// 세션에서 받아온 email을 Member 데이터와 비교하여 email에 해당하는 member_id를 데이터에 넣는다.
-    	Member member = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByEmail(email);
+        Member member = result.get();
         //일대일 문의 등록
         Oqna oqna = Oqna.createOqna(member, oqnaFormDto);
         oqnaRepository.save(oqna);
@@ -124,7 +126,8 @@ public class OqnaService {
 
     @Transactional(readOnly = true)
     public boolean validateOqna(Long oqnaId, String email){
-        Member curMember = memberRepository.findByEmail(email);
+        Optional<Member> curResult = memberRepository.findByEmail(email);
+        Member curMember = curResult.get();
         Oqna oqna = oqnaRepository.findById(oqnaId)
                 .orElseThrow(EntityNotFoundException::new);
         Member savedMember = oqna.getMember();
