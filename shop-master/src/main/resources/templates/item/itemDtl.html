@@ -490,8 +490,8 @@
          
          <div class="tab-detail-product" style="padding-top: 0px;">
             <div class="tab_area" id="ss_info" style="display: block;">
-               <div th:each="itemImg : ${item.itemImgDtoList}" class="text-center pt-5">
-                <img th:if="${not #strings.isEmpty(itemImg.imgUrl)}" th:src="${itemImg.imgUrl}" class="rounded mgb-15" width="800">
+               <div th:each="itemContentImg : ${item.itemContentImgDtoList}" class="text-center pt-5">
+                <img th:if="${not #strings.isEmpty(itemContentImg.imgUrl)}" th:src="${itemContentImg.imgUrl}" class="rounded mgb-15" width="800">
                </div>
                 <div class="jumbotron-fluid mgt-30">
                     <div class="container">

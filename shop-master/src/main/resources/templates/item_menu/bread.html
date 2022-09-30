@@ -86,17 +86,17 @@
                                              <span>[[${item.percent}]]%</span>[[${#numbers.formatInteger(item.price, 0, 'COMMA')}]]원
                                         </div>
                                         <li>
-                                    <div class="star-rating t00" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 0)}">
+                                    <div class="star-rating t00" th:if="${#numbers.formatDecimal(item.grade,1,0)} == 0">
                                     </div>
-                                    <div class="star-rating t01" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 1)}">
+                                    <div class="star-rating t01" th:if="${#numbers.formatDecimal(item.grade,1,0)} == 1">
                                     </div>
-                                    <div class="star-rating t02" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 2)}">
+                                    <div class="star-rating t02" th:if="${#numbers.formatDecimal(item.grade,1,0)} == 2 ">
                                     </div>
-                                    <div class="star-rating t03" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 3)}">
+                                    <div class="star-rating t03" th:if="${#numbers.formatDecimal(item.grade,1,0)} == 3">
                                     </div>
-                                    <div class="star-rating t04" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 4)}">
+                                    <div class="star-rating t04" th:if="${#numbers.formatDecimal(item.grade,1,0)} == 4">
                                     </div>
-                                    <div class="star-rating t05" th:if="${#strings.equals(#numbers.formatInteger(item.grade, 0, 'COMMA'), 5)}">
+                                    <div class="star-rating t05" th:if="${#numbers.formatDecimal(item.grade,1,0)} == 5">
                                     </div>
                                     <dl>
                                        <dd>

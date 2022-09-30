@@ -134,8 +134,6 @@
 
 .item_menu .product-list .star-rating{
    display: inline-block;
-    width: 75px !important;
-    height: 15px !important;
     margin: 0 0 0 0;
     vertical-align: middle;
     background-size: 100%;
