@@ -102,11 +102,11 @@
 				<div class="table-responsive">
 			        <table class="table cart">
 			            <colgroup>
-			                <col width="16%"/>
-			                <col width="36%"/>
-			                <col width="16%"/>
-			                <col width="16%"/>
-			                <col width="16%"/>
+			                <col width="15%"/>
+			                <col width="40%"/>
+			                <col width="13%"/>
+			                <col width="13%"/>
+			                <col width="25%"/>
 			            </colgroup>
 			            <tr class="text-center">
 			                <td>주문일자</td>
@@ -129,18 +129,16 @@
 			        		<td colspan='3'>
 				        		<table class="inner_tb text-center">
 						            <tr th:each="orderItem : ${order.orderItemDtoList}" class="d-flex">
-						            	<td class="align-middle">
+						            	<td class="align-middle" style="width:60%;">
 							                <div class="repImgDiv">
 							                    <img th:src="${orderItem.imgUrl}" class = "rounded repImg" th:alt="${orderItem.itemNm}">
 							                </div>   
-						            	</td>
-						            	<td>
 						            		<span th:text="${orderItem.itemNm}" class="font-weight-bold"></span>
 						            	</td>
-						            	<td>
+						            	<td style="width:20%;line-height: 7;">
 						            		<span th:text="${orderItem.count} +'개'"></span>
 						            	</td> 
-						            	<td >
+						            	<td style="width:20%;line-height: 7;">
 						            		<span th:text="${#numbers.formatInteger(orderItem.orderPrice, 0, 'COMMA')} +'원'"></span>
 						            	</td>
 						            </tr>
@@ -148,7 +146,7 @@
 			        		</td>
 					        
 					        <td class="align-middle">
-						     	<div class="d-flex mb-3">
+						     	<div class="mb-3">
 						            <div class="ml-3">
 						                <th:block th:if="${order.orderStatus == T(com.shop.constant.OrderStatus).ORDER}">
 						                    <button type="button" class="btn btn-outline-secondary" th:value="${order.orderId}" onclick="cancelOrder(this.value)">주문취소</button>
