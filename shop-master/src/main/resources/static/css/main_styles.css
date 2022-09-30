@@ -306,7 +306,9 @@ footer a, footer p, footer .logo{
 	float:left;
 	 margin: 0 0 30px 23px;
 }
-
+.custom-file{
+	overflow:hidden;
+}
 
 
 

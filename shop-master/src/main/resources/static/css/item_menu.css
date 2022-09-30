@@ -916,6 +916,9 @@ img {
     border: 1px solid #e1e1e1;
     vertical-align: middle;
 }
+.custom-file{
+	overflow:hidden;
+}
 
 
 .oqnaDF .small-title{
