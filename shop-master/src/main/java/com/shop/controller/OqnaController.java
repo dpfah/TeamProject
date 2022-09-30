@@ -121,13 +121,14 @@ public class OqnaController {
 
     //1:1 문의 업데이트 페이지 가져오기
     @GetMapping(value = "/oqna/update/{oqnaId}")
-    public String oqnaDtl(@PathVariable("oqnaId") Long oqnaId, Model model){
+    public String oqnaDtl(@PathVariable("oqnaId") Long oqnaId, Model model, Principal principal){
 
         try {
             OqnaFormDto oqnaFormDto = oqnaService.getOqnaDtl(oqnaId);
             model.addAttribute("oqnaFormDto", oqnaFormDto);
+            model.addAttribute("email", principal.getName());
         } catch(EntityNotFoundException e){
-            model.addAttribute("errorMessage", "존재하지 않는 상품 입니다.");
+            model.addAttribute("errorMessage", "존재하지 않는 문의 입니다.");
             model.addAttribute("oqnaFormDto", new OqnaFormDto());
             return "oqna/oqnaForm";
         }

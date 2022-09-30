@@ -127,7 +127,7 @@ public class CmtController {
   //커뮤니티 수정한 내용 
     @PostMapping(value = "/cmt/update/{cmtId}")
     public String cmtUpdate(@Valid CmtFormDto cmtFormDto, BindingResult bindingResult,
-                             @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Model model){
+                             @RequestParam("cmtImgFile") List<MultipartFile> cmtImgFileList, Model model, Principal principal){
         if(bindingResult.hasErrors()){
             return "cmt/cmtForm";
         }
@@ -139,6 +139,7 @@ public class CmtController {
 
         try {
             cmtService.updateCmt(cmtFormDto, cmtImgFileList);
+            model.addAttribute("email", principal.getName());
         } catch (Exception e){
             model.addAttribute("errorMessage", "글 수정 중 에러가 발생하였습니다.");
             return "cmt/cmtForm";
