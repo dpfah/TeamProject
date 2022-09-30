@@ -108,6 +108,12 @@
 		.cs-counsel-top dd{
 			font-size:14px;
 		}
+        .no-posts{
+			height: 300px;
+		}
+        .no-posts td{
+			line-height: 300px;
+		}
 		
     </style>
 </th:block>
@@ -143,6 +149,11 @@
 			                <th>조회수</th>
 			                <th>날짜</th>
  			            </tr>
+			            <tr th:if="${#lists.isEmpty(cmts.getContent())}" class="no-posts">
+			            	<td colspan="3">
+			            		게시물이 없습니다.
+			            	</td>
+			            </tr>
 			        	<tr th:each="cmt : ${cmts.getContent()}" >
 			        		<td class="align-middle">
 			        			<a th:href="'/cmt/dtl/' + ${cmt.cmtId}" class="text-dark">
@@ -159,6 +170,7 @@
 					    </tr>
 					</table>	
 					<!-- paging -->
+					<th:block th:if="${not #lists.isEmpty(cmts.getContent())}" class="no-posts">
 				    <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
 				        <ul class="pagination justify-content-center">
 				            <li class="page-item" th:classappend="${cmts.number eq 0}?'disabled':''">
@@ -177,7 +189,8 @@
 				                </a>
 				            </li>
 				        </ul>
-				    </div>  
+				    </div>
+					</th:block>  
 				     
 				</div>
 			</div>

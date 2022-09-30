@@ -82,6 +82,12 @@
         .fs24{
             font-size:24px
         }
+        .no-posts{
+			height: 300px;
+		}
+        .no-posts td{
+			line-height: 300px;
+		}
 		
     </style>
 </th:block>
@@ -108,6 +114,11 @@
 			                <td>수량</td>
 			                <td>가격</td>
 			                <td>처리현황</td>
+			            </tr>
+			            <tr th:if="${#lists.isEmpty(orders.getContent())}" class="no-posts">
+			            	<td colspan="5">
+			            		주문 내역이 없습니다.
+			            	</td>
 			            </tr>
 			        	<tr th:each="order : ${orders.getContent()}">
 			        		<td class="align-middle">
@@ -149,7 +160,8 @@
 						        </div>
 					        </td>
 					    </tr>
-					</table>	
+					</table>
+					<th:block th:if="${not #lists.isEmpty(orders.getContent())}" class="no-posts">	
 				    <div th:with="start=${(orders.number/maxPage)*maxPage + 1}, end=(${(orders.totalPages == 0) ? 1 : (start + (maxPage - 1) < orders.totalPages ? start + (maxPage - 1) : orders.totalPages)})" >
 				        <ul class="pagination justify-content-center">
 				            <li class="page-item" th:classappend="${orders.number eq 0}?'disabled':''">
@@ -168,7 +180,8 @@
 				                </a>
 				            </li>
 				        </ul>
-				    </div>   
+				    </div>
+					</th:block>   
 				</div>
 			</div>
 			<!--/#orderHist-->
