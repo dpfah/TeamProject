@@ -16,9 +16,11 @@
   		.error {
             color: #bd2130;
         }
-        .content {
+        .item_menu {
 		    padding-top: 100px;
 		    padding-bottom: 100px;
+		    width:  92%;
+   			margin: 0 auto;
 		}
 		.sub-top-title-area .on-desktop {
 		    padding-bottom: 10px;
@@ -76,14 +78,25 @@
 		.faqTypeT{
 			padding-right:30px;
 		}
+		.border-top2{
+			border-top:2px solid #333;
+		}
 		.accordion-button{
 			padding: 30px;
 		}
 		.accordion-body{
 			padding:30px 30px 30px 140px;
+			background-color:#fafafa;
 		}
 		.FaqReply{
 			word-break: break-all;
+		}
+		.accordion-button:not(.collapsed){
+			color:#666;
+			background-color:#fff;
+		}
+		.faqTitle{
+			font-weight:bold;
 		}
     </style>
 </th:block>
@@ -99,20 +112,22 @@
     			<h2>등록된 FAQ 게시물이 없습니다.</h2>
     		</div>
     	</th:block>
-		<div class="accordion" id="accordionExample notice" th:each="faq, status: ${faqs.getContent()}">
-			<div class="accordion-item ">
-		  		<h2 class="accordion-header" id="headingOne">
-		      		<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-		      			<span class="faqTypeT">[[${faq.qnaType}]]</span>
-		      			<span class="faqTitle"> [[${faq.faqTitle}]]</span>
-		      		</button>
-		    	</h2>
-		    	<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-		      		<div class="accordion-body">
-		        		<p class="faqTypeT FaqReply">[[${faq.faqReply}]]</p>
-		      		</div>
-		    	</div>
-		  	</div>
+    	<div class="border-top2">
+			<div class="accordion" id="accordionExample notice" th:each="faq, status: ${faqs.getContent()}">
+				<div class="accordion-item ">
+			  		<h2 class="accordion-header" id="headingOne">
+			      		<button class="accordion-button " type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+			      			<span class="faqTypeT">[[${faq.qnaType}]]</span>
+			      			<span class="faqTitle"> [[${faq.faqTitle}]]</span>
+			      		</button>
+			    	</h2>
+			    	<div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+			      		<div class="accordion-body">
+			        		<p class="faqTypeT FaqReply">[[${faq.faqReply}]]</p>
+			      		</div>
+			    	</div>
+			  	</div>
+			</div>
 		</div>
     	<th:block th:if="${not #lists.isEmpty(faqs.getContent())}">
 			<div class="navigation Page" th:with="start=${(faqs.number/maxPage)*maxPage + 1}, end=(${(faqs.totalPages == 0) ? 1 : (start + (maxPage - 1) < faqs.totalPages ? start + (maxPage - 1) : faqs.totalPages)})" style="margin-top: 40px;">

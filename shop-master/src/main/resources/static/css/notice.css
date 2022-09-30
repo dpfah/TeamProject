@@ -1,5 +1,5 @@
 /* id="notice" */
-#notice #content { padding-top: 100px; padding-bottom: 100px;  }
+#notice #content { padding-top: 100px; padding-bottom: 100px;     width: 92%;  margin: 0 auto; }
 #notice .sub-top-title-area { display: flex; justify-content: space-between; }
 #notice .sub-top-title-area .on-desktop { padding-bottom: 10px; border-bottom: 0px solid #403a3a; }
 #notice .sub-top-title-area .title { font-size: 38px; font-weight: 500; color: #000000; text-align: left; padding-bottom: 10px; border-bottom: 0px solid #403a3a; }
