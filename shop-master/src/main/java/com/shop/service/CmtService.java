@@ -3,6 +3,7 @@ package com.shop.service;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -44,8 +45,9 @@ public class CmtService {
     public Long saveCmt(String email, CmtFormDto cmtFormDto, List<MultipartFile> cmtImgFileList) throws Exception{
 
     	// 세션에서 받아온 email을 Member 데이터와 비교하여 email에 해당하는 member_id를 데이터에 넣는다.
-    	Member member = memberRepository.findByEmail(email);
-        //일대일 문의 등록
+    	Optional<Member> result = memberRepository.findByEmail(email);
+    	Member member = result.get();
+    	//일대일 문의 등록
         Cmt cmt = Cmt.createCmt(member, cmtFormDto);
         cmtRepository.save(cmt);
 
@@ -132,7 +134,8 @@ public class CmtService {
 
     @Transactional(readOnly = true)
     public boolean validateCmt(Long cmtId, String email){
-        Member curMember = memberRepository.findByEmail(email);
+        Optional<Member> curResult = memberRepository.findByEmail(email);
+        Member curMember = curResult.get();
         Cmt cmt = cmtRepository.findById(cmtId)
                 .orElseThrow(EntityNotFoundException::new);
         Member savedMember = cmt.getMember();

@@ -2,6 +2,7 @@ package com.shop.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 import javax.validation.Valid;
@@ -45,7 +46,7 @@ public class MemberService implements UserDetailsService {
     }
 
     private void validateDuplicateMember(Member member){
-        Member findMember = memberRepository.findByEmail(member.getEmail());
+        Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
         if(findMember != null){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
@@ -54,12 +55,14 @@ public class MemberService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        Member member = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByEmail(email);
 
-        if(member == null){
+        if(result.isEmpty()){
             throw new UsernameNotFoundException(email);
         }
 
+        Member member = result.get();
+        
         return User.builder()
                 .username(member.getEmail())
                 .password(member.getPassword())
@@ -78,7 +81,8 @@ public class MemberService implements UserDetailsService {
             memberImgDtoList.add(memberImgDto);
         }
 
-        Member member = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByEmail(email);
+        Member member = result.get();
             //    .orElseThrow(EntityNotFoundException::new);
         MemberFormDto memberFormDto = MemberFormDto.of(member);
         memberFormDto.setMemberImgDtoList(memberImgDtoList);

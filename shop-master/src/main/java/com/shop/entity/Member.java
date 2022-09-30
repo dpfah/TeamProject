@@ -2,16 +2,26 @@ package com.shop.entity;
 
 import com.shop.constant.Role;
 import com.shop.dto.MemberFormDto;
+
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.security.crypto.password.PasswordEncoder;
+
+import java.util.Set;
+import java.util.HashSet;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="member")
 @Getter @Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class Member extends BaseEntity {
 
@@ -21,7 +31,6 @@ public class Member extends BaseEntity {
     private Long id;
 
     private String name;
-    
     
     private String birth;
     
@@ -65,6 +74,38 @@ public class Member extends BaseEntity {
         member.setPassword(password);
         member.setRole(Role.ADMIN);
         return member;
+    }
+    
+    private boolean del;
+    
+    private boolean social;
+    
+    @ElementCollection(fetch = FetchType.LAZY)
+    @Builder.Default
+    private Set<Role> roleSet = new HashSet<>();
+    
+    public void changePassword(String password) {
+    	this.password = password;
+    }
+    
+    public void changeEmail(String email) {
+    	this.email = email;
+    }
+
+    public void changeDel(boolean del) {
+    	this.del = del;
+    }
+
+    public void addRole(Role role) {
+    	this.roleSet.add(role);
+    }
+
+    public void clearRoles() {
+    	this.roleSet.clear();
+    }
+
+    public void changeSocial(boolean social) {
+    	this.social = social;
     }
 
     

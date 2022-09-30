@@ -3,6 +3,7 @@ package com.shop.service;
 import java.util.ArrayList;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -46,7 +47,8 @@ public class OrderService {
         Item item = itemRepository.findById(orderDto.getItemId())
                 .orElseThrow(EntityNotFoundException::new);
 
-        Member member = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByEmail(email);
+        Member member = result.get();
 
         List<OrderItem> orderItemList = new ArrayList<>();
         OrderItem orderItem = OrderItem.createOrderItem(item, orderDto.getCount());
@@ -84,7 +86,8 @@ public class OrderService {
 
     @Transactional(readOnly = true)
     public boolean validateOrder(Long orderId, String email){
-        Member curMember = memberRepository.findByEmail(email);
+        Optional<Member> curResult = memberRepository.findByEmail(email);
+        Member curMember = curResult.get();
         Order order = orderRepository.findById(orderId)
                 .orElseThrow(EntityNotFoundException::new);
         Member savedMember = order.getMember();
@@ -104,7 +107,8 @@ public class OrderService {
 
     public Long orders(List<OrderDto> orderDtoList, String email){
 
-        Member member = memberRepository.findByEmail(email);
+        Optional<Member> result = memberRepository.findByEmail(email);
+        Member member = result.get();
         List<OrderItem> orderItemList = new ArrayList<>();
 
         for (OrderDto orderDto : orderDtoList) {
