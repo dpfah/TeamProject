@@ -48,7 +48,7 @@ public class MemberService implements UserDetailsService {
 
     private void validateDuplicateMember(Member member){
         Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
-        if(findMember != null){
+        if(findMember.isPresent() ){
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
