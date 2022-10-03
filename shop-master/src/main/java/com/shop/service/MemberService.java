@@ -48,7 +48,7 @@ public class MemberService implements UserDetailsService {
 
     private void validateDuplicateMember(Member member){
         Optional<Member> findMember = memberRepository.findByEmail(member.getEmail());
-        if(findMember.isPresent() ){
+        if(findMember.isPresent() ){ //Optional이 붙으면 null값이 없으므로 이렇게 비교를 해준다.
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }
@@ -104,7 +104,7 @@ public class MemberService implements UserDetailsService {
             //    .orElseThrow(EntityNotFoundException::new);
         
         
-       if(memberImgIds.isEmpty() && savedMemberImg == null && savedMemberImg.size() == 0){ 
+       if(memberImgIds.isEmpty() && savedMemberImg.size() == 0){ 
     	   
     	   for(int i =0; i<memberImgFileList.size();i++) {
         	MemberImg memberImg = new MemberImg();
