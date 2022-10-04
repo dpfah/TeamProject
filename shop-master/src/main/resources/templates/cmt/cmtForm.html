@@ -136,6 +136,10 @@
 		            </button>
 		            <button th:formaction="@{'/cmt/update/' + ${cmtFormDto.id} }" type="submit" class="btn btn-secondary " th:if="${#strings.equals(email, cmtFormDto.createdBy)}">수정</button>
 		        </div>
+		        <div th:unless="${#strings.isEmpty(cmtFormDto.id)}" style="text-align: center" class="ctmButtons" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+		        	<button  type="button" class="btn btn-danger" aria-hidden="true" th:data-id="${cmtFormDto.id}" onclick ="deleteCmt(this)" > 삭제
+		            </button>
+		        </div>
 		       
 		        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"> 
 	    </form>

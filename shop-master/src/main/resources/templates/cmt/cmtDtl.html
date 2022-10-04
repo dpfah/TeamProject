@@ -25,6 +25,10 @@
             <button type="button" class="btn btn-secondary" th:if="${#strings.equals(email, cmt.createdBy)}">
         			<a th:href="'/cmt/update/' + ${cmt.id}" class="update" >수정하기</a>
         	</button>
+        	
+        	<button type="button" class="btn btn-secondary"  sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
+        			<a th:href="'/cmt/update/' + ${cmt.id}" class="update" >수정하기</a>
+        	</button>
                 
 		    <div class="cmtBox">
         	
