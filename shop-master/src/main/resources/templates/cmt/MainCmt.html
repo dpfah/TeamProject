@@ -96,47 +96,27 @@
 	                </div>
     				
     				<th:block th:if="${not #lists.isEmpty(cmts.getContent())}">
-                  		<!-- paging -->
-				        <div class="item_menu" th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
-				            <ul class="pagination justify-content-center">
-				
-				                <li class="page-item" th:classappend="${cmts.first}?'disabled'">
-				                    <a th:onclick="'javascript:page(' + ${cmts.number - 1} + ')'" aria-label='Previous' class="page-link previous">
-				                        <span aria-hidden='true'>Previous</span>
-				                    </a>
-				                </li>
-				
-				                <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
-				                    <a th:onclick="'javascript:page(' + ${page - 1} + ')'" th:inline="text" class="page-link pNum">[[${page}]]</a>
-				                </li>
-				
-				
-				                <li class="page-item" th:classappend="${cmts.last}?'disabled'">
-				                    <a th:onclick="'javascript:page(' + ${cmts.number + 1} + ')'" aria-label='Next' class="page-link next">
-				                        <span aria-hidden='true'>Next</span>
-				                    </a>
-				                </li>
-				
-				            </ul>
-				        </div>
-				       
-					    
-				
-				        <div class="form-inline justify-content-center" th:object="${cmtSearchDto}">
-				            <select th:field="*{searchDateType}" class="form-control" style="width:auto;">
-				                <option value="all">전체기간</option>
-				                <option value="1d">1일</option>
-				                <option value="1w">1주</option>
-				                <option value="1m">1개월</option>
-				                <option value="6m">6개월</option>
-				            </select>
-				            <select th:field="*{searchBy}" class="form-control" style="width:auto;">
-				            	<option value="">옵션</option>
-				                <option value="name">이름</option>
-				            </select>
-				            <input th:field="*{searchQuery}" type="text" class="form-control" placeholder="검색어를 입력해주세요">
-				            <button id="searchBtn" type="submit" class="btn btn-light">검색</button>
-				        </div>
+                      <div th:with="start=${(cmts.number/maxPage)*maxPage + 1}, end=(${(cmts.totalPages == 0) ? 1 : (start + (maxPage - 1) < cmts.totalPages ? start + (maxPage - 1) : cmts.totalPages)})" >
+                       <ul class="pagination justify-content-center">
+               
+                           <li class="page-item" th:classappend="${cmts.number eq 0}?'disabled':''">
+                               <a th:href="@{'/mainCmt' + '?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number-1}}" aria-label='Previous' class="page-link previous">
+                                   <span aria-hidden='true'>Previous</span>
+                               </a>
+                           </li>
+               
+                           <li class="page-item" th:each="page: ${#numbers.sequence(start, end)}" th:classappend="${cmts.number eq page-1}?'active':''">
+                               <a th:href="@{'/mainCmt' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${page-1}}" th:inline="text" class="page-link pNum">[[${page}]]</a>
+                           </li>
+               
+                           <li class="page-item" th:classappend="${cmts.number+1 ge cmts.totalPages}?'disabled':''">
+                               <a th:href="@{'/mainCmt' +'?searchQuery=' + ${cmtSearchDto.searchQuery} + '&page=' + ${cmts.number+1}}" aria-label='Next' class="page-link next">
+                                   <span aria-hidden='true'>Next</span>
+                               </a>
+                           </li>
+               
+                       </ul>
+                   </div>
     				</th:block>
 	            </div>
 	        </section>
