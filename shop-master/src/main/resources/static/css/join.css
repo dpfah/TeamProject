@@ -83,3 +83,38 @@
     z-index: 1;
     border: 1px solid transparent;
 }
+.memberForm .join-box2 { 
+	margin: auto;
+    width: 100%;
+    max-width: 1000px;
+    height: 430px;
+    box-sizing: border-box;
+    padding: 40px;
+    border-radius: 10px;
+    background-image: url(/img/wfh_8.svg);
+    background-size: 500px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    box-shadow: 0 0 10px rgb(0 0 0 / 5%);
+    position:relative;
+}
+.join-box2 .f-right{
+	width:50%;
+	float:right;
+	vertical-align:cener;
+}
+.join-box2 .f-right p{
+	font-size:30px;
+	margin-top:50px;
+	line-height: 1.1;
+}
+.join-box2 .f-right strong{
+	font-size: 40px;
+}
+.join-box2 .f-right span{
+	color:#666;
+}
+.join-box2 .f-right .btn-join{
+	position:absolute;
+	bottom:80px;
+}

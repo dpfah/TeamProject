@@ -79,12 +79,15 @@
 <body>
 	<div layout:fragment="content">
 	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
-				<div class="join-box mt-5" style="margin-bottom: 3rem;">
-				<input type="hidden" id="memberId" th:value="${member.id}">
-		        	<div><p th:text="${member.email}"></p></div>
-			        <dt class="btn-join">
-				        <a href="/members/login">아이디 찾기</a>
-			        </dt>
+				<div class="join-box2 mt-5" style="margin-bottom: 3rem;">
+					<input type="hidden" id="memberId" th:value="${member.id}">
+		        	<div class="f-right">
+			        	<p>귀하의 아이디는 <br><strong th:text="${member.email}"></strong> 입니다</p>
+			        	<span>다시 로그인 해보시겠어요?</span>
+			        	<dt class="btn-join">
+					        <a href="/members/login">>> 다시 로그인 하기</a>
+				        </dt>
+			        </div>
 			    </div>
 		    </div>
 	</div>
