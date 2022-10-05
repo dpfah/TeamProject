@@ -1,6 +1,8 @@
 package com.shop.controller;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
@@ -24,6 +26,8 @@ import com.shop.dto.FaqFormDto;
 import com.shop.dto.FaqSearchDto;
 import com.shop.dto.MainFaqDto;
 import com.shop.entity.Faq;
+import com.shop.entity.FaqCrawling;
+import com.shop.service.FaqCrawlingService;
 import com.shop.service.FaqService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,11 +37,16 @@ import lombok.RequiredArgsConstructor;
 public class FaqController {
 
     private final FaqService faqService;
-    
+
+    private final FaqCrawlingService faqCrawlingService;
     
     @GetMapping(value = "/mainFaq")
-    public String faq(FaqSearchDto faqSearchDto, Optional<Integer> page, Model model){
+    public String faq(FaqSearchDto faqSearchDto, Optional<Integer> page, Model model) throws IOException {
+    	
+        List<FaqCrawling> faqCrawlingList = faqCrawlingService.getFaqs();
 
+        model.addAttribute("faqCrawlings", faqCrawlingList);
+    	
         Pageable pageable = PageRequest.of(page.isPresent() ? page.get() : 0, 6);
         Page<MainFaqDto> faqs = faqService.getMainFaqPage(faqSearchDto, pageable);
 
