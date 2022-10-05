@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>빵주머니 - 아이디찾기</title>
+   
+   <link th:href="@{/css/join.css}" rel="stylesheet">
+</head>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+        
+		#join ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		#join ul li {
+			float: left;
+		}        
+		.multi-column .flt-l {
+			float:left;
+			position: relative;
+			width:58.739%;
+			margin: 0;
+		}
+		.multi-column .flt-r {
+			float:left;
+			width:11.276%;
+			margin-left: 3.724%; 
+			box-sizing:border-box;
+		}
+		.multi-column:after {
+		    content: '';
+		    display: block;
+		    clear: both;
+		}
+		#join .radio-area li label {
+		    height: 36px;
+		    line-height: 36px;
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		    display: block;
+		    width: 100%;
+		    color: #929292;
+		    box-sizing: border-box;
+		    background: #fff;
+		    margin: 0;
+		}
+		.form-group {
+		    margin-bottom: 2rem;
+		}
+
+    </style>
+</th:block>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
+        });
+    </script>
+
+</th:block>
+
+<body>
+	<div layout:fragment="content">
+	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
+				<div class="join-box mt-5" style="margin-bottom: 3rem;">
+				<input type="hidden" id="memberId" th:value="${member.id}">
+		        	<div><p th:text="${member.email}"></p></div>
+			        <dt class="btn-join">
+				        <a href="/members/login">아이디 찾기</a>
+			        </dt>
+			    </div>
+		    </div>
+	</div>
+</body>
+
+</html>

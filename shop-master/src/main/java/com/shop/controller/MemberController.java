@@ -80,14 +80,12 @@ public class MemberController {
     }
 
     // REST 방식에서 값을 읽어내는 동작은 GET이다. ★ 매핑 주소 find_id 아닌 find/id으로 주는 것 주의!
-    @ResponseBody
     @PreAuthorize("isAnonymous")
     @GetMapping("/find/id")
-    public ResponseEntity<String> findId(MemberFormDto memberFormDto) {
-        String id = memberService.findId(memberFormDto);
-        if(id == null)
-            return ResponseEntity.status(HttpStatus.CONFLICT).body("아이디를 찾지 못했습니다.");
-        return ResponseEntity.ok(id);
+    public String showId(Model model, MemberFormDto memberFormDto) {
+    	MemberFormDto memberFormDto2 = memberService.findId(memberFormDto);
+        model.addAttribute("member", memberFormDto2);
+        return "/member/memberShowId";
     }
 
     
