@@ -72,22 +72,7 @@
                 alert(errorMessage);
             }
         });
-        
-        $('#findId').click(function() {
-	        $.ajax("/member/find/id")
-	            .done((result) => { Swal.fire("성공", "아이디 : " + result, "success") })
-	            .fail((response) => {
-	                // 서버에서 보낸 오류 메시지
-	                 $("#itemTotalRating").html(grade);
-	                console.log(response.responseText);
-	                // 서버에서 보낸 상태 코드
-	                console.log(response.status);
-	                Swal.fire("검색 실패", response.responseText, "error");
-	            }).always(()=>{
-	                // 성공과 실패에 상관없이 항상 실행되는 코드
-	                $('#find_id_name').val("")
-	            });
-	    });
+
     </script>
 
 </th:block>

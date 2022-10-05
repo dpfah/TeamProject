@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/layout1}">
+
+<head>
+    <meta charset="UTF-8">
+    <title>빵주머니 - 아이디찾기</title>
+   
+   <link th:href="@{/css/join.css}" rel="stylesheet">
+</head>
+
+<!-- 사용자 CSS 추가 -->
+<th:block layout:fragment="css">
+    <style>
+        .fieldError {
+            color: #bd2130;
+        }
+        
+		#join ul {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+		}
+		#join ul li {
+			float: left;
+		}        
+		.multi-column .flt-l {
+			float:left;
+			position: relative;
+			width:58.739%;
+			margin: 0;
+		}
+		.multi-column .flt-r {
+			float:left;
+			width:11.276%;
+			margin-left: 3.724%; 
+			box-sizing:border-box;
+		}
+		.multi-column:after {
+		    content: '';
+		    display: block;
+		    clear: both;
+		}
+		#join .radio-area li label {
+		    height: 36px;
+		    line-height: 36px;
+		    position: absolute;
+		    left: 0;
+		    top: 0;
+		    display: block;
+		    width: 100%;
+		    color: #929292;
+		    box-sizing: border-box;
+		    background: #fff;
+		    margin: 0;
+		}
+		.form-group {
+		    margin-bottom: 2rem;
+		}
+
+    </style>
+</th:block>
+
+<!-- 사용자 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+    <script th:inline="javascript">
+        $(document).ready(function(){
+            var errorMessage = [[${errorMessage}]];
+            if(errorMessage != null){
+                alert(errorMessage);
+            }
+        });
+    </script>
+
+</th:block>
+
+<body>
+	<div layout:fragment="content">
+	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
+				<div class="join-box2 mt-5" style="margin-bottom: 3rem;">
+				<th:block th:if="${#strings.isEmpty(member.id)}">
+					<div class="f-right"><p>아이디를 찾지 못했습니다.</p>
+					<span>다시 한번 시도해 보시겠어요?</span>
+			        <dt class="btn-join">
+				        <a href="/members/find_id">>> 아이디찾기 페이지로 이동</a>
+			        </dt>
+			        </div>
+				</th:block>
+				<th:block th:if="${not #strings.isEmpty(member.id)}">
+					<input type="hidden" id="memberId" th:value="${member.id}">
+		        	<div class="f-right">
+			        	<p>귀하의 아이디는 <br><strong th:text="${member.email}"></strong> 입니다</p>
+			        	<span>다시 로그인 해보시겠어요?</span>
+			        	<dt class="btn-join">
+					        <a href="/members/login">>> 다시 로그인 하기</a>
+				        </dt>
+			        </div>
+				</th:block>
+			    </div>
+		    </div>
+	</div>
+</body>
+
+</html>

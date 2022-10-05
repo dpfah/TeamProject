@@ -124,11 +124,12 @@ public class MemberService implements UserDetailsService {
         return member.getId();
     }
     
-    public String findId(MemberFormDto memberFormDto) {
+    public MemberFormDto findId(MemberFormDto memberFormDto) {
         Member member = memberRepository.findByNameAndBirthAndGenderAndPhone(memberFormDto.getName(), 
         		memberFormDto.getBirth(), memberFormDto.getGender(), memberFormDto.getPhone());
         if (member == null)
-            return null;
-        return member.getEmail();
+            return memberFormDto;
+        MemberFormDto memberFormDto2 = MemberFormDto.of(member);
+        return memberFormDto2;
     }
 }
