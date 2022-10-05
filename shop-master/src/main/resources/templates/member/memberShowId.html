@@ -80,6 +80,14 @@
 	<div layout:fragment="content">
 	    	<div id="join" class="mt-5 memberForm" style="padding-top: 1rem; padding-bottom: 130px;">
 				<div class="join-box2 mt-5" style="margin-bottom: 3rem;">
+				<th:block th:if="${#strings.isEmpty(member.id)}">
+					<div class="f-right"><p>아이디를 찾지 못했습니다.</p>
+			        <dt class="btn-join">
+				        <a href="/members/find_id">>> 아이디찾기 페이지로 이동</a>
+			        </dt>
+			        </div>
+				</th:block>
+				<th:block th:if="${not #strings.isEmpty(member.id)}">
 					<input type="hidden" id="memberId" th:value="${member.id}">
 		        	<div class="f-right">
 			        	<p>귀하의 아이디는 <br><strong th:text="${member.email}"></strong> 입니다</p>
@@ -88,6 +96,7 @@
 					        <a href="/members/login">>> 다시 로그인 하기</a>
 				        </dt>
 			        </div>
+				</th:block>
 			    </div>
 		    </div>
 	</div>

@@ -128,7 +128,7 @@ public class MemberService implements UserDetailsService {
         Member member = memberRepository.findByNameAndBirthAndGenderAndPhone(memberFormDto.getName(), 
         		memberFormDto.getBirth(), memberFormDto.getGender(), memberFormDto.getPhone());
         if (member == null)
-            return null;
+            return memberFormDto;
         MemberFormDto memberFormDto2 = MemberFormDto.of(member);
         return memberFormDto2;
     }
