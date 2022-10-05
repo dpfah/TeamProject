@@ -65,6 +65,12 @@ public class MemberController {
     public String loginMember(){
         return "/member/memberLoginForm";
     }
+    
+    //주소검색
+    @GetMapping(value = "/address")
+    public String searchAddress(){
+        return "/member/address";
+    }
 
     @GetMapping(value = "/login/error")
     public String loginError(Model model){

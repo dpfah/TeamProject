@@ -78,6 +78,7 @@
 	            .done((result) => { Swal.fire("성공", "아이디 : " + result, "success") })
 	            .fail((response) => {
 	                // 서버에서 보낸 오류 메시지
+	                 $("#itemTotalRating").html(grade);
 	                console.log(response.responseText);
 	                // 서버에서 보낸 상태 코드
 	                console.log(response.status);
@@ -131,6 +132,8 @@
 			        <dt class="btn-join">
 			            <button class="btn_join" id="findId">아이디 찾기</button>
 			        </dt>
+			     
+			        
 				    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
 			    	</form>
 			    </div>
