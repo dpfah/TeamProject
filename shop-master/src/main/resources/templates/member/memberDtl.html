@@ -83,27 +83,27 @@
 			    	<img th:if="${not #strings.isEmpty(memberImg.imgUrl)}" th:src="${memberImg.imgUrl}" class="rounded-circle mb-5 bg-light" width="300" height="300">
 				</div>
 		        <div class="form-group">
-		            <p class="form-control" th:text="${member.name}"></p>
+		            이름 <p class="form-control" th:text="${member.name}"></p>
 		        </div>
 		        <div class="radio-wrap multi-column">
 		        	<div class="flt-l">
-		        		<p class="form-control" th:text="${member.birth}"></p>
+		        		생년월일 <p class="form-control" th:text="${member.birth}"></p>
 		        	</div>
 		        	<div class="radio-area">
 		        		<p class="form-control" th:text="${member.gender}"></p>
 		        	</div>
 		        </div>
 		        <div class="form-group">
-		       		<p class="form-control" th:text="${member.phone}"></p>
+		       		전화번호<p class="form-control" th:text="${member.phone}"></p>
 		        </div>
 		        <div class="form-group">
-		        	<p class="form-control" th:text="${member.email}"></p>
+		        	이메일 <p class="form-control" th:text="${member.email}"></p>
 		        </div>
 		        <div class="form-group">
-		        	<input type="password" class="form-control" th:value="${member.password}" readonly></input>
+		        	비밀번호 <input type="password" class="form-control" th:value="${member.password}" readonly></input>
 		        </div>
 		        <div class="form-group">
-		        	<p class="form-control" th:text="${member.address}"></p>
+		        	주소 <p class="form-control" th:text="${member.address}"></p>
 		        </div>
 		        <div style="text-align: center;">
 		        	<a href="/members/update" class="btn btn-update">수정하기</a>
